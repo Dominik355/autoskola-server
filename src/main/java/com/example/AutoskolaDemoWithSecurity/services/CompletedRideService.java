@@ -13,6 +13,7 @@ public class CompletedRideService {
     private CompletedRideRepository crr;
     
     public ResponseEntity getCompletedRides() {
+        return null;
         
     }
     
