@@ -1,7 +1,7 @@
 
 package com.example.AutoskolaDemoWithSecurity.controllers;
 
-import com.example.AutoskolaDemoWithSecurity.models.databaseModels.DrivingSchool;
+import com.example.AutoskolaDemoWithSecurity.models.transferModels.DrivingSchoolDTO;
 import com.example.AutoskolaDemoWithSecurity.services.DrivingSchoolService;
 import java.nio.file.AccessDeniedException;
 import javax.validation.Valid;
@@ -23,7 +23,7 @@ public class SchoolController {
     private DrivingSchoolService schoolService;
     
     @PostMapping(value = {"/addNewSchool"})
-    public ResponseEntity createSchool(@RequestBody @Valid DrivingSchool school) {
+    public ResponseEntity createSchool(@RequestBody @Valid DrivingSchoolDTO school) {
         return ResponseEntity.ok(schoolService.createDrivingSchool(school));
     }
     

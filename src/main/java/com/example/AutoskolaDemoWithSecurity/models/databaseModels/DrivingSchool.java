@@ -2,6 +2,7 @@
 package com.example.AutoskolaDemoWithSecurity.models.databaseModels;
 
 
+import com.example.AutoskolaDemoWithSecurity.models.transferModels.DrivingSchoolDTO;
 import com.example.AutoskolaDemoWithSecurity.validators.constraint.UniqueSchoolName;
 import java.io.Serializable;
 import java.sql.Timestamp;
@@ -54,6 +55,14 @@ public class DrivingSchool implements Serializable{
 
     public DrivingSchool() {
         
+    }
+    
+    public DrivingSchool(DrivingSchoolDTO schoolDTO) {
+        this.name = schoolDTO.getName();
+        this.address = schoolDTO.getAddress();
+        this.email = schoolDTO.getEmail();
+        this.phoneNumber = schoolDTO.getPhoneNumber();
+        this.creationDate = new Timestamp(System.currentTimeMillis());
     }
 
     public DrivingSchool(String name, User owner, String phoneNumber, String email, Date creationDate, String address) {

@@ -81,7 +81,7 @@ public class MyUserDetailsService implements UserDetailsService {
         throw new PersistenceException("Something went wrong, User " + userToBeSaved.getEmail() + " could not be saved");
       }
       
-        String appUrl = "http://" + request.getServerName() + ":" + request.getServerPort();
+        //String appUrl = "https://" + request.getServerName() + ":" + request.getServerPort();
        // this.applicationEventPublisher.publishEvent(new OnRegistrationCompleteEvent(
          //       appUrl, request.getLocale(), userToBeSaved));
       return ResponseEntity.ok("User was succesfuly registered, please confirm verification in your email within 24 hours");

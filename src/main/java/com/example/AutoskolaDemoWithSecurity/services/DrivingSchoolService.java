@@ -4,6 +4,7 @@ package com.example.AutoskolaDemoWithSecurity.services;
 import com.example.AutoskolaDemoWithSecurity.models.databaseModels.DrivingSchool;
 import com.example.AutoskolaDemoWithSecurity.models.databaseModels.Relationship;
 import com.example.AutoskolaDemoWithSecurity.models.databaseModels.User;
+import com.example.AutoskolaDemoWithSecurity.models.transferModels.DrivingSchoolDTO;
 import com.example.AutoskolaDemoWithSecurity.repositories.DrivingSchoolRepository;
 import com.example.AutoskolaDemoWithSecurity.repositories.RelationshipRepository;
 import com.example.AutoskolaDemoWithSecurity.repositories.UserRepository;
@@ -31,8 +32,10 @@ public class DrivingSchoolService {
     private RelationshipRepository relationshipRepository;
     
     
-    public ResponseEntity createDrivingSchool(DrivingSchool drivingSchool) {
+    public ResponseEntity createDrivingSchool(DrivingSchoolDTO drivingSchoolDTO) {
+        
         User owner = (userRepository.findByEmail(SecurityContextHolder.getContext().getAuthentication().getName()).get());
+        DrivingSchool drivingSchool = new DrivingSchool(drivingSchoolDTO);
         drivingSchool.setOwner(owner);
         DrivingSchool school = schoolRepository.save(drivingSchool);
         Relationship r = relationshipRepository.save(new Relationship(school, owner, true));
@@ -42,9 +45,11 @@ public class DrivingSchoolService {
         throw new PersistenceException("Something went wrong, School " + drivingSchool.getName() + " could not be saved");
         }
         return ResponseEntity.ok("School succesfully created");
+        
     }
     
     public ResponseEntity getSchoolInfo(int id) throws AccessDeniedException {
+        
         Authentication currentUser = SecurityContextHolder.getContext().getAuthentication();
         DrivingSchool school = schoolRepository.findById(id).orElseThrow();
         if((school.getOwner().getEmail()).equals(currentUser.getName())) {
@@ -52,6 +57,7 @@ public class DrivingSchoolService {
         } else {
             throw new AccessDeniedException("No permission to access this data");
         }
+        
     }
     
     

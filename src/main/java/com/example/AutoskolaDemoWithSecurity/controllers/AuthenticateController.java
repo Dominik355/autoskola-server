@@ -5,13 +5,11 @@
  */
 package com.example.AutoskolaDemoWithSecurity.controllers;
 
-import com.example.AutoskolaDemoWithSecurity.models.databaseModels.Relationship;
 import com.example.AutoskolaDemoWithSecurity.models.databaseModels.User;
+import com.example.AutoskolaDemoWithSecurity.models.otherModels.MyUserDetails;
 import com.example.AutoskolaDemoWithSecurity.models.transferModels.AuthenticationRequest;
-import com.example.AutoskolaDemoWithSecurity.models.transferModels.AuthenticationResponse;
 import com.example.AutoskolaDemoWithSecurity.models.transferModels.ResetPasswordRequest;
 import com.example.AutoskolaDemoWithSecurity.models.transferModels.UserDTO;
-import com.example.AutoskolaDemoWithSecurity.models.transferModels.UserProfileInfo;
 import com.example.AutoskolaDemoWithSecurity.models.transferModels.VerificationToken;
 import com.example.AutoskolaDemoWithSecurity.repositories.CompletedRideRepository;
 import com.example.AutoskolaDemoWithSecurity.repositories.RelationshipRepository;
@@ -56,12 +54,6 @@ public class AuthenticateController {
     
     @Autowired
     private VerificationTokenService verificationTokenService;
-    
-    @Autowired
-    private RelationshipRepository relationshipRepository;
-    
-    @Autowired
-    private CompletedRideRepository completedRideRepository;
     
     
     @RequestMapping(value = {"/registrationConfirm"}, method = {RequestMethod.GET})
@@ -110,7 +102,7 @@ public class AuthenticateController {
         UserDetails userDetails = this.myUserDetailsService.loadUserByUsername(authenticationRequest.getEmail());
 
         String jwt = this.jwtTokenUtil.generateToken(userDetails);
-
+        
         //neskor zmenit predavanie id, teraz napevno dava jedine relationship ID, lebo zatial nerobime
         // vztahy pre viacero autoskol, potom mu vypise vsetky vztahy a on si vyberie jedno
         /*User user = userRepository.findByEmail(email).get();
