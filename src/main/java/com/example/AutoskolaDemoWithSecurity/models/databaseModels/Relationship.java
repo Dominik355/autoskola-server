@@ -4,6 +4,9 @@ package com.example.AutoskolaDemoWithSecurity.models.databaseModels;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -14,6 +17,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 
@@ -88,6 +92,10 @@ public class Relationship implements Serializable {
 
     public String getRole() {
         return role;
+    }
+    
+    public List<String> getRoles() {
+        return Arrays.stream(user.getRoles().split(",")).collect(Collectors.toList());
     }
 
     public boolean isActivate() {

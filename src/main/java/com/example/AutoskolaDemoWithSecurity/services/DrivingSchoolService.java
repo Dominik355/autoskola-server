@@ -9,6 +9,10 @@ import com.example.AutoskolaDemoWithSecurity.repositories.DrivingSchoolRepositor
 import com.example.AutoskolaDemoWithSecurity.repositories.RelationshipRepository;
 import com.example.AutoskolaDemoWithSecurity.repositories.UserRepository;
 import java.nio.file.AccessDeniedException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 import javax.persistence.PersistenceException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -60,6 +64,9 @@ public class DrivingSchoolService {
         
     }
     
-    
+    public List<DrivingSchoolDTO> getDrivingSchools() {
+        List<DrivingSchool> list = schoolRepository.findAll();
+        return list.stream().map(DrivingSchoolDTO::new).collect(Collectors.toList());
+    }
     
 }

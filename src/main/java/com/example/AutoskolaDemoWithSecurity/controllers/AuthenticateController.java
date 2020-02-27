@@ -6,13 +6,10 @@
 package com.example.AutoskolaDemoWithSecurity.controllers;
 
 import com.example.AutoskolaDemoWithSecurity.models.databaseModels.User;
-import com.example.AutoskolaDemoWithSecurity.models.otherModels.MyUserDetails;
 import com.example.AutoskolaDemoWithSecurity.models.transferModels.AuthenticationRequest;
 import com.example.AutoskolaDemoWithSecurity.models.transferModels.ResetPasswordRequest;
 import com.example.AutoskolaDemoWithSecurity.models.transferModels.UserDTO;
 import com.example.AutoskolaDemoWithSecurity.models.transferModels.VerificationToken;
-import com.example.AutoskolaDemoWithSecurity.repositories.CompletedRideRepository;
-import com.example.AutoskolaDemoWithSecurity.repositories.RelationshipRepository;
 import com.example.AutoskolaDemoWithSecurity.repositories.UserRepository;
 import com.example.AutoskolaDemoWithSecurity.services.MyUserDetailsService;
 import com.example.AutoskolaDemoWithSecurity.services.VerificationTokenService;
