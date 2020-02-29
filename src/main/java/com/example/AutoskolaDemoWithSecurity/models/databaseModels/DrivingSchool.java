@@ -3,7 +3,6 @@ package com.example.AutoskolaDemoWithSecurity.models.databaseModels;
 
 
 import com.example.AutoskolaDemoWithSecurity.models.transferModels.DrivingSchoolDTO;
-import com.example.AutoskolaDemoWithSecurity.validators.constraint.UniqueSchoolName;
 import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.Date;
@@ -33,7 +32,6 @@ public class DrivingSchool implements Serializable{
     private int id;
     
     @NotEmpty
-    @UniqueSchoolName
     private String name;
     
     @ManyToOne(targetEntity = User.class, fetch = FetchType.EAGER)
@@ -41,12 +39,13 @@ public class DrivingSchool implements Serializable{
     private User owner;
     
     @NotEmpty
+    @Column(name = "phone_number")
     private String phoneNumber;
     
     @NotEmpty
     private String email;
     
-    @Column(updatable = false)
+    @Column(updatable = false, name = "creation_date")
     @Temporal(TemporalType.DATE)
     private Date creationDate;
     
@@ -120,6 +119,17 @@ public class DrivingSchool implements Serializable{
 
     public String getAddress() {
         return address;
+    }
+
+    @Override
+    public String toString() {
+        return this.address+", "
+                +this.email+", "
+                +this.name+", "
+                +this.phoneNumber+", "
+                +this.creationDate+", "
+                +this.id+", "
+                +this.owner; 
     }
    
 }

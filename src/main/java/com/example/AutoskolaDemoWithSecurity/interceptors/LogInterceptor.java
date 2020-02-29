@@ -20,25 +20,21 @@ public class LogInterceptor extends HandlerInterceptorAdapter {
     
     @Override
     public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
-        log.info("----------------LogInterceptor after view is rendered (Start)--------------------------");
 
         long endTime = System.currentTimeMillis();
         long startTime=Long.parseLong(request.getAttribute("startTime")+"");
         log.info("Total time taken to process request: "+(endTime-startTime)*0.001+" seconds");
-        log.info("----------------LogInterceptor after view is rendered (End)--------------------------");
     }
 
     @Override
     public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
-        log.info("----------------LogInterceptor postHandle ()--------------------------");
+        
     }
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        log.info("---------------LogInterceptor preHandle(START)---------------");
         long startTime = System.currentTimeMillis();
         request.setAttribute("startTime", startTime);
-        log.info("---------------LogInterceptor preHandle(END)---------------");
         return true;
     }
     

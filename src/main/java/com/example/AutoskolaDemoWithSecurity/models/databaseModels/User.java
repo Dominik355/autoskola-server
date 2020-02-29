@@ -38,6 +38,7 @@ public class User implements Serializable {
     private String email;
 
     @NotEmpty
+    @Column(name = "phone_number")
     private String phoneNumber;
 
     private boolean active;
@@ -45,7 +46,7 @@ public class User implements Serializable {
     @NotEmpty
     private String roles;
 
-    @Column(updatable = false)
+    @Column(updatable = false, name = "created_on")
     private Timestamp createdOn;
 
 
@@ -149,7 +150,16 @@ public class User implements Serializable {
     }
     
     public String getFullName() {
-        return this.name+this.surname;
+        return this.name+" "+this.surname;
+    }
+
+    @Override
+    public String toString() {
+        return this.getFullName()+", "
+                +this.id+", "
+                +this.roles+", "
+                +this.getEmail()+", "
+                +this.phoneNumber;
     }
     
 }

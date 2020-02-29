@@ -17,7 +17,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 
@@ -32,11 +31,11 @@ public class Relationship implements Serializable {
     private int id;
     
     @ManyToOne(targetEntity = DrivingSchool.class, fetch = FetchType.EAGER)
-    @JoinColumn(nullable = false, name = "Driving_School")
+    @JoinColumn(nullable = false, name = "driving_School")
     private DrivingSchool drivingSchool;
     
     @ManyToOne(targetEntity = User.class, fetch = FetchType.EAGER)
-    @JoinColumn(nullable = false, name = "user_ID")
+    @JoinColumn(nullable = false, name = "user_id")
     private User user;
     
     @Column(name = "creation_date", nullable = false, updatable = false)
@@ -104,6 +103,17 @@ public class Relationship implements Serializable {
 
     public void setActivate(boolean activate) {
         this.activate = activate;
+    }
+
+    @Override
+    public String toString() {
+        return "role: "+this.role+
+                ", active: "+this.activate+
+                        ", drivingSchoold: "+this.drivingSchool+
+                                ", endingDate: "+this.endingdate+
+                                        ", id: "+this.id+
+                                                ", role: "+this.role+
+                                                        ", user: "+this.user;
     }
     
 }

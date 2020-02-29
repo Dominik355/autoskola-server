@@ -10,8 +10,6 @@ import javax.validation.constraints.NotEmpty;
 
 
 public class DrivingSchoolDTO implements Serializable {
-
-    private int id;
     
     @NotEmpty
     @UniqueSchoolName
@@ -35,7 +33,6 @@ public class DrivingSchoolDTO implements Serializable {
     public DrivingSchoolDTO(DrivingSchool school) {
         this.address = school.getAddress();
         this.email = school.getEmail();
-        this.id = school.getId();
         this.name = school.getName();
         this.phoneNumber = school.getPhoneNumber();
     }

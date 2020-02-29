@@ -47,7 +47,12 @@ class ApivalidationError extends ApiSubError {
     public void setMessage(String message) {
         this.message = message;
     }
-    
-    
+
+    @Override
+    public String toString() {
+        return "Field: "+this.getField()
+                +", Object: "+this.getObject()
+                +", Message: "+this.getMessage();
+    }
     
 }

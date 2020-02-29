@@ -20,6 +20,8 @@ import javax.security.auth.login.LoginException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpServletRequest;
 import org.hibernate.HibernateException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
 import org.springframework.dao.DataAccessException;
@@ -41,6 +43,9 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 @ControllerAdvice
 public class RestExceptionHandler extends ResponseEntityExceptionHandler { 
 
+    Logger log = LoggerFactory.getLogger(RestExceptionHandler.class);
+    
+    
     @Override
     protected ResponseEntity<Object> handleHttpMessageNotReadable
             (HttpMessageNotReadableException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {           
@@ -96,6 +101,7 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
     
     @ExceptionHandler({DataAccessException.class, HibernateException.class})
     public ResponseEntity<Object> handleDatabaseProblemException(RuntimeException ex) {
+        ex.printStackTrace();
         String errorMessage = ex.getMessage();
         if(errorMessage == null) {
             errorMessage = ex.getLocalizedMessage();
@@ -115,6 +121,7 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
     
     @ExceptionHandler({ PersistenceException.class })
     public ResponseEntity<Object> handlePersistenceException(PersistenceException ex) {
+        ex.printStackTrace();
             String errorMessage = ex.getMessage();
         if(errorMessage == null) {
             errorMessage = ex.getLocalizedMessage();
@@ -175,7 +182,9 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
     }
     
     public ResponseEntity<Object> buildResponseEntity(ApiError apiError) {
-        return new ResponseEntity(apiError, apiError.getStatus()); 
+        ResponseEntity re = new ResponseEntity(apiError, apiError.getStatus());
+        log.error(apiError.toString());
+        return re; 
     }
     
     private HttpStatus getStatus(HttpServletRequest request) {

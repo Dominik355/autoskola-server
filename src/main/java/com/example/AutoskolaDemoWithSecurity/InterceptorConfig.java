@@ -14,7 +14,10 @@ public class InterceptorConfig extends WebMvcConfigurerAdapter {
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(new LogInterceptor());
-        registry.addInterceptor(new AuthInterceptor()).excludePathPatterns("/authenticate/*");
+       /* registry.addInterceptor(new AuthInterceptor())
+                .excludePathPatterns("/authenticate/*"
+                , "/school/addNewSchool"
+                , "/info/schoolsAvailable");*/
     }
     
 }

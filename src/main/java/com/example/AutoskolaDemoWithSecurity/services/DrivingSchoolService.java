@@ -9,12 +9,11 @@ import com.example.AutoskolaDemoWithSecurity.repositories.DrivingSchoolRepositor
 import com.example.AutoskolaDemoWithSecurity.repositories.RelationshipRepository;
 import com.example.AutoskolaDemoWithSecurity.repositories.UserRepository;
 import java.nio.file.AccessDeniedException;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import javax.persistence.PersistenceException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -37,28 +36,39 @@ public class DrivingSchoolService {
     
     
     public ResponseEntity createDrivingSchool(DrivingSchoolDTO drivingSchoolDTO) {
-        
-        User owner = (userRepository.findByEmail(SecurityContextHolder.getContext().getAuthentication().getName()).get());
+            User owner = (userRepository.findByEmail(SecurityContextHolder.getContext().getAuthentication().getName()).get());
+        System.out.println("owner's email: "+owner.getEmail());
         DrivingSchool drivingSchool = new DrivingSchool(drivingSchoolDTO);
         drivingSchool.setOwner(owner);
-        DrivingSchool school = schoolRepository.save(drivingSchool);
-        Relationship r = relationshipRepository.save(new Relationship(school, owner, true));
+
+            DrivingSchool school = schoolRepository.save(drivingSchool);
+            Relationship r = relationshipRepository.save(new Relationship(school, owner, true));
+
         if (school == null || r == null) {
+            System.out.println("1 of the values is null, school: "+school+", relationship: "+r);
             schoolRepository.delete(school);
             relationshipRepository.delete(r);
         throw new PersistenceException("Something went wrong, School " + drivingSchool.getName() + " could not be saved");
         }
-        return ResponseEntity.ok("School succesfully created");
+        return new ResponseEntity("School succesfully created", HttpStatus.OK);
         
     }
     
     public ResponseEntity getSchoolInfo(int id) throws AccessDeniedException {
-        
+        System.out.println("1");
         Authentication currentUser = SecurityContextHolder.getContext().getAuthentication();
-        DrivingSchool school = schoolRepository.findById(id).orElseThrow();
+                System.out.println("2");
+
+        DrivingSchool school = schoolRepository.findById(id).get();
+                System.out.println("3");
+
         if((school.getOwner().getEmail()).equals(currentUser.getName())) {
-            return ResponseEntity.ok(school);
+                    System.out.println("4");
+
+            return new ResponseEntity(id, HttpStatus.OK);
         } else {
+                    System.out.println("5");
+
             throw new AccessDeniedException("No permission to access this data");
         }
         

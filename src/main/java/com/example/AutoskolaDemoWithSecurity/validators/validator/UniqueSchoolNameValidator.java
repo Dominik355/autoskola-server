@@ -15,7 +15,8 @@ public class UniqueSchoolNameValidator implements ConstraintValidator<UniqueScho
     
     @Override
     public boolean isValid(String value, ConstraintValidatorContext context) {
-        return !(schoolRepository.existsByName(value));
+        Boolean flag = schoolRepository.existsByName(value);
+        return !flag;
     }
     
 }

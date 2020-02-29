@@ -120,5 +120,12 @@ public class ApiError {
     public void setSubErrors(List<ApiSubError> subErrors) {
         this.subErrors = subErrors; 
     }
+
+    @Override
+    public String toString() {
+        return "Timestamp: "+this.getTimestamp()
+                +", Status: "+this.getStatus()
+                +", Message: "+this.getMessage();
+    }
     
 }
