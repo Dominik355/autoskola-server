@@ -5,6 +5,7 @@ import com.example.AutoskolaDemoWithSecurity.errorApi.customExceptions.CustomLog
 import com.example.AutoskolaDemoWithSecurity.models.databaseModels.User;
 import com.example.AutoskolaDemoWithSecurity.repositories.RelationshipRepository;
 import com.example.AutoskolaDemoWithSecurity.repositories.UserRepository;
+import com.example.AutoskolaDemoWithSecurity.services.MyUserDetailsService;
 import java.io.IOException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -21,12 +22,15 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 public class AuthInterceptor extends HandlerInterceptorAdapter {
 
     @Autowired
-    private RelationshipRepository repository;
+    private RelationshipRepository relationRepository;
     
     @Autowired
     private UserRepository userRepository;
     
-    private static Logger log = LoggerFactory.getLogger(AuthInterceptor.class);
+    @Autowired
+    private MyUserDetailsService userService;
+    
+    private static final Logger log = LoggerFactory.getLogger(AuthInterceptor.class);
     
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
@@ -35,16 +39,17 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
         String relationId = request.getHeader("Relation");
         if(relationId == null) {
             
-            throw new IOException("Exception hodena v interceptori");
+            throw new IOException("Exception hodena v interceptori, RelationID = null");
             
         } else if (relationId != null && relationId != "") {
-            
-            System.out.println("RelationID is : "+relationId);
-            User user = userRepository.findByEmail(
-                    SecurityContextHolder.getContext().getAuthentication().getName()).get();
+                        String email = SecurityContextHolder.getContext().getAuthentication().getName();
+                        System.out.println("EMAIL: "+email);
+            User user = userService.loadUserWithUsername(
+                    email);
             int relationID = Integer.parseInt(relationId);
             
-            if(repository.existsByUserAndId(user, relationID)) {
+            if(relationRepository.existsByUserAndId(user, relationID)) {
+                log.info("Relation ID is OK, user: "+SecurityContextHolder.getContext().getAuthentication().getName()+", ID: "+relationID);
                 return true;
             } else {
                 throw new CustomLoginException("Incorrect RelationID in header. ID does not exist or is not yours");

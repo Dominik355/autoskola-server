@@ -17,19 +17,19 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 @RestController
-//@RequestMapping("/school")
+@RequestMapping(value = {"/school"})
 @PreAuthorize("hasRole('ROLE_OWNER')")
 public class SchoolController {
     
     @Autowired
     private DrivingSchoolService schoolService;
     
-    @PostMapping(value = {"/school/addNewSchool"})
+    @PostMapping(value = {"/addNewSchool"})
     public ResponseEntity createSchool(@RequestBody @Valid DrivingSchoolDTO school) {
         return ResponseEntity.ok(schoolService.createDrivingSchool(school));
     }
     
-    @GetMapping(value = "/school/getSchoolInfo/{id}")
+    @GetMapping(value = "/getSchoolInfo/{id}")
     public ResponseEntity getSchoolInfo(@PathVariable int id) throws AccessDeniedException {
         System.out.println("School controller - getSchoolInfo()");
         return ResponseEntity.ok(schoolService.getSchoolInfo(id));

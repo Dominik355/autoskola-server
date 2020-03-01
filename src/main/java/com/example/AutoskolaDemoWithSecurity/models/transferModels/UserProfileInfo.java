@@ -8,6 +8,8 @@ import java.sql.Timestamp;
 
 public class UserProfileInfo implements Serializable{
     
+    private int id;
+    
     private String fullName;
     
     private String email;
@@ -20,6 +22,15 @@ public class UserProfileInfo implements Serializable{
 
     public UserProfileInfo() {
         
+    }
+
+    public UserProfileInfo(int id, String fullName, String email, String phoneNumber, Timestamp startDate, int ridesCompleted) {
+        this.id = id;
+        this.fullName = fullName;
+        this.email = email;
+        this.phoneNumber = phoneNumber;
+        this.startDate = startDate;
+        this.ridesCompleted = ridesCompleted;
     }
 
     public UserProfileInfo(String fullName, String email, String phoneNumber, Timestamp startDate, int ridesCompleted) {
@@ -76,6 +87,14 @@ public class UserProfileInfo implements Serializable{
 
     public void setRidesCompleted(int ridesCompleted) {
         this.ridesCompleted = ridesCompleted;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
     
 }

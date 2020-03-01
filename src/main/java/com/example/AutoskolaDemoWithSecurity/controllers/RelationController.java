@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 @RestController
-@RequestMapping("/relationship")
+@RequestMapping(value = {"/relationship"})
 @PreAuthorize("hasRole('ROLE_INSTRUCTOR') or hasRole('ROLE_STUDENT')")
 public class RelationController {
     
@@ -22,11 +22,13 @@ public class RelationController {
     private RelationshipService relationshipService;
     
     @PostMapping(value = "/enterSchool/{schoolID}")
-    public ResponseEntity enterSchool(@PathVariable int id) {
+    public ResponseEntity enterSchool(@PathVariable("schoolID") int id) {
+        
         int userID = (int) ((MyUserDetails) SecurityContextHolder
                 .getContext().getAuthentication().getPrincipal()).getId();
         
         return ResponseEntity.ok(relationshipService.newRelationship(id, userID));
+        
     }
     
 }

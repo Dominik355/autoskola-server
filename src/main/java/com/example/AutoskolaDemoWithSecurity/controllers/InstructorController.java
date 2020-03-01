@@ -1,7 +1,6 @@
 
 package com.example.AutoskolaDemoWithSecurity.controllers;
 
-import com.example.AutoskolaDemoWithSecurity.models.databaseModels.Ride;
 import com.example.AutoskolaDemoWithSecurity.models.transferModels.RideDTO;
 import com.example.AutoskolaDemoWithSecurity.services.RideService;
 import javax.servlet.http.HttpServletRequest;
@@ -35,8 +34,8 @@ public class InstructorController {
         return ResponseEntity.ok(rideService.addRide(ride, request.getIntHeader("Relation")));
     }
     
-    @DeleteMapping(value = "/removeRide/{id}")
-    public ResponseEntity removeRide(@PathVariable int id, HttpServletRequest request) {
+    @DeleteMapping(value = "/removeRide/{rideID}")
+    public ResponseEntity removeRide(@PathVariable("rideID") int id, HttpServletRequest request) {
         return ResponseEntity.ok(rideService.removeRide(id, request.getIntHeader("Relation")));
     }
     

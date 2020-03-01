@@ -55,23 +55,14 @@ public class DrivingSchoolService {
     }
     
     public ResponseEntity getSchoolInfo(int id) throws AccessDeniedException {
-        System.out.println("1");
-        Authentication currentUser = SecurityContextHolder.getContext().getAuthentication();
-                System.out.println("2");
-
+        
         DrivingSchool school = schoolRepository.findById(id).get();
-                System.out.println("3");
-
-        if((school.getOwner().getEmail()).equals(currentUser.getName())) {
-                    System.out.println("4");
-
-            return new ResponseEntity(id, HttpStatus.OK);
+        if((school.getOwner().getEmail())
+                .equals(SecurityContextHolder.getContext().getAuthentication().getName())) {
+            return new ResponseEntity(school, HttpStatus.OK);
         } else {
-                    System.out.println("5");
-
             throw new AccessDeniedException("No permission to access this data");
         }
-        
     }
     
     public List<DrivingSchoolDTO> getDrivingSchools() {

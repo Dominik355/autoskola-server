@@ -44,21 +44,23 @@ public class RideService {
     public ResponseEntity addRide(RideDTO rideDTO, int relationID) {
         if(dateUtil.isDateValid(rideDTO.getDate())
                 && dateUtil.isTimeValid(rideDTO.getTime())) {
-            
+            System.out.println("1");
             Ride ride = new Ride(rideDTO);
-            
+            System.out.println("2");
             ride.setIsFree(true);
             ride.setDrivingSchool(relationshipRepository
                     .findById(relationID).get().getDrivingSchool());
-            
+            System.out.println("3");
             ride.setInstructor(userRepository.findByEmail(
                     SecurityContextHolder.getContext().getAuthentication().getName()).get());
-            
+            System.out.println("4");
             rideRepository.save(ride);
-            
+            System.out.println("5");
+            return new ResponseEntity("Ride succesfully created", HttpStatus.OK);
         }
         return new ResponseEntity("Bad request", HttpStatus.BAD_REQUEST);
     }
+    
     
     public ResponseEntity removeRide(int rideID, int relationID) {
         User student;
