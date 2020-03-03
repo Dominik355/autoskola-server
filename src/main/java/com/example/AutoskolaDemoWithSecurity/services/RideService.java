@@ -5,6 +5,7 @@ import com.example.AutoskolaDemoWithSecurity.errorApi.customExceptions.WrongDate
 import com.example.AutoskolaDemoWithSecurity.models.databaseModels.Relationship;
 import com.example.AutoskolaDemoWithSecurity.models.databaseModels.Ride;
 import com.example.AutoskolaDemoWithSecurity.models.databaseModels.User;
+import com.example.AutoskolaDemoWithSecurity.models.transferModels.DrivingSchoolDTO;
 import com.example.AutoskolaDemoWithSecurity.models.transferModels.InstructorRides;
 import com.example.AutoskolaDemoWithSecurity.models.transferModels.RideDTO;
 import com.example.AutoskolaDemoWithSecurity.repositories.RelationshipRepository;
@@ -12,9 +13,12 @@ import com.example.AutoskolaDemoWithSecurity.repositories.RideRepository;
 import com.example.AutoskolaDemoWithSecurity.repositories.UserRepository;
 import com.example.AutoskolaDemoWithSecurity.utils.RideDateUtil;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.stream.Collectors;
+import javax.persistence.EntityExistsException;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -41,29 +45,54 @@ public class RideService {
     private UserRepository userRepository;
     
     
-    public ResponseEntity addRide(RideDTO rideDTO, int relationID) {
-        if(dateUtil.isDateValid(rideDTO.getDate())
-                && dateUtil.isTimeValid(rideDTO.getTime())) {
+    public ResponseEntity addRide(RideDTO rideDTO, int relationID, User instructor) {
             
-            User instructor = userRepository.findByEmail(
-                    SecurityContextHolder.getContext().getAuthentication().getName()).get();
+        Ride ride = new Ride(rideDTO);
+        ride.setIsFree(true);
+        ride.setDrivingSchool(relationshipRepository
+                .findById(relationID).get().getDrivingSchool());
+        ride.setInstructor(instructor);
+        rideRepository.save(ride);
+        return new ResponseEntity("Ride succesfully created", HttpStatus.OK);
             
-            if(rideRepository.existsByTimeAndDateAndInstructor(
-                    rideDTO.getTime(), rideDTO.getDate(), instructor)) {
-                return new ResponseEntity("Takato jazda uz existuje", HttpStatus.BAD_REQUEST);
-            }
-            
-            Ride ride = new Ride(rideDTO);
-            ride.setIsFree(true);
-            ride.setDrivingSchool(relationshipRepository
-                    .findById(relationID).get().getDrivingSchool());
-            ride.setInstructor(instructor);
-            
-            rideRepository.save(ride);
-            return new ResponseEntity("Ride succesfully created", HttpStatus.OK);
-        }
-        return new ResponseEntity("Bad request", HttpStatus.BAD_REQUEST);
     }
+    
+    // ak je  jazda zla, tak nevytvori ziadnu - jednoduchsie na odosielanie eroru
+    public ResponseEntity addRides(RideDTO[] rides, int relationID) {
+
+        User instructor = userRepository.findByEmail(
+                    SecurityContextHolder.getContext().getAuthentication().getName()).get();
+        for(RideDTO r : rides) {
+            if(!isRideDTOFine(r, instructor)) {
+                throw new WrongDateException("1 or more of Objects are bad");
+            }
+        }
+        Arrays.asList(rides).forEach(t -> addRide(t, relationID, instructor));
+        return new ResponseEntity("Rides succesfully created", HttpStatus.OK);
+        
+    }
+    
+    // vytvara jazdy po 1, ak je nejaka zla , zapise ju - zle sa vytvara error
+    // napr. polka sa vytvori, polka nie - odoslu sa len erory
+   /* public ResponseEntity addRides(RideDTO[] rides, int relationID) {
+        List<RideDTO> list = Arrays.asList(rides);
+        List<ResponseEntity> responses = new ArrayList<>();
+        list.forEach(t -> responses.add(addRide(t, relationID)));
+        List<String> errors = new ArrayList<>();
+        
+        responses.forEach((t) -> {
+            if(t.getStatusCode() == HttpStatus.OK) {
+                responses.remove(t);
+            } else {
+                errors.add((String) t.getBody());
+            }
+        });
+        if(!responses.isEmpty()) {
+            return new ResponseEntity(responses, HttpStatus.BAD_REQUEST);
+        } else {
+            return new ResponseEntity("All Rides succesfully created", HttpStatus.OK);
+        }
+    }*/
     
     
     public ResponseEntity removeRide(int rideID, int relationID) {
@@ -132,4 +161,19 @@ public class RideService {
         
     }
     */
+    
+    public boolean isRideDTOFine(RideDTO rideDTO, User instructor) {
+        if(dateUtil.isDateValid(rideDTO.getDate())
+                && dateUtil.isTimeValid(rideDTO.getTime())) {
+            if (!rideRepository.existsByTimeAndDateAndInstructor(
+                    rideDTO.getTime(), rideDTO.getDate(), instructor)) {
+                return true;
+            } else {
+                throw new EntityExistsException("This ride already exists!");
+            }
+        } else {
+            throw new WrongDateException("Invalid Date or Time!");
+        }
+    }
+    
 }
