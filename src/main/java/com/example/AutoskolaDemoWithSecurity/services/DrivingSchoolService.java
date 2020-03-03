@@ -36,8 +36,10 @@ public class DrivingSchoolService {
     
     
     public ResponseEntity createDrivingSchool(DrivingSchoolDTO drivingSchoolDTO) {
-            User owner = (userRepository.findByEmail(SecurityContextHolder.getContext().getAuthentication().getName()).get());
+            User owner = (userRepository.findByEmail(SecurityContextHolder
+                        .getContext().getAuthentication().getName()).get());
         System.out.println("owner's email: "+owner.getEmail());
+        
         DrivingSchool drivingSchool = new DrivingSchool(drivingSchoolDTO);
         drivingSchool.setOwner(owner);
 
