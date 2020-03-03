@@ -154,6 +154,11 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
         return buildResponseEntity(new ApiError(HttpStatus.BAD_REQUEST, ex.getMessage()));
     }
     
+    @ExceptionHandler({ CustomLoginException.class })
+    public ResponseEntity<Object> handleCustomLoginException(CustomLoginException ex) {
+        return buildResponseEntity(new ApiError(HttpStatus.BAD_REQUEST, ex.getMessage()));
+    }
+    
     @ExceptionHandler({ InterruptedException.class })
     public ResponseEntity<Object> handleInterruptedException(InterruptedException ex) {
         String errorMessage = ex.getMessage();

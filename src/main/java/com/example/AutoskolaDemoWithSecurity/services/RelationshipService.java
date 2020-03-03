@@ -9,6 +9,7 @@ import com.example.AutoskolaDemoWithSecurity.repositories.ConfirmationRepository
 import com.example.AutoskolaDemoWithSecurity.repositories.DrivingSchoolRepository;
 import com.example.AutoskolaDemoWithSecurity.repositories.RelationshipRepository;
 import com.example.AutoskolaDemoWithSecurity.repositories.UserRepository;
+import javax.persistence.EntityNotFoundException;
 import javax.persistence.PersistenceException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -35,7 +36,9 @@ public class RelationshipService {
     
     public ResponseEntity newRelationship(int schoolID, int userID) {
         //vytvori sa novy objekt, neaktivny + sa vytvori novy confirmation - a ksa ten potom potvrdi, v inej metode, toto sa len aktivuje
-        DrivingSchool ds = schoolRepository.findById(schoolID).get();
+        DrivingSchool ds = schoolRepository.findById(schoolID)
+                .orElseThrow(() -> new EntityNotFoundException("This school does not exists!"));
+
         User user = userRepository.findById(userID).get();
         
         //potom zmenit na false, a obnovit tu verifikaciu, zatial to staci ale takto

@@ -2,6 +2,7 @@
 package com.example.AutoskolaDemoWithSecurity.controllers;
 
 import com.example.AutoskolaDemoWithSecurity.models.transferModels.RideDTO;
+import com.example.AutoskolaDemoWithSecurity.services.CompletedRideService;
 import com.example.AutoskolaDemoWithSecurity.services.RideService;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,18 +14,23 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 
 @RestController
 @RequestMapping("/instructor")
-@PreAuthorize("hasRole('ROLE_INSTRUCTOR')")
+@PreAuthorize("hasRole('ROLE_INSTRUCTOR') or hasRole('ROLE_OWNER')")
 public class InstructorController {
     
     @Autowired
     private RideService rideService;
     
-    @GetMapping(value = {"/instructor"})
+    @Autowired
+    private CompletedRideService crs;
+    
+    
+    @GetMapping(value = {"/"})
     public String helloInstructor() {
         return "Hello instructor";
     }
@@ -37,6 +43,27 @@ public class InstructorController {
     @DeleteMapping(value = "/removeRide/{rideID}")
     public ResponseEntity removeRide(@PathVariable("rideID") int id, HttpServletRequest request) {
         return ResponseEntity.ok(rideService.removeRide(id, request.getIntHeader("Relation")));
+    }
+    
+    @GetMapping(value = {"/getCompletedRides/{inputDate}"})
+    public ResponseEntity getCompletedRides (@PathVariable("inputDate") String inputDate) {
+        String date;
+        if(!inputDate.matches("\\d{4}-\\d{2}-\\d{2}")) {
+            date = inputDate.substring(0, inputDate.indexOf("T"));
+        } else {
+            date = inputDate;
+        }
+        return ResponseEntity.ok(crs.getCompletedRides(date));
+    }
+    
+    @GetMapping(value = {"/getLastRides"})
+    public ResponseEntity getLastRides (@RequestParam int count) {
+        return ResponseEntity.ok(crs.getLastRides(count));
+    }
+    
+    @PostMapping(value = {"/completeRide"})
+    public ResponseEntity completeRide (@RequestBody RideDTO ride, HttpServletRequest request) {
+        return ResponseEntity.ok(crs.completeRide(ride));
     }
     
 }

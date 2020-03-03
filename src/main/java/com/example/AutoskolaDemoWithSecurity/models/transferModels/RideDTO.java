@@ -1,12 +1,13 @@
 
 package com.example.AutoskolaDemoWithSecurity.models.transferModels;
 
+import com.example.AutoskolaDemoWithSecurity.models.databaseModels.CompletedRide;
 import com.example.AutoskolaDemoWithSecurity.models.databaseModels.User;
 import com.example.AutoskolaDemoWithSecurity.models.databaseModels.Vehicle;
 import java.io.Serializable;
 import javax.validation.constraints.Size;
 
-
+// pri ziakovi - poslat len meno instruktora
 public class RideDTO implements Serializable {
     
     @Size(max = 10)
@@ -25,9 +26,18 @@ public class RideDTO implements Serializable {
     private User student;
     private User instructor;
     private Vehicle vehicle;
+    private int id;
     
     public RideDTO() {
         
+    }
+    
+    public RideDTO(CompletedRide ride) {
+        this.comment = ride.getComment();
+        this.date = ride.getDate();
+        this.id = ride.getId();
+        this.student = ride.getStudent();
+        this.time = ride.getTime();
     }
 
     public RideDTO(String date, String time, boolean status, String comment, int vehicleID) {
@@ -100,6 +110,14 @@ public class RideDTO implements Serializable {
 
     public void setInstructor(User instructor) {
         this.instructor = instructor;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getId() {
+        return id;
     }
     
 }

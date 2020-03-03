@@ -21,7 +21,6 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 public class CompletedRide implements Serializable{
     
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(updatable = false, nullable = false, insertable = false, unique = true)
     private int id;
     
@@ -33,9 +32,9 @@ public class CompletedRide implements Serializable{
     @JoinColumn(name = "instructor_ID")
     private User instructor;
     
-    @ManyToOne(targetEntity = Relationship.class)
-    @JoinColumn(name = "relationship_ID")
-    private Relationship relationship;
+    @ManyToOne(targetEntity = DrivingSchool.class)
+    @JoinColumn(name = "driving_school_ID")
+    private DrivingSchool drivingSchool;
     
     //toto nebude foreign key, lebo sa moze stat, ze Vozidlo sa odstrani, ale jazdu odstranit nechcem
     @Column(name = "vehicle_ID")
@@ -51,6 +50,16 @@ public class CompletedRide implements Serializable{
 
     public CompletedRide() {
     
+    }
+    
+    public CompletedRide(Ride ride) {
+        this.id = ride.getId();
+        this.student = ride.getStudent();
+        this.drivingSchool = ride.getDrivingSchool();
+        this.instructor = ride.getInstructor();
+        this.vehicleID = ride.getVehicleID();
+        this.date = ride.getDate();
+        this.time = ride.getTime();
     }
 
     public CompletedRide(User student, User instructor, int vehicleID, String date, String time, String comment) {
@@ -113,12 +122,12 @@ public class CompletedRide implements Serializable{
         this.comment = comment;
     }
 
-    public Relationship getRelationship() {
-        return relationship;
+    public void setDrivingSchool(DrivingSchool drivingSchool) {
+        this.drivingSchool = drivingSchool;
     }
 
-    public void setRelationship(Relationship relationship) {
-        this.relationship = relationship;
+    public DrivingSchool getDrivingSchool() {
+        return drivingSchool;
     }
     
 }

@@ -30,7 +30,7 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
     @Autowired
     private MyUserDetailsService userService;
     
-    private static final Logger log = LoggerFactory.getLogger(AuthInterceptor.class);
+    private static Logger log = LoggerFactory.getLogger(AuthInterceptor.class);
     
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
@@ -43,7 +43,6 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
             
         } else if (relationId != null && relationId != "") {
                         String email = SecurityContextHolder.getContext().getAuthentication().getName();
-                        System.out.println("EMAIL: "+email);
             User user = userService.loadUserWithUsername(
                     email);
             int relationID = Integer.parseInt(relationId);
