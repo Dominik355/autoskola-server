@@ -5,11 +5,17 @@
  */
 package com.example.AutoskolaDemoWithSecurity.controllers;
 
+import com.example.AutoskolaDemoWithSecurity.models.databaseModels.Relationship;
 import com.example.AutoskolaDemoWithSecurity.models.databaseModels.User;
+import com.example.AutoskolaDemoWithSecurity.models.otherModels.MyUserDetails;
 import com.example.AutoskolaDemoWithSecurity.models.transferModels.AuthenticationRequest;
+import com.example.AutoskolaDemoWithSecurity.models.transferModels.AuthenticationResponse;
 import com.example.AutoskolaDemoWithSecurity.models.transferModels.ResetPasswordRequest;
 import com.example.AutoskolaDemoWithSecurity.models.transferModels.UserDTO;
+import com.example.AutoskolaDemoWithSecurity.models.transferModels.UserProfileInfo;
 import com.example.AutoskolaDemoWithSecurity.models.transferModels.VerificationToken;
+import com.example.AutoskolaDemoWithSecurity.repositories.CompletedRideRepository;
+import com.example.AutoskolaDemoWithSecurity.repositories.RelationshipRepository;
 import com.example.AutoskolaDemoWithSecurity.repositories.UserRepository;
 import com.example.AutoskolaDemoWithSecurity.services.MyUserDetailsService;
 import com.example.AutoskolaDemoWithSecurity.services.VerificationTokenService;
@@ -51,6 +57,12 @@ public class AuthenticateController {
     
     @Autowired
     private VerificationTokenService verificationTokenService;
+    
+    @Autowired
+    private RelationshipRepository relationshipRepository;
+    
+    @Autowired
+    private CompletedRideRepository crr;
     
     
     @RequestMapping(value = {"/registrationConfirm"}, method = {RequestMethod.GET})
@@ -95,18 +107,15 @@ public class AuthenticateController {
                 throw new LoginException("Wrong email");
             }
         }
-
-        UserDetails userDetails = this.myUserDetailsService.loadUserByUsername(authenticationRequest.getEmail());
+        
+        User user = myUserDetailsService.loadUserWithUsername(authenticationRequest.getEmail());
+        UserDetails userDetails = new MyUserDetails(user);  
 
         String jwt = this.jwtTokenUtil.generateToken(userDetails);
-        
-        //neskor zmenit predavanie id, teraz napevno dava jedine relationship ID, lebo zatial nerobime
-        // vztahy pre viacero autoskol, potom mu vypise vsetky vztahy a on si vyberie jedno
-        /*User user = userRepository.findByEmail(email).get();
+
         Relationship relationship = relationshipRepository.findByUser(user);
         return ResponseEntity.ok(new AuthenticationResponse(
-                jwt, relationship.getId(), new UserProfileInfo(user, completedRideRepository.findAllByRelationship(relationship).size())));
-   */   return ResponseEntity.ok(jwt);
+                jwt, relationship.getId(), new UserProfileInfo(user, crr.findAllByRelationship(relationship).size())));
 }
 
 

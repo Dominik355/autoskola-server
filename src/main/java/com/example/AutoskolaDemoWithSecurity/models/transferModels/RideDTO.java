@@ -5,15 +5,18 @@ import com.example.AutoskolaDemoWithSecurity.models.databaseModels.CompletedRide
 import com.example.AutoskolaDemoWithSecurity.models.databaseModels.User;
 import com.example.AutoskolaDemoWithSecurity.models.databaseModels.Vehicle;
 import java.io.Serializable;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
 // pri ziakovi - poslat len meno instruktora
 public class RideDTO implements Serializable {
     
     @Size(max = 10)
+    @NotEmpty
     private String date;
     
     @Size(max = 5)
+    @NotEmpty
     private String time;
     
     private boolean status;
@@ -118,6 +121,11 @@ public class RideDTO implements Serializable {
 
     public int getId() {
         return id;
+    }
+
+    @Override
+    public String toString() {
+        return "Time: "+getTime()+", date: "+getDate();
     }
     
 }

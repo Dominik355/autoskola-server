@@ -52,22 +52,16 @@ public class TestService {
         
         List<TestDTO> tests = new ArrayList<>();
         List<Integer> list = new ArrayList<>();
-        testRepository.findAll().forEach((obj) -> list.add(obj.getNumber()));
-        list.forEach(i -> tests.add(getTest(i)));
-        
+        testRepository.findAll().forEach((obj) -> tests.add(getTest(obj.getNumber())));        
         return tests;
         
     }
     
     public String saveImage(MultipartFile imageFile) throws IOException {
-        System.out.println("1");
         String folder = "photos/";
         byte[] bytes = imageFile.getBytes();
-        System.out.println("2");
         Path path = Paths.get(folder + imageFile.getOriginalFilename());
-        System.out.println("3");
         Files.write(path, bytes);
-        System.out.println("4");
         return "Image succesfully saved";
     }
     

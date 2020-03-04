@@ -18,11 +18,12 @@ import org.springframework.boot.web.servlet.server.ServletWebServerFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.servlet.DispatcherServlet;
+import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 
 @SpringBootApplication
-public class Application
-{
+@EnableSwagger2
+public class Application {
     
     @Autowired
     private DispatcherServlet servlet;
@@ -32,7 +33,7 @@ public class Application
     
     @Autowired
     QuestionRepository questionRepository;
-          
+    
     public static void main(String[] args) {
         
         SpringApplication.run(Application.class, args); 
@@ -87,8 +88,8 @@ public class Application
                 Specify INTEGRAL when the application requires that the data be sent between client
                 and server in such a way that it cannot be changed in transit.
                 Specify NONE to indicate that the container must accept the constrained
-                requests on any connection, including an unprotected one.
-                */
+                requests on any connection, including an unprotected one.*/
+                
                 constraint.setUserConstraint("CONFIDENTIAL"); 
                 SecurityCollection collection = new SecurityCollection();
                 collection.addPattern("/*");

@@ -28,7 +28,10 @@ public class InterceptorConfig implements WebMvcConfigurer {
                 ,"/school/**"
                 ,"/relationship/**"
                 ,"/info/**"
-                ,"/tests/**");
+                ,"/tests/**"
+                ,"/v2/api-docs", "/configuration/ui"
+                , "/swagger-resources/**", "/configuration/**"
+                , "/swagger-ui.html", "/webjars/**");
     }
     
 }

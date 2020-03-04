@@ -32,7 +32,6 @@ public class TestController {
     
     @PostMapping("/uploadImage")
     public ResponseEntity uploadImage(@RequestParam("imageFile") MultipartFile imageFile) throws IOException {
-        System.out.println("0");
         return ResponseEntity.ok(testService.saveImage(imageFile));
     }
     

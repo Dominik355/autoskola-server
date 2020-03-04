@@ -170,7 +170,9 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
     
     @ExceptionHandler({ NullPointerException.class })
     public ResponseEntity<Object> handleNullPointerException(NullPointerException ex) {
-        ex.printStackTrace();
+        for(StackTraceElement k : ex.getStackTrace()) {
+            System.out.println(k.toString());
+        }
         return buildResponseEntity(new ApiError(HttpStatus.INTERNAL_SERVER_ERROR, "NullPointerException: "+ex.getMessage()));
     }
     

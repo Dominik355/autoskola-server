@@ -7,6 +7,7 @@ import com.example.AutoskolaDemoWithSecurity.repositories.UserRepository;
 import com.example.AutoskolaDemoWithSecurity.services.CompletedRideService;
 import com.example.AutoskolaDemoWithSecurity.services.RideService;
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -43,7 +44,7 @@ public class InstructorController {
     }
     
     @PostMapping(value = "/addRide")
-    public ResponseEntity addRide (@RequestBody RideDTO ride, HttpServletRequest request) {
+    public ResponseEntity addRide (@RequestBody @Valid RideDTO ride, HttpServletRequest request) {
         User instructor = userRepository.findByEmail(
                     SecurityContextHolder.getContext().getAuthentication().getName()).get();
         if(rideService.isRideDTOFine(ride, instructor)) {
@@ -53,6 +54,7 @@ public class InstructorController {
         }
     }
     
+    //@valid na pole tych objketov nefunguje
     @PostMapping(value = "/addRides")
     public ResponseEntity addRide (@RequestBody RideDTO[] rides, HttpServletRequest request) {
         return ResponseEntity.ok(rideService.addRides(rides, request.getIntHeader("Relation")));
@@ -80,7 +82,7 @@ public class InstructorController {
     }
     
     @PostMapping(value = {"/completeRide"})
-    public ResponseEntity completeRide (@RequestBody RideDTO ride, HttpServletRequest request) {
+    public ResponseEntity completeRide (@RequestBody @Valid RideDTO ride, HttpServletRequest request) {
         return ResponseEntity.ok(crs.completeRide(ride));
     }
     

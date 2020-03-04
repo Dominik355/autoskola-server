@@ -2,6 +2,7 @@
 package com.example.AutoskolaDemoWithSecurity.repositories;
 
 import com.example.AutoskolaDemoWithSecurity.models.databaseModels.CompletedRide;
+import com.example.AutoskolaDemoWithSecurity.models.databaseModels.Relationship;
 import com.example.AutoskolaDemoWithSecurity.models.databaseModels.User;
 import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -14,5 +15,7 @@ public interface CompletedRideRepository extends JpaRepository<CompletedRide, In
     List<CompletedRide> findAllByInstructor(User instructor);
     
     List<CompletedRide> findAllByInstructorAndDate(User instructor, String date);
+    
+    List<CompletedRide> findAllByRelationship(Relationship relationship);
 
 }

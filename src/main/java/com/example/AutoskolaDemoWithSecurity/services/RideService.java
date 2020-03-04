@@ -169,7 +169,8 @@ public class RideService {
                     rideDTO.getTime(), rideDTO.getDate(), instructor)) {
                 return true;
             } else {
-                throw new EntityExistsException("This ride already exists!");
+                throw new EntityExistsException("This ride already exists!"
+                        + " Ride: [Date: "+rideDTO.getDate()+", Time"+rideDTO.getTime()+"]");
             }
         } else {
             throw new WrongDateException("Invalid Date or Time!");
