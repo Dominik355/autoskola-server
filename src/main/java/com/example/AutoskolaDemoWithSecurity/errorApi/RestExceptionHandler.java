@@ -19,6 +19,7 @@ import javax.persistence.PersistenceException;
 import javax.security.auth.login.LoginException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.ConstraintViolationException;
 import org.hibernate.HibernateException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -97,6 +98,11 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
     @ExceptionHandler({ AccessDeniedException.class })
     public ResponseEntity<Object> handleAccessDeniedException(AccessDeniedException ex) {
         return buildResponseEntity(new ApiError(HttpStatus.UNAUTHORIZED, ex.getMessage()));
+    }
+    
+    @ExceptionHandler({ ConstraintViolationException.class })
+    public ResponseEntity<Object> handleAConstraintViolationException(ConstraintViolationException ex) {
+        return buildResponseEntity(new ApiError(HttpStatus.BAD_REQUEST, ex.getMessage()));
     }
     
     @ExceptionHandler({DataAccessException.class, HibernateException.class})

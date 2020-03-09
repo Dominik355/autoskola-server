@@ -11,7 +11,6 @@ import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
@@ -30,7 +29,8 @@ public class TestService {
     
     public TestDTO getTest(int testNumber) {
         
-        Test test = testRepository.findByNumber(testNumber);
+        Test test = testRepository.findByNumber(testNumber).orElseThrow(
+                () -> new NullPointerException("There is no test with number: "+testNumber));
         TestDTO testDTO = new TestDTO(test);
         List<String> questions = Arrays.stream(test.getQuestions()
                     .split(",")).collect(Collectors.toList());

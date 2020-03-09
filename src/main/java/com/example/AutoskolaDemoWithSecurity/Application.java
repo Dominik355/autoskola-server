@@ -1,9 +1,7 @@
  
 package com.example.AutoskolaDemoWithSecurity;
 
-import com.example.AutoskolaDemoWithSecurity.tests.Question;
 import com.example.AutoskolaDemoWithSecurity.tests.QuestionRepository;
-import com.example.AutoskolaDemoWithSecurity.tests.Test;
 import com.example.AutoskolaDemoWithSecurity.tests.TestRepository;
 import org.apache.catalina.Context;
 import org.apache.catalina.connector.Connector;
@@ -18,11 +16,9 @@ import org.springframework.boot.web.servlet.server.ServletWebServerFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.servlet.DispatcherServlet;
-import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 
 @SpringBootApplication
-@EnableSwagger2
 public class Application {
     
     @Autowired

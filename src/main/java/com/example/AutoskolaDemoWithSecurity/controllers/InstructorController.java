@@ -6,6 +6,8 @@ import com.example.AutoskolaDemoWithSecurity.models.transferModels.RideDTO;
 import com.example.AutoskolaDemoWithSecurity.repositories.UserRepository;
 import com.example.AutoskolaDemoWithSecurity.services.CompletedRideService;
 import com.example.AutoskolaDemoWithSecurity.services.RideService;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +15,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -26,6 +29,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/instructor")
 @PreAuthorize("hasRole('ROLE_INSTRUCTOR') or hasRole('ROLE_OWNER')")
+@Validated
 public class InstructorController {
     
     @Autowired
@@ -56,7 +60,7 @@ public class InstructorController {
     
     //@valid na pole tych objketov nefunguje
     @PostMapping(value = "/addRides")
-    public ResponseEntity addRide (@RequestBody RideDTO[] rides, HttpServletRequest request) {
+    public ResponseEntity addRide (@RequestBody @Valid RideDTO[] rides, HttpServletRequest request) {
         return ResponseEntity.ok(rideService.addRides(rides, request.getIntHeader("Relation")));
     }
     
@@ -77,13 +81,21 @@ public class InstructorController {
     }
     
     @GetMapping(value = {"/getLastRides"})
-    public ResponseEntity getLastRides (@RequestParam int count) {
+    @ApiOperation(value = "returns 'count' last rides of last 7 days as List of RideDTO objects",
+            notes = "'count' is integer url parameter, insert as /getLastRides?count=X\n"+
+                    "",
+            response = RideDTO.class)
+    public ResponseEntity getLastRides (@ApiParam(value = "number of rides you wanna get back", required = true)
+            @RequestParam int count) {
         return ResponseEntity.ok(crs.getLastRides(count));
     }
     
     @PostMapping(value = {"/completeRide"})
-    public ResponseEntity completeRide (@RequestBody @Valid RideDTO ride, HttpServletRequest request) {
-        return ResponseEntity.ok(crs.completeRide(ride));
+    @ApiOperation(value = "Mark ride as completed after it has been finished",
+            notes = "if succesfull returns ResponseEntity(\"Ride set as completed\", HttpStatus.OK)")
+    public ResponseEntity completeRide (@ApiParam(value = "Send just ID of the ride. Can add new comment.")
+            @RequestBody @Valid RideDTO rideDTO, HttpServletRequest request) {
+        return ResponseEntity.ok(crs.completeRide(rideDTO));
     }
     
 }

@@ -2,21 +2,25 @@
 package com.example.AutoskolaDemoWithSecurity.models.transferModels;
 
 import com.example.AutoskolaDemoWithSecurity.models.databaseModels.CompletedRide;
-import com.example.AutoskolaDemoWithSecurity.models.databaseModels.User;
 import com.example.AutoskolaDemoWithSecurity.models.databaseModels.Vehicle;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import java.io.Serializable;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
 // pri ziakovi - poslat len meno instruktora
+@ApiModel(description = "Pri vytvarani jazdy staci zadam date a time, pripadne vehicleID a komentar")
 public class RideDTO implements Serializable {
     
     @Size(max = 10)
     @NotEmpty
+    @ApiModelProperty(notes = "date in format 'yyyy-mm-dd'", required = true)
     private String date;
     
     @Size(max = 5)
     @NotEmpty
+    @ApiModelProperty(notes = "Time in format 'hh:mm'", required = true)
     private String time;
     
     private boolean status;
@@ -26,8 +30,6 @@ public class RideDTO implements Serializable {
 
     private int vehicleID;
     
-    private User student;
-    private User instructor;
     private Vehicle vehicle;
     private int id;
     
@@ -39,7 +41,6 @@ public class RideDTO implements Serializable {
         this.comment = ride.getComment();
         this.date = ride.getDate();
         this.id = ride.getId();
-        this.student = ride.getStudent();
         this.time = ride.getTime();
     }
 
@@ -83,14 +84,6 @@ public class RideDTO implements Serializable {
         this.comment = comment;
     }
 
-    public User getInstructor() {
-        return instructor;
-    }
-
-    public User getStudent() {
-        return student;
-    }
-
     public Vehicle getVehicle() {
         return vehicle;
     }
@@ -105,14 +98,6 @@ public class RideDTO implements Serializable {
 
     public void setVehicle(Vehicle vehicle) {
         this.vehicle = vehicle;
-    }
-
-    public void setStudent(User student) {
-        this.student = student;
-    }
-
-    public void setInstructor(User instructor) {
-        this.instructor = instructor;
     }
 
     public void setId(int id) {

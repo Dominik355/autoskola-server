@@ -1,8 +1,8 @@
 
 package com.example.AutoskolaDemoWithSecurity.controllers;
 
+import com.example.AutoskolaDemoWithSecurity.repositories.UserRepository;
 import com.example.AutoskolaDemoWithSecurity.services.DrivingSchoolService;
-import java.util.Arrays;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,6 +20,9 @@ public class InfoController {
     @Autowired
     private RequestMappingHandlerMapping requestMappingHandlerMapping;
     
+    @Autowired
+    private UserRepository userRepository;
+    
     
     @GetMapping(value = "/schoolsAvailable")
     public ResponseEntity getDrivingSchools() {
@@ -30,6 +33,11 @@ public class InfoController {
     public ResponseEntity getAvailableLinks() {
         Object[] mappedUrls = requestMappingHandlerMapping.getHandlerMethods().keySet().toArray();
         return ResponseEntity.ok(mappedUrls);
+    }
+    
+    @GetMapping(value = "/listOfUsers")
+    public ResponseEntity getListOfUsers() {
+        return ResponseEntity.ok(userRepository.findAll());
     }
 
     

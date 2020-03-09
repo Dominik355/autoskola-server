@@ -23,18 +23,18 @@ import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandl
 @Component
 public class JwtAuthenticationEntryPoint implements AuthenticationEntryPoint {
     
-    @Autowired
-    private RequestMappingHandlerMapping requestMappingHandlerMapping;
+   /* @Autowired
+    private RequestMappingHandlerMapping requestMappingHandlerMapping;*/
     
     @Override
     public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException authException) throws IOException, ServletException {
         System.out.println("inside entry point");
         ApiError err = new ApiError(HttpStatus.UNAUTHORIZED, "You need to log in!   Exception: "+authException.getMessage());
         ResponseEntity error = new ResponseEntity(err, err.getStatus());
-        if(!isItWrongUrl(request)) {
+       /* if(!isItWrongUrl(request)) {
             System.out.println("Wrong url...............");
             error = new ResponseEntity(new ApiError(HttpStatus.BAD_REQUEST, "This link does not exist"), HttpStatus.BAD_REQUEST);
-        }        
+        }    */    
         try {
             System.out.println("Sending error from EntryPoint");
             OutputStream out = response.getOutputStream();
@@ -47,7 +47,7 @@ public class JwtAuthenticationEntryPoint implements AuthenticationEntryPoint {
             throw new IOException("Failed to send Entry Point eerror");
         }
     }
-    
+    /*
     private boolean isItWrongUrl(HttpServletRequest request) {
         String requestedURI = "{"+request.getMethod()+" "+request.getRequestURI()+"}";
         Object[] mappedUrls = requestMappingHandlerMapping.getHandlerMethods().keySet().toArray();
@@ -58,6 +58,6 @@ public class JwtAuthenticationEntryPoint implements AuthenticationEntryPoint {
             }
         }
        return flag;
-    }
+    }*/
     
 }

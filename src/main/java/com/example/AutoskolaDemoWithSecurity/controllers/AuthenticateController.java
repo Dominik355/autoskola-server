@@ -115,7 +115,8 @@ public class AuthenticateController {
 
         Relationship relationship = relationshipRepository.findByUser(user);
         return ResponseEntity.ok(new AuthenticationResponse(
-                jwt, relationship.getId(), new UserProfileInfo(user, crr.findAllByRelationship(relationship).size())));
+                jwt, relationship.getId(), new UserProfileInfo(user,
+                        crr.findAllByDrivingSchoolAndStudent(relationship.getDrivingSchool(), user).size())));
 }
 
 
