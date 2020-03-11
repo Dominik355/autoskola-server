@@ -1,14 +1,10 @@
- 
+
 package com.example.AutoskolaDemoWithSecurity.models.databaseModels;
 
-
-import com.example.AutoskolaDemoWithSecurity.models.transferModels.RideDTO;
 import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -19,11 +15,10 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @Entity
 @EnableTransactionManagement
-@Table(name = "rides")
-public class Ride implements Serializable{
+@Table(name = "cancelled_rides")
+public class CancelledRide implements Serializable{
     
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(updatable = false, nullable = false, insertable = false, unique = true)
     private int id;
     
@@ -39,7 +34,6 @@ public class Ride implements Serializable{
     @JoinColumn(name = "driving_school_ID")
     private DrivingSchool drivingSchool;
     
-    
     //toto nebude foreign key, lebo sa moze stat, ze Vozidlo sa odstrani, ale jazdu odstranit nechcem
     @Column(name = "vehicle_ID")
     private int vehicleID;
@@ -54,25 +48,27 @@ public class Ride implements Serializable{
     
     private String comment;
 
-    public Ride() {
+    public CancelledRide() {
     
     }
     
-    public Ride(RideDTO rideDTO) {
-        this.date = rideDTO.getDate();
-        this.time = rideDTO.getTime();
-        this.comment = rideDTO.getComment();
-        this.status = rideDTO.getStatus();
-        this.vehicleID = rideDTO.getVehicleID();
+    public CancelledRide(Ride ride) {
+        this.id = ride.getId();
+        this.student = ride.getStudent();
+        this.drivingSchool = ride.getDrivingSchool();
+        this.instructor = ride.getInstructor();
+        this.vehicleID = ride.getVehicleID();
+        this.date = ride.getDate();
+        this.time = ride.getTime();
     }
 
-    public Ride(User student, User instructor, int vehicleID, String date, String time, String status, String comment) {
+    public CancelledRide(User student, User instructor, int vehicleID, String date, String time, String comment, String status) {
         this.instructor = instructor;
         this.vehicleID = vehicleID;
         this.date = date;
         this.time = time;
-        this.status = status;
         this.comment = comment;
+        this.status = status;
     }
 
     public int getId() {
@@ -119,14 +115,6 @@ public class Ride implements Serializable{
         this.time = time;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
     public String getComment() {
         return comment;
     }
@@ -143,4 +131,12 @@ public class Ride implements Serializable{
         return drivingSchool;
     }
 
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+    
 }

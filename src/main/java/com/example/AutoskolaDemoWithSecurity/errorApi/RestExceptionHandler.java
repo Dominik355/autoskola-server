@@ -11,6 +11,7 @@ import io.jsonwebtoken.SignatureException;
 import io.jsonwebtoken.UnsupportedJwtException;
 import java.io.IOException;
 import java.nio.file.AccessDeniedException;
+import java.text.ParseException;
 import java.util.List;
 import java.util.NoSuchElementException;
 import javax.persistence.EntityExistsException;
@@ -119,6 +120,12 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
     public ResponseEntity<Object> handleNoSuchElementException(NoSuchElementException ex) {
         return buildResponseEntity(new ApiError(HttpStatus.BAD_REQUEST, ex.getMessage()));
     }    
+    
+    @ExceptionHandler({ ParseException.class })
+    public ResponseEntity<Object> handleParseException(ParseException ex) {
+        return buildResponseEntity(new ApiError(HttpStatus.INTERNAL_SERVER_ERROR
+                , ex.getMessage().length() > 255 ? "Error while parsing string parameter " : ex.getMessage()));
+    }
     
     @ExceptionHandler({ MailException.class })
     public ResponseEntity<Object> handleMailException(MailException ex) {

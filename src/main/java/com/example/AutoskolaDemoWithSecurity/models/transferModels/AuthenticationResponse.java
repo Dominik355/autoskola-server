@@ -8,12 +8,12 @@ public class AuthenticationResponse implements Serializable {
     
     private static final long serialVersionUID = -8091879091924046844L;
     private final String jwtToken;
-    private int id;
+    private int relationID;
     private UserProfileInfo info;
 
-    public AuthenticationResponse(String jwtToken, int id, UserProfileInfo info) {
+    public AuthenticationResponse(String jwtToken, int relationID, UserProfileInfo info) {
         this.jwtToken = jwtToken;
-        this.id = id;
+        this.relationID = relationID;
         this.info = info;
     }
 
@@ -21,16 +21,16 @@ public class AuthenticationResponse implements Serializable {
         return this.jwtToken; 
     }
 
-    public int getId() {
-        return id;
+    public int getRelationIDd() {
+        return relationID;
     }
 
     public UserProfileInfo getInfo() {
         return info;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setRelationID(int id) {
+        this.relationID= id;
     }
 
     public void setInfo(UserProfileInfo info) {

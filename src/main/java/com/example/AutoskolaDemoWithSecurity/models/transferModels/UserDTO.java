@@ -8,6 +8,7 @@ import com.example.AutoskolaDemoWithSecurity.validators.constraint.PasswordMatch
 import com.example.AutoskolaDemoWithSecurity.validators.constraint.PasswordStrengthConstraint;
 import com.example.AutoskolaDemoWithSecurity.validators.constraint.PhoneNumberConstraint;
 import com.example.AutoskolaDemoWithSecurity.validators.constraint.RoleConstraint;
+import io.swagger.annotations.ApiModelProperty;
 import javax.validation.constraints.NotEmpty;
 
 
@@ -31,10 +32,12 @@ public class UserDTO {
 
     @NotEmpty
     @PhoneNumberConstraint
+    @ApiModelProperty(notes = "format 0999888777")
     private String phoneNumber;
 
     @NotEmpty
     @RoleConstraint
+    @ApiModelProperty(notes = "3 moznosti : 'STUDENT', 'INSTRUCTOR', 'OWNER'")
     private String roles;
 
     public UserDTO(String fullName, String password, String email, String phoneNumber, String roles) {

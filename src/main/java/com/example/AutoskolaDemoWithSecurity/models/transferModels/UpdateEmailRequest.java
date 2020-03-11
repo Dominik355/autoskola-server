@@ -2,9 +2,10 @@
 package com.example.AutoskolaDemoWithSecurity.models.transferModels;
 
 import com.example.AutoskolaDemoWithSecurity.validators.constraint.EmailValidConstraint;
+import java.io.Serializable;
 
 
-public class UpdateEmailRequest {
+public class UpdateEmailRequest implements Serializable{
     
     @EmailValidConstraint
     private String newEmail;

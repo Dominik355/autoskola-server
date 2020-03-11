@@ -4,7 +4,6 @@ package com.example.AutoskolaDemoWithSecurity.services;
 import com.example.AutoskolaDemoWithSecurity.models.databaseModels.CompletedRide;
 import com.example.AutoskolaDemoWithSecurity.models.databaseModels.Ride;
 import com.example.AutoskolaDemoWithSecurity.models.databaseModels.User;
-import com.example.AutoskolaDemoWithSecurity.models.transferModels.DrivingSchoolDTO;
 import com.example.AutoskolaDemoWithSecurity.models.transferModels.RideDTO;
 import com.example.AutoskolaDemoWithSecurity.repositories.CompletedRideRepository;
 import com.example.AutoskolaDemoWithSecurity.repositories.RideRepository;
@@ -60,6 +59,7 @@ public class CompletedRideService {
                 cRide.setComment(ride.getComment());
             }
             rideRepository.delete(ride);
+            cRide.setStatus("FINISHED");
             CompletedRide compR = crr.save(cRide);
             if(compR != null) {
                 return new ResponseEntity("Ride set as completed", HttpStatus.OK);

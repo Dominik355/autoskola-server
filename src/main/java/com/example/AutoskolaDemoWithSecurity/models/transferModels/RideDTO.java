@@ -6,24 +6,23 @@ import com.example.AutoskolaDemoWithSecurity.models.databaseModels.Vehicle;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.Serializable;
-import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
 // pri ziakovi - poslat len meno instruktora
 @ApiModel(description = "Pri vytvarani jazdy staci zadam date a time, pripadne vehicleID a komentar")
 public class RideDTO implements Serializable {
     
+    private int id;
+    
     @Size(max = 10)
-    @NotEmpty
-    @ApiModelProperty(notes = "date in format 'yyyy-mm-dd'", required = true)
+    @ApiModelProperty(notes = "date in format 'yyyy-mm-dd'")
     private String date;
     
     @Size(max = 5)
-    @NotEmpty
-    @ApiModelProperty(notes = "Time in format 'hh:mm'", required = true)
+    @ApiModelProperty(notes = "Time in format 'hh:mm'")
     private String time;
     
-    private boolean status;
+    private String status;
 
     @Size(max = 255)
     private String comment;
@@ -31,7 +30,6 @@ public class RideDTO implements Serializable {
     private int vehicleID;
     
     private Vehicle vehicle;
-    private int id;
     
     public RideDTO() {
         
@@ -44,7 +42,7 @@ public class RideDTO implements Serializable {
         this.time = ride.getTime();
     }
 
-    public RideDTO(String date, String time, boolean status, String comment, int vehicleID) {
+    public RideDTO(String date, String time, String status, String comment, int vehicleID) {
         this.date = date;
         this.time = time;
         this.status = status;
@@ -68,11 +66,11 @@ public class RideDTO implements Serializable {
         this.time = time;
     }
 
-    public boolean getStatus() {
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(boolean status) {
+    public void setStatus(String status) {
         this.status = status;
     }
 
@@ -110,7 +108,7 @@ public class RideDTO implements Serializable {
 
     @Override
     public String toString() {
-        return "Time: "+getTime()+", date: "+getDate();
+        return "Time: "+getTime()+", date: "+getDate()+", status: "+getStatus();
     }
     
 }

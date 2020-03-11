@@ -1,9 +1,13 @@
 
 package com.example.AutoskolaDemoWithSecurity.models.transferModels;
 
+import com.example.AutoskolaDemoWithSecurity.validators.constraint.EmailValidConstraint;
+import java.io.Serializable;
 
-public class ResetPasswordRequest {
+
+public class ResetPasswordRequest implements Serializable {
         
+    @EmailValidConstraint
     private String userEmail;
 
     public ResetPasswordRequest() { }

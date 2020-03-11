@@ -5,8 +5,6 @@ import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -46,6 +44,8 @@ public class CompletedRide implements Serializable{
     @NotEmpty
     private String time;
     
+    private String status;
+    
     private String comment;
 
     public CompletedRide() {
@@ -62,12 +62,13 @@ public class CompletedRide implements Serializable{
         this.time = ride.getTime();
     }
 
-    public CompletedRide(User student, User instructor, int vehicleID, String date, String time, String comment) {
+    public CompletedRide(User student, User instructor, int vehicleID, String date, String time, String comment, String status) {
         this.instructor = instructor;
         this.vehicleID = vehicleID;
         this.date = date;
         this.time = time;
         this.comment = comment;
+        this.status = status;
     }
 
     public int getId() {
@@ -128,6 +129,14 @@ public class CompletedRide implements Serializable{
 
     public DrivingSchool getDrivingSchool() {
         return drivingSchool;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
     
 }

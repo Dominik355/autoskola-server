@@ -2,7 +2,9 @@
 package com.example.AutoskolaDemoWithSecurity.controllers;
 
 import com.example.AutoskolaDemoWithSecurity.models.transferModels.DrivingSchoolDTO;
+import com.example.AutoskolaDemoWithSecurity.models.transferModels.InstructorRides;
 import com.example.AutoskolaDemoWithSecurity.services.DrivingSchoolService;
+import io.swagger.annotations.ApiOperation;
 import java.nio.file.AccessDeniedException;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,11 +27,18 @@ public class SchoolController {
     private DrivingSchoolService schoolService;
     
     @PostMapping(value = {"/addNewSchool"})
+    @ApiOperation(value = "${schoolController.createSchool.value}",
+            notes = "${schoolController.createSchool.notes}",
+            response = ResponseEntity.class)
     public ResponseEntity createSchool(@RequestBody @Valid DrivingSchoolDTO school) {
         return ResponseEntity.ok(schoolService.createDrivingSchool(school));
     }
     
     @GetMapping(value = "/getSchoolInfo/{id}")
+    @ApiOperation(value = "${schoolController.getSchoolInfo.value}",
+            notes = "${schoolController.getSchoolInfo.notes}",
+            response = InstructorRides.class,
+            responseContainer = "List")
     public ResponseEntity getSchoolInfo(@PathVariable int id) throws AccessDeniedException {
         System.out.println("School controller - getSchoolInfo()");
         return ResponseEntity.ok(schoolService.getSchoolInfo(id));

@@ -2,6 +2,7 @@
 package com.example.AutoskolaDemoWithSecurity.models.databaseModels;
 
 import com.example.AutoskolaDemoWithSecurity.models.transferModels.UserDTO;
+import io.swagger.annotations.ApiModelProperty;
 import java.io.Serializable;
 import java.sql.Timestamp;
 import javax.persistence.Column;
@@ -31,6 +32,7 @@ public class User implements Serializable {
     private String surname;
 
     @Column(nullable = false)
+    @ApiModelProperty(notes = "8 az 30 znakov, 1 male pismeno, 1 velke, 1 cislica, nie specialne znaky")
     private String password;
 
     @Column(unique = true, nullable = false)

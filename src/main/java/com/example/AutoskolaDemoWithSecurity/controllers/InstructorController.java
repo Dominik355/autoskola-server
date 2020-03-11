@@ -6,8 +6,11 @@ import com.example.AutoskolaDemoWithSecurity.models.transferModels.RideDTO;
 import com.example.AutoskolaDemoWithSecurity.repositories.UserRepository;
 import com.example.AutoskolaDemoWithSecurity.services.CompletedRideService;
 import com.example.AutoskolaDemoWithSecurity.services.RideService;
+import com.example.AutoskolaDemoWithSecurity.utils.RideUtil;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
+import java.text.ParseException;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +33,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/instructor")
 @PreAuthorize("hasRole('ROLE_INSTRUCTOR') or hasRole('ROLE_OWNER')")
 @Validated
+@Api(value = "/instructor", description = "Sluzby, ku ktorym musi mat user opravnenie INSTRUCTOR alebo OWNER")
 public class InstructorController {
     
     @Autowired
@@ -41,36 +45,61 @@ public class InstructorController {
     @Autowired
     private UserRepository userRepository; 
     
+    @Autowired
+    private RideUtil rideUtil;
+    
     
     @GetMapping(value = {"/"})
     public String helloInstructor() {
         return "Hello instructor";
     }
     
+    
     @PostMapping(value = "/addRide")
-    public ResponseEntity addRide (@RequestBody @Valid RideDTO ride, HttpServletRequest request) {
+    @ApiOperation(value = "${instructorController.addRide.value}",
+                notes = "${instructorController.addRide.notes}",
+                response = ResponseEntity.class)
+    public ResponseEntity addRide (@ApiParam(value = "${instructorController.addRide.paramValue}")
+                @RequestBody @Valid RideDTO ride, HttpServletRequest request) {
+        
         User instructor = userRepository.findByEmail(
                     SecurityContextHolder.getContext().getAuthentication().getName()).get();
-        if(rideService.isRideDTOFine(ride, instructor)) {
+        if(rideUtil.isRideDTOFine(ride, instructor)) {
             return ResponseEntity.ok(rideService.addRide(ride, request.getIntHeader("Relation"), instructor));
         } else {
             return new ResponseEntity("Ride could not be created", HttpStatus.BAD_REQUEST);
         }
     }
     
+    
     //@valid na pole tych objketov nefunguje
     @PostMapping(value = "/addRides")
-    public ResponseEntity addRide (@RequestBody @Valid RideDTO[] rides, HttpServletRequest request) {
+    @ApiOperation(value = "${instructorController.addRides.value}",
+                notes = "${instructorController.addRides.notes}",
+                response = ResponseEntity.class)
+    public ResponseEntity addRides (@ApiParam(value = "${instructorController.addRides.paramValue}")
+                @RequestBody @Valid RideDTO[] rides, HttpServletRequest request) {
         return ResponseEntity.ok(rideService.addRides(rides, request.getIntHeader("Relation")));
     }
     
+    
     @DeleteMapping(value = "/removeRide/{rideID}")
-    public ResponseEntity removeRide(@PathVariable("rideID") int id, HttpServletRequest request) {
+    @ApiOperation(value = "${instructorController.removeRide.value}",
+                notes = "${instructorController.removeRide.notes}",
+                response = ResponseEntity.class)
+    public ResponseEntity removeRide(@ApiParam(value = "${instructorController.removeRide.paramValue}")
+                @PathVariable("rideID") int id, HttpServletRequest request) throws ParseException {
         return ResponseEntity.ok(rideService.removeRide(id, request.getIntHeader("Relation")));
     }
     
+    
     @GetMapping(value = {"/getCompletedRides/{inputDate}"})
-    public ResponseEntity getCompletedRides (@PathVariable("inputDate") String inputDate) {
+    @ApiOperation(value = "${instructorController.getCompletedRides.value}",
+                notes = "${instructorController.getCompletedRides.notes}",
+                response = ResponseEntity.class,
+                responseContainer = "List")
+    public ResponseEntity getCompletedRides (@ApiParam(value = "${instructorController.getCompletedRides.paramValue}")
+                @PathVariable("inputDate") String inputDate) {
         String date;
         if(!inputDate.matches("\\d{4}-\\d{2}-\\d{2}")) {
             date = inputDate.substring(0, inputDate.indexOf("T"));
@@ -80,20 +109,23 @@ public class InstructorController {
         return ResponseEntity.ok(crs.getCompletedRides(date));
     }
     
+    //default value nastavena, aby ked nieje zadana ,vratia sa vsetky jazdy z poslednych 7 dni
     @GetMapping(value = {"/getLastRides"})
-    @ApiOperation(value = "returns 'count' last rides of last 7 days as List of RideDTO objects",
-            notes = "'count' is integer url parameter, insert as /getLastRides?count=X\n"+
-                    "",
-            response = RideDTO.class)
-    public ResponseEntity getLastRides (@ApiParam(value = "number of rides you wanna get back", required = true)
-            @RequestParam int count) {
+    @ApiOperation(value = "${instructorController.getLastRides.value}",
+            notes = "${instructorController.getLastRides.notes}",
+            response = RideDTO.class,
+            responseContainer = "List")
+    public ResponseEntity getLastRides (@ApiParam(value = "${instructorController.getLastRides.paramValue}")
+            @RequestParam(defaultValue = "1000") int count) {
         return ResponseEntity.ok(crs.getLastRides(count));
     }
     
+    
     @PostMapping(value = {"/completeRide"})
-    @ApiOperation(value = "Mark ride as completed after it has been finished",
-            notes = "if succesfull returns ResponseEntity(\"Ride set as completed\", HttpStatus.OK)")
-    public ResponseEntity completeRide (@ApiParam(value = "Send just ID of the ride. Can add new comment.")
+    @ApiOperation(value = "${instructorController.completeRide.value}",
+            notes = "${instructorController.completeRide.notes}",
+            response = ResponseEntity.class)
+    public ResponseEntity completeRide (@ApiParam(value = "${instructorController.completeRide.paramValue}", required = true)
             @RequestBody @Valid RideDTO rideDTO, HttpServletRequest request) {
         return ResponseEntity.ok(crs.completeRide(rideDTO));
     }

@@ -2,6 +2,7 @@
 package com.example.AutoskolaDemoWithSecurity.controllers;
 
 import com.example.AutoskolaDemoWithSecurity.tests.TestService;
+import io.swagger.annotations.ApiOperation;
 import java.io.IOException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -21,11 +22,16 @@ public class TestController {
     private TestService testService;
     
     @GetMapping(value = {"/{id}"})
+    @ApiOperation(value = "${testController.getAllTests.value}",
+                response = ResponseEntity.class)
     public ResponseEntity getTest(@PathVariable("id") int id) {
         return ResponseEntity.ok(testService.getTest(id));
     }
     
     @GetMapping(value = {"/"})
+    @ApiOperation(value = "${testController.getTest.value}",
+                response = ResponseEntity.class,
+                responseContainer = "List")
     public ResponseEntity getAllTests() {
         return ResponseEntity.ok(testService.getAllTests());
     }

@@ -20,6 +20,9 @@ import com.example.AutoskolaDemoWithSecurity.repositories.UserRepository;
 import com.example.AutoskolaDemoWithSecurity.services.MyUserDetailsService;
 import com.example.AutoskolaDemoWithSecurity.services.VerificationTokenService;
 import com.example.AutoskolaDemoWithSecurity.utils.JwtUtil;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import java.util.Calendar;
 import javax.security.auth.login.LoginException;
 import javax.servlet.http.HttpServletRequest;
@@ -41,6 +44,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/authenticate")
+@Api(value = "Sluzby, na ktore netreba opravnenie")
 public class AuthenticateController {
     
     @Autowired
@@ -66,7 +70,11 @@ public class AuthenticateController {
     
     
     @RequestMapping(value = {"/registrationConfirm"}, method = {RequestMethod.GET})
-    public ResponseEntity confirmRegistration(@RequestParam("token") String token) {
+    @ApiOperation(value = "${authenticateController.confirmRegistration.value}",
+            notes = "${authenticateController.confirmRegistration.notes}",
+            response = ResponseEntity.class)
+    public ResponseEntity confirmRegistration(@ApiParam(value = "${authenticateController.confirmRegistration.paramValue}")
+                @RequestParam("token") String token) {
 
         VerificationToken verificationToken = this.verificationTokenService.getVerificationToken(token);
         User user = verificationToken.getUser();
@@ -84,6 +92,9 @@ public class AuthenticateController {
 
     
     @PostMapping({"/forgotPassword"})
+    @ApiOperation(value = "${authenticateController.resetPassword.value}",
+            notes = "${authenticateController.resetPassword.notes}",
+            response = ResponseEntity.class)
     public ResponseEntity resetPassword(@RequestBody ResetPasswordRequest request) throws InterruptedException {
         String mail = request.getUserEmail();
         System.out.println("Reset password called with email: " + mail);
@@ -92,8 +103,10 @@ public class AuthenticateController {
     
     
     @RequestMapping(value = {"/login"}, method = {RequestMethod.POST})
-    public ResponseEntity createAuthenticationToken
-        (@RequestBody AuthenticationRequest authenticationRequest) throws Exception {
+    @ApiOperation(value = "${authenticateController.login.value}",
+            notes = "${authenticateController.login.notes}",
+            response = AuthenticationResponse.class)
+    public ResponseEntity login (@RequestBody AuthenticationRequest authenticationRequest) throws Exception {
             System.out.println("Inside /authenticate/login");
         String email = authenticationRequest.getEmail();
         try {
@@ -119,8 +132,10 @@ public class AuthenticateController {
                         crr.findAllByDrivingSchoolAndStudent(relationship.getDrivingSchool(), user).size())));
 }
 
-
+    
     @RequestMapping(value = {"/register"}, method = {RequestMethod.POST})
+    @ApiOperation(value = "${authenticateController.register.value}",
+            response = AuthenticationResponse.class)
     public ResponseEntity addNewUser(@RequestBody @Valid UserDTO userDTO, HttpServletRequest request) {
         return ResponseEntity.ok(this.myUserDetailsService.addNewUser(userDTO, request)); 
     }

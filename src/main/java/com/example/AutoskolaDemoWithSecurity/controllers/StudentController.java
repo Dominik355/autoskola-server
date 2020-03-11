@@ -4,6 +4,7 @@ package com.example.AutoskolaDemoWithSecurity.controllers;
 
 import com.example.AutoskolaDemoWithSecurity.models.otherModels.MyUserDetails;
 import com.example.AutoskolaDemoWithSecurity.services.RideService;
+import io.swagger.annotations.ApiOperation;
 import javax.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -34,6 +35,9 @@ public class StudentController {
     }
     
     @GetMapping(value = "/freeRides/{date}")
+    @ApiOperation(value = "${studentController.getFreeRides.value}",
+            notes = "${studentController.getFreeRides.notes}",
+            response = ResponseEntity.class)
     public ResponseEntity getFreeRides(@PathVariable String date, HttpServletRequest request) {
         return ResponseEntity.ok(rideService.getFreeRides(request, date));
     }

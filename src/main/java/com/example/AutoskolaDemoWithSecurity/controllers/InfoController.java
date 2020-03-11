@@ -3,6 +3,7 @@ package com.example.AutoskolaDemoWithSecurity.controllers;
 
 import com.example.AutoskolaDemoWithSecurity.repositories.UserRepository;
 import com.example.AutoskolaDemoWithSecurity.services.DrivingSchoolService;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,16 +26,19 @@ public class InfoController {
     
     
     @GetMapping(value = "/schoolsAvailable")
+    @ApiOperation(value = "zoznam skol - len informacne")
     public ResponseEntity getDrivingSchools() {
         return ResponseEntity.ok(schoolService.getDrivingSchools());
     }
     
     @GetMapping(value = "/linksAvailable")
+    @ApiOperation(value = "zoznam linkov - len informacne")
     public ResponseEntity getAvailableLinks() {
         Object[] mappedUrls = requestMappingHandlerMapping.getHandlerMethods().keySet().toArray();
         return ResponseEntity.ok(mappedUrls);
     }
     
+    @ApiOperation(value = "zoznam uzivatelov - len informacne")
     @GetMapping(value = "/listOfUsers")
     public ResponseEntity getListOfUsers() {
         return ResponseEntity.ok(userRepository.findAll());

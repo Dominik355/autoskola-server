@@ -3,6 +3,8 @@ package com.example.AutoskolaDemoWithSecurity.controllers;
 
 import com.example.AutoskolaDemoWithSecurity.models.otherModels.MyUserDetails;
 import com.example.AutoskolaDemoWithSecurity.services.RelationshipService;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -22,7 +24,11 @@ public class RelationController {
     private RelationshipService relationshipService;
     
     @PostMapping(value = "/enterSchool/{schoolID}")
-    public ResponseEntity enterSchool(@PathVariable("schoolID") int id) {
+    @ApiOperation(value = "${relationController.enterSchool.value}",
+            notes = "${relationController.enterSchool.notes}",
+            response = ResponseEntity.class)
+    public ResponseEntity enterSchool(@ApiParam(value = "${relationController.enterSchool.paramValue}", required = true)
+                @PathVariable("schoolID") int id) {
         
         int userID = (int) ((MyUserDetails) SecurityContextHolder
                 .getContext().getAuthentication().getPrincipal()).getId();
