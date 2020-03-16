@@ -11,6 +11,7 @@ import com.example.AutoskolaDemoWithSecurity.repositories.RelationshipRepository
 import com.example.AutoskolaDemoWithSecurity.repositories.RideRepository;
 import com.example.AutoskolaDemoWithSecurity.repositories.UserRepository;
 import com.example.AutoskolaDemoWithSecurity.utils.RideUtil;
+import java.nio.file.AccessDeniedException;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -60,9 +61,16 @@ public class RideService {
 
         User instructor = userRepository.findByEmail(
                     SecurityContextHolder.getContext().getAuthentication().getName()).get();
-        for(RideDTO r : rides) {
-            if(!rideUtil.isRideDTOFine(r, instructor)) {
-                throw new WrongDateException("Wrong object parameters, or it already exists, Ride: "+r.toString());
+
+        for(int i=0; i <rides.length; i++) {
+            if(!rideUtil.isRideDTOFine(rides[i], instructor)) {
+                throw new WrongDateException("Wrong object parameters, or it already exists, Ride: "+rides[i].toString());
+            }
+            //hlada sa duplikat
+            for(int j=i+1; j <rides.length; j++) {
+                if(rides[i].getTime().equals(rides[j].getTime())) {
+                    throw new WrongDateException("duplicate dates: "+rides[i].getDate());
+                }
             }
         }
         Arrays.asList(rides).forEach(t -> addRide(t, relationID, instructor));
@@ -86,7 +94,7 @@ public class RideService {
         } catch (Exception e) {
             throw new NoSuchElementException("This ride does not exists, or is not yours");
         }
-        if(status.equals("PENDING") || rideUtil.isItBeforeNow(ride, 0)) {
+        if(status.equals("PENDING") || !rideUtil.isItBeforeRide(ride, 0)) {
            //jazda sa uz mala zacala - oznaci sa ako NOTFINISHED a prida do completed rides, da sa taktiez ziakovi vediet
        } else if (status.equals("RESERVED")) {
            // da sa vediet studentovi ze sa jaza zrusila - CANCELLED 
@@ -134,16 +142,41 @@ public class RideService {
             throw new WrongDateException("Wrong date");
         }     
     }    
-/*
+
     //pre studenta prihlasenie sa na jazdu.....iba sa prida jeho meno a da sa vediet instruktorovi
     public ResponseEntity reserveRide(HttpServletRequest request, int rideID) {
-        
+        User student = userRepository.findByEmail(
+                SecurityContextHolder.getContext().getAuthentication().getName()).get();
+        Ride ride = rideRepository.getOne(rideID);
+        ride.setStudent(student);
+        ride.setStatus("RESERVED");
+        rideRepository.save(ride);
+        return new ResponseEntity("You succesfully signed to ride", HttpStatus.OK);
     }
     
     //pre studenta - odhlasenie z jazdy.... iba sa odstrani jeho meno a da sa vediet instruktorovi .. moze to urobit maximalne hodinu pred jazdou napr
-    public ResponseEntity cancelRide(HttpServletRequest request, int rideID) {
-        
+    public ResponseEntity cancelRide(HttpServletRequest request, int rideID) throws ParseException {
+        Ride ride = rideRepository.getOne(rideID);
+        if(rideUtil.isItBeforeRide(ride, 1)) {
+            User student = userRepository.findByEmail(
+                SecurityContextHolder.getContext().getAuthentication().getName()).get();
+            //musi to byt v try-cathc, lebo ak ta jazda nema prideleneho ziadneho studenta, hodi nullpointer
+            try{
+                if(ride.getStudent().equals(student)) {
+                ride.setStudent(null);
+                ride.setStatus("FREE");
+                rideRepository.save(ride);
+                //da sa instruktorovi vediet ze sa odhlasil ziak z jazdy    
+                } else {
+                    return new ResponseEntity("This ride is not assigned to you", HttpStatus.BAD_REQUEST);
+                }
+            } catch(NullPointerException e) {
+                throw new NullPointerException("This ride is not assigned to you");
+            }
+            return new ResponseEntity("You succesfully signed off the ride", HttpStatus.BAD_REQUEST);
+        }
+        return new ResponseEntity("You can not sign off ride, 1 hour limit is over", HttpStatus.OK);
     }
-    */
+    
     
 }

@@ -17,6 +17,7 @@ import javax.persistence.PersistenceException;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -89,11 +90,13 @@ public class MyUserDetailsService implements UserDetailsService {
 
     
     public ResponseEntity updatePassword(UpdatePasswordRequest changePasswordRequest) {
-      Authentication currentUser = SecurityContextHolder.getContext().getAuthentication();
-      String email = currentUser.getName();
+      MyUserDetails principals = ((MyUserDetails) SecurityContextHolder
+                .getContext().getAuthentication().getPrincipal());
+      int userID = (int) principals.getId();
+      String userEmail = principals.getUsername();
 
       if (this.authenticationManager != null)
-      { this.authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(email, changePasswordRequest.getOldPassword())); }
+      { this.authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(userEmail, changePasswordRequest.getOldPassword())); }
       else {
           throw new UpdatePasswordException("Wrong original password!");
       }
@@ -102,7 +105,7 @@ public class MyUserDetailsService implements UserDetailsService {
           throw new UpdatePasswordException("Passwords match! Please choose else new password");
       }
 
-      User user = loadUserWithUsername(email);
+      User user = userRepository.getOne(userID);
       user.setPassword(this.bcryptEncoder.encode(changePasswordRequest.getNewPassword()));
       System.out.println("Password succesfully changed");
       return ResponseEntity.ok(this.userRepository.save(user));
@@ -110,9 +113,12 @@ public class MyUserDetailsService implements UserDetailsService {
 
     
     public ResponseEntity updateEmail(UpdateEmailRequest changeEmailRequest) {
-      Authentication currentUser = SecurityContextHolder.getContext().getAuthentication();
-      String userEmail = currentUser.getName();
-      User user = loadUserWithUsername(userEmail);
+      int userID = (int) ((MyUserDetails) SecurityContextHolder
+                .getContext().getAuthentication().getPrincipal()).getId();
+      User user = userRepository.getOne(userID);
+      if(user.getEmail().equals(changeEmailRequest.getNewEmail())) {
+          return new ResponseEntity("You already use this email", HttpStatus.BAD_REQUEST);
+      }
       user.setEmail(changeEmailRequest.getNewEmail());
       System.out.println("Email succesfully changed");
       return ResponseEntity.ok(this.userRepository.save(user));

@@ -5,6 +5,7 @@ package com.example.AutoskolaDemoWithSecurity.controllers;
 import com.example.AutoskolaDemoWithSecurity.models.otherModels.MyUserDetails;
 import com.example.AutoskolaDemoWithSecurity.services.RideService;
 import io.swagger.annotations.ApiOperation;
+import java.text.ParseException;
 import javax.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,6 +15,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -41,10 +43,15 @@ public class StudentController {
     public ResponseEntity getFreeRides(@PathVariable String date, HttpServletRequest request) {
         return ResponseEntity.ok(rideService.getFreeRides(request, date));
     }
-    /*
-    @PostMapping
-    public ResponseEntity reserveRide(@RequestBody RideReservation reservation, HttpServletRequest request) {
-        return ResponseEntity.ok(rideService.reserveRide(request, reservation));
-    }*/
+    
+    @PostMapping("/reserveRide/{rideID}")
+    public ResponseEntity reserveRide(@PathVariable("rideID") int rideID, HttpServletRequest request) {
+        return ResponseEntity.ok(rideService.reserveRide(request, rideID));
+    }
+    
+    @PostMapping("/cancelRide/{rideID}")
+    public ResponseEntity cancelRide(@PathVariable("rideID") int rideID, HttpServletRequest request) throws ParseException {
+        return ResponseEntity.ok(rideService.cancelRide(request, rideID));
+    }
     
 }

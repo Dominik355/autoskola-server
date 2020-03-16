@@ -127,9 +127,11 @@ public class AuthenticateController {
         String jwt = this.jwtTokenUtil.generateToken(userDetails);
 
         Relationship relationship = relationshipRepository.findByUser(user);
-        return ResponseEntity.ok(new AuthenticationResponse(
+        return ResponseEntity.ok(jwt);
+        //pocet jazd bude vracat az ked bude prihlaseny v nejakej autoskole
+       /* return ResponseEntity.ok(new AuthenticationResponse(
                 jwt, relationship.getId(), new UserProfileInfo(user,
-                        crr.findAllByDrivingSchoolAndStudent(relationship.getDrivingSchool(), user).size())));
+                        crr.findAllByDrivingSchoolAndStudent(relationship.getDrivingSchool(), user).size())));*/
 }
 
     

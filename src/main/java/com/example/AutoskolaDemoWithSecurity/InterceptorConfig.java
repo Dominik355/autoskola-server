@@ -25,6 +25,7 @@ public class InterceptorConfig implements WebMvcConfigurer {
         registry.addInterceptor(logInterceptor);
         registry.addInterceptor(authInterceptor)
                 .excludePathPatterns("/authenticate/**"
+                ,"/update/**"        
                 ,"/school/**"
                 ,"/relationship/**"
                 ,"/info/**"
