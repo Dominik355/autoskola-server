@@ -89,7 +89,7 @@ public class InstructorController {
                 response = ResponseEntity.class)
     public ResponseEntity removeRide(@ApiParam(value = "${instructorController.removeRide.paramValue}")
                 @PathVariable("rideID") int id, HttpServletRequest request) throws ParseException {
-        return ResponseEntity.ok(rideService.removeRide(id, request.getIntHeader("Relation")));
+        return ResponseEntity.ok(rideService.removeRide(id));
     }
     
     

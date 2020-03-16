@@ -42,6 +42,7 @@ public class UserProfileInfo implements Serializable{
     }
     
     public UserProfileInfo(User user, int completedRides) {
+        this.id = user.getId();
         this.fullName = user.getName()+" "+user.getSurname();
         this.email = user.getEmail();
         this.phoneNumber = user.getPhoneNumber();

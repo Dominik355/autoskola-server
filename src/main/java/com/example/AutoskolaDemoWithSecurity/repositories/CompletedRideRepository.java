@@ -14,6 +14,8 @@ public interface CompletedRideRepository extends JpaRepository<CompletedRide, In
     
     List<CompletedRide> findAllByInstructor(User instructor);
     
+    List<CompletedRide> findAllByInstructorAndDateAndStatus(User instructor, String date, String status);
+    
     List<CompletedRide> findAllByInstructorAndDate(User instructor, String date);
     
     List<CompletedRide> findAllByDrivingSchoolAndStudent(DrivingSchool drivingSchool, User student);

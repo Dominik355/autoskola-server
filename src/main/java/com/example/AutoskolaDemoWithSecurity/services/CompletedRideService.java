@@ -40,11 +40,11 @@ public class CompletedRideService {
     public List<RideDTO> getCompletedRides(String date) {
         User instructor = userRepository.findByEmail(
                     SecurityContextHolder.getContext().getAuthentication().getName()).get();
-        List<CompletedRide> rides = crr.findAllByInstructorAndDate(instructor, date);
+        List<CompletedRide> rides = crr.findAllByInstructorAndDateAndStatus(instructor, date, "FINISHED");
         return rides.stream().map(RideDTO::new).collect(Collectors.toList());
     }
         
-    
+    //jazda musi mat oznacenie PENDING a oznaci sa  ako FINISHED, ulozi sa ked tak novy komentar k nej
     public ResponseEntity completeRide(RideDTO rideDTO) {
         User instructor = userRepository.findByEmail(
                     SecurityContextHolder.getContext().getAuthentication().getName()).get();

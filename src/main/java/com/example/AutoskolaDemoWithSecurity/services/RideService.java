@@ -71,7 +71,7 @@ public class RideService {
     }
     
     
-    public ResponseEntity removeRide(int rideID, int relationID) throws ParseException{
+    public ResponseEntity removeRide(int rideID) throws ParseException{
         User student;
         String status;
         Ride ride;
@@ -86,8 +86,8 @@ public class RideService {
         } catch (Exception e) {
             throw new NoSuchElementException("This ride does not exists, or is not yours");
         }
-        if(status.equals("PENDING") || rideUtil.hasItStarted(ride)) {
-           //jazda sa uz zacala - oznaci sa ako NOTFINISHED
+        if(status.equals("PENDING") || rideUtil.isItBeforeNow(ride, 0)) {
+           //jazda sa uz mala zacala - oznaci sa ako NOTFINISHED a prida do completed rides, da sa taktiez ziakovi vediet
        } else if (status.equals("RESERVED")) {
            // da sa vediet studentovi ze sa jaza zrusila - CANCELLED 
        } else {
@@ -124,7 +124,7 @@ public class RideService {
                             times.add(r.getTime());
                         }
                     }
-                    rides.add(new InstructorRides(name, times.toArray(new String[0])));
+                    rides.add(new InstructorRides(name, times.toArray(new String[0]), date));
                 }
                 return rides; 
             } else {
@@ -133,12 +133,15 @@ public class RideService {
         } else {
             throw new WrongDateException("Wrong date");
         }     
+    }    
+/*
+    //pre studenta prihlasenie sa na jazdu.....iba sa prida jeho meno a da sa vediet instruktorovi
+    public ResponseEntity reserveRide(HttpServletRequest request, int rideID) {
+        
     }
     
-    /*
-    *
-    *//*
-    public ResponseEntity reserveRide(HttpServletRequest request, RideDTO reservation) {
+    //pre studenta - odhlasenie z jazdy.... iba sa odstrani jeho meno a da sa vediet instruktorovi .. moze to urobit maximalne hodinu pred jazdou napr
+    public ResponseEntity cancelRide(HttpServletRequest request, int rideID) {
         
     }
     */

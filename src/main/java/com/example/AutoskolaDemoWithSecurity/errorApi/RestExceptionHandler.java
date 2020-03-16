@@ -27,6 +27,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
 import org.springframework.dao.DataAccessException;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -106,7 +107,7 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
         return buildResponseEntity(new ApiError(HttpStatus.BAD_REQUEST, ex.getMessage()));
     }
     
-    @ExceptionHandler({DataAccessException.class, HibernateException.class})
+    @ExceptionHandler({DataAccessException.class, HibernateException.class, EmptyResultDataAccessException.class})
     public ResponseEntity<Object> handleDatabaseProblemException(RuntimeException ex) {
         ex.printStackTrace();
         String errorMessage = ex.getMessage();

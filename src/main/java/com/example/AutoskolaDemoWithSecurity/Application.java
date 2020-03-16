@@ -69,7 +69,7 @@ public class Application {
         servlet.setThrowExceptionIfNoHandlerFound(true);
         return args -> {};
     }
-    
+    /*
     @Bean
     public ServletWebServerFactory servletContainer() {
         //Enable SSL traffic
@@ -84,7 +84,7 @@ public class Application {
                 Specify INTEGRAL when the application requires that the data be sent between client
                 and server in such a way that it cannot be changed in transit.
                 Specify NONE to indicate that the container must accept the constrained
-                requests on any connection, including an unprotected one.*/
+                requests on any connection, including an unprotected one.
                 
                 constraint.setUserConstraint("CONFIDENTIAL"); 
                 SecurityCollection collection = new SecurityCollection();
@@ -106,5 +106,5 @@ public class Application {
         connector.setRedirectPort(8443);
         return connector;
     }
-     
+     */
 }

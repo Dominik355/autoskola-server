@@ -23,15 +23,17 @@ public class RideUtil {
     
     @Autowired
     private RideRepository rideRepository;
+
     
-    
-    public boolean hasItStarted(Ride ride) throws ParseException {
+    //TRUE, ak cas uz bol, cize je mensi ako teraz, false, ak ten cas estelen bude
+    public boolean isItBeforeNow(Ride ride, int hoursBefore) throws ParseException {
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm");
         Date now = new Timestamp(System.currentTimeMillis());
         Date rideDate = formatter.parse(ride.getDate()+" "+ride.getTime());
-        return rideDate.before(now);
+        rideDate.setHours(rideDate.getHours() + hoursBefore);
+        return (now.getTime()-rideDate.getTime()) > 0;
     }
-    
+
     public boolean isDateValid(String date) {
         
         if(date.matches("\\d{4}-\\d{2}-\\d{2}")) {

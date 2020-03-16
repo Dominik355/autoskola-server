@@ -8,13 +8,15 @@ public class InstructorRides implements Serializable{
     
     String instructorName;
     
+    String date;
+    
     String[] times;
 
     public InstructorRides() {
     
     }
 
-    public InstructorRides(String instructorName, String[] times) {
+    public InstructorRides(String instructorName, String[] times, String date) {
         this.instructorName = instructorName;
         this.times = times;
     }
@@ -35,4 +37,12 @@ public class InstructorRides implements Serializable{
         this.times = times;
     }
 
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+    
 }

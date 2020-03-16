@@ -2,6 +2,7 @@
 package com.example.AutoskolaDemoWithSecurity.models.databaseModels;
 
 import com.example.AutoskolaDemoWithSecurity.models.otherModels.VehicleTypes;
+import com.example.AutoskolaDemoWithSecurity.models.transferModels.VehicleDTO;
 import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -32,7 +33,6 @@ public class Vehicle implements Serializable {
     @JoinColumn(nullable = false, name = "owner_id")
     private DrivingSchool owner;
     
-    @NotEmpty
     private String evidenceNumber;
     
     @NotEmpty
@@ -40,6 +40,12 @@ public class Vehicle implements Serializable {
 
     public Vehicle() {
         
+    }
+    
+    public Vehicle(VehicleDTO vehicleDTO) {
+        this.name = vehicleDTO.getName();
+        this.evidenceNumber = vehicleDTO.getEvidenceNumber();
+        this.type = vehicleDTO.getType();
     }
 
     public Vehicle(String name, DrivingSchool drivingSchool, String evidenceNumber, String type) {
@@ -82,7 +88,8 @@ public class Vehicle implements Serializable {
     }
 
     public void setType(String type) {
-        this.type = VehicleTypes.getVehicle(type).getName();
+        //this.type = VehicleTypes.getVehicle(type).getName();
+        this.type = type;
     }
     
 }
