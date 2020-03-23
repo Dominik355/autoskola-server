@@ -1,6 +1,8 @@
 
 package com.example.AutoskolaDemoWithSecurity.controllers;
 
+import com.example.AutoskolaDemoWithSecurity.repositories.DrivingSchoolRepository;
+import com.example.AutoskolaDemoWithSecurity.repositories.RelationshipRepository;
 import com.example.AutoskolaDemoWithSecurity.repositories.UserRepository;
 import com.example.AutoskolaDemoWithSecurity.services.DrivingSchoolService;
 import io.swagger.annotations.ApiOperation;
@@ -24,6 +26,12 @@ public class InfoController {
     @Autowired
     private UserRepository userRepository;
     
+    @Autowired
+    private DrivingSchoolRepository schoolRepository;
+    
+    @Autowired
+    private RelationshipRepository rr;
+    
     
     @GetMapping(value = "/schoolsAvailable")
     @ApiOperation(value = "zoznam skol - len informacne")
@@ -43,6 +51,15 @@ public class InfoController {
     public ResponseEntity getListOfUsers() {
         return ResponseEntity.ok(userRepository.findAll());
     }
+    
+    @GetMapping(value = {"/allRelations"})
+    public ResponseEntity getAlRelations() {
+        return ResponseEntity.ok(rr.findAll());
+    }
 
+    @GetMapping(value = {"/allSchools"})
+    public ResponseEntity getAllSchools() {
+        return ResponseEntity.ok(schoolRepository.findAll());
+    }
     
 }

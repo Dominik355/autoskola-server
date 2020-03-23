@@ -131,7 +131,12 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
     @ExceptionHandler({ MailException.class })
     public ResponseEntity<Object> handleMailException(MailException ex) {
         return buildResponseEntity(new ApiError(HttpStatus.BAD_REQUEST, ex.getMessage()));
-    }    
+    }   
+    
+    @ExceptionHandler({ SecurityException.class })
+    public ResponseEntity<Object> handleSecurityException(SecurityException ex) {
+        return buildResponseEntity(new ApiError(HttpStatus.BAD_REQUEST, ex.getMessage()));
+    } 
     
     @ExceptionHandler({ PersistenceException.class })
     public ResponseEntity<Object> handlePersistenceException(PersistenceException ex) {

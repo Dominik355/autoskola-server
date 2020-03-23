@@ -2,7 +2,7 @@
 package com.example.AutoskolaDemoWithSecurity.services;
 
 import com.example.AutoskolaDemoWithSecurity.models.databaseModels.User;
-import com.example.AutoskolaDemoWithSecurity.models.transferModels.VerificationToken;
+import com.example.AutoskolaDemoWithSecurity.models.databaseModels.VerificationToken;
 import com.example.AutoskolaDemoWithSecurity.repositories.VerificationTokenRepository;
 import java.util.List;
 import java.util.NoSuchElementException;

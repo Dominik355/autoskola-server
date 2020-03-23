@@ -2,6 +2,7 @@
 package com.example.AutoskolaDemoWithSecurity.models.databaseModels;
 
 import java.io.Serializable;
+import java.util.Optional;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -54,21 +55,22 @@ public class CancelledRide implements Serializable{
     
     public CancelledRide(Ride ride) {
         this.id = ride.getId();
-        this.student = ride.getStudent();
+        this.student = ride.getStudent().get();
         this.drivingSchool = ride.getDrivingSchool();
         this.instructor = ride.getInstructor();
         this.vehicleID = ride.getVehicleID();
         this.date = ride.getDate();
         this.time = ride.getTime();
+        this.status = "CANCELLED";
     }
 
-    public CancelledRide(User student, User instructor, int vehicleID, String date, String time, String comment, String status) {
+    public CancelledRide(User student, User instructor, int vehicleID, String date, String time, String comment) {
         this.instructor = instructor;
         this.vehicleID = vehicleID;
         this.date = date;
         this.time = time;
         this.comment = comment;
-        this.status = status;
+        this.status = "CANCELLED";
     }
 
     public int getId() {
@@ -115,8 +117,8 @@ public class CancelledRide implements Serializable{
         this.time = time;
     }
 
-    public String getComment() {
-        return comment;
+    public Optional<String> getComment() {
+        return Optional.ofNullable(comment);
     }
 
     public void setComment(String comment) {

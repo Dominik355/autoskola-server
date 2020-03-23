@@ -4,12 +4,14 @@ package com.example.AutoskolaDemoWithSecurity.controllers;
 
 import com.example.AutoskolaDemoWithSecurity.models.otherModels.MyUserDetails;
 import com.example.AutoskolaDemoWithSecurity.services.RideService;
+import com.example.AutoskolaDemoWithSecurity.utils.RideUtil;
 import io.swagger.annotations.ApiOperation;
 import java.text.ParseException;
 import javax.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -17,6 +19,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 
@@ -29,6 +32,10 @@ public class StudentController {
     
     @Autowired
     private  RideService rideService;
+    
+    @Autowired
+    private RideUtil rideUtil;
+    
     
     @GetMapping(value = {"/hello"})
     public String helloStudent() {
@@ -46,12 +53,20 @@ public class StudentController {
     
     @PostMapping("/reserveRide/{rideID}")
     public ResponseEntity reserveRide(@PathVariable("rideID") int rideID, HttpServletRequest request) {
-        return ResponseEntity.ok(rideService.reserveRide(request, rideID));
+        return ResponseEntity.ok(rideService.reserveRide(request.getIntHeader("Relation"), rideID));
     }
     
     @PostMapping("/cancelRide/{rideID}")
     public ResponseEntity cancelRide(@PathVariable("rideID") int rideID, HttpServletRequest request) throws ParseException {
-        return ResponseEntity.ok(rideService.cancelRide(request, rideID));
+        return ResponseEntity.ok(rideService.cancelRide(request.getIntHeader("Relation"), rideID));
+    }
+    
+    @GetMapping(value = {"/myRides"})
+    public ResponseEntity getMyRides(@RequestParam(defaultValue = "") String date, HttpServletRequest request) {
+        if(date.equals("") || rideUtil.isDateValid(date)) {
+            return rideService.getMyRides(request.getIntHeader("Relation"), date);
+        }
+        return new ResponseEntity("Wrong date", HttpStatus.BAD_REQUEST);
     }
     
 }

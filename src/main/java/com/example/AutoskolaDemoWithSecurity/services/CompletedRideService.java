@@ -1,13 +1,16 @@
 
 package com.example.AutoskolaDemoWithSecurity.services;
 
+import com.example.AutoskolaDemoWithSecurity.errorApi.customExceptions.WrongDateException;
 import com.example.AutoskolaDemoWithSecurity.models.databaseModels.CompletedRide;
 import com.example.AutoskolaDemoWithSecurity.models.databaseModels.Ride;
 import com.example.AutoskolaDemoWithSecurity.models.databaseModels.User;
 import com.example.AutoskolaDemoWithSecurity.models.transferModels.RideDTO;
 import com.example.AutoskolaDemoWithSecurity.repositories.CompletedRideRepository;
+import com.example.AutoskolaDemoWithSecurity.repositories.RelationshipRepository;
 import com.example.AutoskolaDemoWithSecurity.repositories.RideRepository;
 import com.example.AutoskolaDemoWithSecurity.repositories.UserRepository;
+import com.example.AutoskolaDemoWithSecurity.utils.RideUtil;
 import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -36,42 +39,62 @@ public class CompletedRideService {
     @Autowired
     private RideRepository rideRepository;
     
+    @Autowired
+    private RideUtil rideUtil;
+    
+    @Autowired
+    private RelationshipRepository relationRepository;
+    
     
     public List<RideDTO> getCompletedRides(String date) {
+        
         User instructor = userRepository.findByEmail(
                     SecurityContextHolder.getContext().getAuthentication().getName()).get();
+        System.out.println("5");
         List<CompletedRide> rides = crr.findAllByInstructorAndDateAndStatus(instructor, date, "FINISHED");
+        System.out.println("6");
         return rides.stream().map(RideDTO::new).collect(Collectors.toList());
+        
     }
         
     //jazda musi mat oznacenie PENDING a oznaci sa  ako FINISHED, ulozi sa ked tak novy komentar k nej
-    public ResponseEntity completeRide(RideDTO rideDTO) {
+    public ResponseEntity completeRide(RideDTO rideDTO, int relationID) throws ParseException {
+      
         User instructor = userRepository.findByEmail(
                     SecurityContextHolder.getContext().getAuthentication().getName()).get();
-        Ride ride = rideRepository.findByIdAndInstructor(rideDTO.getId(), instructor);
         
-        if(ride != null) {
-            
-            CompletedRide cRide = new CompletedRide(ride);
-            if(ride.getComment() != null) {
-                cRide.setComment(rideDTO.getComment());
-            } else {
-                cRide.setComment(ride.getComment());
+        Ride ride = rideRepository.findByIdAndInstructorAndDrivingSchool(rideDTO.getId(), instructor,
+                    relationRepository.findById(relationID).get().getDrivingSchool());
+        
+        if(ride.getStatus().equals("PENDING") || !rideUtil.isItBeforeRide(ride, 0)) {
+            if(ride != null) {
+                if(ride.getStudent().isPresent()) {
+                    
+                    CompletedRide cRide = new CompletedRide(ride);
+                    if(rideDTO.getComment() != null) {
+                        cRide.setComment(rideDTO.getComment());
+                    } else {
+                        cRide.setComment(ride.getComment().orElse(""));
+                    }
+                    rideRepository.delete(ride);
+                    cRide.setStatus("FINISHED");
+                    CompletedRide compR = crr.save(cRide);
+                    if(compR != null) {
+                        return new ResponseEntity("Ride set as completed", HttpStatus.OK);
+                    }
+                
+                } else {
+                    return new ResponseEntity("This ride has no student assigned", HttpStatus.BAD_REQUEST);
+                }
             }
-            rideRepository.delete(ride);
-            cRide.setStatus("FINISHED");
-            CompletedRide compR = crr.save(cRide);
-            if(compR != null) {
-                return new ResponseEntity("Ride set as completed", HttpStatus.OK);
-            }
-            
+            throw new NoSuchElementException("This ride does not exists!");
         }
-        throw new NoSuchElementException("This ride does not exists!");
+        throw new WrongDateException("This ride has not started yet");
     }
     
     
     //vyberie jazdy z poslednych 5 dni a z nich 'count' poslednych
-    public List<RideDTO> getLastRides(int count) {
+    public List<RideDTO> getLastRides(int count, int relationID) {
         
         User instructor = userRepository.findByEmail(
                     SecurityContextHolder.getContext().getAuthentication().getName()).get();
@@ -82,10 +105,11 @@ public class CompletedRideService {
         Calendar c = Calendar.getInstance();
         c.setTime(date);
         // len z posledneho tyzdna
-        for(int i = 0; i < 7; i++) {
+        for(int i = 0; i < 14; i++) {
 
             String d = formatter.format(date).substring(0, 10);
-            List<CompletedRide> pridavny = crr.findAllByInstructorAndDate(instructor, d);
+            List<CompletedRide> pridavny = crr.findAllByInstructorAndDateAndDrivingSchool(instructor, d,
+                        relationRepository.findById(relationID).get().getDrivingSchool());
             last.addAll(pridavny);
             
             c.add(Calendar.DATE, -1);

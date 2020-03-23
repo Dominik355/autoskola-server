@@ -2,6 +2,7 @@
 package com.example.AutoskolaDemoWithSecurity.models.transferModels;
 
 import java.io.Serializable;
+import java.util.List;
 
 
 public class InstructorRides implements Serializable{
@@ -10,15 +11,16 @@ public class InstructorRides implements Serializable{
     
     String date;
     
-    String[] times;
+    List<RideIdTime> rides;
 
     public InstructorRides() {
     
     }
 
-    public InstructorRides(String instructorName, String[] times, String date) {
+    public InstructorRides(String instructorName, List<RideIdTime> rides, String date) {
         this.instructorName = instructorName;
-        this.times = times;
+        this.rides = rides;
+        this.date = date;
     }
 
     public String getInstructorName() {
@@ -29,12 +31,12 @@ public class InstructorRides implements Serializable{
         this.instructorName = instructorName;
     }
 
-    public String[] getTimes() {
-        return times;
+    public List<RideIdTime> getRides() {
+        return rides;
     }
 
-    public void setTimes(String[] times) {
-        this.times = times;
+    public void setRides(List<RideIdTime> rides) {
+        this.rides = rides;
     }
 
     public String getDate() {

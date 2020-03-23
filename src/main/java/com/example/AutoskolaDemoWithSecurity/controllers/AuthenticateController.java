@@ -13,7 +13,7 @@ import com.example.AutoskolaDemoWithSecurity.models.transferModels.Authenticatio
 import com.example.AutoskolaDemoWithSecurity.models.transferModels.ResetPasswordRequest;
 import com.example.AutoskolaDemoWithSecurity.models.transferModels.UserDTO;
 import com.example.AutoskolaDemoWithSecurity.models.transferModels.UserProfileInfo;
-import com.example.AutoskolaDemoWithSecurity.models.transferModels.VerificationToken;
+import com.example.AutoskolaDemoWithSecurity.models.databaseModels.VerificationToken;
 import com.example.AutoskolaDemoWithSecurity.repositories.CompletedRideRepository;
 import com.example.AutoskolaDemoWithSecurity.repositories.RelationshipRepository;
 import com.example.AutoskolaDemoWithSecurity.repositories.UserRepository;
@@ -123,15 +123,23 @@ public class AuthenticateController {
         
         User user = myUserDetailsService.loadUserWithUsername(authenticationRequest.getEmail());
         UserDetails userDetails = new MyUserDetails(user);  
-
+       
         String jwt = this.jwtTokenUtil.generateToken(userDetails);
-
-        Relationship relationship = relationshipRepository.findByUser(user);
-        return ResponseEntity.ok(jwt);
-        //pocet jazd bude vracat az ked bude prihlaseny v nejakej autoskole
-       /* return ResponseEntity.ok(new AuthenticationResponse(
-                jwt, relationship.getId(), new UserProfileInfo(user,
-                        crr.findAllByDrivingSchoolAndStudent(relationship.getDrivingSchool(), user).size())));*/
+        int ridesCompleted;
+        int relationID;
+        Relationship relationship;
+        try{
+            relationship = relationshipRepository.findByUser(user);
+            ridesCompleted = crr.findAllByDrivingSchoolAndStudent(relationship.getDrivingSchool(), user).size();
+            relationID = relationship.getId();
+        } catch(NullPointerException e) {
+            ridesCompleted = 0;
+            relationID = 0;
+        }
+        AuthenticationResponse res = new AuthenticationResponse(
+                    jwt, relationID,  new UserProfileInfo(user, ridesCompleted));
+        
+        return new ResponseEntity(res, HttpStatus.OK);
 }
 
     

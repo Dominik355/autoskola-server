@@ -25,7 +25,7 @@ public class RideUtil {
     private RideRepository rideRepository;
 
     
-    //TRUE, ak cas uz bol, cize je mensi ako teraz, false, ak ten cas estelen bude
+    //TRUE, ak cas (teraz+hoursBefore) je stale skorsie ako cas jazdy, FALSE ak ten cas je az po jazde
     public boolean isItBeforeRide(Ride ride, int hoursBefore) throws ParseException {
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm");
         Date now = new Timestamp(System.currentTimeMillis());
@@ -35,7 +35,9 @@ public class RideUtil {
     }
 
     public boolean isDateValid(String date) {
-        
+        if(date.contains("T")) {
+            date = date.substring(0, date.indexOf("T"));
+        }
         if(date.matches("\\d{4}-\\d{2}-\\d{2}")) {
             
             String[] params = date.split("-");
@@ -119,12 +121,12 @@ public class RideUtil {
         return status.replaceAll("\\s+", "").toUpperCase();
     }
     
-    public boolean isRideDTOFine(RideDTO rideDTO, User instructor) {
+    public boolean isRideDTOFine(RideDTO rideDTO, User instructor) throws ParseException {
         if(isDateValid(rideDTO.getDate())
                 && isTimeValid(rideDTO.getTime())) {
             if (!rideRepository.existsByTimeAndDateAndInstructor(
                     rideDTO.getTime(), rideDTO.getDate(), instructor)) {
-                return true;
+                        return true;
             } else {
                 throw new EntityExistsException("This ride already exists!"
                         + " Ride: [Date: "+rideDTO.getDate()+", Time"+rideDTO.getTime()+"]");

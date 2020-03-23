@@ -2,7 +2,7 @@
 package com.example.AutoskolaDemoWithSecurity.repositories;
 
 import com.example.AutoskolaDemoWithSecurity.models.databaseModels.User;
-import com.example.AutoskolaDemoWithSecurity.models.transferModels.VerificationToken;
+import com.example.AutoskolaDemoWithSecurity.models.databaseModels.VerificationToken;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;

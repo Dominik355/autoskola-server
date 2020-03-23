@@ -7,6 +7,7 @@ import com.example.AutoskolaDemoWithSecurity.repositories.UserRepository;
 import com.example.AutoskolaDemoWithSecurity.services.CompletedRideService;
 import com.example.AutoskolaDemoWithSecurity.services.RideService;
 import com.example.AutoskolaDemoWithSecurity.utils.RideUtil;
+import com.example.AutoskolaDemoWithSecurity.validators.constraint.RideDateConstraint;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -60,7 +61,7 @@ public class InstructorController {
                 notes = "${instructorController.addRide.notes}",
                 response = ResponseEntity.class)
     public ResponseEntity addRide (@ApiParam(value = "${instructorController.addRide.paramValue}")
-                @RequestBody @Valid RideDTO ride, HttpServletRequest request) {
+                @RequestBody @Valid RideDTO ride, HttpServletRequest request) throws ParseException {
         
         User instructor = userRepository.findByEmail(
                     SecurityContextHolder.getContext().getAuthentication().getName()).get();
@@ -78,8 +79,17 @@ public class InstructorController {
                 notes = "${instructorController.addRides.notes}",
                 response = ResponseEntity.class)
     public ResponseEntity addRides (@ApiParam(value = "${instructorController.addRides.paramValue}")
-                @RequestBody @Valid RideDTO[] rides, HttpServletRequest request) {
+                @RequestBody @Valid RideDTO[] rides, HttpServletRequest request) throws ParseException {
         return ResponseEntity.ok(rideService.addRides(rides, request.getIntHeader("Relation")));
+    }
+    
+    
+    @GetMapping(value = {"/myRides"})
+    public ResponseEntity getMyRides(@RequestParam(defaultValue = "") String date, HttpServletRequest request) {
+        if(date.equals("") || rideUtil.isDateValid(date)) {
+            return rideService.getMyRides(request.getIntHeader("Relation"), date);
+        }
+        return new ResponseEntity("Wrong date", HttpStatus.BAD_REQUEST);
     }
     
     
@@ -89,7 +99,7 @@ public class InstructorController {
                 response = ResponseEntity.class)
     public ResponseEntity removeRide(@ApiParam(value = "${instructorController.removeRide.paramValue}")
                 @PathVariable("rideID") int id, HttpServletRequest request) throws ParseException {
-        return ResponseEntity.ok(rideService.removeRide(id));
+        return ResponseEntity.ok(rideService.removeRide(id, request.getIntHeader("Relation")));
     }
     
     
@@ -100,24 +110,31 @@ public class InstructorController {
                 responseContainer = "List")
     public ResponseEntity getCompletedRides (@ApiParam(value = "${instructorController.getCompletedRides.paramValue}")
                 @PathVariable("inputDate") String inputDate) {
-        String date;
-        if(!inputDate.matches("\\d{4}-\\d{2}-\\d{2}")) {
-            date = inputDate.substring(0, inputDate.indexOf("T"));
-        } else {
-            date = inputDate;
+        if(rideUtil.isDateValid(inputDate)){
+            System.out.println("1");
+            String date;
+            if(inputDate.contains("T")) {
+                System.out.println("2");
+                date = inputDate.substring(0, inputDate.indexOf("T"));
+            } else {
+                date = inputDate;
+            }
+            System.out.println("3");
+            return ResponseEntity.ok(crs.getCompletedRides(date));
         }
-        return ResponseEntity.ok(crs.getCompletedRides(date));
+        System.out.println("4");
+        return new ResponseEntity("Invalid date", HttpStatus.BAD_REQUEST);
     }
     
-    //default value nastavena, aby ked nieje zadana ,vratia sa vsetky jazdy z poslednych 7 dni
+    //default value nastavena, aby ked nieje zadana ,vratia sa vsetky jazdy z poslednych 14 dni
     @GetMapping(value = {"/getLastRides"})
     @ApiOperation(value = "${instructorController.getLastRides.value}",
             notes = "${instructorController.getLastRides.notes}",
             response = RideDTO.class,
             responseContainer = "List")
     public ResponseEntity getLastRides (@ApiParam(value = "${instructorController.getLastRides.paramValue}")
-            @RequestParam(defaultValue = "1000") int count) {
-        return ResponseEntity.ok(crs.getLastRides(count));
+            @RequestParam(defaultValue = "1000") int count, HttpServletRequest request) {
+        return ResponseEntity.ok(crs.getLastRides(count, request.getIntHeader("Relation")));
     }
     
     
@@ -126,8 +143,13 @@ public class InstructorController {
             notes = "${instructorController.completeRide.notes}",
             response = ResponseEntity.class)
     public ResponseEntity completeRide (@ApiParam(value = "${instructorController.completeRide.paramValue}", required = true)
-            @RequestBody @Valid RideDTO rideDTO, HttpServletRequest request) {
-        return ResponseEntity.ok(crs.completeRide(rideDTO));
+            @RequestBody @Valid RideDTO rideDTO, HttpServletRequest request) throws ParseException {
+        return ResponseEntity.ok(crs.completeRide(rideDTO, request.getIntHeader("Relation")));
+    }
+    
+    @GetMapping(value = {"/showTimes/{inputDate}"})
+    public ResponseEntity showTimes(@PathVariable("inputDate") @RideDateConstraint String inputDate, HttpServletRequest request) {
+        return ResponseEntity.ok(rideService.showTimes(inputDate, request.getIntHeader("Relation")));
     }
     
 }

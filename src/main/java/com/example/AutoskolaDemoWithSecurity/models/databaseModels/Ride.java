@@ -4,6 +4,7 @@ package com.example.AutoskolaDemoWithSecurity.models.databaseModels;
 
 import com.example.AutoskolaDemoWithSecurity.models.transferModels.RideDTO;
 import java.io.Serializable;
+import java.util.Optional;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -51,7 +52,7 @@ public class Ride implements Serializable{
     private String time;
     
     private String status;
-    
+
     private String comment;
 
     public Ride() {
@@ -79,8 +80,8 @@ public class Ride implements Serializable{
         return id;
     }
 
-    public User getStudent() {
-        return student;
+    public Optional<User> getStudent() {
+        return Optional.ofNullable(student);
     }
 
     public void setStudent(User student) {
@@ -127,8 +128,8 @@ public class Ride implements Serializable{
         return status;
     }
 
-    public String getComment() {
-        return comment;
+    public Optional<String> getComment() {
+        return Optional.ofNullable(comment);
     }
 
     public void setComment(String comment) {

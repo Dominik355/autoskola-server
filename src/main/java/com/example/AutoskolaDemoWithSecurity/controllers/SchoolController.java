@@ -4,6 +4,7 @@ package com.example.AutoskolaDemoWithSecurity.controllers;
 import com.example.AutoskolaDemoWithSecurity.models.transferModels.DrivingSchoolDTO;
 import com.example.AutoskolaDemoWithSecurity.models.transferModels.InstructorRides;
 import com.example.AutoskolaDemoWithSecurity.models.transferModels.VehicleDTO;
+import com.example.AutoskolaDemoWithSecurity.repositories.DrivingSchoolRepository;
 import com.example.AutoskolaDemoWithSecurity.services.DrivingSchoolService;
 import com.example.AutoskolaDemoWithSecurity.services.VehicleService;
 import io.swagger.annotations.Api;
@@ -34,6 +35,9 @@ public class SchoolController {
     
     @Autowired
     private VehicleService vehicleService;
+    
+    @Autowired
+    private DrivingSchoolRepository schoolRepository;
     
     
     @PostMapping(value = {"/addNewSchool"})

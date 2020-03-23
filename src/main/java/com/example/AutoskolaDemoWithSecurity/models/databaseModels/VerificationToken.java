@@ -1,5 +1,5 @@
 
-package com.example.AutoskolaDemoWithSecurity.models.transferModels;
+package com.example.AutoskolaDemoWithSecurity.models.databaseModels;
 
 import com.example.AutoskolaDemoWithSecurity.models.databaseModels.User;
 import java.io.Serializable;
@@ -87,5 +87,10 @@ public class VerificationToken implements Serializable {
         cal.add(12, expiryTimeInMinutes);
         return new Date(cal.getTime().getTime());
   }
+
+    @Override
+    public String toString() {
+        return "id: "+this.getId()+", expiration date: "+this.getExpiryDate();
+    }
     
 }

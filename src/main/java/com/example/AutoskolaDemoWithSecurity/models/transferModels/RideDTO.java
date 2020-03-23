@@ -2,6 +2,7 @@
 package com.example.AutoskolaDemoWithSecurity.models.transferModels;
 
 import com.example.AutoskolaDemoWithSecurity.models.databaseModels.CompletedRide;
+import com.example.AutoskolaDemoWithSecurity.models.databaseModels.Ride;
 import com.example.AutoskolaDemoWithSecurity.models.databaseModels.Vehicle;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -31,15 +32,37 @@ public class RideDTO implements Serializable {
     
     private Vehicle vehicle;
     
+    private String instructor;
+    private String student;
+    
     public RideDTO() {
         
     }
     
-    public RideDTO(CompletedRide ride) {
-        this.comment = ride.getComment();
+    public RideDTO(Ride ride) {
         this.date = ride.getDate();
         this.id = ride.getId();
         this.time = ride.getTime();
+        this.instructor = ride.getInstructor().getName();
+        this.status = ride.getStatus();
+        if(ride.getStudent().isPresent()) {
+            this.student = ride.getStudent().get().getFullName();
+        }
+        if(ride.getComment().isPresent()) {
+            this.comment = ride.getComment().get();
+        }
+    }
+    
+    public RideDTO(CompletedRide ride) {
+        this.comment = ride.getComment().orElse("");
+        this.date = ride.getDate();
+        this.id = ride.getId();
+        this.time = ride.getTime();
+        if(ride.getStudent().isPresent()) {
+            this.student = ride.getStudent().get().getName();
+        }
+        this.instructor = ride.getInstructor().getName();
+        this.status = ride.getStatus();
     }
 
     public RideDTO(String date, String time, String status, String comment, int vehicleID) {
@@ -106,6 +129,22 @@ public class RideDTO implements Serializable {
         return id;
     }
 
+    public void setInstructor(String instructor) {
+        this.instructor = instructor;
+    }
+
+    public void setStudent(String student) {
+        this.student = student;
+    }
+
+    public String getInstructor() {
+        return instructor;
+    }
+
+    public String getStudent() {
+        return student;
+    }
+    
     @Override
     public String toString() {
         return "Time: "+getTime()+", date: "+getDate()+", status: "+getStatus();
