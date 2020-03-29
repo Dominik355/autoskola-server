@@ -3,8 +3,8 @@ package com.example.AutoskolaDemoWithSecurity;
 
 import com.example.AutoskolaDemoWithSecurity.tests.QuestionRepository;
 import com.example.AutoskolaDemoWithSecurity.tests.TestRepository;
-import org.apache.catalina.Context;
-import org.apache.catalina.connector.Connector;
+import org.springframework.cloud.client.discovery.DiscoveryClient;//treba pouzit toto, nie tu druhu 
+import org.apache.commons.lang.builder.ToStringBuilder;
 import org.apache.tomcat.util.descriptor.web.SecurityCollection;
 import org.apache.tomcat.util.descriptor.web.SecurityConstraint;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,14 +13,19 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory;
 import org.springframework.boot.web.servlet.server.ServletWebServerFactory;
+import org.springframework.cloud.client.loadbalancer.LoadBalanced;
+import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.scheduling.annotation.EnableScheduling;
+import org.springframework.web.client.RestTemplate;
+import org.springframework.web.reactive.function.client.WebClient;
 import org.springframework.web.servlet.DispatcherServlet;
 
 
 @SpringBootApplication
 @EnableScheduling
+@EnableEurekaClient
 public class Application {
     
     @Autowired
@@ -31,6 +36,19 @@ public class Application {
     
     @Autowired
     QuestionRepository questionRepository;
+    
+    @Bean
+    @LoadBalanced // hovori, ze url ktoru mu ja davam neni URL jeho cielu, len nejaka adresa, kde najde tu , ktoru porebuje
+    public RestTemplate getRestTemplate() {
+        return new RestTemplate();
+    }
+    
+    @Bean
+    @LoadBalanced
+    public WebClient.Builder getWebClientBuilder() {
+        return WebClient.builder();
+    }
+
     
     public static void main(String[] args) {
         

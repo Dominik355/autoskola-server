@@ -18,6 +18,7 @@ import com.example.AutoskolaDemoWithSecurity.repositories.CompletedRideRepositor
 import com.example.AutoskolaDemoWithSecurity.repositories.RelationshipRepository;
 import com.example.AutoskolaDemoWithSecurity.repositories.UserRepository;
 import com.example.AutoskolaDemoWithSecurity.services.MyUserDetailsService;
+import com.example.AutoskolaDemoWithSecurity.services.NotificationMessageService;
 import com.example.AutoskolaDemoWithSecurity.services.VerificationTokenService;
 import com.example.AutoskolaDemoWithSecurity.utils.JwtUtil;
 import io.swagger.annotations.Api;
@@ -28,6 +29,7 @@ import javax.security.auth.login.LoginException;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -68,6 +70,12 @@ public class AuthenticateController {
     @Autowired
     private CompletedRideRepository crr;
     
+    @Autowired
+    private NotificationMessageService notificationService;
+    
+    @Autowired
+    private DiscoveryClient discoveryClient;
+   
     
     @RequestMapping(value = {"/registrationConfirm"}, method = {RequestMethod.GET})
     @ApiOperation(value = "${authenticateController.confirmRegistration.value}",
@@ -137,10 +145,12 @@ public class AuthenticateController {
             relationID = 0;
         }
         AuthenticationResponse res = new AuthenticationResponse(
-                    jwt, relationID,  new UserProfileInfo(user, ridesCompleted));
-        
+                    jwt, relationID,  new UserProfileInfo(user, ridesCompleted)
+                    , notificationService.getEmitterID(email)
+                    , notificationService.getPushServerURL()+"/notification/");
+                
         return new ResponseEntity(res, HttpStatus.OK);
-}
+    }
 
     
     @RequestMapping(value = {"/register"}, method = {RequestMethod.POST})

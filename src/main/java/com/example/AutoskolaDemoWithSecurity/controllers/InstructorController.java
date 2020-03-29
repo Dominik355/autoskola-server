@@ -4,6 +4,7 @@ package com.example.AutoskolaDemoWithSecurity.controllers;
 import com.example.AutoskolaDemoWithSecurity.models.databaseModels.User;
 import com.example.AutoskolaDemoWithSecurity.models.transferModels.RideDTO;
 import com.example.AutoskolaDemoWithSecurity.repositories.UserRepository;
+import com.example.AutoskolaDemoWithSecurity.services.CancelledRideService;
 import com.example.AutoskolaDemoWithSecurity.services.CompletedRideService;
 import com.example.AutoskolaDemoWithSecurity.services.RideService;
 import com.example.AutoskolaDemoWithSecurity.utils.RideUtil;
@@ -49,6 +50,9 @@ public class InstructorController {
     @Autowired
     private RideUtil rideUtil;
     
+    @Autowired
+    private CancelledRideService clrs;
+    
     
     @GetMapping(value = {"/"})
     public String helloInstructor() {
@@ -93,13 +97,13 @@ public class InstructorController {
     }
     
     
-    @DeleteMapping(value = "/removeRide/{rideID}")
-    @ApiOperation(value = "${instructorController.removeRide.value}",
-                notes = "${instructorController.removeRide.notes}",
+    @DeleteMapping(value = "/removeRides")
+    @ApiOperation(value = "${instructorController.removeRides.value}",
+                notes = "${instructorController.removeRides.notes}",
                 response = ResponseEntity.class)
-    public ResponseEntity removeRide(@ApiParam(value = "${instructorController.removeRide.paramValue}")
-                @PathVariable("rideID") int id, HttpServletRequest request) throws ParseException {
-        return ResponseEntity.ok(rideService.removeRide(id, request.getIntHeader("Relation")));
+    public ResponseEntity removeRides(@ApiParam(value = "${instructorController.removeRides.paramValue}")
+                 @RequestBody @Valid RideDTO[] rides, HttpServletRequest request) throws ParseException {
+        return ResponseEntity.ok(clrs.removeRides(rides, request.getIntHeader("Relation")));
     }
     
     
@@ -111,18 +115,14 @@ public class InstructorController {
     public ResponseEntity getCompletedRides (@ApiParam(value = "${instructorController.getCompletedRides.paramValue}")
                 @PathVariable("inputDate") String inputDate) {
         if(rideUtil.isDateValid(inputDate)){
-            System.out.println("1");
             String date;
             if(inputDate.contains("T")) {
-                System.out.println("2");
                 date = inputDate.substring(0, inputDate.indexOf("T"));
             } else {
                 date = inputDate;
             }
-            System.out.println("3");
             return ResponseEntity.ok(crs.getCompletedRides(date));
         }
-        System.out.println("4");
         return new ResponseEntity("Invalid date", HttpStatus.BAD_REQUEST);
     }
     

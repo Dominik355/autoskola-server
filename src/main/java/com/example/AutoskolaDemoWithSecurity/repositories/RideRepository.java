@@ -13,17 +13,23 @@ import org.springframework.stereotype.Repository;
 public interface RideRepository extends JpaRepository<Ride, Integer> {
     
     List<Ride> findAllByDrivingSchoolAndDateAndStatus(DrivingSchool drivingschool, String date, String status);
+            
+    boolean existsByTimeAndDateAndInstructorAndDrivingSchool(String time, String date, User user, DrivingSchool drivingSchool);
     
     boolean existsByTimeAndDateAndInstructor(String time, String date, User user);
-    
-    boolean existsByTimeAndDateAndInstructorAndDrivingSchool(String time, String date, User user, DrivingSchool drivingSchool);
  
     List<Ride> findAllByInstructorAndDrivingSchool(User instructor, DrivingSchool drivingSchool);
     
-    List<Ride> findAllByStudentAndDrivingSchool(User student, DrivingSchool drivingSchool);
+    List<Ride> findAllByInstructorAndDrivingSchoolAndDate(User instructor, DrivingSchool drivingSchool, String date);
     
+    List<Ride> findAllByStudentAndDrivingSchool(User student, DrivingSchool drivingSchool);
+        
     Ride findByIdAndInstructor(int id, User instructor);
     
     Ride findByIdAndInstructorAndDrivingSchool(int id, User instructor, DrivingSchool drivingSchool);
-
+    
+    Ride findByTimeAndDateAndInstructorAndDrivingSchool(String time, String date, User instructor, DrivingSchool drivingSchool);
+    
+    boolean existsByInstructorAndDrivingSchoolAndDate(User instructor, DrivingSchool drivingSchool, String date);
+    
 }

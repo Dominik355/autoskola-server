@@ -19,7 +19,7 @@ public class UserProfileInfo implements Serializable{
     private Timestamp startDate;
     
     private int ridesCompleted;
-
+    
     public UserProfileInfo() {
         
     }

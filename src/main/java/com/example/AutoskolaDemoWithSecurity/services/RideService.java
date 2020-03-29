@@ -56,7 +56,11 @@ public class RideService {
     @Autowired
     private CancelledRideRepository clrr;
     
+    @Autowired
+    private NotificationMessageService notificationService;
+    
     private String[] rideTimes = new String[]{"08:00","09:00","10:00","11:00","12:00","13:00","14:00","15:00","16:00"};
+    
     
     public ResponseEntity addRide(RideDTO rideDTO, int relationID, User instructor) {
             
@@ -67,7 +71,7 @@ public class RideService {
         ride.setInstructor(instructor);
         rideRepository.save(ride);
         return new ResponseEntity("Ride succesfully created", HttpStatus.OK);
-            
+        
     }
     
     // ak je  jazda zla, tak nevytvori ziadnu - jednoduchsie na odosielanie eroru,nez niekolko vytvorit a ostatne nie
@@ -90,42 +94,13 @@ public class RideService {
             }
         }
         Arrays.asList(rides).forEach(t -> addRide(t, relationID, instructor));
+        notificationService.addPushNotification(instructor, relationshipRepository.findById(relationID).get().getDrivingSchool(),
+                                                                    "Instruktor vytvoril jazdy na den: "+rides[0].getDate());
         return new ResponseEntity("Rides succesfully created", HttpStatus.OK);
         
     }
     
-    
-    public ResponseEntity removeRide(int rideID, int relationID) throws ParseException {
-        User student;
-        String status;
-        Ride ride;
-        User instructor = userRepository.findByEmail(
-                    SecurityContextHolder.getContext().getAuthentication().getName()).get();
-        
-        try {
-            ride = rideRepository.findByIdAndInstructorAndDrivingSchool(rideID, instructor
-                        , relationshipRepository.findById(relationID).get().getDrivingSchool());
-            student = ride.getStudent().get();
-            status = ride.getStatus();
-            rideRepository.delete(ride);
-        } catch (Exception e) {
-            throw new NoSuchElementException("This ride does not exists, or is not yours");
-        }
-        if(status.equals("PENDING") || !rideUtil.isItBeforeRide(ride, 0)) {
-            CompletedRide cRide = new CompletedRide(ride);
-            cRide.setStatus("NOTFINISHED");
-            crr.save(cRide);
-           //da sa taktiez ziakovi vediet, ale s inou informaciou
-       } else  {
-            CancelledRide cRide = new CancelledRide(ride);
-            clrr.save(cRide);
-        }
-        if(status.equals("RESERVED") ) {
-            //da sa vediet ziakovi ze sa zrusila
-        }
-        return new ResponseEntity("Ride succesfully removed", HttpStatus.OK);
-    }
-    
+
     /*
     *checks if date is valid
     *chesks if there are any rides in that date - if not, return empty list;
@@ -201,7 +176,7 @@ public class RideService {
                     return new ResponseEntity("This ride is not assigned to you", HttpStatus.BAD_REQUEST);
                 }
             } catch(NullPointerException e) {
-                throw new NullPointerException("This ride is not assigned to you");
+                return new ResponseEntity("This ride is not assigned to you", HttpStatus.BAD_REQUEST);
             }
             return new ResponseEntity("You succesfully signed off the ride", HttpStatus.OK);
         }
@@ -234,17 +209,23 @@ public class RideService {
     
     
     public ResponseEntity showTimes(String date, int relationID) {
-        
         User instructor = userRepository.findByEmail(
                 SecurityContextHolder.getContext().getAuthentication().getName()).get();
-        
         DrivingSchool school = relationshipRepository
                 .findById(relationID).get().getDrivingSchool();
-        
         List<RideReservation> rides = new ArrayList<>();
-        for(String time : rideTimes) {
-            if(!rideRepository.existsByTimeAndDateAndInstructorAndDrivingSchool(
-                                                time, date, instructor, school)) {
+        
+        if(rideRepository.existsByInstructorAndDrivingSchoolAndDate(instructor, school, date)) {
+            for(String time : rideTimes) {
+                if(rideRepository.existsByTimeAndDateAndInstructorAndDrivingSchool
+                                                (time, date, instructor, school)) {
+                    rides.add(new RideReservation(time, true));
+                } else {
+                    rides.add(new RideReservation(time, false));
+                }
+            }
+        } else {
+            for(String time : rideTimes) {
                 rides.add(new RideReservation(time, true));
             }
         }

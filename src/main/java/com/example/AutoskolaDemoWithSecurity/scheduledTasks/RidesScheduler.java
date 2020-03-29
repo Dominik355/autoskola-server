@@ -9,8 +9,9 @@ import java.util.concurrent.Executors;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.annotation.Scheduled;
-
+import org.springframework.stereotype.Component;
 
 public class RidesScheduler {
 
@@ -20,6 +21,7 @@ public class RidesScheduler {
     Logger log = LoggerFactory.getLogger(RidesScheduler.class);
     
     @Scheduled(fixedRate = 30000)
+    @Async
     private void checkRideStatus() {
         List<Ride> rides = rideRepository.findAll();
         ExecutorService executor = Executors.newCachedThreadPool();

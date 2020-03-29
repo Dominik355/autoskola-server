@@ -55,10 +55,10 @@ public class CancelledRide implements Serializable{
     
     public CancelledRide(Ride ride) {
         this.id = ride.getId();
-        this.student = ride.getStudent().get();
+        this.student = ride.getStudent().orElse(null);
         this.drivingSchool = ride.getDrivingSchool();
         this.instructor = ride.getInstructor();
-        this.vehicleID = ride.getVehicleID();
+        this.vehicleID = ride.getVehicleID().orElse(null);
         this.date = ride.getDate();
         this.time = ride.getTime();
         this.status = "CANCELLED";

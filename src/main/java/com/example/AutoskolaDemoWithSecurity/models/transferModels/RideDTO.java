@@ -7,6 +7,7 @@ import com.example.AutoskolaDemoWithSecurity.models.databaseModels.Vehicle;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.Serializable;
+import java.util.Optional;
 import javax.validation.constraints.Size;
 
 // pri ziakovi - poslat len meno instruktora
@@ -109,8 +110,8 @@ public class RideDTO implements Serializable {
         return vehicle;
     }
 
-    public int getVehicleID() {
-        return vehicleID;
+    public Optional<Integer> getVehicleID() {
+        return Optional.ofNullable(vehicleID);
     }
 
     public void setVehicleID(int vehicleID) {

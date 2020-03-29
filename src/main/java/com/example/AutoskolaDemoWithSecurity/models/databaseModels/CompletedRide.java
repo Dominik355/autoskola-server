@@ -58,7 +58,7 @@ public class CompletedRide implements Serializable{
         this.student = ride.getStudent().get();
         this.drivingSchool = ride.getDrivingSchool();
         this.instructor = ride.getInstructor();
-        this.vehicleID = ride.getVehicleID();
+        this.vehicleID = ride.getVehicleID().orElse(null);
         this.date = ride.getDate();
         this.time = ride.getTime();
     }

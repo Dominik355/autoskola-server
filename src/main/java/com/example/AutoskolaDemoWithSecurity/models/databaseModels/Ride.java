@@ -64,7 +64,7 @@ public class Ride implements Serializable{
         this.time = rideDTO.getTime();
         this.comment = rideDTO.getComment();
         this.status = rideDTO.getStatus();
-        this.vehicleID = rideDTO.getVehicleID();
+        this.vehicleID = rideDTO.getVehicleID().orElse(null);
     }
 
     public Ride(User student, User instructor, int vehicleID, String date, String time, String status, String comment) {
@@ -96,8 +96,8 @@ public class Ride implements Serializable{
         this.instructor = instructor;
     }
 
-    public int getVehicleID() {
-        return vehicleID;
+    public Optional<Integer> getVehicleID() {
+        return Optional.ofNullable(vehicleID);
     }
 
     public void setVehicleID(int vehicleID) {
