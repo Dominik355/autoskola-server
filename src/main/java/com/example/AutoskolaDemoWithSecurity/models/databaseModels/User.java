@@ -43,6 +43,7 @@ public class User implements Serializable {
     @Column(name = "phone_number")
     private String phoneNumber;
 
+    //ci je ucet aktivovany-bol potvrdeny emailom
     private boolean active;
 
     @NotEmpty

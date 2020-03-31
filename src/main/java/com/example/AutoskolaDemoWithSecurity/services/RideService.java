@@ -94,8 +94,8 @@ public class RideService {
             }
         }
         Arrays.asList(rides).forEach(t -> addRide(t, relationID, instructor));
-        notificationService.addPushNotification(instructor, relationshipRepository.findById(relationID).get().getDrivingSchool(),
-                                                                    "Instruktor vytvoril jazdy na den: "+rides[0].getDate());
+        //notificationService.addPushNotification(instructor, relationshipRepository.findById(relationID).get().getDrivingSchool(),
+        //                                                            "Instruktor vytvoril jazdy na den: "+rides[0].getDate());
         return new ResponseEntity("Rides succesfully created", HttpStatus.OK);
         
     }

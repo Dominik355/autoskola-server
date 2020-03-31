@@ -19,6 +19,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.http.ResponseEntity;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.reactive.function.client.WebClient;
@@ -46,7 +47,7 @@ public class NotificationMessageService {
 
     private final Logger log = LoggerFactory.getLogger(NotificationMessageService.class);
     
-    
+    @Async
     public void addPushNotification(User user, DrivingSchool drivingSchool,String message) {
         Relationship relation = relationshipRepository.findByUserAndDrivingSchool(user, drivingSchool);
         sendPushNotification(new PushNotification(
@@ -86,11 +87,12 @@ public class NotificationMessageService {
                 .collect(Collectors.toList())
         );
         messages.sort((o1, o2) -> {
-            return o1.getDate().compareTo(o2.getDate());
+            return o2.getDate().compareTo(o1.getDate());
         });
         return messages;
     }
     
+    @Async
     public void sendPushNotification(PushNotification notification){
         /*      POMOCOU REST TEMPLATE - NA SYNCHRONNE
         HttpEntity<NotificationObject> entity = new HttpEntity<NotificationObject>(notification);
@@ -110,11 +112,27 @@ public class NotificationMessageService {
         log.info("Response from notification service: "+response.getStatusCodeValue()+", "+response.getBody());
     }
 
+
     public String getEmitterID(String email) {
         ResponseEntity response = webClientBuilder
                 .build()
                 .get()
                 .uri(NOTIFICATION_URL+"/getEmitterID/"+email)
+                .retrieve()
+                .toEntity(String.class)
+                .block(Duration.ofSeconds(6));
+        // pridat if status == 200, poslat odpoved, inak nejaky error
+        if(!response.equals(null)&& response.getStatusCodeValue()==200) {
+            return response.getBody().toString();
+        }
+        return "";
+    }
+    
+    public String logOutEmitter(String email) {
+        ResponseEntity response = webClientBuilder
+                .build()
+                .get()
+                .uri(NOTIFICATION_URL+"/logOut/"+email)
                 .retrieve()
                 .toEntity(String.class)
                 .block(Duration.ofSeconds(6));

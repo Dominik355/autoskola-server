@@ -148,6 +148,7 @@ public class AuthenticateController {
                     jwt, relationID,  new UserProfileInfo(user, ridesCompleted)
                     , notificationService.getEmitterID(email)
                     , notificationService.getPushServerURL()+"/notification/");
+
                 
         return new ResponseEntity(res, HttpStatus.OK);
     }

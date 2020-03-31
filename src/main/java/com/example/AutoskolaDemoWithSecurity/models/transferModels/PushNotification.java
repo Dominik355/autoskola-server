@@ -3,6 +3,7 @@ package com.example.AutoskolaDemoWithSecurity.models.transferModels;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
+import java.util.Date;
 
 
 public class PushNotification implements Serializable {
@@ -20,7 +21,7 @@ public class PushNotification implements Serializable {
     }
 
     public PushNotification(Timestamp date, String email, String message, String schoolName) {
-        this.date = date;
+        this.date = new Timestamp(System.currentTimeMillis());
         this.email = email;
         this.message = message;
         this.schoolName = schoolName;

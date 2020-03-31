@@ -53,6 +53,9 @@ public class MyUserDetailsService implements UserDetailsService {
     @Autowired
     private TemporaryPasswordService temporaryPasswordService;
     
+    @Autowired
+    private NotificationMessageService notificationService;
+    
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
@@ -145,4 +148,10 @@ public class MyUserDetailsService implements UserDetailsService {
       return ResponseEntity.ok("Your new password has been sent to: " + email);
     }
       
+    
+    public String logOut() {
+       return "Logout succesfull, "+notificationService.logOutEmitter( SecurityContextHolder
+                    .getContext().getAuthentication().getName());
+    }
+    
 }

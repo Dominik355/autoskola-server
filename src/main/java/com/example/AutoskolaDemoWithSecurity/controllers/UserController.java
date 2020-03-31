@@ -9,6 +9,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -24,9 +25,6 @@ public class UserController
     
     @Autowired
     private MyUserDetailsService myUserDetailsService;
-
-    @Autowired
-    private RideService rideService;
     
     
     @PostMapping({"/update/password"})
@@ -44,4 +42,9 @@ public class UserController
         return ResponseEntity.ok(this.myUserDetailsService.updateEmail(updateEmailRequest)); 
     }
 
+    @PostMapping("/logOut")
+    public ResponseEntity logOut() {
+        return new ResponseEntity(myUserDetailsService.logOut(), HttpStatus.OK);
+    }
+    
 }

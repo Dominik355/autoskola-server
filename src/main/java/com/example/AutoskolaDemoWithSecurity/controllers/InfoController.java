@@ -9,6 +9,8 @@ import com.example.AutoskolaDemoWithSecurity.repositories.UserRepository;
 import com.example.AutoskolaDemoWithSecurity.repositories.VehicleRepository;
 import com.example.AutoskolaDemoWithSecurity.services.DrivingSchoolService;
 import io.swagger.annotations.ApiOperation;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -87,6 +89,11 @@ public class InfoController {
     @GetMapping(value = {"/allCompletedRides"})
     public ResponseEntity getAllCompletedRides() {
         return ResponseEntity.ok(crr.findAll());
+    }
+    
+    @GetMapping(value = {"/getIpAddress"})
+    public ResponseEntity getIpAddress() throws UnknownHostException {
+        return ResponseEntity.ok(InetAddress.getLocalHost());
     }
     
 }
