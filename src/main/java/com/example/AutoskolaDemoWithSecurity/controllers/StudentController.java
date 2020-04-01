@@ -3,6 +3,7 @@ package com.example.AutoskolaDemoWithSecurity.controllers;
 
 
 import com.example.AutoskolaDemoWithSecurity.models.otherModels.MyUserDetails;
+import com.example.AutoskolaDemoWithSecurity.services.CompletedRideService;
 import com.example.AutoskolaDemoWithSecurity.services.RideService;
 import com.example.AutoskolaDemoWithSecurity.utils.RideUtil;
 import io.swagger.annotations.ApiOperation;
@@ -36,6 +37,9 @@ public class StudentController {
     @Autowired
     private RideUtil rideUtil;
     
+    @Autowired
+    private CompletedRideService crs;
+    
     
     @GetMapping(value = {"/hello"})
     public String helloStudent() {
@@ -61,10 +65,19 @@ public class StudentController {
         return ResponseEntity.ok(rideService.cancelRide(request.getIntHeader("Relation"), rideID));
     }
     
-    @GetMapping(value = {"/myRides"})
-    public ResponseEntity getMyRides(@RequestParam(defaultValue = "") String date, HttpServletRequest request) {
+    @GetMapping(value = {"/getReservedRides"})
+    public ResponseEntity getReservedRides(@RequestParam(defaultValue = "") String date, HttpServletRequest request) {
         if(date.equals("") || rideUtil.isDateValid(date)) {
             return rideService.getMyRides(request.getIntHeader("Relation"), date);
+        }
+        return new ResponseEntity("Wrong date", HttpStatus.BAD_REQUEST);
+    }
+    
+    @GetMapping(value = {"/getCompletedRides"})
+    public ResponseEntity getCompletedRides(@RequestParam(defaultValue = "") String date, HttpServletRequest request) {
+        if(date.equals("") || rideUtil.isDateValid(date)) {
+            return new ResponseEntity(
+                    crs.getCompletedRides(request.getIntHeader("Relation"), date), HttpStatus.OK);
         }
         return new ResponseEntity("Wrong date", HttpStatus.BAD_REQUEST);
     }

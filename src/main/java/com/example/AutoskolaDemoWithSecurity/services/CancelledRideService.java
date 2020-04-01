@@ -46,7 +46,7 @@ public class CancelledRideService {
     
     @Autowired
     private RelationshipRepository relationRepository;
-    
+
     @Autowired
     private NotificationMessageService notificationService;
     
@@ -98,6 +98,8 @@ public class CancelledRideService {
                 notificationService.addPushNotification(ride.getStudent().get(), drivingSchool
                                     , "Ride has not been finished: "+ride.getDate()+" "+ride.getTime());
                 //da sa taktiez ziakovi vediet, ale s inou informaciou
+                notificationService.addPushNotification(ride.getStudent().get(), drivingSchool
+                                    , "Ride has been cancelled after it started "+ride.getDate()+" "+ride.getTime());
              }
          } else  {
              //jazda este nezacala 

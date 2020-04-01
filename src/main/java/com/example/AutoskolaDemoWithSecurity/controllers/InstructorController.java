@@ -113,7 +113,7 @@ public class InstructorController {
                 response = ResponseEntity.class,
                 responseContainer = "List")
     public ResponseEntity getCompletedRides (@ApiParam(value = "${instructorController.getCompletedRides.paramValue}")
-                @PathVariable("inputDate") String inputDate) {
+                @PathVariable("inputDate") String inputDate, HttpServletRequest request) {
         if(rideUtil.isDateValid(inputDate)){
             String date;
             if(inputDate.contains("T")) {
@@ -121,7 +121,7 @@ public class InstructorController {
             } else {
                 date = inputDate;
             }
-            return ResponseEntity.ok(crs.getCompletedRides(date));
+            return ResponseEntity.ok(crs.getCompletedRides(request.getIntHeader("Relation"), date));
         }
         return new ResponseEntity("Invalid date", HttpStatus.BAD_REQUEST);
     }

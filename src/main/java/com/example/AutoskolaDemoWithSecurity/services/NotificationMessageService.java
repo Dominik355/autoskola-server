@@ -49,14 +49,14 @@ public class NotificationMessageService {
     
     @Async
     public void addPushNotification(User user, DrivingSchool drivingSchool,String message) {
-        Relationship relation = relationshipRepository.findByUserAndDrivingSchool(user, drivingSchool);
         sendPushNotification(new PushNotification(
                 new Timestamp(System.currentTimeMillis()),
-                relation.getUser().getEmail(),
+                user.getEmail(),
                 message,
-                relation.getDrivingSchool().getName()));
+                drivingSchool.getName()
+        ));
         
-        addNotification(relation, message);
+        addNotification(user, drivingSchool, message);
     }
     
     public void addNotification(User user, DrivingSchool drivingSchool,String message) {
@@ -64,18 +64,10 @@ public class NotificationMessageService {
                 relationshipRepository.findByUserAndDrivingSchool(user, drivingSchool), message);
     }
     
-    public void addNotification(int relationID, String message) {
-        notificationRepository.save(new NotificationMessage(
-                relationshipRepository.findById(relationID).get(), message));      
-    }
-    
     public void addNotification(Relationship relation, String message) {
         notificationRepository.save(new NotificationMessage(relation, message));      
     }
     
-    public void addNotification(Relationship relation, int hoursToDelete, String message) {
-        notificationRepository.save(new NotificationMessage(relation, hoursToDelete, message));
-    }
     
     public List<NotificationMessageDTO> getNotifications(int relationID) {
         //vrati vsetky notifikacie zoradene podla datumu od najnovsej - pre day relatonship
@@ -92,7 +84,7 @@ public class NotificationMessageService {
         return messages;
     }
     
-    @Async
+    
     public void sendPushNotification(PushNotification notification){
         /*      POMOCOU REST TEMPLATE - NA SYNCHRONNE
         HttpEntity<NotificationObject> entity = new HttpEntity<NotificationObject>(notification);
@@ -101,7 +93,8 @@ public class NotificationMessageService {
   
         log.info("Response from notification service: "+response.getStatusCodeValue()+", "+response.getBody());
         */
-        ResponseEntity response = webClientBuilder
+        try{
+            ResponseEntity response = webClientBuilder
                 .build()
                 .post()
                 .uri(NOTIFICATION_URL+"/postMessage")
@@ -110,41 +103,58 @@ public class NotificationMessageService {
                 .toEntity(String.class)
                 .block();
         log.info("Response from notification service: "+response.getStatusCodeValue()+", "+response.getBody());
+        } catch(Exception e) {
+            log.info("Notifikačná služba nie je dostupná");
+        }
+        
     }
 
 
     public String getEmitterID(String email) {
-        ResponseEntity response = webClientBuilder
-                .build()
-                .get()
-                .uri(NOTIFICATION_URL+"/getEmitterID/"+email)
-                .retrieve()
-                .toEntity(String.class)
-                .block(Duration.ofSeconds(6));
-        // pridat if status == 200, poslat odpoved, inak nejaky error
-        if(!response.equals(null)&& response.getStatusCodeValue()==200) {
-            return response.getBody().toString();
+        try{
+            ResponseEntity response = webClientBuilder
+                    .build()
+                    .get()
+                    .uri(NOTIFICATION_URL+"/getEmitterID/"+email)
+                    .retrieve()
+                    .toEntity(String.class)
+                    .block(Duration.ofSeconds(4));
+            if(!response.equals(null)&& response.getStatusCodeValue()==200) {
+                return response.getBody().toString();
+            }
+        } catch(Exception e) {
+            log.info("Notifikačná služba nie je dostupná");
         }
         return "";
     }
+    
     
     public String logOutEmitter(String email) {
-        ResponseEntity response = webClientBuilder
-                .build()
-                .get()
-                .uri(NOTIFICATION_URL+"/logOut/"+email)
-                .retrieve()
-                .toEntity(String.class)
-                .block(Duration.ofSeconds(6));
-        // pridat if status == 200, poslat odpoved, inak nejaky error
-        if(!response.equals(null)&& response.getStatusCodeValue()==200) {
-            return response.getBody().toString();
+        try{
+            ResponseEntity response = webClientBuilder
+                    .build()
+                    .get()
+                    .uri(NOTIFICATION_URL+"/logOut/"+email)
+                    .retrieve()
+                    .toEntity(String.class)
+                    .block(Duration.ofSeconds(5));
+            if(!response.equals(null)&& response.getStatusCodeValue()==200) {
+                return response.getBody().toString();
+            }
+        }catch(Exception e) {
+            log.info("Notifikačná služba nie je dostupná");
         }
         return "";
     }
     
+    
     public String getPushServerURL() {
-        return discoveryClient.getInstances("notification-service").get(0).getUri().toString();
+        try{
+            return discoveryClient.getInstances("notification-service").get(0).getUri().toString();
+        } catch(Exception e) {
+            log.info("Notifikačná služba nie je dostupná");
+            return "";
+        }
     }
     
 }

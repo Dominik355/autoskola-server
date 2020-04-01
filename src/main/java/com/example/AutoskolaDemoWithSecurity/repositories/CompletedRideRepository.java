@@ -20,4 +20,6 @@ public interface CompletedRideRepository extends JpaRepository<CompletedRide, In
     
     List<CompletedRide> findAllByDrivingSchoolAndStudent(DrivingSchool drivingSchool, User student);
 
+    List<CompletedRide> findAllByDrivingSchoolAndInstructor(DrivingSchool drivingSchool, User instructor);
+    
 }

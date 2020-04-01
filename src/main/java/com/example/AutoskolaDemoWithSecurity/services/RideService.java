@@ -167,17 +167,19 @@ public class RideService {
                 SecurityContextHolder.getContext().getAuthentication().getName()).get();
             //musi to byt v try-cathc, lebo ak ta jazda nema prideleneho ziadneho studenta, hodi nullpointer
             try{
-                if(ride.getStudent().equals(student)) {
+                if(ride.getStudent().get().equals(student)) {
                 ride.setStudent(null);
                 ride.setStatus("FREE");
                 rideRepository.save(ride);
-                //da sa instruktorovi vediet ze sa odhlasil ziak z jazdy    
                 } else {
-                    return new ResponseEntity("This ride is not assigned to you", HttpStatus.BAD_REQUEST);
+                    return new ResponseEntity("this ride is not assigned to you", HttpStatus.BAD_REQUEST);
                 }
             } catch(NullPointerException e) {
                 return new ResponseEntity("This ride is not assigned to you", HttpStatus.BAD_REQUEST);
             }
+            notificationService.addPushNotification(ride.getInstructor() //da sa instruktorovi vediet ze sa odhlasil ziak z jazdy    
+                                        , ride.getDrivingSchool()
+                                        , "Student "+student.getFullName()+" cancelled ride"+ride.getDate()+" "+ride.getTime());
             return new ResponseEntity("You succesfully signed off the ride", HttpStatus.OK);
         }
         return new ResponseEntity("You can not sign off ride, 1 hour limit is over", HttpStatus.BAD_REQUEST);
@@ -185,10 +187,9 @@ public class RideService {
     
     
     public ResponseEntity getMyRides(int relationID, String date) {
-        
         User user = userRepository.findByEmail(
                 SecurityContextHolder.getContext().getAuthentication().getName()).get();
-        DrivingSchool school = relationshipRepository.getOne(relationID).getDrivingSchool();
+        DrivingSchool school = relationshipRepository.findById(relationID).get().getDrivingSchool();
         List<Ride> rides = new ArrayList<>();
         
         if(user.getRoles().contains("STUDENT")) {

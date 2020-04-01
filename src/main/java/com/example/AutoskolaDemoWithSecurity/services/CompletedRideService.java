@@ -3,6 +3,7 @@ package com.example.AutoskolaDemoWithSecurity.services;
 
 import com.example.AutoskolaDemoWithSecurity.errorApi.customExceptions.WrongDateException;
 import com.example.AutoskolaDemoWithSecurity.models.databaseModels.CompletedRide;
+import com.example.AutoskolaDemoWithSecurity.models.databaseModels.DrivingSchool;
 import com.example.AutoskolaDemoWithSecurity.models.databaseModels.Ride;
 import com.example.AutoskolaDemoWithSecurity.models.databaseModels.User;
 import com.example.AutoskolaDemoWithSecurity.models.transferModels.RideDTO;
@@ -45,16 +46,29 @@ public class CompletedRideService {
     @Autowired
     private RelationshipRepository relationRepository;
     
+    @Autowired
+    private NotificationMessageService notificationService;
     
-    public List<RideDTO> getCompletedRides(String date) {
+    
+    public List<RideDTO> getCompletedRides(int relationID, String date) {
         
-        User instructor = userRepository.findByEmail(
+        User user = userRepository.findByEmail(
                     SecurityContextHolder.getContext().getAuthentication().getName()).get();
-        System.out.println("5");
-        List<CompletedRide> rides = crr.findAllByInstructorAndDateAndStatus(instructor, date, "FINISHED");
-        System.out.println("6");
-        return rides.stream().map(RideDTO::new).collect(Collectors.toList());
+        DrivingSchool school = relationRepository.findById(relationID).get().getDrivingSchool();
+        List<CompletedRide> rides = new ArrayList<>();
         
+        if(user.getRoles().contains("STUDENT")) {
+            rides = crr.findAllByDrivingSchoolAndStudent(school, user);
+        } else if(user.getRoles().contains("INSTRUCTOR")
+                || user.getRoles().contains("OWNER")) {
+            rides = crr.findAllByDrivingSchoolAndInstructor(school, user);
+        }
+        if(!date.equals("")) {
+            return rides.stream().filter(ride -> date.equals(ride.getDate()))
+                    .map(RideDTO::new).collect(Collectors.toList());
+        }
+        return rides.stream().map(RideDTO::new)
+                .collect(Collectors.toList());        
     }
         
     //jazda musi mat oznacenie PENDING a oznaci sa  ako FINISHED, ulozi sa ked tak novy komentar k nej
@@ -80,6 +94,9 @@ public class CompletedRideService {
                     cRide.setStatus("FINISHED");
                     CompletedRide compR = crr.save(cRide);
                     if(compR != null) {
+                        notificationService.addPushNotification(ride.getStudent().get()
+                                        , relationRepository.findById(relationID).get().getDrivingSchool()
+                                        , "Instructor completed your ride "+ride.getDate()+" "+ride.getTime());
                         return new ResponseEntity("Ride set as completed", HttpStatus.OK);
                     }
                 
