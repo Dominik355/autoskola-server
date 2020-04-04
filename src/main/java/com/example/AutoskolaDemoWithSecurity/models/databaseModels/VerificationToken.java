@@ -6,6 +6,7 @@ import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.Calendar;
 import java.util.Date;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -27,6 +28,7 @@ public class VerificationToken implements Serializable {
   
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
+  @Column(updatable = false, nullable = false, insertable = false, unique = true)
   private Long id;
   
   @NotEmpty

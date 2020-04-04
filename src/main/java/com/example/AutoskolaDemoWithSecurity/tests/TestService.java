@@ -1,10 +1,6 @@
 
 package com.example.AutoskolaDemoWithSecurity.tests;
 
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -13,7 +9,6 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.multipart.MultipartFile;
 
 
 @Service
@@ -56,13 +51,5 @@ public class TestService {
         return tests;
         
     }
-    
-    public String saveImage(MultipartFile imageFile) throws IOException {
-        String folder = "photos/";
-        byte[] bytes = imageFile.getBytes();
-        Path path = Paths.get(folder + imageFile.getOriginalFilename());
-        Files.write(path, bytes);
-        return "Image succesfully saved";
-    }
-    
+     
 }

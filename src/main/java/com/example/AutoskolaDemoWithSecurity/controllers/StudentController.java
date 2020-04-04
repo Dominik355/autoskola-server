@@ -7,7 +7,9 @@ import com.example.AutoskolaDemoWithSecurity.services.CompletedRideService;
 import com.example.AutoskolaDemoWithSecurity.services.RideService;
 import com.example.AutoskolaDemoWithSecurity.utils.RideUtil;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import java.text.ParseException;
+import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -56,16 +58,25 @@ public class StudentController {
     }
     
     @PostMapping("/reserveRide/{rideID}")
+    @ApiOperation(value = "${studentController.reserveRide.value}",
+            notes = "${studentController.reserveRide.notes}",
+            response = ResponseEntity.class)
     public ResponseEntity reserveRide(@PathVariable("rideID") int rideID, HttpServletRequest request) {
         return ResponseEntity.ok(rideService.reserveRide(request.getIntHeader("Relation"), rideID));
     }
     
     @PostMapping("/cancelRide/{rideID}")
+    @ApiOperation(value = "${studentController.cancelRide.value}",
+            notes = "${studentController.cancelRide.notes}",
+            response = ResponseEntity.class)
     public ResponseEntity cancelRide(@PathVariable("rideID") int rideID, HttpServletRequest request) throws ParseException {
         return ResponseEntity.ok(rideService.cancelRide(request.getIntHeader("Relation"), rideID));
     }
     
     @GetMapping(value = {"/getReservedRides"})
+    @ApiOperation(value = "${studentController.getReservedRides.value}",
+            notes = "${studentController.getReservedRides.notes}",
+            response = List.class)
     public ResponseEntity getReservedRides(@RequestParam(defaultValue = "") String date, HttpServletRequest request) {
         if(date.equals("") || rideUtil.isDateValid(date)) {
             return rideService.getMyRides(request.getIntHeader("Relation"), date);
@@ -74,7 +85,11 @@ public class StudentController {
     }
     
     @GetMapping(value = {"/getCompletedRides"})
-    public ResponseEntity getCompletedRides(@RequestParam(defaultValue = "") String date, HttpServletRequest request) {
+    @ApiOperation(value = "${studentController.getCompletedRides.value}",
+            notes = "${studentController.getCompletedRides.notes}",
+            response = List.class)
+    public ResponseEntity getCompletedRides(@ApiParam(value = "${studentController.getCompletedRides.paramValue}")
+            @RequestParam(name = "date", defaultValue = "") String date, HttpServletRequest request) {
         if(date.equals("") || rideUtil.isDateValid(date)) {
             return new ResponseEntity(
                     crs.getCompletedRides(request.getIntHeader("Relation"), date), HttpStatus.OK);

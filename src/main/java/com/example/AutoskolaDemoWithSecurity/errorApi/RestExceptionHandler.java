@@ -9,6 +9,7 @@ import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.MalformedJwtException;
 import io.jsonwebtoken.SignatureException;
 import io.jsonwebtoken.UnsupportedJwtException;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.AccessDeniedException;
 import java.text.ParseException;
@@ -99,6 +100,11 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
             
     @ExceptionHandler({ AccessDeniedException.class })
     public ResponseEntity<Object> handleAccessDeniedException(AccessDeniedException ex) {
+        return buildResponseEntity(new ApiError(HttpStatus.UNAUTHORIZED, ex.getMessage()));
+    }
+    
+    @ExceptionHandler({ FileNotFoundException.class })
+    public ResponseEntity<Object> handleFileNotFoundException(FileNotFoundException ex) {
         return buildResponseEntity(new ApiError(HttpStatus.UNAUTHORIZED, ex.getMessage()));
     }
     

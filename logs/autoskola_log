@@ -1,724 +1,323 @@
-2020-04-01 17:35:09,529 INFO org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker [main] Bean 'org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration' of type [org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2020-04-01 17:35:11,259 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
-2020-04-01 17:35:16,236 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2020-04-01 17:35:17,045 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 778ms. Found 13 JPA repository interfaces.
-2020-04-01 17:35:18,320 INFO org.springframework.cloud.context.scope.GenericScope [main] BeanFactory id=d22e730e-f3b5-3cd3-8619-381be231f7f5
-2020-04-01 17:35:19,380 INFO org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker [main] Bean 'org.springframework.security.config.annotation.configuration.ObjectPostProcessorConfiguration' of type [org.springframework.security.config.annotation.configuration.ObjectPostProcessorConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2020-04-01 17:35:19,399 INFO org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker [main] Bean 'objectPostProcessor' of type [org.springframework.security.config.annotation.configuration.AutowireBeanFactoryObjectPostProcessor] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2020-04-01 17:35:19,420 INFO org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker [main] Bean 'org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler@6cc48a17' of type [org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2020-04-01 17:35:19,444 INFO org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker [main] Bean 'org.springframework.security.config.annotation.method.configuration.GlobalMethodSecurityConfiguration' of type [org.springframework.security.config.annotation.method.configuration.GlobalMethodSecurityConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2020-04-01 17:35:19,484 INFO org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker [main] Bean 'org.springframework.security.config.annotation.method.configuration.Jsr250MetadataSourceConfiguration' of type [org.springframework.security.config.annotation.method.configuration.Jsr250MetadataSourceConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2020-04-01 17:35:19,484 INFO org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker [main] Bean 'jsr250MethodSecurityMetadataSource' of type [org.springframework.security.access.annotation.Jsr250MethodSecurityMetadataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2020-04-01 17:35:19,491 INFO org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker [main] Bean 'methodSecurityMetadataSource' of type [org.springframework.security.access.method.DelegatingMethodSecurityMetadataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2020-04-01 17:35:19,733 INFO org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker [main] Bean 'org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration' of type [org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2020-04-01 17:35:19,744 INFO org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker [main] Bean 'org.springframework.cloud.client.loadbalancer.reactive.LoadBalancerBeanPostProcessorAutoConfiguration' of type [org.springframework.cloud.client.loadbalancer.reactive.LoadBalancerBeanPostProcessorAutoConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2020-04-01 17:35:19,910 INFO org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker [main] Bean 'org.springframework.cloud.client.loadbalancer.reactive.LoadBalancerBeanPostProcessorAutoConfiguration$ReactiveLoadBalancerConfig' of type [org.springframework.cloud.client.loadbalancer.reactive.LoadBalancerBeanPostProcessorAutoConfiguration$ReactiveLoadBalancerConfig] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2020-04-01 17:35:19,927 INFO org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker [main] Bean 'deferringLoadBalancerExchangeFilterFunction' of type [org.springframework.cloud.client.loadbalancer.reactive.DeferringLoadBalancerExchangeFilterFunction] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2020-04-01 17:35:22,420 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port(s): 8080 (http)
-2020-04-01 17:35:22,464 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8080"]
-2020-04-01 17:35:22,464 INFO org.apache.juli.logging.DirectJDKLog [main] Starting service [Tomcat]
-2020-04-01 17:35:22,469 INFO org.apache.juli.logging.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/9.0.31]
-2020-04-01 17:35:24,290 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
-2020-04-01 17:35:24,298 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 13009 ms
-2020-04-01 17:35:26,669 INFO org.hibernate.jpa.internal.util.LogHelper [main] HHH000204: Processing PersistenceUnitInfo [name: default]
-2020-04-01 17:35:27,089 INFO org.hibernate.Version [main] HHH000412: Hibernate ORM core version 5.4.12.Final
-2020-04-01 17:35:27,779 INFO org.hibernate.annotations.common.reflection.java.JavaReflectionManager [main] HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
-2020-04-01 17:35:28,274 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Starting...
-2020-04-01 17:35:29,715 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Start completed.
-2020-04-01 17:35:29,786 INFO org.hibernate.dialect.Dialect [main] HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
-2020-04-01 17:35:38,794 INFO org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator [main] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2020-04-01 17:35:38,811 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
-2020-04-01 17:35:40,765 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2020-04-01 17:35:43,744 INFO org.springframework.cloud.commons.util.InetUtils [main] Cannot determine local hostname
-2020-04-01 17:35:45,024 DEBUG org.springframework.web.filter.GenericFilterBean [main] Filter 'logFilter' configured for use
-2020-04-01 17:35:45,030 DEBUG org.springframework.web.filter.GenericFilterBean [main] Filter 'filterExceptionHandler' configured for use
-2020-04-01 17:35:45,030 DEBUG org.springframework.web.filter.GenericFilterBean [main] Filter 'jwtRequestFilter' configured for use
-2020-04-01 17:35:48,731 INFO org.springframework.security.web.DefaultSecurityFilterChain [main] Creating filter chain: Ant [pattern='/v2/api-docs'], []
-2020-04-01 17:35:48,733 INFO org.springframework.security.web.DefaultSecurityFilterChain [main] Creating filter chain: Ant [pattern='/configuration/ui'], []
-2020-04-01 17:35:48,733 INFO org.springframework.security.web.DefaultSecurityFilterChain [main] Creating filter chain: Ant [pattern='/swagger-resources/**'], []
-2020-04-01 17:35:48,733 INFO org.springframework.security.web.DefaultSecurityFilterChain [main] Creating filter chain: Ant [pattern='/configuration/**'], []
-2020-04-01 17:35:48,733 INFO org.springframework.security.web.DefaultSecurityFilterChain [main] Creating filter chain: Ant [pattern='/swagger-ui.html'], []
-2020-04-01 17:35:48,735 INFO org.springframework.security.web.DefaultSecurityFilterChain [main] Creating filter chain: Ant [pattern='/webjars/**'], []
-2020-04-01 17:35:48,815 INFO org.springframework.security.web.DefaultSecurityFilterChain [main] Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@50c462b8, org.springframework.security.web.context.SecurityContextPersistenceFilter@33671907, org.springframework.security.web.header.HeaderWriterFilter@547aa7f4, com.example.AutoskolaDemoWithSecurity.filters.FilterExceptionHandler@45e11627, org.springframework.security.web.authentication.logout.LogoutFilter@7b9b244e, com.example.AutoskolaDemoWithSecurity.filters.JwtRequestFilter@7ab8c972, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@67d6bb59, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@136480b, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@77d03738, org.springframework.security.web.session.SessionManagementFilter@7e38d2a2, org.springframework.security.web.access.ExceptionTranslationFilter@753248f8, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@258ff54a]
-2020-04-01 17:35:48,944 INFO springfox.documentation.spring.web.PropertySourcedRequestMappingHandlerMapping [main] Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
-2020-04-01 17:35:49,325 WARN com.netflix.config.sources.URLConfigurationSource [main] No URLs will be polled as dynamic configuration sources.
-2020-04-01 17:35:49,330 INFO com.netflix.config.sources.URLConfigurationSource [main] To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
-2020-04-01 17:35:49,349 WARN com.netflix.config.sources.URLConfigurationSource [main] No URLs will be polled as dynamic configuration sources.
-2020-04-01 17:35:49,349 INFO com.netflix.config.sources.URLConfigurationSource [main] To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
-2020-04-01 17:35:50,135 INFO org.springframework.scheduling.concurrent.ExecutorConfigurationSupport [main] Initializing ExecutorService 'applicationTaskExecutor'
-2020-04-01 17:35:51,405 INFO org.springframework.scheduling.concurrent.ExecutorConfigurationSupport [main] Initializing ExecutorService 'taskScheduler'
-2020-04-01 17:35:54,115 INFO org.springframework.cloud.commons.util.InetUtils [main] Cannot determine local hostname
-2020-04-01 17:35:55,816 INFO org.springframework.cloud.commons.util.InetUtils [main] Cannot determine local hostname
-2020-04-01 17:35:57,329 INFO org.springframework.cloud.commons.util.InetUtils [main] Cannot determine local hostname
-2020-04-01 17:35:58,900 INFO org.springframework.cloud.commons.util.InetUtils [main] Cannot determine local hostname
-2020-04-01 17:35:58,939 WARN org.springframework.cloud.loadbalancer.config.BlockingLoadBalancerClientAutoConfiguration$BlockingLoadBalancerClientRibbonWarnLogger [main] You already have RibbonLoadBalancerClient on your classpath. It will be used by default. As Spring Cloud Ribbon is in maintenance mode. We recommend switching to BlockingLoadBalancerClient instead. In order to use it, set the value of `spring.cloud.loadbalancer.ribbon.enabled` to `false` or remove spring-cloud-starter-netflix-ribbon from your project.
-2020-04-01 17:35:58,959 WARN org.springframework.cloud.client.loadbalancer.reactive.ReactorLoadBalancerClientAutoConfiguration$ReactorLoadBalancerClientRibbonWarnLogger [main] You have RibbonLoadBalancerClient on your classpath. LoadBalancerExchangeFilterFunction that uses it under the hood will be used by default. Spring Cloud Ribbon is now in maintenance mode, so we suggest switching to ReactorLoadBalancerExchangeFilterFunction instead. In order to use it, set the value of `spring.cloud.loadbalancer.ribbon.enabled` to `false` or remove spring-cloud-starter-netflix-ribbon from your project.
-2020-04-01 17:35:59,055 WARN org.springframework.cloud.loadbalancer.config.LoadBalancerCacheAutoConfiguration$LoadBalancerCaffeineWarnLogger [main] Spring Cloud LoadBalancer is currently working with default default cache. You can switch to using Caffeine cache, by adding it to the classpath.
-2020-04-01 17:35:59,165 INFO org.springframework.cloud.netflix.eureka.InstanceInfoFactory [main] Setting initial instance status as: STARTING
-2020-04-01 17:35:59,454 INFO com.netflix.discovery.DiscoveryClient [main] Initializing Eureka in region us-east-1
-2020-04-01 17:36:00,035 INFO com.netflix.discovery.provider.DiscoveryJerseyProvider [main] Using JSON encoding codec LegacyJacksonJson
-2020-04-01 17:36:00,035 INFO com.netflix.discovery.provider.DiscoveryJerseyProvider [main] Using JSON decoding codec LegacyJacksonJson
-2020-04-01 17:36:00,609 INFO com.netflix.discovery.provider.DiscoveryJerseyProvider [main] Using XML encoding codec XStreamXml
-2020-04-01 17:36:00,614 INFO com.netflix.discovery.provider.DiscoveryJerseyProvider [main] Using XML decoding codec XStreamXml
-2020-04-01 17:36:01,561 INFO com.netflix.discovery.shared.resolver.aws.ConfigClusterResolver [main] Resolving eureka endpoints via configuration
-2020-04-01 17:36:02,264 INFO com.netflix.discovery.DiscoveryClient [main] Disable delta property : false
-2020-04-01 17:36:02,264 INFO com.netflix.discovery.DiscoveryClient [main] Single vip registry refresh property : null
-2020-04-01 17:36:02,269 INFO com.netflix.discovery.DiscoveryClient [main] Force full registry fetch : false
-2020-04-01 17:36:02,269 INFO com.netflix.discovery.DiscoveryClient [main] Application is null : false
-2020-04-01 17:36:02,269 INFO com.netflix.discovery.DiscoveryClient [main] Registered Applications size is zero : true
-2020-04-01 17:36:02,269 INFO com.netflix.discovery.DiscoveryClient [main] Application version is -1: true
-2020-04-01 17:36:02,272 INFO com.netflix.discovery.DiscoveryClient [main] Getting all instance registry info from the eureka server
-2020-04-01 17:36:02,809 INFO com.netflix.discovery.DiscoveryClient [main] The response status is 200
-2020-04-01 17:36:02,809 INFO com.netflix.discovery.DiscoveryClient [main] Starting heartbeat executor: renew interval is: 30
-2020-04-01 17:36:02,825 INFO com.netflix.discovery.InstanceInfoReplicator [main] InstanceInfoReplicator onDemand update allowed rate per min is 4
-2020-04-01 17:36:02,829 INFO com.netflix.discovery.DiscoveryClient [main] Discovery Client initialized at timestamp 1585755362829 with initial instances count: 0
-2020-04-01 17:36:02,850 INFO org.springframework.cloud.netflix.eureka.serviceregistry.EurekaServiceRegistry [main] Registering application AUTOSKOLA-PROGRAM with eureka with status UP
-2020-04-01 17:36:02,850 INFO com.netflix.discovery.DiscoveryClient$3 [main] Saw local status change event StatusChangeEvent [timestamp=1585755362850, current=UP, previous=STARTING]
-2020-04-01 17:36:02,855 INFO springfox.documentation.spring.web.plugins.DocumentationPluginsBootstrapper [main] Context refreshed
-2020-04-01 17:36:02,865 INFO com.netflix.discovery.DiscoveryClient [DiscoveryClient-InstanceInfoReplicator-0] DiscoveryClient_AUTOSKOLA-PROGRAM/localhost:autoskola-program:8080: registering service...
-2020-04-01 17:36:02,955 INFO springfox.documentation.spring.web.plugins.DocumentationPluginsBootstrapper [main] Found 1 custom documentation plugin(s)
-2020-04-01 17:36:03,085 INFO springfox.documentation.spring.web.scanners.ApiListingReferenceScanner [main] Scanning for api listing references
-2020-04-01 17:36:03,925 INFO com.netflix.discovery.DiscoveryClient [DiscoveryClient-InstanceInfoReplicator-0] DiscoveryClient_AUTOSKOLA-PROGRAM/localhost:autoskola-program:8080 - registration status: 204
-2020-04-01 17:36:05,210 INFO springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator [main] Generating unique operation named: getCompletedRidesUsingGET_1
-2020-04-01 17:36:05,400 INFO org.apache.juli.logging.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8080"]
-2020-04-01 17:36:05,939 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port(s): 8080 (http) with context path ''
-2020-04-01 17:36:05,939 INFO org.springframework.cloud.netflix.eureka.serviceregistry.EurekaAutoServiceRegistration [main] Updating port to 8080
-2020-04-01 17:36:07,599 INFO org.springframework.cloud.commons.util.InetUtils [main] Cannot determine local hostname
-2020-04-01 17:36:09,059 INFO org.springframework.cloud.commons.util.InetUtils [main] Cannot determine local hostname
-2020-04-01 17:36:09,059 INFO org.springframework.boot.StartupInfoLogger [main] Started Application in 62.582 seconds (JVM running for 63.688)
-2020-04-01 17:36:32,820 INFO com.netflix.discovery.DiscoveryClient [DiscoveryClient-CacheRefreshExecutor-0] Disable delta property : false
-2020-04-01 17:36:32,820 INFO com.netflix.discovery.DiscoveryClient [DiscoveryClient-CacheRefreshExecutor-0] Single vip registry refresh property : null
-2020-04-01 17:36:32,820 INFO com.netflix.discovery.DiscoveryClient [DiscoveryClient-CacheRefreshExecutor-0] Force full registry fetch : false
-2020-04-01 17:36:32,820 INFO com.netflix.discovery.DiscoveryClient [DiscoveryClient-CacheRefreshExecutor-0] Application is null : false
-2020-04-01 17:36:32,820 INFO com.netflix.discovery.DiscoveryClient [DiscoveryClient-CacheRefreshExecutor-0] Registered Applications size is zero : true
-2020-04-01 17:36:32,820 INFO com.netflix.discovery.DiscoveryClient [DiscoveryClient-CacheRefreshExecutor-0] Application version is -1: false
-2020-04-01 17:36:32,820 INFO com.netflix.discovery.DiscoveryClient [DiscoveryClient-CacheRefreshExecutor-0] Getting all instance registry info from the eureka server
-2020-04-01 17:36:32,919 INFO com.netflix.discovery.DiscoveryClient [DiscoveryClient-CacheRefreshExecutor-0] The response status is 200
-2020-04-01 17:41:02,276 INFO com.netflix.discovery.shared.resolver.aws.ConfigClusterResolver [AsyncResolver-bootstrap-executor-0] Resolving eureka endpoints via configuration
-2020-04-01 17:46:02,278 INFO com.netflix.discovery.shared.resolver.aws.ConfigClusterResolver [AsyncResolver-bootstrap-executor-0] Resolving eureka endpoints via configuration
-2020-04-01 17:50:28,398 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8080-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
-2020-04-01 17:50:28,400 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-1] Initializing Servlet 'dispatcherServlet'
-2020-04-01 17:50:28,465 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-1] Completed initialization in 65 ms
-2020-04-01 17:50:28,593 TRACE com.example.AutoskolaDemoWithSecurity.filters.LogFilter [http-nio-8080-exec-1] Address: 0:0:0:0:0:0:0:1, Port: 52421, Host: 0:0:0:0:0:0:0:1, User: null, URI: /authenticate/login, method: POST
-2020-04-01 17:50:31,194 INFO com.netflix.config.ChainedDynamicProperty$ChainLink [http-nio-8080-exec-1] Flipping property: notification-service.ribbon.ActiveConnectionsLimit to use NEXT property: niws.loadbalancer.availabilityFilteringRule.activeConnectionsLimit = 2147483647
-2020-04-01 17:50:31,241 INFO com.netflix.util.concurrent.ShutdownEnabledTimer [http-nio-8080-exec-1] Shutdown hook installed for: NFLoadBalancer-PingTimer-notification-service
-2020-04-01 17:50:31,246 INFO com.netflix.loadbalancer.BaseLoadBalancer [http-nio-8080-exec-1] Client: notification-service instantiated a LoadBalancer: DynamicServerListLoadBalancer:{NFLoadBalancer:name=notification-service,current list of Servers=[],Load balancer stats=Zone stats: {},Server stats: []}ServerList:null
-2020-04-01 17:50:31,266 INFO com.netflix.loadbalancer.DynamicServerListLoadBalancer [http-nio-8080-exec-1] Using serverListUpdater PollingServerListUpdater
-2020-04-01 17:50:31,310 INFO com.netflix.config.ChainedDynamicProperty$ChainLink [http-nio-8080-exec-1] Flipping property: notification-service.ribbon.ActiveConnectionsLimit to use NEXT property: niws.loadbalancer.availabilityFilteringRule.activeConnectionsLimit = 2147483647
-2020-04-01 17:50:31,314 INFO com.netflix.loadbalancer.DynamicServerListLoadBalancer [http-nio-8080-exec-1] DynamicServerListLoadBalancer for client notification-service initialized: DynamicServerListLoadBalancer:{NFLoadBalancer:name=notification-service,current list of Servers=[localhost:8081],Load balancer stats=Zone stats: {defaultzone=[Zone:defaultzone;	Instance count:1;	Active connections count: 0;	Circuit breaker tripped count: 0;	Active connections per server: 0.0;]
-},Server stats: [[Server:localhost:8081;	Zone:defaultZone;	Total Requests:0;	Successive connection failure:0;	Total blackout seconds:0;	Last connection made:Thu Jan 01 01:00:00 CET 1970;	First connection made: Thu Jan 01 01:00:00 CET 1970;	Active Connections:0;	total failure count in last (1000) msecs:0;	average resp time:0.0;	90 percentile resp time:0.0;	95 percentile resp time:0.0;	min resp time:0.0;	max resp time:0.0;	stddev resp time:0.0]
-]}ServerList:org.springframework.cloud.netflix.ribbon.eureka.DomainExtractingServerList@5b1e3322
-2020-04-01 17:50:32,278 INFO com.netflix.config.ChainedDynamicProperty$ChainLink [PollingServerListUpdater-0] Flipping property: notification-service.ribbon.ActiveConnectionsLimit to use NEXT property: niws.loadbalancer.availabilityFilteringRule.activeConnectionsLimit = 2147483647
-2020-04-01 17:50:33,458 INFO com.example.AutoskolaDemoWithSecurity.interceptors.LogInterceptor [http-nio-8080-exec-1] Total time taken to process request: 4.791 seconds
-2020-04-01 17:51:02,280 INFO com.netflix.discovery.shared.resolver.aws.ConfigClusterResolver [AsyncResolver-bootstrap-executor-0] Resolving eureka endpoints via configuration
-2020-04-01 17:54:49,834 TRACE com.example.AutoskolaDemoWithSecurity.filters.LogFilter [http-nio-8080-exec-5] Address: 0:0:0:0:0:0:0:1, Port: 52791, Host: 0:0:0:0:0:0:0:1, User: robert21@gmail.com, URI: /instructor/addRides, method: POST
-2020-04-01 17:54:49,897 INFO com.example.AutoskolaDemoWithSecurity.interceptors.AuthInterceptor [http-nio-8080-exec-5] Relation ID is OK, user: robert21@gmail.com, ID: 109
-2020-04-01 17:54:50,385 ERROR com.example.AutoskolaDemoWithSecurity.errorApi.RestExceptionHandler [http-nio-8080-exec-5] Timestamp: 2020-04-01T17:54:50.382725600, Status: 400 BAD_REQUEST, Message: This ride already exists! Ride: [Date: 2020-04-12, Time11:00]
-2020-04-01 17:54:50,422 INFO com.example.AutoskolaDemoWithSecurity.interceptors.LogInterceptor [http-nio-8080-exec-5] Total time taken to process request: 0.585 seconds
-2020-04-01 17:55:03,316 TRACE com.example.AutoskolaDemoWithSecurity.filters.LogFilter [http-nio-8080-exec-6] Address: 0:0:0:0:0:0:0:1, Port: 52815, Host: 0:0:0:0:0:0:0:1, User: robert21@gmail.com, URI: /instructor/addRides, method: POST
-2020-04-01 17:55:03,323 INFO com.example.AutoskolaDemoWithSecurity.interceptors.AuthInterceptor [http-nio-8080-exec-6] Relation ID is OK, user: robert21@gmail.com, ID: 109
-2020-04-01 17:55:03,500 INFO com.example.AutoskolaDemoWithSecurity.interceptors.LogInterceptor [http-nio-8080-exec-6] Total time taken to process request: 0.182 seconds
-2020-04-01 17:56:01,678 TRACE com.example.AutoskolaDemoWithSecurity.filters.LogFilter [http-nio-8080-exec-8] Address: 0:0:0:0:0:0:0:1, Port: 52815, Host: 0:0:0:0:0:0:0:1, User: robert21@gmail.com, URI: /instructor/showTimes/2020-05-12, method: GET
-2020-04-01 17:56:01,688 INFO com.example.AutoskolaDemoWithSecurity.interceptors.AuthInterceptor [http-nio-8080-exec-8] Relation ID is OK, user: robert21@gmail.com, ID: 109
-2020-04-01 17:56:01,765 INFO com.example.AutoskolaDemoWithSecurity.interceptors.LogInterceptor [http-nio-8080-exec-8] Total time taken to process request: 0.085 seconds
-2020-04-01 17:56:02,281 INFO com.netflix.discovery.shared.resolver.aws.ConfigClusterResolver [AsyncResolver-bootstrap-executor-0] Resolving eureka endpoints via configuration
-2020-04-01 17:56:19,364 TRACE com.example.AutoskolaDemoWithSecurity.filters.LogFilter [http-nio-8080-exec-9] Address: 0:0:0:0:0:0:0:1, Port: 52815, Host: 0:0:0:0:0:0:0:1, User: robert21@gmail.com, URI: /instructor/showTimes/2020-04-12, method: GET
-2020-04-01 17:56:19,387 INFO com.example.AutoskolaDemoWithSecurity.interceptors.AuthInterceptor [http-nio-8080-exec-9] Relation ID is OK, user: robert21@gmail.com, ID: 109
-2020-04-01 17:56:19,439 INFO com.example.AutoskolaDemoWithSecurity.interceptors.LogInterceptor [http-nio-8080-exec-9] Total time taken to process request: 0.067 seconds
-2020-04-01 17:57:00,556 TRACE com.example.AutoskolaDemoWithSecurity.filters.LogFilter [http-nio-8080-exec-10] Address: 0:0:0:0:0:0:0:1, Port: 52815, Host: 0:0:0:0:0:0:0:1, User: null, URI: /authenticate/login, method: POST
-2020-04-01 17:57:00,775 INFO com.example.AutoskolaDemoWithSecurity.interceptors.LogInterceptor [http-nio-8080-exec-10] Total time taken to process request: 0.218 seconds
-2020-04-01 18:01:02,290 INFO com.netflix.discovery.shared.resolver.aws.ConfigClusterResolver [AsyncResolver-bootstrap-executor-0] Resolving eureka endpoints via configuration
-2020-04-01 18:06:02,310 INFO com.netflix.discovery.shared.resolver.aws.ConfigClusterResolver [AsyncResolver-bootstrap-executor-0] Resolving eureka endpoints via configuration
-2020-04-01 18:08:20,239 TRACE com.example.AutoskolaDemoWithSecurity.filters.LogFilter [http-nio-8080-exec-3] Address: 0:0:0:0:0:0:0:1, Port: 53864, Host: 0:0:0:0:0:0:0:1, User: lukas@gmail.com, URI: /student/freeRides/2020-04-13, method: GET
-2020-04-01 18:08:20,253 INFO com.example.AutoskolaDemoWithSecurity.interceptors.AuthInterceptor [http-nio-8080-exec-3] Relation ID is OK, user: lukas@gmail.com, ID: 119
-2020-04-01 18:08:20,269 INFO com.example.AutoskolaDemoWithSecurity.interceptors.LogInterceptor [http-nio-8080-exec-3] Total time taken to process request: 0.026000000000000002 seconds
-2020-04-01 18:10:26,931 TRACE com.example.AutoskolaDemoWithSecurity.filters.LogFilter [http-nio-8080-exec-7] Address: 0:0:0:0:0:0:0:1, Port: 54107, Host: 0:0:0:0:0:0:0:1, User: null, URI: /authenticate/login, method: POST
-2020-04-01 18:10:27,162 INFO com.example.AutoskolaDemoWithSecurity.interceptors.LogInterceptor [http-nio-8080-exec-7] Total time taken to process request: 0.229 seconds
-2020-04-01 18:11:02,312 INFO com.netflix.discovery.shared.resolver.aws.ConfigClusterResolver [AsyncResolver-bootstrap-executor-0] Resolving eureka endpoints via configuration
-2020-04-01 18:11:11,337 TRACE com.example.AutoskolaDemoWithSecurity.filters.LogFilter [http-nio-8080-exec-6] Address: 0:0:0:0:0:0:0:1, Port: 54107, Host: 0:0:0:0:0:0:0:1, User: ivan@gmail.com, URI: /student/freeRides/2020-04-13, method: GET
-2020-04-01 18:11:11,359 INFO com.example.AutoskolaDemoWithSecurity.interceptors.AuthInterceptor [http-nio-8080-exec-6] Relation ID is OK, user: ivan@gmail.com, ID: 199
-2020-04-01 18:11:11,410 INFO com.example.AutoskolaDemoWithSecurity.interceptors.LogInterceptor [http-nio-8080-exec-6] Total time taken to process request: 0.07200000000000001 seconds
-2020-04-01 18:11:30,747 TRACE com.example.AutoskolaDemoWithSecurity.filters.LogFilter [http-nio-8080-exec-8] Address: 0:0:0:0:0:0:0:1, Port: 54107, Host: 0:0:0:0:0:0:0:1, User: ivan@gmail.com, URI: /student/reserveRide/235, method: POST
-2020-04-01 18:11:30,753 INFO com.example.AutoskolaDemoWithSecurity.interceptors.AuthInterceptor [http-nio-8080-exec-8] Relation ID is OK, user: ivan@gmail.com, ID: 199
-2020-04-01 18:11:30,866 INFO com.example.AutoskolaDemoWithSecurity.interceptors.LogInterceptor [http-nio-8080-exec-8] Total time taken to process request: 0.11800000000000001 seconds
-2020-04-01 18:11:39,272 TRACE com.example.AutoskolaDemoWithSecurity.filters.LogFilter [http-nio-8080-exec-9] Address: 0:0:0:0:0:0:0:1, Port: 54107, Host: 0:0:0:0:0:0:0:1, User: ivan@gmail.com, URI: /student/reserveRide/234, method: POST
-2020-04-01 18:11:39,279 INFO com.example.AutoskolaDemoWithSecurity.interceptors.AuthInterceptor [http-nio-8080-exec-9] Relation ID is OK, user: ivan@gmail.com, ID: 199
-2020-04-01 18:11:39,307 INFO com.example.AutoskolaDemoWithSecurity.interceptors.LogInterceptor [http-nio-8080-exec-9] Total time taken to process request: 0.033 seconds
-2020-04-01 18:11:42,246 TRACE com.example.AutoskolaDemoWithSecurity.filters.LogFilter [http-nio-8080-exec-10] Address: 0:0:0:0:0:0:0:1, Port: 54107, Host: 0:0:0:0:0:0:0:1, User: ivan@gmail.com, URI: /student/reserveRide/233, method: POST
-2020-04-01 18:11:42,253 INFO com.example.AutoskolaDemoWithSecurity.interceptors.AuthInterceptor [http-nio-8080-exec-10] Relation ID is OK, user: ivan@gmail.com, ID: 199
-2020-04-01 18:11:42,272 INFO com.example.AutoskolaDemoWithSecurity.interceptors.LogInterceptor [http-nio-8080-exec-10] Total time taken to process request: 0.024 seconds
-2020-04-01 18:14:35,024 TRACE com.example.AutoskolaDemoWithSecurity.filters.LogFilter [http-nio-8080-exec-3] Address: 0:0:0:0:0:0:0:1, Port: 54444, Host: 0:0:0:0:0:0:0:1, User: null, URI: /authenticate/login, method: POST
-2020-04-01 18:14:35,221 INFO com.example.AutoskolaDemoWithSecurity.interceptors.LogInterceptor [http-nio-8080-exec-3] Total time taken to process request: 0.194 seconds
-2020-04-01 18:15:10,526 TRACE com.example.AutoskolaDemoWithSecurity.filters.LogFilter [http-nio-8080-exec-4] Address: 0:0:0:0:0:0:0:1, Port: 54444, Host: 0:0:0:0:0:0:0:1, User: robert21@gmail.com, URI: /instructor/removeRides, method: DELETE
-2020-04-01 18:15:10,533 INFO com.example.AutoskolaDemoWithSecurity.interceptors.AuthInterceptor [http-nio-8080-exec-4] Relation ID is OK, user: robert21@gmail.com, ID: 109
-2020-04-01 18:15:10,684 INFO com.example.AutoskolaDemoWithSecurity.interceptors.LogInterceptor [http-nio-8080-exec-4] Total time taken to process request: 0.156 seconds
-2020-04-01 18:15:19,513 TRACE com.example.AutoskolaDemoWithSecurity.filters.LogFilter [http-nio-8080-exec-5] Address: 0:0:0:0:0:0:0:1, Port: 54444, Host: 0:0:0:0:0:0:0:1, User: robert21@gmail.com, URI: /instructor/removeRides, method: DELETE
-2020-04-01 18:15:19,519 INFO com.example.AutoskolaDemoWithSecurity.interceptors.AuthInterceptor [http-nio-8080-exec-5] Relation ID is OK, user: robert21@gmail.com, ID: 109
-2020-04-01 18:15:19,529 ERROR com.example.AutoskolaDemoWithSecurity.errorApi.RestExceptionHandler [http-nio-8080-exec-5] Timestamp: 2020-04-01T18:15:19.528327600, Status: 400 BAD_REQUEST, Message: This ride does not exist, Time:10:00, date: 2020-04-13
-2020-04-01 18:15:19,532 INFO com.example.AutoskolaDemoWithSecurity.interceptors.LogInterceptor [http-nio-8080-exec-5] Total time taken to process request: 0.018000000000000002 seconds
-2020-04-01 18:15:30,871 TRACE com.example.AutoskolaDemoWithSecurity.filters.LogFilter [http-nio-8080-exec-7] Address: 0:0:0:0:0:0:0:1, Port: 54504, Host: 0:0:0:0:0:0:0:1, User: robert21@gmail.com, URI: /instructor/removeRides, method: DELETE
-2020-04-01 18:15:30,884 INFO com.example.AutoskolaDemoWithSecurity.interceptors.AuthInterceptor [http-nio-8080-exec-7] Relation ID is OK, user: robert21@gmail.com, ID: 109
-2020-04-01 18:15:30,936 INFO com.example.AutoskolaDemoWithSecurity.interceptors.LogInterceptor [http-nio-8080-exec-7] Total time taken to process request: 0.063 seconds
-2020-04-01 18:15:31,095 INFO com.example.AutoskolaDemoWithSecurity.services.NotificationMessageService [task-1] Response from notification service: 200, Notification has been sent
-2020-04-01 18:16:02,360 INFO com.netflix.discovery.shared.resolver.aws.ConfigClusterResolver [AsyncResolver-bootstrap-executor-0] Resolving eureka endpoints via configuration
-2020-04-01 18:18:29,706 TRACE com.example.AutoskolaDemoWithSecurity.filters.LogFilter [http-nio-8080-exec-10] Address: 0:0:0:0:0:0:0:1, Port: 54678, Host: 0:0:0:0:0:0:0:1, User: ivan@gmail.com, URI: /student/freeRides/2020-04-12, method: GET
-2020-04-01 18:18:29,714 INFO com.example.AutoskolaDemoWithSecurity.interceptors.AuthInterceptor [http-nio-8080-exec-10] Relation ID is OK, user: ivan@gmail.com, ID: 199
-2020-04-01 18:18:29,737 INFO com.example.AutoskolaDemoWithSecurity.interceptors.LogInterceptor [http-nio-8080-exec-10] Total time taken to process request: 0.03 seconds
-2020-04-01 18:18:39,511 TRACE com.example.AutoskolaDemoWithSecurity.filters.LogFilter [http-nio-8080-exec-2] Address: 0:0:0:0:0:0:0:1, Port: 54678, Host: 0:0:0:0:0:0:0:1, User: ivan@gmail.com, URI: /student/reserveRide/230, method: POST
-2020-04-01 18:18:39,519 INFO com.example.AutoskolaDemoWithSecurity.interceptors.AuthInterceptor [http-nio-8080-exec-2] Relation ID is OK, user: ivan@gmail.com, ID: 199
-2020-04-01 18:18:39,544 INFO com.example.AutoskolaDemoWithSecurity.interceptors.LogInterceptor [http-nio-8080-exec-2] Total time taken to process request: 0.031 seconds
-2020-04-01 18:19:19,640 TRACE com.example.AutoskolaDemoWithSecurity.filters.LogFilter [http-nio-8080-exec-1] Address: 0:0:0:0:0:0:0:1, Port: 54678, Host: 0:0:0:0:0:0:0:1, User: ivan@gmail.com, URI: /student/getCompletedRides, method: POST
-2020-04-01 18:19:19,651 WARN org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler [http-nio-8080-exec-1] Request method 'POST' not supported
-2020-04-01 18:19:24,845 TRACE com.example.AutoskolaDemoWithSecurity.filters.LogFilter [http-nio-8080-exec-3] Address: 0:0:0:0:0:0:0:1, Port: 54678, Host: 0:0:0:0:0:0:0:1, User: ivan@gmail.com, URI: /student/getCompletedRides, method: GET
-2020-04-01 18:19:24,855 INFO com.example.AutoskolaDemoWithSecurity.interceptors.AuthInterceptor [http-nio-8080-exec-3] Relation ID is OK, user: ivan@gmail.com, ID: 199
-2020-04-01 18:19:24,882 INFO com.example.AutoskolaDemoWithSecurity.interceptors.LogInterceptor [http-nio-8080-exec-3] Total time taken to process request: 0.035 seconds
-2020-04-01 18:19:35,689 TRACE com.example.AutoskolaDemoWithSecurity.filters.LogFilter [http-nio-8080-exec-4] Address: 0:0:0:0:0:0:0:1, Port: 54678, Host: 0:0:0:0:0:0:0:1, User: ivan@gmail.com, URI: /student/getReservedRides, method: GET
-2020-04-01 18:19:35,716 INFO com.example.AutoskolaDemoWithSecurity.interceptors.AuthInterceptor [http-nio-8080-exec-4] Relation ID is OK, user: ivan@gmail.com, ID: 199
-2020-04-01 18:19:35,751 INFO com.example.AutoskolaDemoWithSecurity.interceptors.LogInterceptor [http-nio-8080-exec-4] Total time taken to process request: 0.059000000000000004 seconds
-2020-04-01 18:19:55,549 TRACE com.example.AutoskolaDemoWithSecurity.filters.LogFilter [http-nio-8080-exec-5] Address: 0:0:0:0:0:0:0:1, Port: 54678, Host: 0:0:0:0:0:0:0:1, User: ivan@gmail.com, URI: /student/getReservedRides, method: GET
-2020-04-01 18:19:55,554 INFO com.example.AutoskolaDemoWithSecurity.interceptors.AuthInterceptor [http-nio-8080-exec-5] Relation ID is OK, user: ivan@gmail.com, ID: 199
-2020-04-01 18:19:55,556 ERROR com.example.AutoskolaDemoWithSecurity.errorApi.RestExceptionHandler [http-nio-8080-exec-5] Timestamp: 2020-04-01T18:19:55.556649100, Status: 400 BAD_REQUEST, Message: Bad date format! use: year-month-day, example: 2020-08-25
-2020-04-01 18:19:55,559 INFO com.example.AutoskolaDemoWithSecurity.interceptors.LogInterceptor [http-nio-8080-exec-5] Total time taken to process request: 0.009000000000000001 seconds
-2020-04-01 18:20:06,157 TRACE com.example.AutoskolaDemoWithSecurity.filters.LogFilter [http-nio-8080-exec-6] Address: 0:0:0:0:0:0:0:1, Port: 54823, Host: 0:0:0:0:0:0:0:1, User: ivan@gmail.com, URI: /student/getReservedRides, method: GET
-2020-04-01 18:20:06,166 INFO com.example.AutoskolaDemoWithSecurity.interceptors.AuthInterceptor [http-nio-8080-exec-6] Relation ID is OK, user: ivan@gmail.com, ID: 199
-2020-04-01 18:20:06,187 INFO com.example.AutoskolaDemoWithSecurity.interceptors.LogInterceptor [http-nio-8080-exec-6] Total time taken to process request: 0.026000000000000002 seconds
-2020-04-01 18:20:10,364 TRACE com.example.AutoskolaDemoWithSecurity.filters.LogFilter [http-nio-8080-exec-8] Address: 0:0:0:0:0:0:0:1, Port: 54823, Host: 0:0:0:0:0:0:0:1, User: ivan@gmail.com, URI: /student/getReservedRides, method: GET
-2020-04-01 18:20:10,370 INFO com.example.AutoskolaDemoWithSecurity.interceptors.AuthInterceptor [http-nio-8080-exec-8] Relation ID is OK, user: ivan@gmail.com, ID: 199
-2020-04-01 18:20:10,400 INFO com.example.AutoskolaDemoWithSecurity.interceptors.LogInterceptor [http-nio-8080-exec-8] Total time taken to process request: 0.035 seconds
-2020-04-01 18:21:02,363 INFO com.netflix.discovery.shared.resolver.aws.ConfigClusterResolver [AsyncResolver-bootstrap-executor-0] Resolving eureka endpoints via configuration
-2020-04-01 18:26:02,365 INFO com.netflix.discovery.shared.resolver.aws.ConfigClusterResolver [AsyncResolver-bootstrap-executor-0] Resolving eureka endpoints via configuration
-2020-04-01 18:31:02,367 INFO com.netflix.discovery.shared.resolver.aws.ConfigClusterResolver [AsyncResolver-bootstrap-executor-0] Resolving eureka endpoints via configuration
-2020-04-01 18:36:02,368 INFO com.netflix.discovery.shared.resolver.aws.ConfigClusterResolver [AsyncResolver-bootstrap-executor-0] Resolving eureka endpoints via configuration
-2020-04-01 18:41:02,371 INFO com.netflix.discovery.shared.resolver.aws.ConfigClusterResolver [AsyncResolver-bootstrap-executor-0] Resolving eureka endpoints via configuration
-2020-04-01 18:46:02,372 INFO com.netflix.discovery.shared.resolver.aws.ConfigClusterResolver [AsyncResolver-bootstrap-executor-0] Resolving eureka endpoints via configuration
-2020-04-01 18:51:02,374 INFO com.netflix.discovery.shared.resolver.aws.ConfigClusterResolver [AsyncResolver-bootstrap-executor-0] Resolving eureka endpoints via configuration
-2020-04-01 18:56:02,375 INFO com.netflix.discovery.shared.resolver.aws.ConfigClusterResolver [AsyncResolver-bootstrap-executor-0] Resolving eureka endpoints via configuration
-2020-04-01 19:01:02,378 INFO com.netflix.discovery.shared.resolver.aws.ConfigClusterResolver [AsyncResolver-bootstrap-executor-0] Resolving eureka endpoints via configuration
-2020-04-01 19:06:02,403 INFO com.netflix.discovery.shared.resolver.aws.ConfigClusterResolver [AsyncResolver-bootstrap-executor-0] Resolving eureka endpoints via configuration
-2020-04-01 19:11:02,420 INFO com.netflix.discovery.shared.resolver.aws.ConfigClusterResolver [AsyncResolver-bootstrap-executor-0] Resolving eureka endpoints via configuration
-2020-04-01 19:16:02,436 INFO com.netflix.discovery.shared.resolver.aws.ConfigClusterResolver [AsyncResolver-bootstrap-executor-0] Resolving eureka endpoints via configuration
-2020-04-01 19:21:02,439 INFO com.netflix.discovery.shared.resolver.aws.ConfigClusterResolver [AsyncResolver-bootstrap-executor-0] Resolving eureka endpoints via configuration
-2020-04-01 19:26:02,441 INFO com.netflix.discovery.shared.resolver.aws.ConfigClusterResolver [AsyncResolver-bootstrap-executor-0] Resolving eureka endpoints via configuration
-2020-04-01 19:31:02,447 INFO com.netflix.discovery.shared.resolver.aws.ConfigClusterResolver [AsyncResolver-bootstrap-executor-0] Resolving eureka endpoints via configuration
-2020-04-01 19:32:20,202 TRACE com.example.AutoskolaDemoWithSecurity.filters.LogFilter [http-nio-8080-exec-2] Address: 0:0:0:0:0:0:0:1, Port: 54062, Host: 0:0:0:0:0:0:0:1, User: null, URI: /authenticate/login, method: POST
-2020-04-01 19:32:22,341 INFO com.example.AutoskolaDemoWithSecurity.interceptors.LogInterceptor [http-nio-8080-exec-2] Total time taken to process request: 1.999 seconds
-2020-04-01 19:34:00,645 TRACE com.example.AutoskolaDemoWithSecurity.filters.LogFilter [http-nio-8080-exec-4] Address: 0:0:0:0:0:0:0:1, Port: 54236, Host: 0:0:0:0:0:0:0:1, User: null, URI: /authenticate/login, method: POST
-2020-04-01 19:34:00,962 ERROR com.example.AutoskolaDemoWithSecurity.errorApi.RestExceptionHandler [http-nio-8080-exec-4] Timestamp: 2020-04-01T19:34:00.962675600, Status: 400 BAD_REQUEST, Message: Wrong password
-2020-04-01 19:34:00,968 INFO com.example.AutoskolaDemoWithSecurity.interceptors.LogInterceptor [http-nio-8080-exec-4] Total time taken to process request: 0.32 seconds
-2020-04-01 19:34:10,728 TRACE com.example.AutoskolaDemoWithSecurity.filters.LogFilter [http-nio-8080-exec-5] Address: 0:0:0:0:0:0:0:1, Port: 54251, Host: 0:0:0:0:0:0:0:1, User: null, URI: /authenticate/login, method: POST
-2020-04-01 19:34:10,929 INFO com.example.AutoskolaDemoWithSecurity.interceptors.LogInterceptor [http-nio-8080-exec-5] Total time taken to process request: 0.2 seconds
-2020-04-01 19:35:20,677 TRACE com.example.AutoskolaDemoWithSecurity.filters.LogFilter [http-nio-8080-exec-9] Address: 0:0:0:0:0:0:0:1, Port: 54359, Host: 0:0:0:0:0:0:0:1, User: ivan@gmail.com, URI: /student/getReservedRides, method: GET
-2020-04-01 19:35:20,689 INFO com.example.AutoskolaDemoWithSecurity.interceptors.AuthInterceptor [http-nio-8080-exec-9] Relation ID is OK, user: ivan@gmail.com, ID: 199
-2020-04-01 19:35:20,785 INFO com.example.AutoskolaDemoWithSecurity.interceptors.LogInterceptor [http-nio-8080-exec-9] Total time taken to process request: 0.106 seconds
-2020-04-01 19:35:49,414 TRACE com.example.AutoskolaDemoWithSecurity.filters.LogFilter [http-nio-8080-exec-10] Address: 0:0:0:0:0:0:0:1, Port: 54359, Host: 0:0:0:0:0:0:0:1, User: ivan@gmail.com, URI: /student/cancelRide/235, method: GET
-2020-04-01 19:35:49,418 WARN org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler [http-nio-8080-exec-10] Request method 'GET' not supported
-2020-04-01 19:35:54,251 TRACE com.example.AutoskolaDemoWithSecurity.filters.LogFilter [http-nio-8080-exec-2] Address: 0:0:0:0:0:0:0:1, Port: 54359, Host: 0:0:0:0:0:0:0:1, User: ivan@gmail.com, URI: /student/cancelRide/235, method: POST
-2020-04-01 19:35:54,259 INFO com.example.AutoskolaDemoWithSecurity.interceptors.AuthInterceptor [http-nio-8080-exec-2] Relation ID is OK, user: ivan@gmail.com, ID: 199
-2020-04-01 19:35:54,310 INFO com.example.AutoskolaDemoWithSecurity.interceptors.LogInterceptor [http-nio-8080-exec-2] Total time taken to process request: 0.057 seconds
-2020-04-01 19:36:02,779 INFO com.netflix.discovery.shared.resolver.aws.ConfigClusterResolver [AsyncResolver-bootstrap-executor-0] Resolving eureka endpoints via configuration
-2020-04-01 19:36:14,772 TRACE com.example.AutoskolaDemoWithSecurity.filters.LogFilter [http-nio-8080-exec-1] Address: 0:0:0:0:0:0:0:1, Port: 54359, Host: 0:0:0:0:0:0:0:1, User: ivan@gmail.com, URI: /student/getReservedRides, method: POST
-2020-04-01 19:36:14,785 WARN org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler [http-nio-8080-exec-1] Request method 'POST' not supported
-2020-04-01 19:36:35,821 TRACE com.example.AutoskolaDemoWithSecurity.filters.LogFilter [http-nio-8080-exec-3] Address: 0:0:0:0:0:0:0:1, Port: 54359, Host: 0:0:0:0:0:0:0:1, User: ivan@gmail.com, URI: /student/getReservedRides, method: GET
-2020-04-01 19:36:35,829 INFO com.example.AutoskolaDemoWithSecurity.interceptors.AuthInterceptor [http-nio-8080-exec-3] Relation ID is OK, user: ivan@gmail.com, ID: 199
-2020-04-01 19:36:35,878 INFO com.example.AutoskolaDemoWithSecurity.interceptors.LogInterceptor [http-nio-8080-exec-3] Total time taken to process request: 0.056 seconds
-2020-04-01 19:36:55,574 TRACE com.example.AutoskolaDemoWithSecurity.filters.LogFilter [http-nio-8080-exec-4] Address: 0:0:0:0:0:0:0:1, Port: 54359, Host: 0:0:0:0:0:0:0:1, User: ivan@gmail.com, URI: /student/cancelRide/201, method: GET
-2020-04-01 19:36:55,575 WARN org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler [http-nio-8080-exec-4] Request method 'GET' not supported
-2020-04-01 19:37:01,027 TRACE com.example.AutoskolaDemoWithSecurity.filters.LogFilter [http-nio-8080-exec-7] Address: 0:0:0:0:0:0:0:1, Port: 54359, Host: 0:0:0:0:0:0:0:1, User: ivan@gmail.com, URI: /student/cancelRide/201, method: DELETE
-2020-04-01 19:37:01,029 WARN org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler [http-nio-8080-exec-7] Request method 'DELETE' not supported
-2020-04-01 19:37:13,685 TRACE com.example.AutoskolaDemoWithSecurity.filters.LogFilter [http-nio-8080-exec-5] Address: 0:0:0:0:0:0:0:1, Port: 54359, Host: 0:0:0:0:0:0:0:1, User: ivan@gmail.com, URI: /student/cancelRide/201, method: POST
-2020-04-01 19:37:13,692 INFO com.example.AutoskolaDemoWithSecurity.interceptors.AuthInterceptor [http-nio-8080-exec-5] Relation ID is OK, user: ivan@gmail.com, ID: 199
-2020-04-01 19:37:13,705 INFO com.example.AutoskolaDemoWithSecurity.interceptors.LogInterceptor [http-nio-8080-exec-5] Total time taken to process request: 0.017 seconds
-2020-04-01 19:37:20,400 TRACE com.example.AutoskolaDemoWithSecurity.filters.LogFilter [http-nio-8080-exec-6] Address: 0:0:0:0:0:0:0:1, Port: 54359, Host: 0:0:0:0:0:0:0:1, User: ivan@gmail.com, URI: /student/cancelRide/235, method: POST
-2020-04-01 19:37:20,407 INFO com.example.AutoskolaDemoWithSecurity.interceptors.AuthInterceptor [http-nio-8080-exec-6] Relation ID is OK, user: ivan@gmail.com, ID: 199
-2020-04-01 19:37:20,437 INFO com.example.AutoskolaDemoWithSecurity.interceptors.LogInterceptor [http-nio-8080-exec-6] Total time taken to process request: 0.035 seconds
-2020-04-01 19:38:57,296 TRACE com.example.AutoskolaDemoWithSecurity.filters.LogFilter [http-nio-8080-exec-10] Address: 0:0:0:0:0:0:0:1, Port: 54681, Host: 0:0:0:0:0:0:0:1, User: ivan@gmail.com, URI: /student/cancelRide/234, method: POST
-2020-04-01 19:38:57,303 INFO com.example.AutoskolaDemoWithSecurity.interceptors.AuthInterceptor [http-nio-8080-exec-10] Relation ID is OK, user: ivan@gmail.com, ID: 199
-2020-04-01 19:38:57,319 INFO com.example.AutoskolaDemoWithSecurity.interceptors.LogInterceptor [http-nio-8080-exec-10] Total time taken to process request: 0.022 seconds
-2020-04-01 19:40:19,105 TRACE com.example.AutoskolaDemoWithSecurity.filters.LogFilter [http-nio-8080-exec-1] Address: 0:0:0:0:0:0:0:1, Port: 54853, Host: 0:0:0:0:0:0:0:1, User: ivan@gmail.com, URI: /student/cancelRide/234, method: POST
-2020-04-01 19:40:19,111 INFO com.example.AutoskolaDemoWithSecurity.interceptors.AuthInterceptor [http-nio-8080-exec-1] Relation ID is OK, user: ivan@gmail.com, ID: 199
-2020-04-01 19:40:19,129 INFO com.example.AutoskolaDemoWithSecurity.interceptors.LogInterceptor [http-nio-8080-exec-1] Total time taken to process request: 0.023 seconds
-2020-04-01 19:40:19,639 TRACE com.example.AutoskolaDemoWithSecurity.filters.LogFilter [http-nio-8080-exec-4] Address: 0:0:0:0:0:0:0:1, Port: 54853, Host: 0:0:0:0:0:0:0:1, User: ivan@gmail.com, URI: /student/cancelRide/234, method: POST
-2020-04-01 19:40:19,644 INFO com.example.AutoskolaDemoWithSecurity.interceptors.AuthInterceptor [http-nio-8080-exec-4] Relation ID is OK, user: ivan@gmail.com, ID: 199
-2020-04-01 19:40:19,667 INFO com.example.AutoskolaDemoWithSecurity.interceptors.LogInterceptor [http-nio-8080-exec-4] Total time taken to process request: 0.027 seconds
-2020-04-01 19:40:20,669 TRACE com.example.AutoskolaDemoWithSecurity.filters.LogFilter [http-nio-8080-exec-7] Address: 0:0:0:0:0:0:0:1, Port: 54853, Host: 0:0:0:0:0:0:0:1, User: ivan@gmail.com, URI: /student/cancelRide/234, method: POST
-2020-04-01 19:40:20,681 INFO com.example.AutoskolaDemoWithSecurity.interceptors.AuthInterceptor [http-nio-8080-exec-7] Relation ID is OK, user: ivan@gmail.com, ID: 199
-2020-04-01 19:40:20,703 INFO com.example.AutoskolaDemoWithSecurity.interceptors.LogInterceptor [http-nio-8080-exec-7] Total time taken to process request: 0.032 seconds
-2020-04-01 19:41:02,782 INFO com.netflix.discovery.shared.resolver.aws.ConfigClusterResolver [AsyncResolver-bootstrap-executor-0] Resolving eureka endpoints via configuration
-2020-04-01 19:41:52,715 INFO org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker [main] Bean 'org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration' of type [org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2020-04-01 19:41:55,408 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
-2020-04-01 19:42:02,378 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2020-04-01 19:42:03,667 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 1247ms. Found 13 JPA repository interfaces.
-2020-04-01 19:42:05,428 INFO org.springframework.cloud.context.scope.GenericScope [main] BeanFactory id=d22e730e-f3b5-3cd3-8619-381be231f7f5
-2020-04-01 19:42:06,869 INFO org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker [main] Bean 'org.springframework.security.config.annotation.configuration.ObjectPostProcessorConfiguration' of type [org.springframework.security.config.annotation.configuration.ObjectPostProcessorConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2020-04-01 19:42:06,875 INFO org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker [main] Bean 'objectPostProcessor' of type [org.springframework.security.config.annotation.configuration.AutowireBeanFactoryObjectPostProcessor] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2020-04-01 19:42:06,884 INFO org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker [main] Bean 'org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler@13192275' of type [org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2020-04-01 19:42:06,889 INFO org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker [main] Bean 'org.springframework.security.config.annotation.method.configuration.GlobalMethodSecurityConfiguration' of type [org.springframework.security.config.annotation.method.configuration.GlobalMethodSecurityConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2020-04-01 19:42:06,933 INFO org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker [main] Bean 'org.springframework.security.config.annotation.method.configuration.Jsr250MetadataSourceConfiguration' of type [org.springframework.security.config.annotation.method.configuration.Jsr250MetadataSourceConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2020-04-01 19:42:06,939 INFO org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker [main] Bean 'jsr250MethodSecurityMetadataSource' of type [org.springframework.security.access.annotation.Jsr250MethodSecurityMetadataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2020-04-01 19:42:06,942 INFO org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker [main] Bean 'methodSecurityMetadataSource' of type [org.springframework.security.access.method.DelegatingMethodSecurityMetadataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2020-04-01 19:42:07,068 INFO org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker [main] Bean 'org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration' of type [org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2020-04-01 19:42:07,079 INFO org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker [main] Bean 'org.springframework.cloud.client.loadbalancer.reactive.LoadBalancerBeanPostProcessorAutoConfiguration' of type [org.springframework.cloud.client.loadbalancer.reactive.LoadBalancerBeanPostProcessorAutoConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2020-04-01 19:42:07,082 INFO org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker [main] Bean 'org.springframework.cloud.client.loadbalancer.reactive.LoadBalancerBeanPostProcessorAutoConfiguration$ReactiveLoadBalancerConfig' of type [org.springframework.cloud.client.loadbalancer.reactive.LoadBalancerBeanPostProcessorAutoConfiguration$ReactiveLoadBalancerConfig] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2020-04-01 19:42:07,147 INFO org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker [main] Bean 'deferringLoadBalancerExchangeFilterFunction' of type [org.springframework.cloud.client.loadbalancer.reactive.DeferringLoadBalancerExchangeFilterFunction] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2020-04-01 19:42:09,352 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port(s): 8080 (http)
-2020-04-01 19:42:09,378 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8080"]
-2020-04-01 19:42:09,378 INFO org.apache.juli.logging.DirectJDKLog [main] Starting service [Tomcat]
-2020-04-01 19:42:09,378 INFO org.apache.juli.logging.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/9.0.31]
-2020-04-01 19:42:09,851 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
-2020-04-01 19:42:09,868 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 14405 ms
-2020-04-01 19:42:10,585 INFO org.hibernate.jpa.internal.util.LogHelper [main] HHH000204: Processing PersistenceUnitInfo [name: default]
-2020-04-01 19:42:10,885 INFO org.hibernate.Version [main] HHH000412: Hibernate ORM core version 5.4.12.Final
-2020-04-01 19:42:11,327 INFO org.hibernate.annotations.common.reflection.java.JavaReflectionManager [main] HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
-2020-04-01 19:42:11,642 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Starting...
-2020-04-01 19:42:11,962 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Start completed.
-2020-04-01 19:42:12,022 INFO org.hibernate.dialect.Dialect [main] HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
-2020-04-01 19:42:15,806 INFO org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator [main] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2020-04-01 19:42:15,828 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
-2020-04-01 19:42:16,811 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2020-04-01 19:42:18,442 INFO org.springframework.cloud.commons.util.InetUtils [main] Cannot determine local hostname
-2020-04-01 19:42:20,169 DEBUG org.springframework.web.filter.GenericFilterBean [main] Filter 'logFilter' configured for use
-2020-04-01 19:42:20,170 DEBUG org.springframework.web.filter.GenericFilterBean [main] Filter 'filterExceptionHandler' configured for use
-2020-04-01 19:42:20,171 DEBUG org.springframework.web.filter.GenericFilterBean [main] Filter 'jwtRequestFilter' configured for use
-2020-04-01 19:42:26,220 INFO org.springframework.security.web.DefaultSecurityFilterChain [main] Creating filter chain: Ant [pattern='/v2/api-docs'], []
-2020-04-01 19:42:26,221 INFO org.springframework.security.web.DefaultSecurityFilterChain [main] Creating filter chain: Ant [pattern='/configuration/ui'], []
-2020-04-01 19:42:26,221 INFO org.springframework.security.web.DefaultSecurityFilterChain [main] Creating filter chain: Ant [pattern='/swagger-resources/**'], []
-2020-04-01 19:42:26,222 INFO org.springframework.security.web.DefaultSecurityFilterChain [main] Creating filter chain: Ant [pattern='/configuration/**'], []
-2020-04-01 19:42:26,222 INFO org.springframework.security.web.DefaultSecurityFilterChain [main] Creating filter chain: Ant [pattern='/swagger-ui.html'], []
-2020-04-01 19:42:26,222 INFO org.springframework.security.web.DefaultSecurityFilterChain [main] Creating filter chain: Ant [pattern='/webjars/**'], []
-2020-04-01 19:42:26,301 INFO org.springframework.security.web.DefaultSecurityFilterChain [main] Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@76ecbfbf, org.springframework.security.web.context.SecurityContextPersistenceFilter@6a16ee0d, org.springframework.security.web.header.HeaderWriterFilter@7127f04b, com.example.AutoskolaDemoWithSecurity.filters.FilterExceptionHandler@73b74615, org.springframework.security.web.authentication.logout.LogoutFilter@67d6bb59, com.example.AutoskolaDemoWithSecurity.filters.JwtRequestFilter@1ae2028d, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@3f563397, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@17db90a7, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@6223dbed, org.springframework.security.web.session.SessionManagementFilter@2a20332b, org.springframework.security.web.access.ExceptionTranslationFilter@6f78c132, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@4f50e974]
-2020-04-01 19:42:26,415 INFO springfox.documentation.spring.web.PropertySourcedRequestMappingHandlerMapping [main] Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
-2020-04-01 19:42:26,657 WARN com.netflix.config.sources.URLConfigurationSource [main] No URLs will be polled as dynamic configuration sources.
-2020-04-01 19:42:26,657 INFO com.netflix.config.sources.URLConfigurationSource [main] To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
-2020-04-01 19:42:26,675 WARN com.netflix.config.sources.URLConfigurationSource [main] No URLs will be polled as dynamic configuration sources.
-2020-04-01 19:42:26,676 INFO com.netflix.config.sources.URLConfigurationSource [main] To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
-2020-04-01 19:42:27,615 INFO org.springframework.scheduling.concurrent.ExecutorConfigurationSupport [main] Initializing ExecutorService 'applicationTaskExecutor'
-2020-04-01 19:42:28,985 INFO org.springframework.scheduling.concurrent.ExecutorConfigurationSupport [main] Initializing ExecutorService 'taskScheduler'
-2020-04-01 19:42:33,361 INFO org.springframework.cloud.commons.util.InetUtils [main] Cannot determine local hostname
-2020-04-01 19:42:35,029 INFO org.springframework.cloud.commons.util.InetUtils [main] Cannot determine local hostname
-2020-04-01 19:42:36,598 INFO org.springframework.cloud.commons.util.InetUtils [main] Cannot determine local hostname
-2020-04-01 19:42:38,143 INFO org.springframework.cloud.commons.util.InetUtils [main] Cannot determine local hostname
-2020-04-01 19:42:38,223 WARN org.springframework.cloud.loadbalancer.config.BlockingLoadBalancerClientAutoConfiguration$BlockingLoadBalancerClientRibbonWarnLogger [main] You already have RibbonLoadBalancerClient on your classpath. It will be used by default. As Spring Cloud Ribbon is in maintenance mode. We recommend switching to BlockingLoadBalancerClient instead. In order to use it, set the value of `spring.cloud.loadbalancer.ribbon.enabled` to `false` or remove spring-cloud-starter-netflix-ribbon from your project.
-2020-04-01 19:42:38,249 WARN org.springframework.cloud.client.loadbalancer.reactive.ReactorLoadBalancerClientAutoConfiguration$ReactorLoadBalancerClientRibbonWarnLogger [main] You have RibbonLoadBalancerClient on your classpath. LoadBalancerExchangeFilterFunction that uses it under the hood will be used by default. Spring Cloud Ribbon is now in maintenance mode, so we suggest switching to ReactorLoadBalancerExchangeFilterFunction instead. In order to use it, set the value of `spring.cloud.loadbalancer.ribbon.enabled` to `false` or remove spring-cloud-starter-netflix-ribbon from your project.
-2020-04-01 19:42:38,415 WARN org.springframework.cloud.loadbalancer.config.LoadBalancerCacheAutoConfiguration$LoadBalancerCaffeineWarnLogger [main] Spring Cloud LoadBalancer is currently working with default default cache. You can switch to using Caffeine cache, by adding it to the classpath.
-2020-04-01 19:42:38,511 INFO org.springframework.cloud.netflix.eureka.InstanceInfoFactory [main] Setting initial instance status as: STARTING
-2020-04-01 19:42:38,714 INFO com.netflix.discovery.DiscoveryClient [main] Initializing Eureka in region us-east-1
-2020-04-01 19:42:39,364 INFO com.netflix.discovery.provider.DiscoveryJerseyProvider [main] Using JSON encoding codec LegacyJacksonJson
-2020-04-01 19:42:39,365 INFO com.netflix.discovery.provider.DiscoveryJerseyProvider [main] Using JSON decoding codec LegacyJacksonJson
-2020-04-01 19:42:39,781 INFO com.netflix.discovery.provider.DiscoveryJerseyProvider [main] Using XML encoding codec XStreamXml
-2020-04-01 19:42:39,781 INFO com.netflix.discovery.provider.DiscoveryJerseyProvider [main] Using XML decoding codec XStreamXml
-2020-04-01 19:42:40,746 INFO com.netflix.discovery.shared.resolver.aws.ConfigClusterResolver [main] Resolving eureka endpoints via configuration
-2020-04-01 19:42:41,310 INFO com.netflix.discovery.DiscoveryClient [main] Disable delta property : false
-2020-04-01 19:42:41,314 INFO com.netflix.discovery.DiscoveryClient [main] Single vip registry refresh property : null
-2020-04-01 19:42:41,315 INFO com.netflix.discovery.DiscoveryClient [main] Force full registry fetch : false
-2020-04-01 19:42:41,316 INFO com.netflix.discovery.DiscoveryClient [main] Application is null : false
-2020-04-01 19:42:41,316 INFO com.netflix.discovery.DiscoveryClient [main] Registered Applications size is zero : true
-2020-04-01 19:42:41,317 INFO com.netflix.discovery.DiscoveryClient [main] Application version is -1: true
-2020-04-01 19:42:41,319 INFO com.netflix.discovery.DiscoveryClient [main] Getting all instance registry info from the eureka server
-2020-04-01 19:42:41,756 INFO com.netflix.discovery.DiscoveryClient [main] The response status is 200
-2020-04-01 19:42:41,760 INFO com.netflix.discovery.DiscoveryClient [main] Starting heartbeat executor: renew interval is: 30
-2020-04-01 19:42:41,764 INFO com.netflix.discovery.InstanceInfoReplicator [main] InstanceInfoReplicator onDemand update allowed rate per min is 4
-2020-04-01 19:42:41,769 INFO com.netflix.discovery.DiscoveryClient [main] Discovery Client initialized at timestamp 1585762961767 with initial instances count: 2
-2020-04-01 19:42:41,779 INFO org.springframework.cloud.netflix.eureka.serviceregistry.EurekaServiceRegistry [main] Registering application AUTOSKOLA-PROGRAM with eureka with status UP
-2020-04-01 19:42:41,779 INFO com.netflix.discovery.DiscoveryClient$3 [main] Saw local status change event StatusChangeEvent [timestamp=1585762961779, current=UP, previous=STARTING]
-2020-04-01 19:42:41,790 INFO springfox.documentation.spring.web.plugins.DocumentationPluginsBootstrapper [main] Context refreshed
-2020-04-01 19:42:41,798 INFO com.netflix.discovery.DiscoveryClient [DiscoveryClient-InstanceInfoReplicator-0] DiscoveryClient_AUTOSKOLA-PROGRAM/localhost:autoskola-program:8080: registering service...
-2020-04-01 19:42:41,981 INFO springfox.documentation.spring.web.plugins.DocumentationPluginsBootstrapper [main] Found 1 custom documentation plugin(s)
-2020-04-01 19:42:42,375 INFO springfox.documentation.spring.web.scanners.ApiListingReferenceScanner [main] Scanning for api listing references
-2020-04-01 19:42:42,900 INFO com.netflix.discovery.DiscoveryClient [DiscoveryClient-InstanceInfoReplicator-0] DiscoveryClient_AUTOSKOLA-PROGRAM/localhost:autoskola-program:8080 - registration status: 204
-2020-04-01 19:42:43,789 INFO springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator [main] Generating unique operation named: getCompletedRidesUsingGET_1
-2020-04-01 19:42:43,928 INFO org.apache.juli.logging.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8080"]
-2020-04-01 19:42:44,482 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port(s): 8080 (http) with context path ''
-2020-04-01 19:42:44,484 INFO org.springframework.cloud.netflix.eureka.serviceregistry.EurekaAutoServiceRegistration [main] Updating port to 8080
-2020-04-01 19:42:45,998 INFO org.springframework.cloud.commons.util.InetUtils [main] Cannot determine local hostname
-2020-04-01 19:42:47,374 INFO org.springframework.cloud.commons.util.InetUtils [main] Cannot determine local hostname
-2020-04-01 19:42:47,377 INFO org.springframework.boot.StartupInfoLogger [main] Started Application in 62.253 seconds (JVM running for 64.602)
-2020-04-01 19:42:53,606 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8080-exec-3] Initializing Spring DispatcherServlet 'dispatcherServlet'
-2020-04-01 19:42:53,607 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-3] Initializing Servlet 'dispatcherServlet'
-2020-04-01 19:42:53,640 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-3] Completed initialization in 32 ms
-2020-04-01 19:42:55,516 TRACE com.example.AutoskolaDemoWithSecurity.filters.LogFilter [http-nio-8080-exec-3] Address: 0:0:0:0:0:0:0:1, Port: 55099, Host: 0:0:0:0:0:0:0:1, User: ivan@gmail.com, URI: /student/cancelRide/234, method: POST
-2020-04-01 19:42:55,648 INFO com.example.AutoskolaDemoWithSecurity.interceptors.AuthInterceptor [http-nio-8080-exec-3] Relation ID is OK, user: ivan@gmail.com, ID: 199
-2020-04-01 19:42:56,092 INFO com.example.AutoskolaDemoWithSecurity.interceptors.LogInterceptor [http-nio-8080-exec-3] Total time taken to process request: 0.552 seconds
-2020-04-01 19:42:56,607 INFO com.netflix.config.ChainedDynamicProperty$ChainLink [task-1] Flipping property: notification-service.ribbon.ActiveConnectionsLimit to use NEXT property: niws.loadbalancer.availabilityFilteringRule.activeConnectionsLimit = 2147483647
-2020-04-01 19:42:56,654 INFO com.netflix.util.concurrent.ShutdownEnabledTimer [task-1] Shutdown hook installed for: NFLoadBalancer-PingTimer-notification-service
-2020-04-01 19:42:56,664 INFO com.netflix.loadbalancer.BaseLoadBalancer [task-1] Client: notification-service instantiated a LoadBalancer: DynamicServerListLoadBalancer:{NFLoadBalancer:name=notification-service,current list of Servers=[],Load balancer stats=Zone stats: {},Server stats: []}ServerList:null
-2020-04-01 19:42:56,689 INFO com.netflix.loadbalancer.DynamicServerListLoadBalancer [task-1] Using serverListUpdater PollingServerListUpdater
-2020-04-01 19:42:56,726 INFO com.netflix.config.ChainedDynamicProperty$ChainLink [task-1] Flipping property: notification-service.ribbon.ActiveConnectionsLimit to use NEXT property: niws.loadbalancer.availabilityFilteringRule.activeConnectionsLimit = 2147483647
-2020-04-01 19:42:56,729 INFO com.netflix.loadbalancer.DynamicServerListLoadBalancer [task-1] DynamicServerListLoadBalancer for client notification-service initialized: DynamicServerListLoadBalancer:{NFLoadBalancer:name=notification-service,current list of Servers=[localhost:8081],Load balancer stats=Zone stats: {defaultzone=[Zone:defaultzone;	Instance count:1;	Active connections count: 0;	Circuit breaker tripped count: 0;	Active connections per server: 0.0;]
-},Server stats: [[Server:localhost:8081;	Zone:defaultZone;	Total Requests:0;	Successive connection failure:0;	Total blackout seconds:0;	Last connection made:Thu Jan 01 01:00:00 CET 1970;	First connection made: Thu Jan 01 01:00:00 CET 1970;	Active Connections:0;	total failure count in last (1000) msecs:0;	average resp time:0.0;	90 percentile resp time:0.0;	95 percentile resp time:0.0;	min resp time:0.0;	max resp time:0.0;	stddev resp time:0.0]
-]}ServerList:org.springframework.cloud.netflix.ribbon.eureka.DomainExtractingServerList@3beeafc9
-2020-04-01 19:42:57,699 INFO com.netflix.config.ChainedDynamicProperty$ChainLink [PollingServerListUpdater-0] Flipping property: notification-service.ribbon.ActiveConnectionsLimit to use NEXT property: niws.loadbalancer.availabilityFilteringRule.activeConnectionsLimit = 2147483647
-2020-04-01 19:42:58,147 INFO com.example.AutoskolaDemoWithSecurity.services.NotificationMessageService [task-1] Response from notification service: 200, Notification has been sent
-2020-04-01 19:43:45,371 TRACE com.example.AutoskolaDemoWithSecurity.filters.LogFilter [http-nio-8080-exec-2] Address: 0:0:0:0:0:0:0:1, Port: 55099, Host: 0:0:0:0:0:0:0:1, User: null, URI: /authenticate/login, method: POST
-2020-04-01 19:43:45,902 INFO com.example.AutoskolaDemoWithSecurity.interceptors.LogInterceptor [http-nio-8080-exec-2] Total time taken to process request: 0.53 seconds
-2020-04-01 19:44:06,239 TRACE com.example.AutoskolaDemoWithSecurity.filters.LogFilter [http-nio-8080-exec-4] Address: 0:0:0:0:0:0:0:1, Port: 55099, Host: 0:0:0:0:0:0:0:1, User: robert21@gmail.com, URI: /instructor/removeRides, method: DELETE
-2020-04-01 19:44:06,248 INFO com.example.AutoskolaDemoWithSecurity.interceptors.AuthInterceptor [http-nio-8080-exec-4] Relation ID is OK, user: robert21@gmail.com, ID: 109
-2020-04-01 19:44:06,498 INFO com.example.AutoskolaDemoWithSecurity.interceptors.LogInterceptor [http-nio-8080-exec-4] Total time taken to process request: 0.257 seconds
-2020-04-01 19:45:50,442 TRACE com.example.AutoskolaDemoWithSecurity.filters.LogFilter [http-nio-8080-exec-5] Address: 0:0:0:0:0:0:0:1, Port: 55322, Host: 0:0:0:0:0:0:0:1, User: robert21@gmail.com, URI: /instructor/removeRides, method: DELETE
-2020-04-01 19:45:50,459 INFO com.example.AutoskolaDemoWithSecurity.interceptors.AuthInterceptor [http-nio-8080-exec-5] Relation ID is OK, user: robert21@gmail.com, ID: 109
-2020-04-01 19:45:50,497 INFO com.example.AutoskolaDemoWithSecurity.interceptors.LogInterceptor [http-nio-8080-exec-5] Total time taken to process request: 0.054 seconds
-2020-04-01 19:45:50,567 INFO com.example.AutoskolaDemoWithSecurity.services.NotificationMessageService [task-2] Response from notification service: 200, Notification has been sent
-2020-04-01 19:47:41,323 INFO com.netflix.discovery.shared.resolver.aws.ConfigClusterResolver [AsyncResolver-bootstrap-executor-0] Resolving eureka endpoints via configuration
-2020-04-01 19:49:04,980 TRACE com.example.AutoskolaDemoWithSecurity.filters.LogFilter [http-nio-8080-exec-10] Address: 0:0:0:0:0:0:0:1, Port: 55572, Host: 0:0:0:0:0:0:0:1, User: ivan@gmail.com, URI: /student/cancelRide/230, method: POST
-2020-04-01 19:49:04,989 INFO com.example.AutoskolaDemoWithSecurity.interceptors.AuthInterceptor [http-nio-8080-exec-10] Relation ID is OK, user: ivan@gmail.com, ID: 199
-2020-04-01 19:49:05,061 INFO com.example.AutoskolaDemoWithSecurity.interceptors.LogInterceptor [http-nio-8080-exec-10] Total time taken to process request: 0.079 seconds
-2020-04-01 19:49:05,249 ERROR org.springframework.aop.interceptor.SimpleAsyncUncaughtExceptionHandler [task-3] Unexpected exception occurred invoking async method: public void com.example.AutoskolaDemoWithSecurity.services.NotificationMessageService.addPushNotification(com.example.AutoskolaDemoWithSecurity.models.databaseModels.User,com.example.AutoskolaDemoWithSecurity.models.databaseModels.DrivingSchool,java.lang.String)
-org.springframework.web.reactive.function.client.WebClientResponseException$BadRequest: 400 Bad Request from POST http://localhost:8081/postMessage
-	at org.springframework.web.reactive.function.client.WebClientResponseException.create(WebClientResponseException.java:179)
-	Suppressed: reactor.core.publisher.FluxOnAssembly$OnAssemblyException: 
-Error has been observed at the following site(s):
-	|_ checkpoint ? 400 from POST http://notification-service/postMessage [DefaultWebClient]
-Stack trace:
-		at org.springframework.web.reactive.function.client.WebClientResponseException.create(WebClientResponseException.java:179)
-		at org.springframework.web.reactive.function.client.DefaultClientResponse.lambda$createException$1(DefaultClientResponse.java:209)
-		at reactor.core.publisher.FluxMap$MapSubscriber.onNext(FluxMap.java:100)
-		at reactor.core.publisher.FluxDefaultIfEmpty$DefaultIfEmptySubscriber.onNext(FluxDefaultIfEmpty.java:92)
-		at reactor.core.publisher.FluxMapFuseable$MapFuseableSubscriber.onNext(FluxMapFuseable.java:121)
-		at reactor.core.publisher.FluxContextStart$ContextStartSubscriber.onNext(FluxContextStart.java:103)
-		at reactor.core.publisher.FluxMapFuseable$MapFuseableConditionalSubscriber.onNext(FluxMapFuseable.java:287)
-		at reactor.core.publisher.FluxFilterFuseable$FilterFuseableConditionalSubscriber.onNext(FluxFilterFuseable.java:330)
-		at reactor.core.publisher.Operators$MonoSubscriber.complete(Operators.java:1705)
-		at reactor.core.publisher.MonoCollect$CollectSubscriber.onComplete(MonoCollect.java:160)
-		at reactor.core.publisher.FluxMap$MapSubscriber.onComplete(FluxMap.java:136)
-		at reactor.core.publisher.FluxPeek$PeekSubscriber.onComplete(FluxPeek.java:252)
-		at reactor.core.publisher.FluxPeek$PeekSubscriber.onComplete(FluxPeek.java:252)
-		at reactor.core.publisher.FluxMap$MapSubscriber.onComplete(FluxMap.java:136)
-		at reactor.netty.channel.FluxReceive.terminateReceiver(FluxReceive.java:419)
-		at reactor.netty.channel.FluxReceive.drainReceiver(FluxReceive.java:209)
-		at reactor.netty.channel.FluxReceive.onInboundComplete(FluxReceive.java:367)
-		at reactor.netty.channel.ChannelOperations.onInboundComplete(ChannelOperations.java:363)
-		at reactor.netty.channel.ChannelOperations.terminate(ChannelOperations.java:412)
-		at reactor.netty.http.client.HttpClientOperations.onInboundNext(HttpClientOperations.java:585)
-		at reactor.netty.channel.ChannelOperationsHandler.channelRead(ChannelOperationsHandler.java:90)
-		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:377)
-		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:363)
-		at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:355)
-		at io.netty.handler.codec.MessageToMessageDecoder.channelRead(MessageToMessageDecoder.java:102)
-		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:377)
-		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:363)
-		at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:355)
-		at io.netty.channel.CombinedChannelDuplexHandler$DelegatingChannelHandlerContext.fireChannelRead(CombinedChannelDuplexHandler.java:436)
-		at io.netty.handler.codec.ByteToMessageDecoder.fireChannelRead(ByteToMessageDecoder.java:321)
-		at io.netty.handler.codec.ByteToMessageDecoder.channelRead(ByteToMessageDecoder.java:295)
-		at io.netty.channel.CombinedChannelDuplexHandler.channelRead(CombinedChannelDuplexHandler.java:251)
-		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:377)
-		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:363)
-		at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:355)
-		at io.netty.channel.DefaultChannelPipeline$HeadContext.channelRead(DefaultChannelPipeline.java:1410)
-		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:377)
-		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:363)
-		at io.netty.channel.DefaultChannelPipeline.fireChannelRead(DefaultChannelPipeline.java:919)
-		at io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:163)
-		at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:714)
-		at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:650)
-		at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:576)
-		at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:493)
-		at io.netty.util.concurrent.SingleThreadEventExecutor$4.run(SingleThreadEventExecutor.java:989)
-		at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74)
-		at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)
-		at java.base/java.lang.Thread.run(Thread.java:830)
-	Suppressed: java.lang.Exception: #block terminated with an error
-		at reactor.core.publisher.BlockingSingleSubscriber.blockingGet(BlockingSingleSubscriber.java:99)
-		at reactor.core.publisher.Mono.block(Mono.java:1664)
-		at com.example.AutoskolaDemoWithSecurity.services.NotificationMessageService.sendPushNotification(NotificationMessageService.java:103)
-		at com.example.AutoskolaDemoWithSecurity.services.NotificationMessageService.addPushNotification(NotificationMessageService.java:52)
-		at com.example.AutoskolaDemoWithSecurity.services.NotificationMessageService$$FastClassBySpringCGLIB$$194b1230.invoke(<generated>)
-		at org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:218)
-		at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.invokeJoinpoint(CglibAopProxy.java:769)
-		at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:163)
-		at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:747)
-		at org.springframework.aop.interceptor.AsyncExecutionInterceptor.lambda$invoke$0(AsyncExecutionInterceptor.java:115)
-		at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
-		at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
-		at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
-		at java.base/java.lang.Thread.run(Thread.java:830)
-2020-04-01 19:49:33,499 TRACE com.example.AutoskolaDemoWithSecurity.filters.LogFilter [http-nio-8080-exec-1] Address: 0:0:0:0:0:0:0:1, Port: 55572, Host: 0:0:0:0:0:0:0:1, User: ivan@gmail.com, URI: /student/reserveRide/230, method: POST
-2020-04-01 19:49:33,510 INFO com.example.AutoskolaDemoWithSecurity.interceptors.AuthInterceptor [http-nio-8080-exec-1] Relation ID is OK, user: ivan@gmail.com, ID: 199
-2020-04-01 19:49:33,531 INFO com.example.AutoskolaDemoWithSecurity.interceptors.LogInterceptor [http-nio-8080-exec-1] Total time taken to process request: 0.03 seconds
-2020-04-01 19:49:47,109 TRACE com.example.AutoskolaDemoWithSecurity.filters.LogFilter [http-nio-8080-exec-3] Address: 0:0:0:0:0:0:0:1, Port: 55572, Host: 0:0:0:0:0:0:0:1, User: null, URI: /authenticate/login, method: POST
-2020-04-01 19:49:47,291 INFO com.example.AutoskolaDemoWithSecurity.interceptors.LogInterceptor [http-nio-8080-exec-3] Total time taken to process request: 0.181 seconds
-2020-04-01 19:52:41,335 INFO com.netflix.discovery.shared.resolver.aws.ConfigClusterResolver [AsyncResolver-bootstrap-executor-0] Resolving eureka endpoints via configuration
-2020-04-01 19:57:41,338 INFO com.netflix.discovery.shared.resolver.aws.ConfigClusterResolver [AsyncResolver-bootstrap-executor-0] Resolving eureka endpoints via configuration
-2020-04-01 20:02:41,350 INFO com.netflix.discovery.shared.resolver.aws.ConfigClusterResolver [AsyncResolver-bootstrap-executor-0] Resolving eureka endpoints via configuration
-2020-04-01 20:07:41,352 INFO com.netflix.discovery.shared.resolver.aws.ConfigClusterResolver [AsyncResolver-bootstrap-executor-0] Resolving eureka endpoints via configuration
-2020-04-01 20:12:41,366 INFO com.netflix.discovery.shared.resolver.aws.ConfigClusterResolver [AsyncResolver-bootstrap-executor-0] Resolving eureka endpoints via configuration
-2020-04-01 20:17:41,368 INFO com.netflix.discovery.shared.resolver.aws.ConfigClusterResolver [AsyncResolver-bootstrap-executor-0] Resolving eureka endpoints via configuration
-2020-04-01 20:20:49,505 TRACE com.example.AutoskolaDemoWithSecurity.filters.LogFilter [http-nio-8080-exec-6] Address: 0:0:0:0:0:0:0:1, Port: 58420, Host: 0:0:0:0:0:0:0:1, User: null, URI: /authenticate/login, method: POST
-2020-04-01 20:20:51,385 INFO com.example.AutoskolaDemoWithSecurity.interceptors.LogInterceptor [http-nio-8080-exec-6] Total time taken to process request: 1.856 seconds
-2020-04-01 20:22:41,370 INFO com.netflix.discovery.shared.resolver.aws.ConfigClusterResolver [AsyncResolver-bootstrap-executor-0] Resolving eureka endpoints via configuration
-2020-04-01 20:27:41,372 INFO com.netflix.discovery.shared.resolver.aws.ConfigClusterResolver [AsyncResolver-bootstrap-executor-0] Resolving eureka endpoints via configuration
-2020-04-01 20:32:41,380 INFO com.netflix.discovery.shared.resolver.aws.ConfigClusterResolver [AsyncResolver-bootstrap-executor-0] Resolving eureka endpoints via configuration
-2020-04-01 20:37:41,395 INFO com.netflix.discovery.shared.resolver.aws.ConfigClusterResolver [AsyncResolver-bootstrap-executor-0] Resolving eureka endpoints via configuration
-2020-04-01 20:42:41,489 INFO com.netflix.discovery.shared.resolver.aws.ConfigClusterResolver [AsyncResolver-bootstrap-executor-0] Resolving eureka endpoints via configuration
-2020-04-01 20:47:41,605 INFO com.netflix.discovery.shared.resolver.aws.ConfigClusterResolver [AsyncResolver-bootstrap-executor-0] Resolving eureka endpoints via configuration
-2020-04-01 20:49:33,295 TRACE com.example.AutoskolaDemoWithSecurity.filters.LogFilter [http-nio-8080-exec-8] Address: 0:0:0:0:0:0:0:1, Port: 55933, Host: 0:0:0:0:0:0:0:1, User: null, URI: /authenticate/login, method: POST
-2020-04-01 20:49:35,258 INFO com.example.AutoskolaDemoWithSecurity.interceptors.LogInterceptor [http-nio-8080-exec-8] Total time taken to process request: 1.9000000000000001 seconds
-2020-04-01 20:49:35,286 ERROR org.apache.juli.logging.DirectJDKLog [http-nio-8080-exec-8] Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is org.springframework.web.reactive.function.client.WebClientResponseException$Forbidden: 403 Forbidden from GET http://localhost:8081/getEmitterID/robert21@gmail.com] with root cause
-org.springframework.web.reactive.function.client.WebClientResponseException$Forbidden: 403 Forbidden from GET http://localhost:8081/getEmitterID/robert21@gmail.com
-	at org.springframework.web.reactive.function.client.WebClientResponseException.create(WebClientResponseException.java:183)
-	Suppressed: reactor.core.publisher.FluxOnAssembly$OnAssemblyException: 
-Error has been observed at the following site(s):
-	|_ checkpoint ? 403 from GET http://notification-service/getEmitterID/robert21@gmail.com [DefaultWebClient]
-Stack trace:
-		at org.springframework.web.reactive.function.client.WebClientResponseException.create(WebClientResponseException.java:183)
-		at org.springframework.web.reactive.function.client.DefaultClientResponse.lambda$createException$1(DefaultClientResponse.java:209)
-		at reactor.core.publisher.FluxMap$MapSubscriber.onNext(FluxMap.java:100)
-		at reactor.core.publisher.FluxDefaultIfEmpty$DefaultIfEmptySubscriber.onNext(FluxDefaultIfEmpty.java:92)
-		at reactor.core.publisher.FluxMapFuseable$MapFuseableSubscriber.onNext(FluxMapFuseable.java:121)
-		at reactor.core.publisher.FluxContextStart$ContextStartSubscriber.onNext(FluxContextStart.java:103)
-		at reactor.core.publisher.FluxMapFuseable$MapFuseableConditionalSubscriber.onNext(FluxMapFuseable.java:287)
-		at reactor.core.publisher.FluxFilterFuseable$FilterFuseableConditionalSubscriber.onNext(FluxFilterFuseable.java:330)
-		at reactor.core.publisher.Operators$MonoSubscriber.complete(Operators.java:1705)
-		at reactor.core.publisher.MonoCollect$CollectSubscriber.onComplete(MonoCollect.java:160)
-		at reactor.core.publisher.FluxMap$MapSubscriber.onComplete(FluxMap.java:136)
-		at reactor.core.publisher.FluxPeek$PeekSubscriber.onComplete(FluxPeek.java:252)
-		at reactor.core.publisher.FluxPeek$PeekSubscriber.onComplete(FluxPeek.java:252)
-		at reactor.core.publisher.FluxMap$MapSubscriber.onComplete(FluxMap.java:136)
-		at reactor.netty.channel.FluxReceive.terminateReceiver(FluxReceive.java:419)
-		at reactor.netty.channel.FluxReceive.drainReceiver(FluxReceive.java:209)
-		at reactor.netty.channel.FluxReceive.onInboundComplete(FluxReceive.java:367)
-		at reactor.netty.channel.ChannelOperations.onInboundComplete(ChannelOperations.java:363)
-		at reactor.netty.channel.ChannelOperations.terminate(ChannelOperations.java:412)
-		at reactor.netty.http.client.HttpClientOperations.onInboundNext(HttpClientOperations.java:585)
-		at reactor.netty.channel.ChannelOperationsHandler.channelRead(ChannelOperationsHandler.java:90)
-		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:377)
-		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:363)
-		at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:355)
-		at io.netty.handler.codec.MessageToMessageDecoder.channelRead(MessageToMessageDecoder.java:102)
-		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:377)
-		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:363)
-		at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:355)
-		at io.netty.channel.CombinedChannelDuplexHandler$DelegatingChannelHandlerContext.fireChannelRead(CombinedChannelDuplexHandler.java:436)
-		at io.netty.handler.codec.ByteToMessageDecoder.fireChannelRead(ByteToMessageDecoder.java:321)
-		at io.netty.handler.codec.ByteToMessageDecoder.channelRead(ByteToMessageDecoder.java:295)
-		at io.netty.channel.CombinedChannelDuplexHandler.channelRead(CombinedChannelDuplexHandler.java:251)
-		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:377)
-		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:363)
-		at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:355)
-		at io.netty.channel.DefaultChannelPipeline$HeadContext.channelRead(DefaultChannelPipeline.java:1410)
-		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:377)
-		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:363)
-		at io.netty.channel.DefaultChannelPipeline.fireChannelRead(DefaultChannelPipeline.java:919)
-		at io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:163)
-		at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:714)
-		at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:650)
-		at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:576)
-		at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:493)
-		at io.netty.util.concurrent.SingleThreadEventExecutor$4.run(SingleThreadEventExecutor.java:989)
-		at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74)
-		at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)
-		at java.base/java.lang.Thread.run(Thread.java:830)
-	Suppressed: java.lang.Exception: #block terminated with an error
-		at reactor.core.publisher.BlockingSingleSubscriber.blockingGet(BlockingSingleSubscriber.java:139)
-		at reactor.core.publisher.Mono.block(Mono.java:1688)
-		at com.example.AutoskolaDemoWithSecurity.services.NotificationMessageService.getEmitterID(NotificationMessageService.java:115)
-		at com.example.AutoskolaDemoWithSecurity.services.NotificationMessageService$$FastClassBySpringCGLIB$$194b1230.invoke(<generated>)
-		at org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:218)
-		at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:685)
-		at com.example.AutoskolaDemoWithSecurity.services.NotificationMessageService$$EnhancerBySpringCGLIB$$bfdca63a.getEmitterID(<generated>)
-		at com.example.AutoskolaDemoWithSecurity.controllers.AuthenticateController.login(AuthenticateController.java:149)
-		at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-		at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-		at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-		at java.base/java.lang.reflect.Method.invoke(Method.java:567)
-		at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:190)
-		at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:138)
-		at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:106)
-		at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:879)
-		at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:793)
-		at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
-		at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1040)
-		at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:943)
-		at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006)
-		at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:909)
-		at javax.servlet.http.HttpServlet.service(HttpServlet.java:660)
-		at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883)
-		at javax.servlet.http.HttpServlet.service(HttpServlet.java:741)
-		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231)
-		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
-		at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
-		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
-		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
-		at com.example.AutoskolaDemoWithSecurity.filters.LogFilter.doFilterInternal(LogFilter.java:31)
-		at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
-		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
-		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
-		at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:113)
-		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
-		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
-		at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:113)
-		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
-		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
-		at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:320)
-		at org.springframework.security.web.access.intercept.FilterSecurityInterceptor.invoke(FilterSecurityInterceptor.java:126)
-		at org.springframework.security.web.access.intercept.FilterSecurityInterceptor.doFilter(FilterSecurityInterceptor.java:90)
-		at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
-		at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:118)
-		at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
-		at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:137)
-		at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
-		at org.springframework.security.web.authentication.AnonymousAuthenticationFilter.doFilter(AnonymousAuthenticationFilter.java:111)
-		at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
-		at org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter.doFilter(SecurityContextHolderAwareRequestFilter.java:158)
-		at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
-		at org.springframework.security.web.savedrequest.RequestCacheAwareFilter.doFilter(RequestCacheAwareFilter.java:63)
-		at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
-		at com.example.AutoskolaDemoWithSecurity.filters.JwtRequestFilter.doFilterInternal(JwtRequestFilter.java:76)
-		at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
-		at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
-		at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:116)
-		at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
-		at com.example.AutoskolaDemoWithSecurity.filters.FilterExceptionHandler.doFilterInternal(FilterExceptionHandler.java:30)
-		at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
-		at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
-		at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:92)
-		at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:77)
-		at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
-		at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
-		at org.springframework.security.web.context.SecurityContextPersistenceFilter.doFilter(SecurityContextPersistenceFilter.java:105)
-		at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
-		at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:56)
-		at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
-		at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
-		at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:215)
-		at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:178)
-		at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:358)
-		at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:271)
-		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
-		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
-		at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
-		at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
-		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
-		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
-		at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
-		at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
-		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
-		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
-		at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
-		at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
-		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
-		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
-		at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:202)
-		at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96)
-		at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:541)
-		at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139)
-		at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
-		at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
-		at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343)
-		at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:367)
-		at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
-		at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:868)
-		at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1639)
-		at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
-		at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
-		at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
-		at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
-		at java.base/java.lang.Thread.run(Thread.java:830)
-2020-04-01 20:49:35,446 ERROR com.example.AutoskolaDemoWithSecurity.errorApi.RestExceptionHandler [http-nio-8080-exec-8] Timestamp: 2020-04-01T20:49:35.413633, Status: 500 INTERNAL_SERVER_ERROR, Message: Exception hodena v interceptori, RelationID = null
-2020-04-01 20:49:35,528 INFO com.example.AutoskolaDemoWithSecurity.interceptors.LogInterceptor [http-nio-8080-exec-8] Total time taken to process request: 0.17500000000000002 seconds
-2020-04-01 20:52:30,521 TRACE com.example.AutoskolaDemoWithSecurity.filters.LogFilter [http-nio-8080-exec-10] Address: 0:0:0:0:0:0:0:1, Port: 56214, Host: 0:0:0:0:0:0:0:1, User: null, URI: /authenticate/login, method: POST
-2020-04-01 20:52:31,336 INFO com.example.AutoskolaDemoWithSecurity.interceptors.LogInterceptor [http-nio-8080-exec-10] Total time taken to process request: 0.8140000000000001 seconds
-2020-04-01 20:52:41,609 INFO com.netflix.discovery.shared.resolver.aws.ConfigClusterResolver [AsyncResolver-bootstrap-executor-0] Resolving eureka endpoints via configuration
-2020-04-01 20:58:52,410 INFO org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker [main] Bean 'org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration' of type [org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2020-04-01 20:58:54,111 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
-2020-04-01 20:58:57,156 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2020-04-01 20:58:57,576 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 391ms. Found 13 JPA repository interfaces.
-2020-04-01 20:58:58,334 INFO org.springframework.cloud.context.scope.GenericScope [main] BeanFactory id=d22e730e-f3b5-3cd3-8619-381be231f7f5
-2020-04-01 20:58:59,047 INFO org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker [main] Bean 'org.springframework.security.config.annotation.configuration.ObjectPostProcessorConfiguration' of type [org.springframework.security.config.annotation.configuration.ObjectPostProcessorConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2020-04-01 20:58:59,064 INFO org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker [main] Bean 'objectPostProcessor' of type [org.springframework.security.config.annotation.configuration.AutowireBeanFactoryObjectPostProcessor] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2020-04-01 20:58:59,070 INFO org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker [main] Bean 'org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler@1edfedf1' of type [org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2020-04-01 20:58:59,074 INFO org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker [main] Bean 'org.springframework.security.config.annotation.method.configuration.GlobalMethodSecurityConfiguration' of type [org.springframework.security.config.annotation.method.configuration.GlobalMethodSecurityConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2020-04-01 20:58:59,086 INFO org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker [main] Bean 'org.springframework.security.config.annotation.method.configuration.Jsr250MetadataSourceConfiguration' of type [org.springframework.security.config.annotation.method.configuration.Jsr250MetadataSourceConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2020-04-01 20:58:59,088 INFO org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker [main] Bean 'jsr250MethodSecurityMetadataSource' of type [org.springframework.security.access.annotation.Jsr250MethodSecurityMetadataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2020-04-01 20:58:59,091 INFO org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker [main] Bean 'methodSecurityMetadataSource' of type [org.springframework.security.access.method.DelegatingMethodSecurityMetadataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2020-04-01 20:58:59,127 INFO org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker [main] Bean 'org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration' of type [org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2020-04-01 20:58:59,136 INFO org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker [main] Bean 'org.springframework.cloud.client.loadbalancer.reactive.LoadBalancerBeanPostProcessorAutoConfiguration' of type [org.springframework.cloud.client.loadbalancer.reactive.LoadBalancerBeanPostProcessorAutoConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2020-04-01 20:58:59,141 INFO org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker [main] Bean 'org.springframework.cloud.client.loadbalancer.reactive.LoadBalancerBeanPostProcessorAutoConfiguration$ReactiveLoadBalancerConfig' of type [org.springframework.cloud.client.loadbalancer.reactive.LoadBalancerBeanPostProcessorAutoConfiguration$ReactiveLoadBalancerConfig] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2020-04-01 20:58:59,145 INFO org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker [main] Bean 'deferringLoadBalancerExchangeFilterFunction' of type [org.springframework.cloud.client.loadbalancer.reactive.DeferringLoadBalancerExchangeFilterFunction] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2020-04-01 20:59:00,341 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port(s): 8080 (http)
-2020-04-01 20:59:00,360 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8080"]
-2020-04-01 20:59:00,362 INFO org.apache.juli.logging.DirectJDKLog [main] Starting service [Tomcat]
-2020-04-01 20:59:00,362 INFO org.apache.juli.logging.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/9.0.31]
-2020-04-01 20:59:00,745 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
-2020-04-01 20:59:00,747 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 6564 ms
-2020-04-01 20:59:01,403 INFO org.hibernate.jpa.internal.util.LogHelper [main] HHH000204: Processing PersistenceUnitInfo [name: default]
-2020-04-01 20:59:01,546 INFO org.hibernate.Version [main] HHH000412: Hibernate ORM core version 5.4.12.Final
-2020-04-01 20:59:01,793 INFO org.hibernate.annotations.common.reflection.java.JavaReflectionManager [main] HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
-2020-04-01 20:59:01,977 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Starting...
-2020-04-01 20:59:02,313 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Start completed.
-2020-04-01 20:59:02,349 INFO org.hibernate.dialect.Dialect [main] HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
-2020-04-01 20:59:06,153 INFO org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator [main] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2020-04-01 20:59:06,164 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
-2020-04-01 20:59:06,891 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2020-04-01 20:59:08,503 INFO org.springframework.cloud.commons.util.InetUtils [main] Cannot determine local hostname
-2020-04-01 20:59:09,002 DEBUG org.springframework.web.filter.GenericFilterBean [main] Filter 'logFilter' configured for use
-2020-04-01 20:59:09,003 DEBUG org.springframework.web.filter.GenericFilterBean [main] Filter 'filterExceptionHandler' configured for use
-2020-04-01 20:59:09,006 DEBUG org.springframework.web.filter.GenericFilterBean [main] Filter 'jwtRequestFilter' configured for use
-2020-04-01 20:59:10,823 INFO org.springframework.security.web.DefaultSecurityFilterChain [main] Creating filter chain: Ant [pattern='/v2/api-docs'], []
-2020-04-01 20:59:10,823 INFO org.springframework.security.web.DefaultSecurityFilterChain [main] Creating filter chain: Ant [pattern='/configuration/ui'], []
-2020-04-01 20:59:10,823 INFO org.springframework.security.web.DefaultSecurityFilterChain [main] Creating filter chain: Ant [pattern='/swagger-resources/**'], []
-2020-04-01 20:59:10,825 INFO org.springframework.security.web.DefaultSecurityFilterChain [main] Creating filter chain: Ant [pattern='/configuration/**'], []
-2020-04-01 20:59:10,827 INFO org.springframework.security.web.DefaultSecurityFilterChain [main] Creating filter chain: Ant [pattern='/swagger-ui.html'], []
-2020-04-01 20:59:10,831 INFO org.springframework.security.web.DefaultSecurityFilterChain [main] Creating filter chain: Ant [pattern='/webjars/**'], []
-2020-04-01 20:59:10,895 INFO org.springframework.security.web.DefaultSecurityFilterChain [main] Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@c53dfb2, org.springframework.security.web.context.SecurityContextPersistenceFilter@1e470a51, org.springframework.security.web.header.HeaderWriterFilter@4f45290f, com.example.AutoskolaDemoWithSecurity.filters.FilterExceptionHandler@6003220a, org.springframework.security.web.authentication.logout.LogoutFilter@48d84d75, com.example.AutoskolaDemoWithSecurity.filters.JwtRequestFilter@d970881, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@5b784f16, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@78907a46, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@3f16a823, org.springframework.security.web.session.SessionManagementFilter@5add0cc0, org.springframework.security.web.access.ExceptionTranslationFilter@3a33d655, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@272de8ab]
-2020-04-01 20:59:10,946 INFO springfox.documentation.spring.web.PropertySourcedRequestMappingHandlerMapping [main] Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
-2020-04-01 20:59:11,021 WARN com.netflix.config.sources.URLConfigurationSource [main] No URLs will be polled as dynamic configuration sources.
-2020-04-01 20:59:11,022 INFO com.netflix.config.sources.URLConfigurationSource [main] To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
-2020-04-01 20:59:11,104 WARN com.netflix.config.sources.URLConfigurationSource [main] No URLs will be polled as dynamic configuration sources.
-2020-04-01 20:59:11,104 INFO com.netflix.config.sources.URLConfigurationSource [main] To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
-2020-04-01 20:59:11,369 INFO org.springframework.scheduling.concurrent.ExecutorConfigurationSupport [main] Initializing ExecutorService 'applicationTaskExecutor'
-2020-04-01 20:59:11,778 INFO org.springframework.scheduling.concurrent.ExecutorConfigurationSupport [main] Initializing ExecutorService 'taskScheduler'
-2020-04-01 20:59:14,112 INFO org.springframework.cloud.commons.util.InetUtils [main] Cannot determine local hostname
-2020-04-01 20:59:15,736 INFO org.springframework.cloud.commons.util.InetUtils [main] Cannot determine local hostname
-2020-04-01 20:59:17,312 INFO org.springframework.cloud.commons.util.InetUtils [main] Cannot determine local hostname
-2020-04-01 20:59:18,814 INFO org.springframework.cloud.commons.util.InetUtils [main] Cannot determine local hostname
-2020-04-01 20:59:18,834 WARN org.springframework.cloud.loadbalancer.config.BlockingLoadBalancerClientAutoConfiguration$BlockingLoadBalancerClientRibbonWarnLogger [main] You already have RibbonLoadBalancerClient on your classpath. It will be used by default. As Spring Cloud Ribbon is in maintenance mode. We recommend switching to BlockingLoadBalancerClient instead. In order to use it, set the value of `spring.cloud.loadbalancer.ribbon.enabled` to `false` or remove spring-cloud-starter-netflix-ribbon from your project.
-2020-04-01 20:59:18,879 WARN org.springframework.cloud.client.loadbalancer.reactive.ReactorLoadBalancerClientAutoConfiguration$ReactorLoadBalancerClientRibbonWarnLogger [main] You have RibbonLoadBalancerClient on your classpath. LoadBalancerExchangeFilterFunction that uses it under the hood will be used by default. Spring Cloud Ribbon is now in maintenance mode, so we suggest switching to ReactorLoadBalancerExchangeFilterFunction instead. In order to use it, set the value of `spring.cloud.loadbalancer.ribbon.enabled` to `false` or remove spring-cloud-starter-netflix-ribbon from your project.
-2020-04-01 20:59:18,940 WARN org.springframework.cloud.loadbalancer.config.LoadBalancerCacheAutoConfiguration$LoadBalancerCaffeineWarnLogger [main] Spring Cloud LoadBalancer is currently working with default default cache. You can switch to using Caffeine cache, by adding it to the classpath.
-2020-04-01 20:59:19,056 INFO org.springframework.cloud.netflix.eureka.InstanceInfoFactory [main] Setting initial instance status as: STARTING
-2020-04-01 20:59:19,333 INFO com.netflix.discovery.DiscoveryClient [main] Initializing Eureka in region us-east-1
-2020-04-01 20:59:19,759 INFO com.netflix.discovery.provider.DiscoveryJerseyProvider [main] Using JSON encoding codec LegacyJacksonJson
-2020-04-01 20:59:19,762 INFO com.netflix.discovery.provider.DiscoveryJerseyProvider [main] Using JSON decoding codec LegacyJacksonJson
-2020-04-01 20:59:20,158 INFO com.netflix.discovery.provider.DiscoveryJerseyProvider [main] Using XML encoding codec XStreamXml
-2020-04-01 20:59:20,160 INFO com.netflix.discovery.provider.DiscoveryJerseyProvider [main] Using XML decoding codec XStreamXml
-2020-04-01 20:59:20,566 INFO com.netflix.discovery.shared.resolver.aws.ConfigClusterResolver [main] Resolving eureka endpoints via configuration
-2020-04-01 20:59:21,085 INFO com.netflix.discovery.DiscoveryClient [main] Disable delta property : false
-2020-04-01 20:59:21,090 INFO com.netflix.discovery.DiscoveryClient [main] Single vip registry refresh property : null
-2020-04-01 20:59:21,091 INFO com.netflix.discovery.DiscoveryClient [main] Force full registry fetch : false
-2020-04-01 20:59:21,092 INFO com.netflix.discovery.DiscoveryClient [main] Application is null : false
-2020-04-01 20:59:21,093 INFO com.netflix.discovery.DiscoveryClient [main] Registered Applications size is zero : true
-2020-04-01 20:59:21,094 INFO com.netflix.discovery.DiscoveryClient [main] Application version is -1: true
-2020-04-01 20:59:21,097 INFO com.netflix.discovery.DiscoveryClient [main] Getting all instance registry info from the eureka server
-2020-04-01 20:59:21,740 INFO com.netflix.discovery.DiscoveryClient [main] The response status is 200
-2020-04-01 20:59:21,750 INFO com.netflix.discovery.DiscoveryClient [main] Starting heartbeat executor: renew interval is: 30
-2020-04-01 20:59:21,795 INFO com.netflix.discovery.InstanceInfoReplicator [main] InstanceInfoReplicator onDemand update allowed rate per min is 4
-2020-04-01 20:59:21,811 INFO com.netflix.discovery.DiscoveryClient [main] Discovery Client initialized at timestamp 1585767561807 with initial instances count: 2
-2020-04-01 20:59:21,820 INFO org.springframework.cloud.netflix.eureka.serviceregistry.EurekaServiceRegistry [main] Registering application AUTOSKOLA-PROGRAM with eureka with status UP
-2020-04-01 20:59:21,821 INFO com.netflix.discovery.DiscoveryClient$3 [main] Saw local status change event StatusChangeEvent [timestamp=1585767561821, current=UP, previous=STARTING]
-2020-04-01 20:59:21,825 INFO springfox.documentation.spring.web.plugins.DocumentationPluginsBootstrapper [main] Context refreshed
-2020-04-01 20:59:21,900 INFO springfox.documentation.spring.web.plugins.DocumentationPluginsBootstrapper [main] Found 1 custom documentation plugin(s)
-2020-04-01 20:59:21,918 INFO com.netflix.discovery.DiscoveryClient [DiscoveryClient-InstanceInfoReplicator-0] DiscoveryClient_AUTOSKOLA-PROGRAM/localhost:autoskola-program:8080: registering service...
-2020-04-01 20:59:22,059 INFO com.netflix.discovery.DiscoveryClient [DiscoveryClient-InstanceInfoReplicator-0] DiscoveryClient_AUTOSKOLA-PROGRAM/localhost:autoskola-program:8080 - registration status: 204
-2020-04-01 20:59:22,070 INFO springfox.documentation.spring.web.scanners.ApiListingReferenceScanner [main] Scanning for api listing references
-2020-04-01 20:59:22,957 INFO springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator [main] Generating unique operation named: getCompletedRidesUsingGET_1
-2020-04-01 20:59:23,087 INFO org.apache.juli.logging.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8080"]
-2020-04-01 20:59:23,480 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port(s): 8080 (http) with context path ''
-2020-04-01 20:59:23,481 INFO org.springframework.cloud.netflix.eureka.serviceregistry.EurekaAutoServiceRegistration [main] Updating port to 8080
-2020-04-01 20:59:24,869 INFO org.springframework.cloud.commons.util.InetUtils [main] Cannot determine local hostname
-2020-04-01 20:59:26,246 INFO org.springframework.cloud.commons.util.InetUtils [main] Cannot determine local hostname
-2020-04-01 20:59:26,253 INFO org.springframework.boot.StartupInfoLogger [main] Started Application in 36.91 seconds (JVM running for 37.751)
-2020-04-01 21:04:09,673 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8080-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
-2020-04-01 21:04:09,674 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-1] Initializing Servlet 'dispatcherServlet'
-2020-04-01 21:04:09,697 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-1] Completed initialization in 23 ms
-2020-04-01 21:04:09,842 TRACE com.example.AutoskolaDemoWithSecurity.filters.LogFilter [http-nio-8080-exec-1] Address: 0:0:0:0:0:0:0:1, Port: 57296, Host: 0:0:0:0:0:0:0:1, User: null, URI: /authenticate/login, method: POST
-2020-04-01 21:04:12,375 INFO com.netflix.config.ChainedDynamicProperty$ChainLink [http-nio-8080-exec-1] Flipping property: notification-service.ribbon.ActiveConnectionsLimit to use NEXT property: niws.loadbalancer.availabilityFilteringRule.activeConnectionsLimit = 2147483647
-2020-04-01 21:04:12,420 INFO com.netflix.util.concurrent.ShutdownEnabledTimer [http-nio-8080-exec-1] Shutdown hook installed for: NFLoadBalancer-PingTimer-notification-service
-2020-04-01 21:04:12,424 INFO com.netflix.loadbalancer.BaseLoadBalancer [http-nio-8080-exec-1] Client: notification-service instantiated a LoadBalancer: DynamicServerListLoadBalancer:{NFLoadBalancer:name=notification-service,current list of Servers=[],Load balancer stats=Zone stats: {},Server stats: []}ServerList:null
-2020-04-01 21:04:12,440 INFO com.netflix.loadbalancer.DynamicServerListLoadBalancer [http-nio-8080-exec-1] Using serverListUpdater PollingServerListUpdater
-2020-04-01 21:04:12,472 INFO com.netflix.config.ChainedDynamicProperty$ChainLink [http-nio-8080-exec-1] Flipping property: notification-service.ribbon.ActiveConnectionsLimit to use NEXT property: niws.loadbalancer.availabilityFilteringRule.activeConnectionsLimit = 2147483647
-2020-04-01 21:04:12,475 INFO com.netflix.loadbalancer.DynamicServerListLoadBalancer [http-nio-8080-exec-1] DynamicServerListLoadBalancer for client notification-service initialized: DynamicServerListLoadBalancer:{NFLoadBalancer:name=notification-service,current list of Servers=[localhost:8081],Load balancer stats=Zone stats: {defaultzone=[Zone:defaultzone;	Instance count:1;	Active connections count: 0;	Circuit breaker tripped count: 0;	Active connections per server: 0.0;]
-},Server stats: [[Server:localhost:8081;	Zone:defaultZone;	Total Requests:0;	Successive connection failure:0;	Total blackout seconds:0;	Last connection made:Thu Jan 01 01:00:00 CET 1970;	First connection made: Thu Jan 01 01:00:00 CET 1970;	Active Connections:0;	total failure count in last (1000) msecs:0;	average resp time:0.0;	90 percentile resp time:0.0;	95 percentile resp time:0.0;	min resp time:0.0;	max resp time:0.0;	stddev resp time:0.0]
-]}ServerList:org.springframework.cloud.netflix.ribbon.eureka.DomainExtractingServerList@51de1a4d
-2020-04-01 21:04:13,450 INFO com.netflix.config.ChainedDynamicProperty$ChainLink [PollingServerListUpdater-0] Flipping property: notification-service.ribbon.ActiveConnectionsLimit to use NEXT property: niws.loadbalancer.availabilityFilteringRule.activeConnectionsLimit = 2147483647
-2020-04-01 21:04:15,674 INFO com.example.AutoskolaDemoWithSecurity.services.NotificationMessageService [http-nio-8080-exec-1] Notifikaèná služba nie je dostupná
-2020-04-01 21:04:15,710 INFO com.example.AutoskolaDemoWithSecurity.interceptors.LogInterceptor [http-nio-8080-exec-1] Total time taken to process request: 5.779 seconds
-2020-04-01 21:04:21,105 INFO com.netflix.discovery.shared.resolver.aws.ConfigClusterResolver [AsyncResolver-bootstrap-executor-0] Resolving eureka endpoints via configuration
+2020-04-04 01:51:05,282 INFO org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker [main] Bean 'org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration' of type [org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-04-04 01:51:07,528 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2020-04-04 01:51:11,128 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2020-04-04 01:51:11,598 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 447ms. Found 14 JPA repository interfaces.
+2020-04-04 01:51:12,407 INFO org.springframework.cloud.context.scope.GenericScope [main] BeanFactory id=13cbc1b9-1d6a-3532-94a1-dde6c035a15d
+2020-04-04 01:51:13,375 INFO org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker [main] Bean 'org.springframework.security.config.annotation.configuration.ObjectPostProcessorConfiguration' of type [org.springframework.security.config.annotation.configuration.ObjectPostProcessorConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-04-04 01:51:13,395 INFO org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker [main] Bean 'objectPostProcessor' of type [org.springframework.security.config.annotation.configuration.AutowireBeanFactoryObjectPostProcessor] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-04-04 01:51:13,398 INFO org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker [main] Bean 'org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler@19a5b637' of type [org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-04-04 01:51:13,401 INFO org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker [main] Bean 'org.springframework.security.config.annotation.method.configuration.GlobalMethodSecurityConfiguration' of type [org.springframework.security.config.annotation.method.configuration.GlobalMethodSecurityConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-04-04 01:51:13,416 INFO org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker [main] Bean 'org.springframework.security.config.annotation.method.configuration.Jsr250MetadataSourceConfiguration' of type [org.springframework.security.config.annotation.method.configuration.Jsr250MetadataSourceConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-04-04 01:51:13,418 INFO org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker [main] Bean 'jsr250MethodSecurityMetadataSource' of type [org.springframework.security.access.annotation.Jsr250MethodSecurityMetadataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-04-04 01:51:13,430 INFO org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker [main] Bean 'methodSecurityMetadataSource' of type [org.springframework.security.access.method.DelegatingMethodSecurityMetadataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-04-04 01:51:13,482 INFO org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker [main] Bean 'org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration' of type [org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-04-04 01:51:13,499 INFO org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker [main] Bean 'org.springframework.cloud.client.loadbalancer.reactive.LoadBalancerBeanPostProcessorAutoConfiguration' of type [org.springframework.cloud.client.loadbalancer.reactive.LoadBalancerBeanPostProcessorAutoConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-04-04 01:51:13,506 INFO org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker [main] Bean 'org.springframework.cloud.client.loadbalancer.reactive.LoadBalancerBeanPostProcessorAutoConfiguration$ReactiveLoadBalancerConfig' of type [org.springframework.cloud.client.loadbalancer.reactive.LoadBalancerBeanPostProcessorAutoConfiguration$ReactiveLoadBalancerConfig] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-04-04 01:51:13,516 INFO org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker [main] Bean 'deferringLoadBalancerExchangeFilterFunction' of type [org.springframework.cloud.client.loadbalancer.reactive.DeferringLoadBalancerExchangeFilterFunction] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-04-04 01:51:15,560 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port(s): 8080 (http)
+2020-04-04 01:51:15,607 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8080"]
+2020-04-04 01:51:15,607 INFO org.apache.juli.logging.DirectJDKLog [main] Starting service [Tomcat]
+2020-04-04 01:51:15,607 INFO org.apache.juli.logging.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/9.0.31]
+2020-04-04 01:51:16,061 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2020-04-04 01:51:16,061 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 8489 ms
+2020-04-04 01:51:17,291 INFO org.hibernate.jpa.internal.util.LogHelper [main] HHH000204: Processing PersistenceUnitInfo [name: default]
+2020-04-04 01:51:17,598 INFO org.hibernate.Version [main] HHH000412: Hibernate ORM core version 5.4.12.Final
+2020-04-04 01:51:18,197 INFO org.hibernate.annotations.common.reflection.java.JavaReflectionManager [main] HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2020-04-04 01:51:18,472 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Starting...
+2020-04-04 01:51:18,971 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Start completed.
+2020-04-04 01:51:19,023 INFO org.hibernate.dialect.Dialect [main] HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
+2020-04-04 01:51:23,841 INFO org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator [main] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2020-04-04 01:51:23,858 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2020-04-04 01:51:25,632 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2020-04-04 01:51:28,379 INFO org.springframework.cloud.commons.util.InetUtils [main] Cannot determine local hostname
+2020-04-04 01:51:29,166 DEBUG org.springframework.web.filter.GenericFilterBean [main] Filter 'logFilter' configured for use
+2020-04-04 01:51:29,166 DEBUG org.springframework.web.filter.GenericFilterBean [main] Filter 'filterExceptionHandler' configured for use
+2020-04-04 01:51:29,166 DEBUG org.springframework.web.filter.GenericFilterBean [main] Filter 'jwtRequestFilter' configured for use
+2020-04-04 01:51:33,125 INFO org.springframework.security.web.DefaultSecurityFilterChain [main] Creating filter chain: Ant [pattern='/v2/api-docs'], []
+2020-04-04 01:51:33,125 INFO org.springframework.security.web.DefaultSecurityFilterChain [main] Creating filter chain: Ant [pattern='/configuration/ui'], []
+2020-04-04 01:51:33,125 INFO org.springframework.security.web.DefaultSecurityFilterChain [main] Creating filter chain: Ant [pattern='/swagger-resources/**'], []
+2020-04-04 01:51:33,125 INFO org.springframework.security.web.DefaultSecurityFilterChain [main] Creating filter chain: Ant [pattern='/configuration/**'], []
+2020-04-04 01:51:33,125 INFO org.springframework.security.web.DefaultSecurityFilterChain [main] Creating filter chain: Ant [pattern='/swagger-ui.html'], []
+2020-04-04 01:51:33,125 INFO org.springframework.security.web.DefaultSecurityFilterChain [main] Creating filter chain: Ant [pattern='/webjars/**'], []
+2020-04-04 01:51:33,185 INFO org.springframework.security.web.DefaultSecurityFilterChain [main] Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@5afbbf9b, org.springframework.security.web.context.SecurityContextPersistenceFilter@7a7fdc1a, org.springframework.security.web.header.HeaderWriterFilter@254a9f65, com.example.AutoskolaDemoWithSecurity.filters.FilterExceptionHandler@395a573c, org.springframework.security.web.authentication.logout.LogoutFilter@5b256ab5, com.example.AutoskolaDemoWithSecurity.filters.JwtRequestFilter@2e76ade9, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@3220ffb, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@5aef36a9, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@4f7bc9a3, org.springframework.security.web.session.SessionManagementFilter@61c946a0, org.springframework.security.web.access.ExceptionTranslationFilter@240b656f, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@5a004dd4]
+2020-04-04 01:51:33,291 INFO springfox.documentation.spring.web.PropertySourcedRequestMappingHandlerMapping [main] Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2020-04-04 01:51:33,590 WARN com.netflix.config.sources.URLConfigurationSource [main] No URLs will be polled as dynamic configuration sources.
+2020-04-04 01:51:33,590 INFO com.netflix.config.sources.URLConfigurationSource [main] To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+2020-04-04 01:51:33,612 WARN com.netflix.config.sources.URLConfigurationSource [main] No URLs will be polled as dynamic configuration sources.
+2020-04-04 01:51:33,615 INFO com.netflix.config.sources.URLConfigurationSource [main] To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+2020-04-04 01:51:34,178 INFO org.springframework.scheduling.concurrent.ExecutorConfigurationSupport [main] Initializing ExecutorService 'applicationTaskExecutor'
+2020-04-04 01:51:35,175 INFO org.springframework.scheduling.concurrent.ExecutorConfigurationSupport [main] Initializing ExecutorService 'taskScheduler'
+2020-04-04 01:51:38,279 INFO org.springframework.cloud.commons.util.InetUtils [main] Cannot determine local hostname
+2020-04-04 01:51:40,089 INFO org.springframework.cloud.commons.util.InetUtils [main] Cannot determine local hostname
+2020-04-04 01:51:42,052 INFO org.springframework.cloud.commons.util.InetUtils [main] Cannot determine local hostname
+2020-04-04 01:51:43,584 INFO org.springframework.cloud.commons.util.InetUtils [main] Cannot determine local hostname
+2020-04-04 01:51:43,633 WARN org.springframework.cloud.loadbalancer.config.BlockingLoadBalancerClientAutoConfiguration$BlockingLoadBalancerClientRibbonWarnLogger [main] You already have RibbonLoadBalancerClient on your classpath. It will be used by default. As Spring Cloud Ribbon is in maintenance mode. We recommend switching to BlockingLoadBalancerClient instead. In order to use it, set the value of `spring.cloud.loadbalancer.ribbon.enabled` to `false` or remove spring-cloud-starter-netflix-ribbon from your project.
+2020-04-04 01:51:43,664 WARN org.springframework.cloud.client.loadbalancer.reactive.ReactorLoadBalancerClientAutoConfiguration$ReactorLoadBalancerClientRibbonWarnLogger [main] You have RibbonLoadBalancerClient on your classpath. LoadBalancerExchangeFilterFunction that uses it under the hood will be used by default. Spring Cloud Ribbon is now in maintenance mode, so we suggest switching to ReactorLoadBalancerExchangeFilterFunction instead. In order to use it, set the value of `spring.cloud.loadbalancer.ribbon.enabled` to `false` or remove spring-cloud-starter-netflix-ribbon from your project.
+2020-04-04 01:51:43,733 WARN org.springframework.cloud.loadbalancer.config.LoadBalancerCacheAutoConfiguration$LoadBalancerCaffeineWarnLogger [main] Spring Cloud LoadBalancer is currently working with default default cache. You can switch to using Caffeine cache, by adding it to the classpath.
+2020-04-04 01:51:43,919 INFO org.springframework.cloud.netflix.eureka.InstanceInfoFactory [main] Setting initial instance status as: STARTING
+2020-04-04 01:51:44,034 INFO com.netflix.discovery.DiscoveryClient [main] Initializing Eureka in region us-east-1
+2020-04-04 01:51:44,036 INFO com.netflix.discovery.DiscoveryClient [main] Client configured to neither register nor query for data.
+2020-04-04 01:51:44,067 INFO com.netflix.discovery.DiscoveryClient [main] Discovery Client initialized at timestamp 1585957904056 with initial instances count: 0
+2020-04-04 01:51:44,087 INFO org.springframework.cloud.netflix.eureka.serviceregistry.EurekaServiceRegistry [main] Registering application AUTOSKOLA-PROGRAM with eureka with status UP
+2020-04-04 01:51:44,095 INFO springfox.documentation.spring.web.plugins.DocumentationPluginsBootstrapper [main] Context refreshed
+2020-04-04 01:51:44,179 INFO springfox.documentation.spring.web.plugins.DocumentationPluginsBootstrapper [main] Found 1 custom documentation plugin(s)
+2020-04-04 01:51:44,285 INFO springfox.documentation.spring.web.scanners.ApiListingReferenceScanner [main] Scanning for api listing references
+2020-04-04 01:51:45,411 INFO springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator [main] Generating unique operation named: getCompletedRidesUsingGET_1
+2020-04-04 01:51:45,720 INFO org.apache.juli.logging.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8080"]
+2020-04-04 01:51:46,265 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port(s): 8080 (http) with context path ''
+2020-04-04 01:51:46,265 INFO org.springframework.cloud.netflix.eureka.serviceregistry.EurekaAutoServiceRegistration [main] Updating port to 8080
+2020-04-04 01:51:47,816 INFO org.springframework.cloud.commons.util.InetUtils [main] Cannot determine local hostname
+2020-04-04 01:51:49,453 INFO org.springframework.cloud.commons.util.InetUtils [main] Cannot determine local hostname
+2020-04-04 01:51:49,458 INFO org.springframework.boot.StartupInfoLogger [main] Started Application in 48.376 seconds (JVM running for 49.608)
+2020-04-04 01:53:10,025 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8080-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-04-04 01:53:10,027 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-1] Initializing Servlet 'dispatcherServlet'
+2020-04-04 01:53:10,054 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-1] Completed initialization in 25 ms
+2020-04-04 01:53:10,152 TRACE com.example.AutoskolaDemoWithSecurity.filters.LogFilter [http-nio-8080-exec-1] Address: 0:0:0:0:0:0:0:1, Port: 51879, Host: 0:0:0:0:0:0:0:1, User: null, URI: /authenticate/login, method: POST
+2020-04-04 01:53:13,529 INFO com.netflix.config.ChainedDynamicProperty$ChainLink [http-nio-8080-exec-1] Flipping property: notification-service.ribbon.ActiveConnectionsLimit to use NEXT property: niws.loadbalancer.availabilityFilteringRule.activeConnectionsLimit = 2147483647
+2020-04-04 01:53:13,582 INFO com.netflix.util.concurrent.ShutdownEnabledTimer [http-nio-8080-exec-1] Shutdown hook installed for: NFLoadBalancer-PingTimer-notification-service
+2020-04-04 01:53:13,589 INFO com.netflix.loadbalancer.BaseLoadBalancer [http-nio-8080-exec-1] Client: notification-service instantiated a LoadBalancer: DynamicServerListLoadBalancer:{NFLoadBalancer:name=notification-service,current list of Servers=[],Load balancer stats=Zone stats: {},Server stats: []}ServerList:null
+2020-04-04 01:53:13,603 INFO com.netflix.loadbalancer.DynamicServerListLoadBalancer [http-nio-8080-exec-1] Using serverListUpdater PollingServerListUpdater
+2020-04-04 01:53:13,634 INFO com.netflix.loadbalancer.DynamicServerListLoadBalancer [http-nio-8080-exec-1] DynamicServerListLoadBalancer for client notification-service initialized: DynamicServerListLoadBalancer:{NFLoadBalancer:name=notification-service,current list of Servers=[],Load balancer stats=Zone stats: {},Server stats: []}ServerList:org.springframework.cloud.netflix.ribbon.eureka.DomainExtractingServerList@17450845
+2020-04-04 01:53:13,699 WARN org.springframework.cloud.client.loadbalancer.reactive.LoadBalancerExchangeFilterFunction [http-nio-8080-exec-1] Load balancer does not contain an instance for the service notification-service
+2020-04-04 01:53:13,946 INFO com.example.AutoskolaDemoWithSecurity.services.NotificationMessageService [http-nio-8080-exec-1] Notifikaèná služba nie je dostupná
+2020-04-04 01:53:13,949 INFO com.example.AutoskolaDemoWithSecurity.services.NotificationMessageService [http-nio-8080-exec-1] Notifikaèná služba nie je dostupná
+2020-04-04 01:53:14,155 INFO com.example.AutoskolaDemoWithSecurity.interceptors.LogInterceptor [http-nio-8080-exec-1] Total time taken to process request: 3.952 seconds
+2020-04-04 01:54:18,987 TRACE com.example.AutoskolaDemoWithSecurity.filters.LogFilter [http-nio-8080-exec-6] Address: 0:0:0:0:0:0:0:1, Port: 51950, Host: 0:0:0:0:0:0:0:1, User: robert21@gmail.com, URI: /user/savePicture, method: POST
+2020-04-04 01:54:19,448 INFO com.example.AutoskolaDemoWithSecurity.interceptors.LogInterceptor [http-nio-8080-exec-6] Total time taken to process request: 0.398 seconds
+2020-04-04 01:54:50,596 TRACE com.example.AutoskolaDemoWithSecurity.filters.LogFilter [http-nio-8080-exec-5] Address: 0:0:0:0:0:0:0:1, Port: 51950, Host: 0:0:0:0:0:0:0:1, User: robert21@gmail.com, URI: /user/getPicture, method: GET
+2020-04-04 01:54:50,683 INFO com.example.AutoskolaDemoWithSecurity.interceptors.LogInterceptor [http-nio-8080-exec-5] Total time taken to process request: 0.07100000000000001 seconds
+2020-04-04 01:55:41,359 TRACE com.example.AutoskolaDemoWithSecurity.filters.LogFilter [http-nio-8080-exec-7] Address: 0:0:0:0:0:0:0:1, Port: 51950, Host: 0:0:0:0:0:0:0:1, User: null, URI: /authenticate/login, method: POST
+2020-04-04 01:55:41,523 WARN org.springframework.cloud.client.loadbalancer.reactive.LoadBalancerExchangeFilterFunction [http-nio-8080-exec-7] Load balancer does not contain an instance for the service notification-service
+2020-04-04 01:55:41,525 INFO com.example.AutoskolaDemoWithSecurity.services.NotificationMessageService [http-nio-8080-exec-7] Notifikaèná služba nie je dostupná
+2020-04-04 01:55:41,527 INFO com.example.AutoskolaDemoWithSecurity.services.NotificationMessageService [http-nio-8080-exec-7] Notifikaèná služba nie je dostupná
+2020-04-04 01:55:41,533 INFO com.example.AutoskolaDemoWithSecurity.interceptors.LogInterceptor [http-nio-8080-exec-7] Total time taken to process request: 0.17300000000000001 seconds
+2020-04-04 01:55:59,643 TRACE com.example.AutoskolaDemoWithSecurity.filters.LogFilter [http-nio-8080-exec-9] Address: 0:0:0:0:0:0:0:1, Port: 51950, Host: 0:0:0:0:0:0:0:1, User: ivan@gmail.com, URI: /user/getPicture, method: GET
+2020-04-04 01:55:59,687 INFO com.example.AutoskolaDemoWithSecurity.interceptors.LogInterceptor [http-nio-8080-exec-9] Total time taken to process request: 0.018000000000000002 seconds
+2020-04-04 02:09:43,768 INFO org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker [main] Bean 'org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration' of type [org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-04-04 02:09:45,418 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2020-04-04 02:09:47,484 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2020-04-04 02:09:48,021 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 514ms. Found 14 JPA repository interfaces.
+2020-04-04 02:09:48,692 INFO org.springframework.cloud.context.scope.GenericScope [main] BeanFactory id=13cbc1b9-1d6a-3532-94a1-dde6c035a15d
+2020-04-04 02:09:49,261 INFO org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker [main] Bean 'org.springframework.security.config.annotation.configuration.ObjectPostProcessorConfiguration' of type [org.springframework.security.config.annotation.configuration.ObjectPostProcessorConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-04-04 02:09:49,267 INFO org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker [main] Bean 'objectPostProcessor' of type [org.springframework.security.config.annotation.configuration.AutowireBeanFactoryObjectPostProcessor] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-04-04 02:09:49,272 INFO org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker [main] Bean 'org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler@251a90ce' of type [org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-04-04 02:09:49,275 INFO org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker [main] Bean 'org.springframework.security.config.annotation.method.configuration.GlobalMethodSecurityConfiguration' of type [org.springframework.security.config.annotation.method.configuration.GlobalMethodSecurityConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-04-04 02:09:49,297 INFO org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker [main] Bean 'org.springframework.security.config.annotation.method.configuration.Jsr250MetadataSourceConfiguration' of type [org.springframework.security.config.annotation.method.configuration.Jsr250MetadataSourceConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-04-04 02:09:49,300 INFO org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker [main] Bean 'jsr250MethodSecurityMetadataSource' of type [org.springframework.security.access.annotation.Jsr250MethodSecurityMetadataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-04-04 02:09:49,313 INFO org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker [main] Bean 'methodSecurityMetadataSource' of type [org.springframework.security.access.method.DelegatingMethodSecurityMetadataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-04-04 02:09:49,366 INFO org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker [main] Bean 'org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration' of type [org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-04-04 02:09:49,376 INFO org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker [main] Bean 'org.springframework.cloud.client.loadbalancer.reactive.LoadBalancerBeanPostProcessorAutoConfiguration' of type [org.springframework.cloud.client.loadbalancer.reactive.LoadBalancerBeanPostProcessorAutoConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-04-04 02:09:49,385 INFO org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker [main] Bean 'org.springframework.cloud.client.loadbalancer.reactive.LoadBalancerBeanPostProcessorAutoConfiguration$ReactiveLoadBalancerConfig' of type [org.springframework.cloud.client.loadbalancer.reactive.LoadBalancerBeanPostProcessorAutoConfiguration$ReactiveLoadBalancerConfig] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-04-04 02:09:49,391 INFO org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker [main] Bean 'deferringLoadBalancerExchangeFilterFunction' of type [org.springframework.cloud.client.loadbalancer.reactive.DeferringLoadBalancerExchangeFilterFunction] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-04-04 02:09:50,403 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port(s): 8080 (http)
+2020-04-04 02:09:50,426 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8080"]
+2020-04-04 02:09:50,427 INFO org.apache.juli.logging.DirectJDKLog [main] Starting service [Tomcat]
+2020-04-04 02:09:50,429 INFO org.apache.juli.logging.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/9.0.31]
+2020-04-04 02:09:50,781 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2020-04-04 02:09:50,781 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 5328 ms
+2020-04-04 02:09:51,314 INFO org.hibernate.jpa.internal.util.LogHelper [main] HHH000204: Processing PersistenceUnitInfo [name: default]
+2020-04-04 02:09:51,384 INFO org.hibernate.Version [main] HHH000412: Hibernate ORM core version 5.4.12.Final
+2020-04-04 02:09:51,643 INFO org.hibernate.annotations.common.reflection.java.JavaReflectionManager [main] HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2020-04-04 02:09:51,908 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Starting...
+2020-04-04 02:09:52,120 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Start completed.
+2020-04-04 02:09:52,166 INFO org.hibernate.dialect.Dialect [main] HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
+2020-04-04 02:09:55,733 INFO org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator [main] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2020-04-04 02:09:55,733 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2020-04-04 02:09:56,509 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2020-04-04 02:09:58,280 INFO org.springframework.cloud.commons.util.InetUtils [main] Cannot determine local hostname
+2020-04-04 02:09:58,859 DEBUG org.springframework.web.filter.GenericFilterBean [main] Filter 'logFilter' configured for use
+2020-04-04 02:09:58,861 DEBUG org.springframework.web.filter.GenericFilterBean [main] Filter 'filterExceptionHandler' configured for use
+2020-04-04 02:09:58,861 DEBUG org.springframework.web.filter.GenericFilterBean [main] Filter 'jwtRequestFilter' configured for use
+2020-04-04 02:10:04,866 INFO org.springframework.security.web.DefaultSecurityFilterChain [main] Creating filter chain: Ant [pattern='/v2/api-docs'], []
+2020-04-04 02:10:04,870 INFO org.springframework.security.web.DefaultSecurityFilterChain [main] Creating filter chain: Ant [pattern='/configuration/ui'], []
+2020-04-04 02:10:04,870 INFO org.springframework.security.web.DefaultSecurityFilterChain [main] Creating filter chain: Ant [pattern='/swagger-resources/**'], []
+2020-04-04 02:10:04,870 INFO org.springframework.security.web.DefaultSecurityFilterChain [main] Creating filter chain: Ant [pattern='/configuration/**'], []
+2020-04-04 02:10:04,870 INFO org.springframework.security.web.DefaultSecurityFilterChain [main] Creating filter chain: Ant [pattern='/swagger-ui.html'], []
+2020-04-04 02:10:04,870 INFO org.springframework.security.web.DefaultSecurityFilterChain [main] Creating filter chain: Ant [pattern='/webjars/**'], []
+2020-04-04 02:10:05,057 INFO org.springframework.security.web.DefaultSecurityFilterChain [main] Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@41030c21, org.springframework.security.web.context.SecurityContextPersistenceFilter@2b6d9650, org.springframework.security.web.header.HeaderWriterFilter@227e4ea8, com.example.AutoskolaDemoWithSecurity.filters.FilterExceptionHandler@726a8729, org.springframework.security.web.authentication.logout.LogoutFilter@4ca83ec3, com.example.AutoskolaDemoWithSecurity.filters.JwtRequestFilter@7fb8d720, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@41a6cd9e, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@2975715, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@3c5797c6, org.springframework.security.web.session.SessionManagementFilter@5d87c8af, org.springframework.security.web.access.ExceptionTranslationFilter@4c43c37d, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@1b3a1e42]
+2020-04-04 02:10:05,166 INFO springfox.documentation.spring.web.PropertySourcedRequestMappingHandlerMapping [main] Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2020-04-04 02:10:05,373 WARN com.netflix.config.sources.URLConfigurationSource [main] No URLs will be polled as dynamic configuration sources.
+2020-04-04 02:10:05,376 INFO com.netflix.config.sources.URLConfigurationSource [main] To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+2020-04-04 02:10:05,399 WARN com.netflix.config.sources.URLConfigurationSource [main] No URLs will be polled as dynamic configuration sources.
+2020-04-04 02:10:05,400 INFO com.netflix.config.sources.URLConfigurationSource [main] To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+2020-04-04 02:10:05,970 INFO org.springframework.scheduling.concurrent.ExecutorConfigurationSupport [main] Initializing ExecutorService 'applicationTaskExecutor'
+2020-04-04 02:10:06,751 INFO org.springframework.scheduling.concurrent.ExecutorConfigurationSupport [main] Initializing ExecutorService 'taskScheduler'
+2020-04-04 02:10:10,022 INFO org.springframework.cloud.commons.util.InetUtils [main] Cannot determine local hostname
+2020-04-04 02:10:11,582 INFO org.springframework.cloud.commons.util.InetUtils [main] Cannot determine local hostname
+2020-04-04 02:10:13,127 INFO org.springframework.cloud.commons.util.InetUtils [main] Cannot determine local hostname
+2020-04-04 02:10:14,723 INFO org.springframework.cloud.commons.util.InetUtils [main] Cannot determine local hostname
+2020-04-04 02:10:14,765 WARN org.springframework.cloud.loadbalancer.config.BlockingLoadBalancerClientAutoConfiguration$BlockingLoadBalancerClientRibbonWarnLogger [main] You already have RibbonLoadBalancerClient on your classpath. It will be used by default. As Spring Cloud Ribbon is in maintenance mode. We recommend switching to BlockingLoadBalancerClient instead. In order to use it, set the value of `spring.cloud.loadbalancer.ribbon.enabled` to `false` or remove spring-cloud-starter-netflix-ribbon from your project.
+2020-04-04 02:10:14,800 WARN org.springframework.cloud.client.loadbalancer.reactive.ReactorLoadBalancerClientAutoConfiguration$ReactorLoadBalancerClientRibbonWarnLogger [main] You have RibbonLoadBalancerClient on your classpath. LoadBalancerExchangeFilterFunction that uses it under the hood will be used by default. Spring Cloud Ribbon is now in maintenance mode, so we suggest switching to ReactorLoadBalancerExchangeFilterFunction instead. In order to use it, set the value of `spring.cloud.loadbalancer.ribbon.enabled` to `false` or remove spring-cloud-starter-netflix-ribbon from your project.
+2020-04-04 02:10:14,845 WARN org.springframework.cloud.loadbalancer.config.LoadBalancerCacheAutoConfiguration$LoadBalancerCaffeineWarnLogger [main] Spring Cloud LoadBalancer is currently working with default default cache. You can switch to using Caffeine cache, by adding it to the classpath.
+2020-04-04 02:10:14,984 INFO org.springframework.cloud.netflix.eureka.InstanceInfoFactory [main] Setting initial instance status as: STARTING
+2020-04-04 02:10:15,081 INFO com.netflix.discovery.DiscoveryClient [main] Initializing Eureka in region us-east-1
+2020-04-04 02:10:15,081 INFO com.netflix.discovery.DiscoveryClient [main] Client configured to neither register nor query for data.
+2020-04-04 02:10:15,081 INFO com.netflix.discovery.DiscoveryClient [main] Discovery Client initialized at timestamp 1585959015081 with initial instances count: 0
+2020-04-04 02:10:15,096 INFO org.springframework.cloud.netflix.eureka.serviceregistry.EurekaServiceRegistry [main] Registering application AUTOSKOLA-PROGRAM with eureka with status UP
+2020-04-04 02:10:15,096 INFO springfox.documentation.spring.web.plugins.DocumentationPluginsBootstrapper [main] Context refreshed
+2020-04-04 02:10:15,181 INFO springfox.documentation.spring.web.plugins.DocumentationPluginsBootstrapper [main] Found 1 custom documentation plugin(s)
+2020-04-04 02:10:15,243 INFO springfox.documentation.spring.web.scanners.ApiListingReferenceScanner [main] Scanning for api listing references
+2020-04-04 02:10:16,326 INFO springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator [main] Generating unique operation named: getCompletedRidesUsingGET_1
+2020-04-04 02:10:16,463 INFO org.apache.juli.logging.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8080"]
+2020-04-04 02:10:16,764 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port(s): 8080 (http) with context path ''
+2020-04-04 02:10:16,764 INFO org.springframework.cloud.netflix.eureka.serviceregistry.EurekaAutoServiceRegistration [main] Updating port to 8080
+2020-04-04 02:10:18,264 INFO org.springframework.cloud.commons.util.InetUtils [main] Cannot determine local hostname
+2020-04-04 02:10:19,665 INFO org.springframework.cloud.commons.util.InetUtils [main] Cannot determine local hostname
+2020-04-04 02:10:19,665 INFO org.springframework.boot.StartupInfoLogger [main] Started Application in 38.701 seconds (JVM running for 39.633)
+2020-04-04 02:10:32,173 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8080-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-04-04 02:10:32,176 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-1] Initializing Servlet 'dispatcherServlet'
+2020-04-04 02:10:32,200 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-1] Completed initialization in 23 ms
+2020-04-04 02:10:33,324 TRACE com.example.AutoskolaDemoWithSecurity.filters.LogFilter [http-nio-8080-exec-1] Address: 0:0:0:0:0:0:0:1, Port: 53674, Host: 0:0:0:0:0:0:0:1, User: ivan@gmail.com, URI: /user/getPicture, method: GET
+2020-04-04 02:10:33,658 INFO com.example.AutoskolaDemoWithSecurity.interceptors.LogInterceptor [http-nio-8080-exec-1] Total time taken to process request: 0.122 seconds
+2020-04-04 02:12:42,823 INFO org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker [main] Bean 'org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration' of type [org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-04-04 02:12:44,820 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2020-04-04 02:12:47,339 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2020-04-04 02:12:47,892 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 537ms. Found 14 JPA repository interfaces.
+2020-04-04 02:12:48,825 INFO org.springframework.cloud.context.scope.GenericScope [main] BeanFactory id=13cbc1b9-1d6a-3532-94a1-dde6c035a15d
+2020-04-04 02:12:49,760 INFO org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker [main] Bean 'org.springframework.security.config.annotation.configuration.ObjectPostProcessorConfiguration' of type [org.springframework.security.config.annotation.configuration.ObjectPostProcessorConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-04-04 02:12:49,770 INFO org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker [main] Bean 'objectPostProcessor' of type [org.springframework.security.config.annotation.configuration.AutowireBeanFactoryObjectPostProcessor] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-04-04 02:12:49,773 INFO org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker [main] Bean 'org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler@53ea380b' of type [org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-04-04 02:12:49,780 INFO org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker [main] Bean 'org.springframework.security.config.annotation.method.configuration.GlobalMethodSecurityConfiguration' of type [org.springframework.security.config.annotation.method.configuration.GlobalMethodSecurityConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-04-04 02:12:49,812 INFO org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker [main] Bean 'org.springframework.security.config.annotation.method.configuration.Jsr250MetadataSourceConfiguration' of type [org.springframework.security.config.annotation.method.configuration.Jsr250MetadataSourceConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-04-04 02:12:49,814 INFO org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker [main] Bean 'jsr250MethodSecurityMetadataSource' of type [org.springframework.security.access.annotation.Jsr250MethodSecurityMetadataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-04-04 02:12:49,816 INFO org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker [main] Bean 'methodSecurityMetadataSource' of type [org.springframework.security.access.method.DelegatingMethodSecurityMetadataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-04-04 02:12:49,884 INFO org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker [main] Bean 'org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration' of type [org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-04-04 02:12:49,898 INFO org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker [main] Bean 'org.springframework.cloud.client.loadbalancer.reactive.LoadBalancerBeanPostProcessorAutoConfiguration' of type [org.springframework.cloud.client.loadbalancer.reactive.LoadBalancerBeanPostProcessorAutoConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-04-04 02:12:49,911 INFO org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker [main] Bean 'org.springframework.cloud.client.loadbalancer.reactive.LoadBalancerBeanPostProcessorAutoConfiguration$ReactiveLoadBalancerConfig' of type [org.springframework.cloud.client.loadbalancer.reactive.LoadBalancerBeanPostProcessorAutoConfiguration$ReactiveLoadBalancerConfig] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-04-04 02:12:49,922 INFO org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker [main] Bean 'deferringLoadBalancerExchangeFilterFunction' of type [org.springframework.cloud.client.loadbalancer.reactive.DeferringLoadBalancerExchangeFilterFunction] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-04-04 02:12:51,144 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port(s): 8080 (http)
+2020-04-04 02:12:51,160 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8080"]
+2020-04-04 02:12:51,160 INFO org.apache.juli.logging.DirectJDKLog [main] Starting service [Tomcat]
+2020-04-04 02:12:51,160 INFO org.apache.juli.logging.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/9.0.31]
+2020-04-04 02:12:51,510 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2020-04-04 02:12:51,512 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 6655 ms
+2020-04-04 02:12:52,478 INFO org.hibernate.jpa.internal.util.LogHelper [main] HHH000204: Processing PersistenceUnitInfo [name: default]
+2020-04-04 02:12:52,628 INFO org.hibernate.Version [main] HHH000412: Hibernate ORM core version 5.4.12.Final
+2020-04-04 02:12:53,098 INFO org.hibernate.annotations.common.reflection.java.JavaReflectionManager [main] HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2020-04-04 02:12:53,591 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Starting...
+2020-04-04 02:12:54,394 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Start completed.
+2020-04-04 02:12:54,420 INFO org.hibernate.dialect.Dialect [main] HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
+2020-04-04 02:12:58,437 INFO org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator [main] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2020-04-04 02:12:58,453 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2020-04-04 02:13:00,785 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2020-04-04 02:13:02,699 INFO org.springframework.cloud.commons.util.InetUtils [main] Cannot determine local hostname
+2020-04-04 02:13:03,264 DEBUG org.springframework.web.filter.GenericFilterBean [main] Filter 'logFilter' configured for use
+2020-04-04 02:13:03,264 DEBUG org.springframework.web.filter.GenericFilterBean [main] Filter 'filterExceptionHandler' configured for use
+2020-04-04 02:13:03,265 DEBUG org.springframework.web.filter.GenericFilterBean [main] Filter 'jwtRequestFilter' configured for use
+2020-04-04 02:13:05,995 INFO org.springframework.security.web.DefaultSecurityFilterChain [main] Creating filter chain: Ant [pattern='/v2/api-docs'], []
+2020-04-04 02:13:05,996 INFO org.springframework.security.web.DefaultSecurityFilterChain [main] Creating filter chain: Ant [pattern='/configuration/ui'], []
+2020-04-04 02:13:05,996 INFO org.springframework.security.web.DefaultSecurityFilterChain [main] Creating filter chain: Ant [pattern='/swagger-resources/**'], []
+2020-04-04 02:13:05,997 INFO org.springframework.security.web.DefaultSecurityFilterChain [main] Creating filter chain: Ant [pattern='/configuration/**'], []
+2020-04-04 02:13:05,997 INFO org.springframework.security.web.DefaultSecurityFilterChain [main] Creating filter chain: Ant [pattern='/swagger-ui.html'], []
+2020-04-04 02:13:05,997 INFO org.springframework.security.web.DefaultSecurityFilterChain [main] Creating filter chain: Ant [pattern='/webjars/**'], []
+2020-04-04 02:13:06,069 INFO org.springframework.security.web.DefaultSecurityFilterChain [main] Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@440d45c5, org.springframework.security.web.context.SecurityContextPersistenceFilter@2e8417ea, org.springframework.security.web.header.HeaderWriterFilter@19544627, com.example.AutoskolaDemoWithSecurity.filters.FilterExceptionHandler@2e29f28e, org.springframework.security.web.authentication.logout.LogoutFilter@24710e61, com.example.AutoskolaDemoWithSecurity.filters.JwtRequestFilter@67cd1db3, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@39d6504b, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@5b256ab5, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@6b862f17, org.springframework.security.web.session.SessionManagementFilter@2975715, org.springframework.security.web.access.ExceptionTranslationFilter@415c5469, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@3285c141]
+2020-04-04 02:13:06,135 INFO springfox.documentation.spring.web.PropertySourcedRequestMappingHandlerMapping [main] Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2020-04-04 02:13:06,209 WARN com.netflix.config.sources.URLConfigurationSource [main] No URLs will be polled as dynamic configuration sources.
+2020-04-04 02:13:06,209 INFO com.netflix.config.sources.URLConfigurationSource [main] To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+2020-04-04 02:13:06,233 WARN com.netflix.config.sources.URLConfigurationSource [main] No URLs will be polled as dynamic configuration sources.
+2020-04-04 02:13:06,233 INFO com.netflix.config.sources.URLConfigurationSource [main] To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+2020-04-04 02:13:06,491 INFO org.springframework.scheduling.concurrent.ExecutorConfigurationSupport [main] Initializing ExecutorService 'applicationTaskExecutor'
+2020-04-04 02:13:06,841 INFO org.springframework.scheduling.concurrent.ExecutorConfigurationSupport [main] Initializing ExecutorService 'taskScheduler'
+2020-04-04 02:13:09,883 INFO org.springframework.cloud.commons.util.InetUtils [main] Cannot determine local hostname
+2020-04-04 02:13:11,627 INFO org.springframework.cloud.commons.util.InetUtils [main] Cannot determine local hostname
+2020-04-04 02:13:13,146 INFO org.springframework.cloud.commons.util.InetUtils [main] Cannot determine local hostname
+2020-04-04 02:13:14,587 INFO org.springframework.cloud.commons.util.InetUtils [main] Cannot determine local hostname
+2020-04-04 02:13:14,619 WARN org.springframework.cloud.loadbalancer.config.BlockingLoadBalancerClientAutoConfiguration$BlockingLoadBalancerClientRibbonWarnLogger [main] You already have RibbonLoadBalancerClient on your classpath. It will be used by default. As Spring Cloud Ribbon is in maintenance mode. We recommend switching to BlockingLoadBalancerClient instead. In order to use it, set the value of `spring.cloud.loadbalancer.ribbon.enabled` to `false` or remove spring-cloud-starter-netflix-ribbon from your project.
+2020-04-04 02:13:14,636 WARN org.springframework.cloud.client.loadbalancer.reactive.ReactorLoadBalancerClientAutoConfiguration$ReactorLoadBalancerClientRibbonWarnLogger [main] You have RibbonLoadBalancerClient on your classpath. LoadBalancerExchangeFilterFunction that uses it under the hood will be used by default. Spring Cloud Ribbon is now in maintenance mode, so we suggest switching to ReactorLoadBalancerExchangeFilterFunction instead. In order to use it, set the value of `spring.cloud.loadbalancer.ribbon.enabled` to `false` or remove spring-cloud-starter-netflix-ribbon from your project.
+2020-04-04 02:13:14,685 WARN org.springframework.cloud.loadbalancer.config.LoadBalancerCacheAutoConfiguration$LoadBalancerCaffeineWarnLogger [main] Spring Cloud LoadBalancer is currently working with default default cache. You can switch to using Caffeine cache, by adding it to the classpath.
+2020-04-04 02:13:14,749 INFO org.springframework.cloud.netflix.eureka.InstanceInfoFactory [main] Setting initial instance status as: STARTING
+2020-04-04 02:13:14,812 INFO com.netflix.discovery.DiscoveryClient [main] Initializing Eureka in region us-east-1
+2020-04-04 02:13:14,813 INFO com.netflix.discovery.DiscoveryClient [main] Client configured to neither register nor query for data.
+2020-04-04 02:13:14,825 INFO com.netflix.discovery.DiscoveryClient [main] Discovery Client initialized at timestamp 1585959194824 with initial instances count: 0
+2020-04-04 02:13:14,834 INFO org.springframework.cloud.netflix.eureka.serviceregistry.EurekaServiceRegistry [main] Registering application AUTOSKOLA-PROGRAM with eureka with status UP
+2020-04-04 02:13:14,837 INFO springfox.documentation.spring.web.plugins.DocumentationPluginsBootstrapper [main] Context refreshed
+2020-04-04 02:13:14,868 INFO springfox.documentation.spring.web.plugins.DocumentationPluginsBootstrapper [main] Found 1 custom documentation plugin(s)
+2020-04-04 02:13:14,900 INFO springfox.documentation.spring.web.scanners.ApiListingReferenceScanner [main] Scanning for api listing references
+2020-04-04 02:13:15,729 INFO springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator [main] Generating unique operation named: getCompletedRidesUsingGET_1
+2020-04-04 02:13:15,884 INFO org.apache.juli.logging.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8080"]
+2020-04-04 02:13:16,539 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port(s): 8080 (http) with context path ''
+2020-04-04 02:13:16,539 INFO org.springframework.cloud.netflix.eureka.serviceregistry.EurekaAutoServiceRegistration [main] Updating port to 8080
+2020-04-04 02:13:18,298 INFO org.springframework.cloud.commons.util.InetUtils [main] Cannot determine local hostname
+2020-04-04 02:13:19,671 INFO org.springframework.cloud.commons.util.InetUtils [main] Cannot determine local hostname
+2020-04-04 02:13:19,673 INFO org.springframework.boot.StartupInfoLogger [main] Started Application in 40.84 seconds (JVM running for 41.939)
+2020-04-04 02:13:35,287 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8080-exec-2] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-04-04 02:13:35,290 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-2] Initializing Servlet 'dispatcherServlet'
+2020-04-04 02:13:35,339 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-2] Completed initialization in 49 ms
+2020-04-04 02:13:36,573 TRACE com.example.AutoskolaDemoWithSecurity.filters.LogFilter [http-nio-8080-exec-2] Address: 0:0:0:0:0:0:0:1, Port: 53892, Host: 0:0:0:0:0:0:0:1, User: ivan@gmail.com, URI: /user/getPicture, method: GET
+2020-04-04 02:13:36,895 INFO com.example.AutoskolaDemoWithSecurity.interceptors.LogInterceptor [http-nio-8080-exec-2] Total time taken to process request: 0.245 seconds
+2020-04-04 02:17:21,620 INFO org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker [main] Bean 'org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration' of type [org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-04-04 02:17:23,828 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2020-04-04 02:17:25,926 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2020-04-04 02:17:26,419 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 483ms. Found 14 JPA repository interfaces.
+2020-04-04 02:17:27,934 INFO org.springframework.cloud.context.scope.GenericScope [main] BeanFactory id=13cbc1b9-1d6a-3532-94a1-dde6c035a15d
+2020-04-04 02:17:29,087 INFO org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker [main] Bean 'org.springframework.security.config.annotation.configuration.ObjectPostProcessorConfiguration' of type [org.springframework.security.config.annotation.configuration.ObjectPostProcessorConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-04-04 02:17:29,103 INFO org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker [main] Bean 'objectPostProcessor' of type [org.springframework.security.config.annotation.configuration.AutowireBeanFactoryObjectPostProcessor] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-04-04 02:17:29,119 INFO org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker [main] Bean 'org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler@2f09e6b2' of type [org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-04-04 02:17:29,134 INFO org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker [main] Bean 'org.springframework.security.config.annotation.method.configuration.GlobalMethodSecurityConfiguration' of type [org.springframework.security.config.annotation.method.configuration.GlobalMethodSecurityConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-04-04 02:17:29,150 INFO org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker [main] Bean 'org.springframework.security.config.annotation.method.configuration.Jsr250MetadataSourceConfiguration' of type [org.springframework.security.config.annotation.method.configuration.Jsr250MetadataSourceConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-04-04 02:17:29,165 INFO org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker [main] Bean 'jsr250MethodSecurityMetadataSource' of type [org.springframework.security.access.annotation.Jsr250MethodSecurityMetadataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-04-04 02:17:29,175 INFO org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker [main] Bean 'methodSecurityMetadataSource' of type [org.springframework.security.access.method.DelegatingMethodSecurityMetadataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-04-04 02:17:29,224 INFO org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker [main] Bean 'org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration' of type [org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-04-04 02:17:29,236 INFO org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker [main] Bean 'org.springframework.cloud.client.loadbalancer.reactive.LoadBalancerBeanPostProcessorAutoConfiguration' of type [org.springframework.cloud.client.loadbalancer.reactive.LoadBalancerBeanPostProcessorAutoConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-04-04 02:17:29,236 INFO org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker [main] Bean 'org.springframework.cloud.client.loadbalancer.reactive.LoadBalancerBeanPostProcessorAutoConfiguration$ReactiveLoadBalancerConfig' of type [org.springframework.cloud.client.loadbalancer.reactive.LoadBalancerBeanPostProcessorAutoConfiguration$ReactiveLoadBalancerConfig] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-04-04 02:17:29,252 INFO org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker [main] Bean 'deferringLoadBalancerExchangeFilterFunction' of type [org.springframework.cloud.client.loadbalancer.reactive.DeferringLoadBalancerExchangeFilterFunction] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-04-04 02:17:30,901 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port(s): 8080 (http)
+2020-04-04 02:17:30,932 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8080"]
+2020-04-04 02:17:30,932 INFO org.apache.juli.logging.DirectJDKLog [main] Starting service [Tomcat]
+2020-04-04 02:17:30,932 INFO org.apache.juli.logging.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/9.0.31]
+2020-04-04 02:17:31,530 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2020-04-04 02:17:31,531 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 7663 ms
+2020-04-04 02:17:32,625 INFO org.hibernate.jpa.internal.util.LogHelper [main] HHH000204: Processing PersistenceUnitInfo [name: default]
+2020-04-04 02:17:32,945 INFO org.hibernate.Version [main] HHH000412: Hibernate ORM core version 5.4.12.Final
+2020-04-04 02:17:33,473 INFO org.hibernate.annotations.common.reflection.java.JavaReflectionManager [main] HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2020-04-04 02:17:33,854 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Starting...
+2020-04-04 02:17:34,138 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Start completed.
+2020-04-04 02:17:34,172 INFO org.hibernate.dialect.Dialect [main] HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
+2020-04-04 02:17:40,578 INFO org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator [main] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2020-04-04 02:17:40,594 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2020-04-04 02:17:42,446 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2020-04-04 02:17:44,809 INFO org.springframework.cloud.commons.util.InetUtils [main] Cannot determine local hostname
+2020-04-04 02:17:45,169 DEBUG org.springframework.web.filter.GenericFilterBean [main] Filter 'logFilter' configured for use
+2020-04-04 02:17:45,169 DEBUG org.springframework.web.filter.GenericFilterBean [main] Filter 'filterExceptionHandler' configured for use
+2020-04-04 02:17:45,169 DEBUG org.springframework.web.filter.GenericFilterBean [main] Filter 'jwtRequestFilter' configured for use
+2020-04-04 02:17:48,485 INFO org.springframework.security.web.DefaultSecurityFilterChain [main] Creating filter chain: Ant [pattern='/v2/api-docs'], []
+2020-04-04 02:17:48,486 INFO org.springframework.security.web.DefaultSecurityFilterChain [main] Creating filter chain: Ant [pattern='/configuration/ui'], []
+2020-04-04 02:17:48,487 INFO org.springframework.security.web.DefaultSecurityFilterChain [main] Creating filter chain: Ant [pattern='/swagger-resources/**'], []
+2020-04-04 02:17:48,488 INFO org.springframework.security.web.DefaultSecurityFilterChain [main] Creating filter chain: Ant [pattern='/configuration/**'], []
+2020-04-04 02:17:48,489 INFO org.springframework.security.web.DefaultSecurityFilterChain [main] Creating filter chain: Ant [pattern='/swagger-ui.html'], []
+2020-04-04 02:17:48,490 INFO org.springframework.security.web.DefaultSecurityFilterChain [main] Creating filter chain: Ant [pattern='/webjars/**'], []
+2020-04-04 02:17:48,559 INFO org.springframework.security.web.DefaultSecurityFilterChain [main] Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@3a9a12a1, org.springframework.security.web.context.SecurityContextPersistenceFilter@213d5189, org.springframework.security.web.header.HeaderWriterFilter@4dbeae45, com.example.AutoskolaDemoWithSecurity.filters.FilterExceptionHandler@29147c12, org.springframework.security.web.authentication.logout.LogoutFilter@7649d350, com.example.AutoskolaDemoWithSecurity.filters.JwtRequestFilter@321302bc, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@39068df9, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@10f64bc3, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@21312b5, org.springframework.security.web.session.SessionManagementFilter@3a4e6da6, org.springframework.security.web.access.ExceptionTranslationFilter@4b7704ec, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@1b5a3bba]
+2020-04-04 02:17:48,596 INFO springfox.documentation.spring.web.PropertySourcedRequestMappingHandlerMapping [main] Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2020-04-04 02:17:48,686 WARN com.netflix.config.sources.URLConfigurationSource [main] No URLs will be polled as dynamic configuration sources.
+2020-04-04 02:17:48,686 INFO com.netflix.config.sources.URLConfigurationSource [main] To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+2020-04-04 02:17:48,701 WARN com.netflix.config.sources.URLConfigurationSource [main] No URLs will be polled as dynamic configuration sources.
+2020-04-04 02:17:48,701 INFO com.netflix.config.sources.URLConfigurationSource [main] To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+2020-04-04 02:17:49,074 INFO org.springframework.scheduling.concurrent.ExecutorConfigurationSupport [main] Initializing ExecutorService 'applicationTaskExecutor'
+2020-04-04 02:17:49,537 INFO org.springframework.scheduling.concurrent.ExecutorConfigurationSupport [main] Initializing ExecutorService 'taskScheduler'
+2020-04-04 02:17:51,988 INFO org.springframework.cloud.commons.util.InetUtils [main] Cannot determine local hostname
+2020-04-04 02:17:53,714 INFO org.springframework.cloud.commons.util.InetUtils [main] Cannot determine local hostname
+2020-04-04 02:17:55,335 INFO org.springframework.cloud.commons.util.InetUtils [main] Cannot determine local hostname
+2020-04-04 02:17:56,780 INFO org.springframework.cloud.commons.util.InetUtils [main] Cannot determine local hostname
+2020-04-04 02:17:56,824 WARN org.springframework.cloud.loadbalancer.config.BlockingLoadBalancerClientAutoConfiguration$BlockingLoadBalancerClientRibbonWarnLogger [main] You already have RibbonLoadBalancerClient on your classpath. It will be used by default. As Spring Cloud Ribbon is in maintenance mode. We recommend switching to BlockingLoadBalancerClient instead. In order to use it, set the value of `spring.cloud.loadbalancer.ribbon.enabled` to `false` or remove spring-cloud-starter-netflix-ribbon from your project.
+2020-04-04 02:17:56,855 WARN org.springframework.cloud.client.loadbalancer.reactive.ReactorLoadBalancerClientAutoConfiguration$ReactorLoadBalancerClientRibbonWarnLogger [main] You have RibbonLoadBalancerClient on your classpath. LoadBalancerExchangeFilterFunction that uses it under the hood will be used by default. Spring Cloud Ribbon is now in maintenance mode, so we suggest switching to ReactorLoadBalancerExchangeFilterFunction instead. In order to use it, set the value of `spring.cloud.loadbalancer.ribbon.enabled` to `false` or remove spring-cloud-starter-netflix-ribbon from your project.
+2020-04-04 02:17:56,901 WARN org.springframework.cloud.loadbalancer.config.LoadBalancerCacheAutoConfiguration$LoadBalancerCaffeineWarnLogger [main] Spring Cloud LoadBalancer is currently working with default default cache. You can switch to using Caffeine cache, by adding it to the classpath.
+2020-04-04 02:17:56,993 INFO org.springframework.cloud.netflix.eureka.InstanceInfoFactory [main] Setting initial instance status as: STARTING
+2020-04-04 02:17:57,059 INFO com.netflix.discovery.DiscoveryClient [main] Initializing Eureka in region us-east-1
+2020-04-04 02:17:57,060 INFO com.netflix.discovery.DiscoveryClient [main] Client configured to neither register nor query for data.
+2020-04-04 02:17:57,081 INFO com.netflix.discovery.DiscoveryClient [main] Discovery Client initialized at timestamp 1585959477081 with initial instances count: 0
+2020-04-04 02:17:57,081 INFO org.springframework.cloud.netflix.eureka.serviceregistry.EurekaServiceRegistry [main] Registering application AUTOSKOLA-PROGRAM with eureka with status UP
+2020-04-04 02:17:57,096 INFO springfox.documentation.spring.web.plugins.DocumentationPluginsBootstrapper [main] Context refreshed
+2020-04-04 02:17:57,136 INFO springfox.documentation.spring.web.plugins.DocumentationPluginsBootstrapper [main] Found 1 custom documentation plugin(s)
+2020-04-04 02:17:57,283 INFO springfox.documentation.spring.web.scanners.ApiListingReferenceScanner [main] Scanning for api listing references
+2020-04-04 02:17:58,338 INFO springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator [main] Generating unique operation named: getCompletedRidesUsingGET_1
+2020-04-04 02:17:58,502 INFO org.apache.juli.logging.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8080"]
+2020-04-04 02:17:58,867 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port(s): 8080 (http) with context path ''
+2020-04-04 02:17:58,868 INFO org.springframework.cloud.netflix.eureka.serviceregistry.EurekaAutoServiceRegistration [main] Updating port to 8080
+2020-04-04 02:18:00,330 INFO org.springframework.cloud.commons.util.InetUtils [main] Cannot determine local hostname
+2020-04-04 02:18:01,832 INFO org.springframework.cloud.commons.util.InetUtils [main] Cannot determine local hostname
+2020-04-04 02:18:01,838 INFO org.springframework.boot.StartupInfoLogger [main] Started Application in 44.999 seconds (JVM running for 47.268)
+2020-04-04 02:18:04,612 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8080-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-04-04 02:18:04,614 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-1] Initializing Servlet 'dispatcherServlet'
+2020-04-04 02:18:04,628 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-1] Completed initialization in 14 ms
+2020-04-04 02:18:05,801 TRACE com.example.AutoskolaDemoWithSecurity.filters.LogFilter [http-nio-8080-exec-1] Address: 0:0:0:0:0:0:0:1, Port: 54149, Host: 0:0:0:0:0:0:0:1, User: ivan@gmail.com, URI: /user/getPicture, method: GET
+2020-04-04 02:18:06,031 INFO com.example.AutoskolaDemoWithSecurity.interceptors.LogInterceptor [http-nio-8080-exec-1] Total time taken to process request: 0.092 seconds

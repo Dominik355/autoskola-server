@@ -3,16 +3,10 @@ package com.example.AutoskolaDemoWithSecurity;
 
 import com.example.AutoskolaDemoWithSecurity.tests.QuestionRepository;
 import com.example.AutoskolaDemoWithSecurity.tests.TestRepository;
-import org.springframework.cloud.client.discovery.DiscoveryClient;//treba pouzit toto, nie tu druhu 
-import org.apache.commons.lang.builder.ToStringBuilder;
-import org.apache.tomcat.util.descriptor.web.SecurityCollection;
-import org.apache.tomcat.util.descriptor.web.SecurityConstraint;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory;
-import org.springframework.boot.web.servlet.server.ServletWebServerFactory;
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.context.ApplicationContext;

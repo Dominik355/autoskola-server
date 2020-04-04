@@ -107,21 +107,21 @@ public class InstructorController {
     }
     
     
-    @GetMapping(value = {"/getCompletedRides/{inputDate}"})
+    @GetMapping(value = {"/getCompletedRides"})
     @ApiOperation(value = "${instructorController.getCompletedRides.value}",
                 notes = "${instructorController.getCompletedRides.notes}",
                 response = ResponseEntity.class,
                 responseContainer = "List")
     public ResponseEntity getCompletedRides (@ApiParam(value = "${instructorController.getCompletedRides.paramValue}")
-                @PathVariable("inputDate") String inputDate, HttpServletRequest request) {
-        if(rideUtil.isDateValid(inputDate)){
-            String date;
-            if(inputDate.contains("T")) {
-                date = inputDate.substring(0, inputDate.indexOf("T"));
+                @RequestParam(name = "date", defaultValue = "") String date, HttpServletRequest request) {
+        if(date.equals("") || rideUtil.isDateValid(date)){
+            String inputDate;
+            if(date.contains("T")) {
+                inputDate = date.substring(0, date.indexOf("T"));
             } else {
-                date = inputDate;
+                inputDate = date;
             }
-            return ResponseEntity.ok(crs.getCompletedRides(request.getIntHeader("Relation"), date));
+            return ResponseEntity.ok(crs.getCompletedRides(request.getIntHeader("Relation"), inputDate));
         }
         return new ResponseEntity("Invalid date", HttpStatus.BAD_REQUEST);
     }
@@ -148,6 +148,9 @@ public class InstructorController {
     }
     
     @GetMapping(value = {"/showTimes/{inputDate}"})
+    @ApiOperation(value = "${instructorController.showTimes.value}",
+            notes = "${instructorController.showTimes.notes}",
+            response = ResponseEntity.class)
     public ResponseEntity showTimes(@PathVariable("inputDate") @RideDateConstraint String inputDate, HttpServletRequest request) {
         return ResponseEntity.ok(rideService.showTimes(inputDate, request.getIntHeader("Relation")));
     }
