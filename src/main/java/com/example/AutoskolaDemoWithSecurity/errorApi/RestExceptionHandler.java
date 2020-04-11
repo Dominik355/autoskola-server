@@ -38,6 +38,7 @@ import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.NoHandlerFoundException;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
@@ -51,20 +52,23 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
     
     
     @Override
+    @ResponseStatus(code = HttpStatus.BAD_REQUEST)
     protected ResponseEntity<Object> handleHttpMessageNotReadable
             (HttpMessageNotReadableException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {           
       String error = "Malformed JSON request";
       return buildResponseEntity(new ApiError(HttpStatus.BAD_REQUEST, error));
     }
 
+    @ResponseStatus(code = HttpStatus.BAD_REQUEST)
     @ExceptionHandler({EntityNotFoundException.class})
     protected ResponseEntity<Object> handleEntityNotFound(EntityNotFoundException ex) {
-      ApiError apiError = new ApiError(HttpStatus.NOT_FOUND);
+      ApiError apiError = new ApiError(HttpStatus.BAD_REQUEST);
       apiError.setMessage(ex.getMessage());
       return buildResponseEntity(apiError);
     }
 
     @Override
+    @ResponseStatus(code = HttpStatus.BAD_REQUEST)
     protected ResponseEntity<Object> handleMethodArgumentNotValid
             (MethodArgumentNotValidException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
                 
@@ -93,27 +97,32 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
             
     @ExceptionHandler({ ExpiredJwtException.class, UnsupportedJwtException.class,
                 MalformedJwtException.class, SignatureException.class, JwtException.class })
+    @ResponseStatus(code = HttpStatus.UNAUTHORIZED)
     public ResponseEntity<Object> handleJwtException(JwtException ex) {
         System.out.println("com.example.AutoskolaDemoWithSecurity.errorApi.RestExceptionHandler.handleExpiredJwtException()");
         return buildResponseEntity(new ApiError(HttpStatus.UNAUTHORIZED, ex.getMessage()));
     }
             
     @ExceptionHandler({ AccessDeniedException.class })
+    @ResponseStatus(code = HttpStatus.UNAUTHORIZED)
     public ResponseEntity<Object> handleAccessDeniedException(AccessDeniedException ex) {
         return buildResponseEntity(new ApiError(HttpStatus.UNAUTHORIZED, ex.getMessage()));
     }
     
     @ExceptionHandler({ FileNotFoundException.class })
+    @ResponseStatus(code = HttpStatus.UNAUTHORIZED)
     public ResponseEntity<Object> handleFileNotFoundException(FileNotFoundException ex) {
         return buildResponseEntity(new ApiError(HttpStatus.UNAUTHORIZED, ex.getMessage()));
     }
     
     @ExceptionHandler({ ConstraintViolationException.class })
+    @ResponseStatus(code = HttpStatus.BAD_REQUEST)
     public ResponseEntity<Object> handleAConstraintViolationException(ConstraintViolationException ex) {
         return buildResponseEntity(new ApiError(HttpStatus.BAD_REQUEST, ex.getMessage()));
     }
     
     @ExceptionHandler({DataAccessException.class, HibernateException.class, EmptyResultDataAccessException.class})
+    @ResponseStatus(code = HttpStatus.INTERNAL_SERVER_ERROR)
     public ResponseEntity<Object> handleDatabaseProblemException(RuntimeException ex) {
         ex.printStackTrace();
         String errorMessage = ex.getMessage();
@@ -124,27 +133,32 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
     }
     
     @ExceptionHandler({ NoSuchElementException.class })
+    @ResponseStatus(code = HttpStatus.BAD_REQUEST)
     public ResponseEntity<Object> handleNoSuchElementException(NoSuchElementException ex) {
         return buildResponseEntity(new ApiError(HttpStatus.BAD_REQUEST, ex.getMessage()));
     }    
     
     @ExceptionHandler({ ParseException.class })
+    @ResponseStatus(code = HttpStatus.INTERNAL_SERVER_ERROR)
     public ResponseEntity<Object> handleParseException(ParseException ex) {
         return buildResponseEntity(new ApiError(HttpStatus.INTERNAL_SERVER_ERROR
                 , ex.getMessage().length() > 255 ? "Error while parsing string parameter " : ex.getMessage()));
     }
     
     @ExceptionHandler({ MailException.class })
+    @ResponseStatus(code = HttpStatus.BAD_REQUEST)
     public ResponseEntity<Object> handleMailException(MailException ex) {
         return buildResponseEntity(new ApiError(HttpStatus.BAD_REQUEST, ex.getMessage()));
     }   
     
     @ExceptionHandler({ SecurityException.class })
+    @ResponseStatus(code = HttpStatus.BAD_REQUEST)
     public ResponseEntity<Object> handleSecurityException(SecurityException ex) {
         return buildResponseEntity(new ApiError(HttpStatus.BAD_REQUEST, ex.getMessage()));
     } 
     
     @ExceptionHandler({ PersistenceException.class })
+    @ResponseStatus(code = HttpStatus.INTERNAL_SERVER_ERROR)
     public ResponseEntity<Object> handlePersistenceException(PersistenceException ex) {
         ex.printStackTrace();
             String errorMessage = ex.getMessage();
@@ -155,36 +169,43 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
     }     
     
     @ExceptionHandler({ EntityExistsException.class })
+    @ResponseStatus(code = HttpStatus.BAD_REQUEST)
     public ResponseEntity<Object> handleEntityExistsException(EntityExistsException ex) {
         return buildResponseEntity(new ApiError(HttpStatus.BAD_REQUEST, ex.getMessage()));
     }    
     
     @ExceptionHandler({ UpdatePasswordException.class })
+    @ResponseStatus(code = HttpStatus.BAD_REQUEST)
     public ResponseEntity<Object> handleUpdatePasswordException(UpdatePasswordException ex) {
         return buildResponseEntity(new ApiError(HttpStatus.BAD_REQUEST, ex.getMessage()));
     }   
     
     @ExceptionHandler({ WrongDateException.class })
+    @ResponseStatus(code = HttpStatus.BAD_REQUEST)
     public ResponseEntity<Object> handleWrongDateException(WrongDateException ex) {
         return buildResponseEntity(new ApiError(HttpStatus.BAD_REQUEST, ex.getMessage()));
     }  
     
     @ExceptionHandler({ LoginException.class })
+    @ResponseStatus(code = HttpStatus.BAD_REQUEST)
     public ResponseEntity<Object> handleLoginException(LoginException ex) {
         return buildResponseEntity(new ApiError(HttpStatus.BAD_REQUEST, ex.getMessage()));
     }  
     
     @ExceptionHandler({ IllegalArgumentException.class })
+    @ResponseStatus(code = HttpStatus.BAD_REQUEST)
     public ResponseEntity<Object> handleIllegalArgumentException(IllegalArgumentException ex) {
         return buildResponseEntity(new ApiError(HttpStatus.BAD_REQUEST, ex.getMessage()));
     }
     
     @ExceptionHandler({ CustomLoginException.class })
+    @ResponseStatus(code = HttpStatus.BAD_REQUEST)
     public ResponseEntity<Object> handleCustomLoginException(CustomLoginException ex) {
         return buildResponseEntity(new ApiError(HttpStatus.BAD_REQUEST, ex.getMessage()));
     }
     
     @ExceptionHandler({ InterruptedException.class })
+    @ResponseStatus(code = HttpStatus.BAD_REQUEST)
     public ResponseEntity<Object> handleInterruptedException(InterruptedException ex) {
         String errorMessage = ex.getMessage();
         if(errorMessage == null) {
@@ -194,6 +215,7 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
     } 
     
     @ExceptionHandler({ NullPointerException.class })
+    @ResponseStatus(code = HttpStatus.INTERNAL_SERVER_ERROR)
     public ResponseEntity<Object> handleNullPointerException(NullPointerException ex) {
         for(StackTraceElement k : ex.getStackTrace()) {
             System.out.println(k.toString());
@@ -202,12 +224,14 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
     }
     
     @ExceptionHandler({ IOException.class })
+    @ResponseStatus(code = HttpStatus.INTERNAL_SERVER_ERROR)
     public ResponseEntity<Object> handleIOException(IOException ex) {
         System.out.println("IOException occured with message: " + ex.getMessage());
         return buildResponseEntity(new ApiError(HttpStatus.INTERNAL_SERVER_ERROR, ex.getMessage()));
     }
 
     @Override
+    @ResponseStatus(code = HttpStatus.NOT_FOUND)
     protected ResponseEntity<Object> handleNoHandlerFoundException(NoHandlerFoundException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
 //        return super.handleNoHandlerFoundException(ex, headers, status, request); 
           return buildResponseEntity(new ApiError(HttpStatus.NOT_FOUND, "This address does not exist!"));

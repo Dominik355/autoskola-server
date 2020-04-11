@@ -106,6 +106,11 @@ public class InstructorController {
         return ResponseEntity.ok(clrs.removeRides(rides, request.getIntHeader("Relation")));
     }
     
+    @DeleteMapping(value = {"/cancelRide/{rideID}"})
+    public ResponseEntity cancelRide(@PathVariable("rideID") int rideID
+                , HttpServletRequest request) throws ParseException {
+        return ResponseEntity.ok(clrs.cancelRide(rideID, request.getIntHeader("Relation")));
+    }
     
     @GetMapping(value = {"/getCompletedRides"})
     @ApiOperation(value = "${instructorController.getCompletedRides.value}",
@@ -153,6 +158,12 @@ public class InstructorController {
             response = ResponseEntity.class)
     public ResponseEntity showTimes(@PathVariable("inputDate") @RideDateConstraint String inputDate, HttpServletRequest request) {
         return ResponseEntity.ok(rideService.showTimes(inputDate, request.getIntHeader("Relation")));
+    }
+    
+    @GetMapping(value = {"/getPendingRides"})
+    @ApiOperation(value = "${instructorController.getPendingRides.value}")
+    public ResponseEntity showTimes(HttpServletRequest request) {
+        return ResponseEntity.ok(rideService.getPendingRides(request.getIntHeader("Relation")));
     }
     
 }

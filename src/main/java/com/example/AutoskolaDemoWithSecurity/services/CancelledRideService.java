@@ -1,6 +1,7 @@
 
 package com.example.AutoskolaDemoWithSecurity.services;
 
+import com.example.AutoskolaDemoWithSecurity.errorApi.customExceptions.CustomLoginException;
 import com.example.AutoskolaDemoWithSecurity.models.databaseModels.CancelledRide;
 import com.example.AutoskolaDemoWithSecurity.models.databaseModels.CompletedRide;
 import com.example.AutoskolaDemoWithSecurity.models.databaseModels.DrivingSchool;
@@ -68,15 +69,24 @@ public class CancelledRideService {
         for(int i = 0; i < rides.length; i++) {
             ResponseEntity res = removeRide(rideRepository.findByTimeAndDateAndInstructorAndDrivingSchool(
                     rides[i].getTime(), rides[i].getDate(), instructor, drivingSchool)
-                    , relationID
-                    , instructor
                     , drivingSchool);
         }
         return new ResponseEntity("Rides succesfully removed", HttpStatus.OK);
     }
     
     
-    public ResponseEntity removeRide(Ride passedRide, int relationID, User instructor, DrivingSchool drivingSchool) throws ParseException {
+    public ResponseEntity cancelRide(int rideID, int relationID) throws ParseException {
+        Ride ride = rideRepository.findById(rideID).orElseThrow(
+                () -> new NoSuchElementException("No ride with ID: "+rideID));
+        if(ride.getInstructor().getEmail().equals(
+                SecurityContextHolder.getContext().getAuthentication().getName())) {
+            return removeRide(ride, ride.getDrivingSchool());
+        }
+        throw new CustomLoginException("You can cancel only your rides!");
+    }
+    
+    
+    public ResponseEntity removeRide(Ride passedRide, DrivingSchool drivingSchool) throws ParseException {
          String status;
          Ride ride = passedRide;
          try {
@@ -106,6 +116,7 @@ public class CancelledRideService {
              CancelledRide cRide = new CancelledRide(ride);
              clrr.save(cRide);
              if(status.equals("RESERVED") ) {
+                 //nezacala ale niekto bol prihlaseny
                 notificationService.addPushNotification(ride.getStudent().get(), drivingSchool
                                     , "Instructor cancelled ride: "+ride.getDate()+" "+ride.getTime());
              }

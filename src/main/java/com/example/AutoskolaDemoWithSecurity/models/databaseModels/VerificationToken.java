@@ -1,7 +1,6 @@
 
 package com.example.AutoskolaDemoWithSecurity.models.databaseModels;
 
-import com.example.AutoskolaDemoWithSecurity.models.databaseModels.User;
 import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.Calendar;
@@ -24,7 +23,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @Table(name = "verification_tokens")
 public class VerificationToken implements Serializable {
     
-  private static final int EXPIRATION = 1440;
+  private static final int EXPIRATION_DAYS = 7;
   
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
@@ -48,7 +47,7 @@ public class VerificationToken implements Serializable {
   public VerificationToken(String token, User user) {
     this.token = token;
     this.user = user;
-    this.expiryDate = new Timestamp(calculateExpiryDate(1440).getTime());
+    this.expiryDate = new Timestamp(calculateExpiryDate(EXPIRATION_DAYS).getTime());
   } 
 
     public Long getId() {
@@ -83,10 +82,10 @@ public class VerificationToken implements Serializable {
         this.expiryDate = expiryDate;
     }
   
-    private Date calculateExpiryDate(int expiryTimeInMinutes) { 
+    private Date calculateExpiryDate(int expiryTimeInDays) { 
         Calendar cal = Calendar.getInstance();
         cal.setTime(new Timestamp(cal.getTime().getTime()));
-        cal.add(12, expiryTimeInMinutes);
+        cal.add(Calendar.DAY_OF_MONTH, expiryTimeInDays);
         return new Date(cal.getTime().getTime());
   }
 

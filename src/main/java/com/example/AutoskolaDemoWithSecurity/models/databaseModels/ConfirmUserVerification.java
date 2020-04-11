@@ -33,15 +33,19 @@ public class ConfirmUserVerification implements Serializable{
     
     //informacia ci ide o instruktora, alebo ziaka+ pripadne do ktoreho kurzu sa hlasi
     private String information;
+        
+    @Column(name = "relation_id")
+    private int relation;
 
     public ConfirmUserVerification() {
     
     }
 
-    public ConfirmUserVerification(DrivingSchool drivingSchool, User user, String information) {
+    public ConfirmUserVerification(DrivingSchool drivingSchool, User user, String information, int relationID) {
         this.drivingSchool = drivingSchool;
         this.user = user;
         this.information = information;
+        this.relation = relationID;
     }
 
     public int getId() {
@@ -71,5 +75,13 @@ public class ConfirmUserVerification implements Serializable{
     public void setInformation(String information) {
         this.information = information;
     }
-    
+
+    public int getRelationID() {
+        return relation;
+    }
+
+    public void setRelationID(int relationID) {
+        this.relation = relationID;
+    }
+
 }

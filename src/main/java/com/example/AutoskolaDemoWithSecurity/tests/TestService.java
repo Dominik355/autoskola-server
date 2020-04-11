@@ -1,7 +1,8 @@
 
 package com.example.AutoskolaDemoWithSecurity.tests;
 
-import java.util.ArrayList;
+import com.example.AutoskolaDemoWithSecurity.models.databaseModels.QuestionPhoto;
+import com.example.AutoskolaDemoWithSecurity.repositories.QuestionPhotoRepository;
 import java.util.Arrays;
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -20,6 +21,9 @@ public class TestService {
     
     @Autowired
     private QuestionRepository questionRepository;
+    
+    @Autowired
+    private QuestionPhotoRepository photoRepository;
 
     
     public TestDTO getTest(int testNumber) {
@@ -33,8 +37,8 @@ public class TestService {
         for(String str : questions) {
             int questionID = Integer.parseInt(str.split("-")[0]);
             int order = Integer.parseInt(str.split("-")[1]);
-            Question question = questionRepository.findById(questionID).orElseThrow(
-                   () -> new NoSuchElementException("question not found"));
+            QuestionDTO question = new QuestionDTO(questionRepository.findById(questionID).orElseThrow(
+                   () -> new NoSuchElementException("question not found")));
             question.setQuestionOrder(order);
             testDTO.addQuestion(question);
         }
@@ -43,13 +47,13 @@ public class TestService {
                 
     }
     
-    public List<TestDTO> getAllTests() {
-        
-        List<TestDTO> tests = new ArrayList<>();
-        List<Integer> list = new ArrayList<>();
-        testRepository.findAll().forEach((obj) -> tests.add(getTest(obj.getNumber())));        
-        return tests;
-        
+    public List<Integer> getAllTests() {
+        return testRepository.findAll().stream().map(obj -> obj.getNumber()).collect(Collectors.toList());        
     }
-     
+    
+    public QuestionPhoto getQuestionPhoto(int questionID) {
+        return photoRepository.findByQuestion(questionID)
+                .orElseThrow(() -> new NoSuchElementException("This question does not have a photo"));
+    }
+
 }

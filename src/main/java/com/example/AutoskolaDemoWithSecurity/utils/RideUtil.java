@@ -15,10 +15,10 @@ import java.util.Date;
 import java.util.NoSuchElementException;
 import javax.persistence.EntityExistsException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
 //Date format .... [year-month-day]...[2020-08-25]
-@Service
+@Component
 public class RideUtil {
     
     @Autowired

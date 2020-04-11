@@ -5,12 +5,15 @@ import com.example.AutoskolaDemoWithSecurity.models.databaseModels.DrivingSchool
 import com.example.AutoskolaDemoWithSecurity.models.databaseModels.Relationship;
 import com.example.AutoskolaDemoWithSecurity.models.databaseModels.User;
 import com.example.AutoskolaDemoWithSecurity.models.transferModels.DrivingSchoolDTO;
+import com.example.AutoskolaDemoWithSecurity.models.transferModels.UserConfirmation;
+import com.example.AutoskolaDemoWithSecurity.repositories.ConfirmationRepository;
 import com.example.AutoskolaDemoWithSecurity.repositories.DrivingSchoolRepository;
 import com.example.AutoskolaDemoWithSecurity.repositories.RelationshipRepository;
 import com.example.AutoskolaDemoWithSecurity.repositories.UserRepository;
 import java.nio.file.AccessDeniedException;
 import java.util.List;
 import java.util.stream.Collectors;
+import javax.persistence.EntityNotFoundException;
 import javax.persistence.PersistenceException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -33,6 +36,12 @@ public class DrivingSchoolService {
     
     @Autowired
     private RelationshipRepository relationshipRepository;
+    
+    @Autowired
+    private ConfirmationRepository confirmationRepository;
+    
+    @Autowired
+    private RelationshipService relationshipService;
     
     
     public ResponseEntity createDrivingSchool(DrivingSchoolDTO drivingSchoolDTO) {
@@ -70,6 +79,28 @@ public class DrivingSchoolService {
     public List<DrivingSchoolDTO> getDrivingSchools() {
         List<DrivingSchool> list = schoolRepository.findAll();
         return list.stream().map(DrivingSchoolDTO::new).collect(Collectors.toList());
+    }
+    
+    public List<UserConfirmation> viewRequests(int relationID){
+        DrivingSchool school = relationshipRepository.findById(relationID).get().getDrivingSchool();
+        return confirmationRepository.findAllByDrivingSchool(school)
+                .stream()
+                .map(UserConfirmation::new)
+                .collect(Collectors.toList());
+    }
+    
+    //ak true - najde relationship - aktivuje ho - vymaze verifikaciu
+    //ak false - vymaze verifikaciu, relationship neha, kvoli userovi
+    public String confirmUser(int userRelationID, boolean confirm) {
+        if(confirm) {
+            try {
+                relationshipService.activateRelationship(relationshipRepository.findById(userRelationID).get());
+            } catch(Exception e) {
+                throw new EntityNotFoundException("Wrong relationship ID");
+            }
+        }
+        confirmationRepository.deleteByRelation(userRelationID);
+        return confirm ? "User confirmed" : "User rejected";
     }
     
 }

@@ -47,6 +47,9 @@ public class Relationship implements Serializable {
     @Column(name = "position")
     private String role;
     
+    @Column(columnDefinition = "varchar(255) default ''")
+    private String status;
+    
     private boolean activate;
 
     public Relationship() {
@@ -105,6 +108,16 @@ public class Relationship implements Serializable {
         this.activate = activate;
     }
 
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public String getStatus() {
+        if(status == null) return "";
+        else return status;
+    }
+    
+
     @Override
     public String toString() {
         return "role: "+this.role+
@@ -113,7 +126,8 @@ public class Relationship implements Serializable {
                                 ", endingDate: "+this.endingdate+
                                         ", id: "+this.id+
                                                 ", role: "+this.role+
-                                                        ", user: "+this.user;
+                                                        ", status: "+this.status+
+                                                                ", user: "+this.user;
     }
     
 }

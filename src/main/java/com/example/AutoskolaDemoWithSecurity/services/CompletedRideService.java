@@ -4,6 +4,7 @@ package com.example.AutoskolaDemoWithSecurity.services;
 import com.example.AutoskolaDemoWithSecurity.errorApi.customExceptions.WrongDateException;
 import com.example.AutoskolaDemoWithSecurity.models.databaseModels.CompletedRide;
 import com.example.AutoskolaDemoWithSecurity.models.databaseModels.DrivingSchool;
+import com.example.AutoskolaDemoWithSecurity.models.databaseModels.Relationship;
 import com.example.AutoskolaDemoWithSecurity.models.databaseModels.Ride;
 import com.example.AutoskolaDemoWithSecurity.models.databaseModels.User;
 import com.example.AutoskolaDemoWithSecurity.models.transferModels.RideDTO;
@@ -56,19 +57,29 @@ public class CompletedRideService {
                     SecurityContextHolder.getContext().getAuthentication().getName()).get();
         DrivingSchool school = relationRepository.findById(relationID).get().getDrivingSchool();
         List<CompletedRide> rides = new ArrayList<>();
+        List<Ride> ridess = new ArrayList<>();
+        List<RideDTO> response = new ArrayList<>();
         
         if(user.getRoles().contains("STUDENT")) {
             rides = crr.findAllByDrivingSchoolAndStudent(school, user);
+            ridess = rideRepository.findAllByStudentAndDrivingSchoolAndStatus(user, school, "PENDING");
         } else if(user.getRoles().contains("INSTRUCTOR")
                 || user.getRoles().contains("OWNER")) {
             rides = crr.findAllByDrivingSchoolAndInstructor(school, user);
+            ridess = rideRepository.findAllByInstructorAndDrivingSchoolAndStatus(user, school, "PENDING");
         }
         if(!date.equals("")) {
-            return rides.stream().filter(ride -> date.equals(ride.getDate()))
-                    .map(RideDTO::new).collect(Collectors.toList());
+            response.addAll(rides.stream().filter(ride -> date.equals(ride.getDate()))
+                    .map(RideDTO::new).collect(Collectors.toList()));
+            response.addAll(ridess.stream().filter(ride -> date.equals(ride.getDate()))
+                    .map(RideDTO::new).collect(Collectors.toList()));
+            return response;
         }
-        return rides.stream().map(RideDTO::new)
-                .collect(Collectors.toList());        
+        response.addAll(rides.stream().map(RideDTO::new)
+                .collect(Collectors.toList()));
+        response.addAll(ridess.stream().map(RideDTO::new)
+                .collect(Collectors.toList()));
+        return response;
     }
         
     //jazda musi mat oznacenie PENDING a oznaci sa  ako FINISHED, ulozi sa ked tak novy komentar k nej
@@ -92,6 +103,7 @@ public class CompletedRideService {
                     }
                     rideRepository.delete(ride);
                     cRide.setStatus("FINISHED");
+                    checkStatus(ride);
                     CompletedRide compR = crr.save(cRide);
                     if(compR != null) {
                         notificationService.addPushNotification(ride.getStudent().get()
@@ -149,6 +161,15 @@ public class CompletedRideService {
             return last.subList(0, count).stream().map(RideDTO::new).collect(Collectors.toList());
         } else {
             return last.stream().map(RideDTO::new).collect(Collectors.toList());
+        }
+    }
+    
+    private void checkStatus(Ride ride) {
+        if(crr.findAllByStudentAndDrivingSchoolAndStatus(
+                ride.getStudent().get(), ride.getDrivingSchool(), ride.getStatus()).size() >= 15) {
+            Relationship re = relationRepository.findByUserAndDrivingSchool(ride.getStudent().get(), ride.getDrivingSchool());
+            re.setStatus("Wating for final exam");
+            relationRepository.save(re);
         }
     }
     

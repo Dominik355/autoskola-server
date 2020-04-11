@@ -4,13 +4,12 @@ package com.example.AutoskolaDemoWithSecurity.utils;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
-@Service
+@Component
 public class RoleUtil {
     
     public boolean isRole(String role) {
-        System.out.println("com.example.AutoskolaDemoWithSecurity.utils.RoleUtil.isRole()");
         boolean flag = false;
         role = rolesCorrection(role);
         for(String k : role.split(",")) {
@@ -26,7 +25,6 @@ public class RoleUtil {
     }
     
     public String rolesCorrection(String roles) {
-        System.out.println("com.example.AutoskolaDemoWithSecurity.utils.RoleUtil.rolesCorrection()");
         List<String> list = Arrays.stream(roles.split(",")).collect(Collectors.toList());
         roles = "";
         for(String s : list) {

@@ -13,7 +13,7 @@ public class TestDTO {
     
     private String type;
     
-    private List<Question> questions;
+    private List<QuestionDTO> questions;
 
     public TestDTO() {
     
@@ -26,7 +26,7 @@ public class TestDTO {
         this.questions = new ArrayList<>();
     }
 
-    public TestDTO(int id, int number, String type, List<Question> questions) {
+    public TestDTO(int id, int number, String type, List<QuestionDTO> questions) {
         this.id = id;
         this.number = number;
         this.type = type;
@@ -53,15 +53,15 @@ public class TestDTO {
         this.type = type;
     }
 
-    public List<Question> getQuestions() {
+    public List<QuestionDTO> getQuestions() {
         return questions;
     }
 
-    public void setQuestions(List<Question> questions) {
+    public void setQuestions(List<QuestionDTO> questions) {
         this.questions = questions;
     }
     
-    public void addQuestion(Question question) {
+    public void addQuestion(QuestionDTO question) {
         if(questions == null) {
             questions = new ArrayList<>();
         }

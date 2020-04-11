@@ -1,0 +1,205 @@
+{
+	"answer_1":"vozidlo pohybujúce sa pomocou ľudskej sily alebo zvieracej sily, električka a trolejbus",
+	"answer_2":"vozidlo pohybujúce sa pomocou ľudskej sily alebo zvieracej sily,",
+	"answer_3":"aj motorové vozidlo, ktorého pohotovostná hmotnosť nepresahuje 400 kg",
+	"question":"Nemotorovým vozidlom sa rozumie",
+	"type":"legal",
+	"points":"2",
+	"correctAnswer":"2"
+}
+
+{
+	"answer_1":"dáva znamenie o zmene smeru jazdy,",
+	"answer_2":"jazdí rýchlosťou nižšou ako 50 km/h,",
+	"answer_3":"má dostatočnú prax vo vedení motocykla.",
+	"question":"Vodič motocykla je povinný počas jazdy oboma rukami držať riadidlá motocykla s výnimkou prípadu, keď",
+	"type":"legal",
+	"points":"2",
+	"correctAnswer":"1"
+}
+
+{
+	"answer_1":"vždy vtedy, ak je to potrebné na zabezpečenie plynulej jazdy jeho vozidla, najmä na upozornenie vodiča predchádzaného vozidla v obci,",
+	"answer_2":"len v obci na upozornenie vodiča predchádzaného vozidla,",
+	"answer_3":"len vtedy, ak je to potrebné na odvrátenie hroziaceho nebezpečenstva, a mimo obce aj na upozornenie vodiča predchádzaného vozidla.",
+	"question":"Vodič smie dávať zvukové výstražné znamenie",
+	"type":"legal",
+	"points":"2",
+	"correctAnswer":"3"
+}
+
+{
+	"answer_1":"ak je vozovka dostatočne a súvisle osvetlená,",
+	"answer_2":"pri jazde mimo obce,",
+	"answer_3":"za zníženej viditeľnosti.",
+	"question":"Vodič smie dávať zvukové výstražné znamenie",
+	"type":"legal",
+	"points":"2",
+	"correctAnswer":"1"
+}
+
+{
+	"answer_1":"80 km/h,",
+	"answer_2":"60 km/h,",
+	"answer_3":"90 km/h,",
+	"question":" Na diaľnici mimo obce smie vodič motorového vozidla jazdiť rýchlosťou najmenej",
+	"type":"legal",
+	"points":"2",
+	"correctAnswer":"1"
+}
+
+{
+	"answer_1":"ak nemá rozhľad na vzdialenosť najmenej 200 m",
+	"answer_2":"ak by pri predchádzaní svojou výrazne nižšou rýchlosťou obmedzil iné motorové vozidlo",
+	"answer_3":"za hmly, sneženia a hustého dažďa",
+	"question":" Vodič motorového vozidla nesmie na diaľnici predchádzať iné motorové vozidlo",
+	"type":"legal",
+	"points":"2",
+	"correctAnswer":"2"
+}
+
+{
+	"answer_1":"a ak je to potrebné, aj zastaviť vozidlo na takom mieste, aby im neprekážalo",
+	"answer_2":"len ak ho na to upozornia zapínaním diaľkových svetlometov,",
+	"answer_3":"len ak tak urobia aj pred ním jazdiaci vodiči",
+	"question":" Vodič iného vozidla je povinný vozidlu s právom prednostnej jazdy a vozidlu, ktoré sprevádza, umožniť bezpečný a plynulý prejazd",
+	"type":"legal",
+	"points":"2",
+	"correctAnswer":"1"
+}
+
+{
+	"answer_1":"len za zníženej viditeľnosti,",
+	"answer_2":"len vtedy, ak ju tvorí motorové vozidlo",
+	"answer_3":"najmä zábranou na označenie uzávierky, výstražným svetlom oranžovej farby, za zníženej viditeľnosti aj červeným svetlom alebo reflexnou červenou zástavkou",
+	"question":" Prekážka cestnej premávky sa označuje",
+	"type":"legal",
+	"points":"2",
+	"correctAnswer":"3"
+}
+
+{
+	"answer_1":"osoba, ktorá ich sprevádza",
+	"answer_2":"zákonný zástupca",
+	"answer_3":"osoba pribratá na zaistenie bezpečnosti a plynulosti cestnej premávky alebo niektorých jazdných úkonov",
+	"question":" Za prepravu detí alebo osôb, ktoré pre poruchu zdravia nezodpovedajú za svoje konanie, zodpovedá",
+	"type":"legal",
+	"points":"2",
+	"correctAnswer":"1"
+}
+
+{
+	"answer_1":"zdržať sa požitia alkoholu alebo inej návykovej látky do príchodu odťahovej služby,",
+	"answer_2":"zdržať sa požitia alkoholu alebo inej návykovej látky po nehode v čase, keď by to bolo na ujmu zistenia, či pred jazdou alebo počas jazdy požil alkohol alebo inú návykovú látku",
+	"answer_3":"zdržať sa požitia alkoholu alebo inej návykovej látky do príchodu odbornej zdravotníckej pomoci",
+	"question":" Vodič, ktorý sa zúčastnil na dopravnej nehode, je povinný",
+	"type":"legal",
+	"points":"2",
+	"correctAnswer":"2"
+}
+
+{
+	"answer_1":"len ak vedie viac ako 50 zvierat,",
+	"answer_2":"ak to vyžaduje bezpečnosť cestnej premávky,",
+	"answer_3":"ak to vyžaduje plynulosť cestnej premávky alebo ak potrebuje získať informácie od protijazdiacich vodičov o situácii na ceste pred ním.",
+	"question":" Sprievodca vedených alebo hnaných zvierat je oprávnený dávať pokyny na zastavenie vozidla",
+	"type":"legal",
+	"points":"2",
+	"correctAnswer":"2"
+}
+
+{
+	"answer_1":"na sebe viditeľne umiestnené reflexné prvky alebo oblečený reflexný bezpečnostný odev",
+	"answer_2":"oblečený odev s nápisom „CYKLISTA”",
+	"answer_3":"len pri jazde v obytnej zóne a školskej zóne oblečený reflexný bezpečnostný odev.",
+	"question":"Za zníženej viditeľnosti musí mať cyklista jazdiaci po krajnici alebo po okraji vozovky",
+	"type":"legal",
+	"points":"2",
+	"correctAnswer":"1"
+}
+
+{
+	"answer_1":"nie je vybavené zariadením na spájanie vozidiel",
+	"answer_2":"nie je funkčné počítadlo prejdenej vzdialenosti",
+	"answer_3":"je vybavené pneumatikami rôznych rozmerov a konštrukcií alebo na tej istej náprave sú použité pneumatiky, ktoré nie sú zhodné",
+	"question":"Vozidlo sa považuje za technicky nespôsobilé na premávku na pozemných komunikáciách, ak",
+	"type":"legal",
+	"points":"2",
+	"correctAnswer":"3"
+}
+
+{
+	"answer_1":"miesto vyznačené príslušnou vodorovnou dopravnou značkou; kde takáto vodorovná dopravná značka nie je, hranicu križovatky tvorí kolmica na os vozovky v mieste, kde sa pre križovatku začína zakrivenie vozovky",
+	"answer_2":"kolmica na os vozovky vo vzdialenosti desať metrov od miesta, kde sa pre križovatku začína zakrivenie vozovky",
+	"answer_3":"kolmica na os vozovky vedená stredom priechodu pre chodcov",
+	"question":"Hranicou križovatky sa rozumie",
+	"type":"legal",
+	"points":"2",
+	"correctAnswer":"1"
+}
+
+{
+	"answer_1":"uvedenie vozidla do pokoja na dlhšie, ako je čas dovolený na zastavenie",
+	"answer_2":"prerušenie jazdy na čas nevyhnutne potrebný na urýchlené nastúpenie alebo vystúpenie prepravovaných osôb alebo na urýchlené naloženie alebo zloženie nákladu",
+	"answer_3":"len také uvedenie vozidla do pokoja, ktoré nepresiahne čas 15 minút",
+	"question":" Státím sa rozumie",
+	"type":"legal",
+	"points":"2",
+	"correctAnswer":"1"
+}
+
+{
+	"answer_1":"okuliarmi a ochranným štítom za každých okolností,",
+	"answer_2":"okuliarmi len pri snežení alebo v daždi,",
+	"answer_3":"najmä okuliarmi alebo ochranným štítom, ak sa tým nezníži bezpečnosť jazdy, najmä v hmle, pri snežení alebo v daždi.",
+	"question":" Vodič motocykla je počas jazdy povinný vhodným spôsobom chrániť si zrak",
+	"type":"legal",
+	"points":"2",
+	"correctAnswer":"3"
+}
+
+{
+	"answer_1":"vpravo",
+	"answer_2":"vľavo",
+	"answer_3":"v strede",
+	"question":"Na priechode pre chodcov sa chodí",
+	"type":"legal",
+	"points":"2",
+	"correctAnswer":"1"
+}
+
+{
+	"answer_1":"Prikázaný smer obchádzania vpravo a vľavo",
+	"answer_2":"Jazdné pruhy pred križovatkou",
+	"answer_3":"Nerovnosť vozovky",
+	"question":"Táto dopravná značka znamená:",
+	"type":"legal",
+	"points":"2",
+	"correctAnswer":"1"
+}
+////////// k poslednej pridat obrazok
+
+{
+	"number":"1",
+	"type":"ab",
+	"questions":"255-1,256-2,257-3,258-4,259-5,260-6,261-7,262-8,263-9,264-10"
+}
+
+{
+	"number":"2",
+	"type":"ab",
+	"questions":"270-1,255-2,265-3,258-4,259-5,263-6,267-7,262-8,269-9,257-10"
+}
+
+{
+	"number":"3",
+	"type":"ab",
+	"questions":"266-1,267-2,268-3,269-4,270-5,255-6,256-7,257-8,258-9,262-10"
+}
+
+{
+	"number":"4",
+	"type":"ab",
+	"questions":"270-1,268-2,266-3,264-4,262-5,260-6,259-7,257-8,258-9,267-10"
+}
+

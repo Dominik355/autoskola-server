@@ -40,7 +40,6 @@ public class RegistrationListener implements ApplicationListener<OnRegistrationC
       email.setTo(recipientAddress);
       email.setSubject(subject);
       email.setText(confirmationURL);
-      System.out.println("Sending email ");
       try {
           this.mailSender.send(email); 
       } catch (MailException e) {

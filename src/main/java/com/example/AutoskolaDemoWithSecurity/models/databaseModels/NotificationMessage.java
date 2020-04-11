@@ -28,7 +28,7 @@ public class NotificationMessage {
     @Column(updatable = false, name = "created_on")
     private Timestamp creationDate;
     
-    @Column(columnDefinition = "integer default 24", name = "hours_to_delete")
+    @Column(name = "hours_to_delete")
     private int hoursToDelete;
     
     @NotEmpty
@@ -42,6 +42,7 @@ public class NotificationMessage {
         this.relation = relation;
         this.creationDate = new Timestamp(System.currentTimeMillis());
         this.message = message;
+        this.hoursToDelete = 48;
     }
     
     public NotificationMessage(Relationship relation, int hoursToDelete, String message) {

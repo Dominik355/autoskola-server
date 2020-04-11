@@ -1,6 +1,7 @@
 
 package com.example.AutoskolaDemoWithSecurity.services;
 
+import com.example.AutoskolaDemoWithSecurity.errorApi.customExceptions.CustomLoginException;
 import com.example.AutoskolaDemoWithSecurity.errorApi.customExceptions.WrongDateException;
 import com.example.AutoskolaDemoWithSecurity.models.databaseModels.CancelledRide;
 import com.example.AutoskolaDemoWithSecurity.models.databaseModels.CompletedRide;
@@ -23,7 +24,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
-import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,12 +49,6 @@ public class RideService {
     
     @Autowired
     private UserRepository userRepository;
-    
-    @Autowired
-    private CompletedRideRepository crr;
-    
-    @Autowired
-    private CancelledRideRepository clrr;
     
     @Autowired
     private NotificationMessageService notificationService;
@@ -141,7 +135,7 @@ public class RideService {
     }    
 
     //pre studenta prihlasenie sa na jazdu.....iba sa prida jeho meno a da sa vediet instruktorovi
-    public ResponseEntity reserveRide(int relationID, int rideID) {
+    public ResponseEntity reserveRide(int relationID, int rideID) throws ParseException {
         User student = userRepository.findByEmail(
                 SecurityContextHolder.getContext().getAuthentication().getName()).get();
         Ride ride = rideRepository.getOne(rideID);
@@ -149,10 +143,18 @@ public class RideService {
                 relationshipRepository.getOne(relationID).getDrivingSchool())) {
             throw new SecurityException("This ride does not belong to your school!");
         }
-        ride.setStudent(student);
-        ride.setStatus("RESERVED");
-        rideRepository.save(ride);
-        return new ResponseEntity("You succesfully signed to ride", HttpStatus.OK);
+        if(ride.getStatus().equals("FREE")) {
+            if(rideUtil.isItBeforeRide(ride, 0)) {
+                ride.setStudent(student);
+                ride.setStatus("RESERVED");
+                rideRepository.save(ride);
+            } else {
+                throw new WrongDateException("This ride should have already started");
+            }
+        } else {
+            throw new CustomLoginException("This ride is not FREE");
+        }
+        return new ResponseEntity("You succesfully reserved ride", HttpStatus.OK);
     }
     
     //pre studenta - odhlasenie z jazdy.... iba sa odstrani jeho meno a da sa vediet instruktorovi .. moze to urobit maximalne hodinu pred jazdou napr
@@ -193,10 +195,10 @@ public class RideService {
         List<Ride> rides = new ArrayList<>();
         
         if(user.getRoles().contains("STUDENT")) {
-            rides = rideRepository.findAllByStudentAndDrivingSchool(user, school);
+            rides = rideRepository.findAllByStudentAndDrivingSchoolAndStatus(user, school, "RESERVED");
         } else if (user.getRoles().contains("INSTRUCTOR")
                 || user.getRoles().contains("OWNER")) {           
-            rides = rideRepository.findAllByInstructorAndDrivingSchool(user, school);
+            rides = rideRepository.findAllByInstructorAndDrivingSchoolAndStatus(user, school, "RESERVED");
         }
         if(!date.equals("")) {
 
@@ -231,6 +233,16 @@ public class RideService {
             }
         }
         return new ResponseEntity(rides, HttpStatus.OK);
+    }
+    
+    public List<RideDTO> getPendingRides(int relationID) {
+        Relationship relation = relationshipRepository.findById(relationID).get();
+        return rideRepository.findAllByInstructorAndDrivingSchool(
+                relation.getUser(), relation.getDrivingSchool())
+                .stream()
+                .filter(t -> t.getStatus().equals("PENDING"))
+                .map(RideDTO::new)
+                .collect(Collectors.toList());
     }
     
 }

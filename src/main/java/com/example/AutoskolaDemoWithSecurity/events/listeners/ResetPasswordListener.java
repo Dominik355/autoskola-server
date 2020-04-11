@@ -20,7 +20,6 @@ public class ResetPasswordListener implements ApplicationListener<OnResetPasswor
 
     @Override
     public void onApplicationEvent(OnResetPasswordEvent event) {
-      System.out.println("com.example.AutoskolaDemoWithSecurity.events.RegistrationListener.onApplicationEvent()");
       sendNewPassword(event);
     }
 

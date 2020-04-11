@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package com.example.AutoskolaDemoWithSecurity.controllers;
 
 import com.example.AutoskolaDemoWithSecurity.models.databaseModels.Relationship;
@@ -26,7 +22,6 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import java.util.Calendar;
 import javax.security.auth.login.LoginException;
-import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
@@ -90,7 +85,7 @@ public class AuthenticateController {
         if (verificationToken.getExpiryDate().getTime() - cal.getTime().getTime() <= 0L) {
           this.verificationTokenService.deleteVerificationToken(user);
           //vymaze uzivatela
-          return new ResponseEntity("24 hours from registration passed. Register again", HttpStatus.FORBIDDEN);
+          return new ResponseEntity("7 days from registration passed. Register again", HttpStatus.FORBIDDEN);
         }
         this.myUserDetailsService.activateUser(user);
         this.verificationTokenService.deleteVerificationToken(user);
@@ -157,8 +152,8 @@ public class AuthenticateController {
     @RequestMapping(value = {"/register"}, method = {RequestMethod.POST})
     @ApiOperation(value = "${authenticateController.register.value}",
             response = AuthenticationResponse.class)
-    public ResponseEntity addNewUser(@RequestBody @Valid UserDTO userDTO, HttpServletRequest request) {
-        return ResponseEntity.ok(this.myUserDetailsService.addNewUser(userDTO, request)); 
+    public ResponseEntity addNewUser(@RequestBody @Valid UserDTO userDTO) {
+        return ResponseEntity.ok(this.myUserDetailsService.addNewUser(userDTO)); 
     }
     
 }

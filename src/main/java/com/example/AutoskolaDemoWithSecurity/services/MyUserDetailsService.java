@@ -11,6 +11,7 @@ import com.example.AutoskolaDemoWithSecurity.models.transferModels.UserDTO;
 import com.example.AutoskolaDemoWithSecurity.repositories.UserRepository;
 import com.example.AutoskolaDemoWithSecurity.utils.RoleUtil;
 import java.util.Optional;
+import javax.annotation.PostConstruct;
 import javax.persistence.EntityExistsException;
 import javax.persistence.EntityNotFoundException;
 import javax.persistence.PersistenceException;
@@ -21,7 +22,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -72,7 +72,7 @@ public class MyUserDetailsService implements UserDetailsService {
       return user.get();
     }
 
-    public ResponseEntity addNewUser(UserDTO userDTO, HttpServletRequest request) {
+    public ResponseEntity addNewUser(UserDTO userDTO) {
       if (this.userRepository.existsByEmail(userDTO.getEmail())) {
         throw new EntityExistsException("This email is already in use!");
       }
@@ -152,6 +152,13 @@ public class MyUserDetailsService implements UserDetailsService {
     public String logOut() {
        return "Logout succesfull, "+notificationService.logOutEmitter( SecurityContextHolder
                     .getContext().getAuthentication().getName());
+    }
+    
+    @PostConstruct
+    private void createAdmin(){
+        if(!userRepository.existsByEmail("bima.autoskola@gmail.com")) {
+            this.addNewUser(new UserDTO("Dominik Admin", "Dominik21", "bima.autoskola@gmail.com", "0111222333", "admin"));
+        } 
     }
     
 }

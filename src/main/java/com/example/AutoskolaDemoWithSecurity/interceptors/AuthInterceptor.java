@@ -2,11 +2,13 @@
 package com.example.AutoskolaDemoWithSecurity.interceptors;
 
 import com.example.AutoskolaDemoWithSecurity.errorApi.customExceptions.CustomLoginException;
+import com.example.AutoskolaDemoWithSecurity.models.databaseModels.Relationship;
 import com.example.AutoskolaDemoWithSecurity.models.databaseModels.User;
 import com.example.AutoskolaDemoWithSecurity.repositories.RelationshipRepository;
 import com.example.AutoskolaDemoWithSecurity.repositories.UserRepository;
 import com.example.AutoskolaDemoWithSecurity.services.MyUserDetailsService;
 import java.io.IOException;
+import java.util.Optional;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.slf4j.Logger;
@@ -46,9 +48,8 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
             User user = userService.loadUserWithUsername(
                     email);
             int relationID = Integer.parseInt(relationId);
-            
-            if(relationRepository.existsByUserAndId(user, relationID)) {
-                log.info("Relation ID is OK, user: "+SecurityContextHolder.getContext().getAuthentication().getName()+", ID: "+relationID);
+            Optional<Relationship> relation = relationRepository.findByUserAndId(user, relationID);
+            if(relation.isPresent() && relation.get().isActivate()) {
                 return true;
             } else {
                 throw new CustomLoginException("Incorrect RelationID in header. ID does not exist or is not yours");

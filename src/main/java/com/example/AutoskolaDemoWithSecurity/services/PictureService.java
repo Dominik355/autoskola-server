@@ -3,13 +3,7 @@ package com.example.AutoskolaDemoWithSecurity.services;
 
 import com.example.AutoskolaDemoWithSecurity.models.databaseModels.ProfilePicture;
 import com.example.AutoskolaDemoWithSecurity.repositories.PictureRepository;
-import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.nio.file.Files;
-import javax.annotation.PostConstruct;
-import javax.imageio.ImageIO;
 import org.apache.commons.io.FilenameUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -67,24 +61,6 @@ public class PictureService {
             return pictureRepository.findByName(email).orElse(
                 pictureRepository.findByName("basicProfilePicture").orElseThrow(
                         () -> new FileNotFoundException("Picture not found")));
-        }
-    }
-    
-    
-    @PostConstruct
-    private void basicPicture() {
-        if(!pictureRepository.existsByName("basicProfilePicture")) {
-            File file = null;
-            ProfilePicture picture;
-            try{
-                file = new File("photos/basicProfilePicture.png");
-                picture = new ProfilePicture(
-                        "basicProfilePicture", "png", Files.readAllBytes(file.toPath()));
-
-                pictureRepository.save(picture);
-            } catch (IOException ex) {
-                ex.printStackTrace();
-            }
         }
     }
     

@@ -17,11 +17,11 @@ public class Test implements Serializable {
     @Column(insertable = false, updatable = false, unique = true, nullable = false)
     private int id;
     
-    @Column(name = "test_number")
+    @Column(name = "test_number", unique = true)
     private int number;
     
     private String type;
-    
+    //pairs : QuestionID-orderInTest, example - "122-1,45-2,215-3,..."
     private String questions;
 
     public Test() {

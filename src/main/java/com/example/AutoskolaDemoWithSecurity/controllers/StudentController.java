@@ -3,6 +3,8 @@ package com.example.AutoskolaDemoWithSecurity.controllers;
 
 
 import com.example.AutoskolaDemoWithSecurity.models.otherModels.MyUserDetails;
+import com.example.AutoskolaDemoWithSecurity.models.transferModels.InstructorRides;
+import com.example.AutoskolaDemoWithSecurity.models.transferModels.RideDTO;
 import com.example.AutoskolaDemoWithSecurity.services.CompletedRideService;
 import com.example.AutoskolaDemoWithSecurity.services.RideService;
 import com.example.AutoskolaDemoWithSecurity.utils.RideUtil;
@@ -52,7 +54,7 @@ public class StudentController {
     @GetMapping(value = "/freeRides/{date}")
     @ApiOperation(value = "${studentController.getFreeRides.value}",
             notes = "${studentController.getFreeRides.notes}",
-            response = ResponseEntity.class)
+            response = InstructorRides.class)
     public ResponseEntity getFreeRides(@PathVariable String date, HttpServletRequest request) {
         return ResponseEntity.ok(rideService.getFreeRides(request, date));
     }
@@ -61,7 +63,7 @@ public class StudentController {
     @ApiOperation(value = "${studentController.reserveRide.value}",
             notes = "${studentController.reserveRide.notes}",
             response = ResponseEntity.class)
-    public ResponseEntity reserveRide(@PathVariable("rideID") int rideID, HttpServletRequest request) {
+    public ResponseEntity reserveRide(@PathVariable("rideID") int rideID, HttpServletRequest request) throws ParseException {
         return ResponseEntity.ok(rideService.reserveRide(request.getIntHeader("Relation"), rideID));
     }
     
@@ -76,7 +78,7 @@ public class StudentController {
     @GetMapping(value = {"/getReservedRides"})
     @ApiOperation(value = "${studentController.getReservedRides.value}",
             notes = "${studentController.getReservedRides.notes}",
-            response = List.class)
+            response = RideDTO.class)
     public ResponseEntity getReservedRides(@RequestParam(defaultValue = "") String date, HttpServletRequest request) {
         if(date.equals("") || rideUtil.isDateValid(date)) {
             return rideService.getMyRides(request.getIntHeader("Relation"), date);
@@ -87,7 +89,7 @@ public class StudentController {
     @GetMapping(value = {"/getCompletedRides"})
     @ApiOperation(value = "${studentController.getCompletedRides.value}",
             notes = "${studentController.getCompletedRides.notes}",
-            response = List.class)
+            response = RideDTO.class)
     public ResponseEntity getCompletedRides(@ApiParam(value = "${studentController.getCompletedRides.paramValue}")
             @RequestParam(name = "date", defaultValue = "") String date, HttpServletRequest request) {
         if(date.equals("") || rideUtil.isDateValid(date)) {

@@ -25,14 +25,16 @@ public class InterceptorConfig implements WebMvcConfigurer {
         registry.addInterceptor(logInterceptor);
         registry.addInterceptor(authInterceptor)
                 .excludePathPatterns("/authenticate/**"
+                ,"/admin/**"
                 ,"/user/**"        
                 ,"/school/**"
-                ,"/relationship/**"
+                ,"/relationship/enterSchool/**"
                 ,"/info/**"
                 ,"/tests/**"
                 ,"/v2/api-docs", "/configuration/ui"
                 , "/swagger-resources/**", "/configuration/**"
-                , "/swagger-ui.html", "/webjars/**");
+                , "/swagger-ui.html", "/webjars/**")
+                .addPathPatterns("/relationship/getNotifications");
     }
     
 }

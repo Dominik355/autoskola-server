@@ -8,7 +8,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-
 @Entity
 public class Question implements Serializable {
     
@@ -28,17 +27,28 @@ public class Question implements Serializable {
     private String type;
     
     private int points;
-    
-    @Column(name = "question_order")
-    private int questionOrder;
-    
+
     @Column(name = "correct_answer")
     private int correctAnswer;
+    
+    @Column(name = "has_photo")
+    private boolean hasPhoto;
 
     public Question() {
     
     }
 
+    public Question(QuestionDTO questionDTO) {
+        this.answer_1 = questionDTO.getAnswers().getAnswer_1();
+        this.answer_2 = questionDTO.getAnswers().getAnswer_2();
+        this.answer_3 = questionDTO.getAnswers().getAnswer_3();
+        this.question = questionDTO.getQuestion();
+        this.type = questionDTO.getType();
+        this.points = questionDTO.getPoints();
+        this.correctAnswer = questionDTO.getCorrectAnswer();
+        this.hasPhoto = false;
+    }
+    
     public Question(String answer_1, String answer_2, String answer_3
             , String question, String type, int points, int correctAnswer) {
         this.answer_1 = answer_1;
@@ -102,20 +112,20 @@ public class Question implements Serializable {
         this.points = points;
     }
 
-    public int getQuestionOrder() {
-        return questionOrder;
-    }
-
-    public void setQuestionOrder(int questionOrder) {
-        this.questionOrder = questionOrder;
-    }
-
     public int getCorrectAnswer() {
         return correctAnswer;
     }
 
     public void setCorrectAnswer(int correctAnswer) {
         this.correctAnswer = correctAnswer;
+    }
+
+    public boolean getHasPhoto() {
+        return hasPhoto;
+    }
+
+    public void setHasPhoto(boolean hasPhoto) {
+        this.hasPhoto = hasPhoto;
     }
 
 }
