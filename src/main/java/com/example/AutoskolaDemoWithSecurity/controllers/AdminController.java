@@ -3,6 +3,7 @@ package com.example.AutoskolaDemoWithSecurity.controllers;
 
 import com.example.AutoskolaDemoWithSecurity.models.databaseModels.ProfilePicture;
 import com.example.AutoskolaDemoWithSecurity.models.databaseModels.QuestionPhoto;
+import com.example.AutoskolaDemoWithSecurity.models.transferModels.DrivingSchoolDTO;
 import com.example.AutoskolaDemoWithSecurity.repositories.PictureRepository;
 import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,12 +16,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import com.example.AutoskolaDemoWithSecurity.repositories.QuestionPhotoRepository;
+import com.example.AutoskolaDemoWithSecurity.services.DrivingSchoolService;
 import com.example.AutoskolaDemoWithSecurity.tests.Question;
 import com.example.AutoskolaDemoWithSecurity.tests.QuestionDTO;
 import com.example.AutoskolaDemoWithSecurity.tests.QuestionRepository;
 import com.example.AutoskolaDemoWithSecurity.tests.Test;
 import com.example.AutoskolaDemoWithSecurity.tests.TestRepository;
+import io.swagger.annotations.ApiOperation;
 import java.io.IOException;
+import javax.validation.Valid;
 import org.springframework.web.bind.annotation.PathVariable;
 
 
@@ -29,6 +33,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 @PreAuthorize("hasRole('ROLE_ADMIN')")
 @RequestMapping(value = {"/admin"})
 public class AdminController {
+    
+    @Autowired
+    private DrivingSchoolService schoolService;
     
     @Autowired
     private PictureRepository pictureRepository;
@@ -41,6 +48,15 @@ public class AdminController {
     
     @Autowired
     private TestRepository testRepository;
+    
+   
+    @PostMapping(value = {"/addNewSchool"})
+    @ApiOperation(value = "${schoolController.createSchool.value}",
+            notes = "${schoolController.createSchool.notes}",
+            response = ResponseEntity.class)
+    public ResponseEntity createSchool(@RequestBody @Valid DrivingSchoolDTO school) {
+        return ResponseEntity.ok(schoolService.createDrivingSchool(school));
+    }
     
     
     @PostMapping(value = {"/addBasicProfilePicture"})

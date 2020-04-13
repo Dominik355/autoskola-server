@@ -2,9 +2,10 @@
 package com.example.AutoskolaDemoWithSecurity.models.transferModels;
 
 import com.example.AutoskolaDemoWithSecurity.models.databaseModels.ConfirmUserVerification;
+import com.example.AutoskolaDemoWithSecurity.models.databaseModels.Relationship;
 
 
-public class UserConfirmation {
+public class UserRelationInfo {
     
     private String name;
     
@@ -13,31 +14,43 @@ public class UserConfirmation {
     private String school;
         
     private int relationID;
+    
+    private String role;
 
-    public UserConfirmation() {
+    public UserRelationInfo() {
     
     }
+    
+    public UserRelationInfo(Relationship relationship, String information) {
+        this.name = relationship.getUser().getFullName();
+        this.relationID = relationship.getId();    
+        this.school = relationship.getDrivingSchool().getName();
+        this.information = information;
+        this.role = relationship.getRole().replace(",", "").substring(5);
+    }
+    
+    public UserRelationInfo(Relationship relationship) {
+        this.name = relationship.getUser().getFullName();
+        this.relationID = relationship.getId();    
+        this.school = relationship.getDrivingSchool().getName();
+        this.information = relationship.getStatus();
+        this.role = relationship.getRole().replace(",", "").substring(5);
+    }
 
-    public UserConfirmation(ConfirmUserVerification verification) {
+    public UserRelationInfo(ConfirmUserVerification verification) {
         this.name = verification.getUser().getFullName();
         this.information = verification.getInformation();
         this.relationID = verification.getRelationID();    
         this.school = verification.getDrivingSchool().getName();
     }
     
-    public UserConfirmation(ConfirmUserVerification verification, String information) {
+    public UserRelationInfo(ConfirmUserVerification verification, String information) {
         this.name = verification.getUser().getFullName();
         this.information = information;
         this.relationID = verification.getRelationID();   
         this.school = verification.getDrivingSchool().getName();
     }
 
-    public UserConfirmation(String name, String information, String school, int relationID) {
-        this.name = name;
-        this.information = information;
-        this.school = school;
-        this.relationID = relationID;
-    }
 
     public String getName() {
         return name;
@@ -69,6 +82,14 @@ public class UserConfirmation {
 
     public void setRelationID(int relationID) {
         this.relationID = relationID;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
     
 }

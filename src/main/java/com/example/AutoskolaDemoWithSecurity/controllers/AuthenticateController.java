@@ -1,30 +1,28 @@
 
 package com.example.AutoskolaDemoWithSecurity.controllers;
 
-import com.example.AutoskolaDemoWithSecurity.models.databaseModels.Relationship;
 import com.example.AutoskolaDemoWithSecurity.models.databaseModels.User;
 import com.example.AutoskolaDemoWithSecurity.models.otherModels.MyUserDetails;
 import com.example.AutoskolaDemoWithSecurity.models.transferModels.AuthenticationRequest;
 import com.example.AutoskolaDemoWithSecurity.models.transferModels.AuthenticationResponse;
 import com.example.AutoskolaDemoWithSecurity.models.transferModels.ResetPasswordRequest;
 import com.example.AutoskolaDemoWithSecurity.models.transferModels.UserDTO;
-import com.example.AutoskolaDemoWithSecurity.models.transferModels.UserProfileInfo;
 import com.example.AutoskolaDemoWithSecurity.models.databaseModels.VerificationToken;
-import com.example.AutoskolaDemoWithSecurity.repositories.CompletedRideRepository;
-import com.example.AutoskolaDemoWithSecurity.repositories.RelationshipRepository;
+import com.example.AutoskolaDemoWithSecurity.models.transferModels.UserRelationInfo;
 import com.example.AutoskolaDemoWithSecurity.repositories.UserRepository;
 import com.example.AutoskolaDemoWithSecurity.services.MyUserDetailsService;
 import com.example.AutoskolaDemoWithSecurity.services.NotificationMessageService;
+import com.example.AutoskolaDemoWithSecurity.services.RelationshipService;
 import com.example.AutoskolaDemoWithSecurity.services.VerificationTokenService;
 import com.example.AutoskolaDemoWithSecurity.utils.JwtUtil;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import java.util.Calendar;
+import java.util.List;
 import javax.security.auth.login.LoginException;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -60,16 +58,11 @@ public class AuthenticateController {
     private VerificationTokenService verificationTokenService;
     
     @Autowired
-    private RelationshipRepository relationshipRepository;
-    
-    @Autowired
-    private CompletedRideRepository crr;
+    private RelationshipService relationshipService;
     
     @Autowired
     private NotificationMessageService notificationService;
-    
-    @Autowired
-    private DiscoveryClient discoveryClient;
+
    
     
     @RequestMapping(value = {"/registrationConfirm"}, method = {RequestMethod.GET})
@@ -128,23 +121,14 @@ public class AuthenticateController {
         UserDetails userDetails = new MyUserDetails(user);  
        
         String jwt = this.jwtTokenUtil.generateToken(userDetails);
-        int ridesCompleted;
-        int relationID;
-        Relationship relationship;
-        try{
-            relationship = relationshipRepository.findByUser(user);
-            ridesCompleted = crr.findAllByDrivingSchoolAndStudent(relationship.getDrivingSchool(), user).size();
-            relationID = relationship.getId();
-        } catch(NullPointerException e) {
-            ridesCompleted = 0;
-            relationID = 0;
-        }
-        AuthenticationResponse res = new AuthenticationResponse(
-                    jwt, relationID,  new UserProfileInfo(user, ridesCompleted)
-                    , notificationService.getEmitterID(email)
-                    , notificationService.getPushServerURL()+"/notification/");
+        List<UserRelationInfo> relations = relationshipService.getAllRelations(email);
 
-                
+        AuthenticationResponse res = new AuthenticationResponse(
+                    jwt
+                    , notificationService.getEmitterID(email)
+                    , notificationService.getPushServerURL()+"/notification/"
+                    , relations.size()
+                    , relations);
         return new ResponseEntity(res, HttpStatus.OK);
     }
 

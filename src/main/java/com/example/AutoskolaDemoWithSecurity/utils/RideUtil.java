@@ -23,6 +23,8 @@ public class RideUtil {
     
     @Autowired
     private RideRepository rideRepository;
+    
+    private final SimpleDateFormat FORMATTER = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 
     
     //TRUE, ak cas (teraz+hoursBefore) je stale skorsie ako cas jazdy, FALSE ak ten cas je az po jazde
@@ -50,11 +52,9 @@ public class RideUtil {
                     && (year == currentYear || year == currentYear+1)) {
                 return true;
             } else {            
-                System.out.println("You can not use this date");
                 throw new WrongDateException("You can not use this date");
             }
         } else {
-            System.out.println("Bad date format");
             throw new WrongDateException("Bad date format! use: year-month-day, example: 2020-08-25");
         }
         
@@ -69,12 +69,10 @@ public class RideUtil {
                     && Integer.parseInt(dt[1]) < 60) {
                 return true;
             } else {
-                System.out.println("This time does not exists!");
                 throw new WrongDateException("This time does not exists!");
             }
             
         } else {
-            System.out.println("Wrong time format");
             throw new WrongDateException("Wrong time format! use : hours:minutes, example: 08:30");
         }
         
@@ -126,7 +124,14 @@ public class RideUtil {
                 && isTimeValid(rideDTO.getTime())) {
             if (!rideRepository.existsByTimeAndDateAndInstructor(
                     rideDTO.getTime(), rideDTO.getDate(), instructor)) {
-                        return true;
+                
+                Date now = new Timestamp(System.currentTimeMillis());
+                Date rideDate = FORMATTER.parse(rideDTO.getDate()+" "+rideDTO.getTime());
+                if(rideDate.after(now)) {
+                    return true;
+                } else {
+                    throw new WrongDateException("Time of this ride already passed");
+                }
             } else {
                 throw new EntityExistsException("This ride already exists!"
                         + " Ride: [Date: "+rideDTO.getDate()+", Time"+rideDTO.getTime()+"]");

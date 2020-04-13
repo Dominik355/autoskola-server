@@ -98,8 +98,8 @@ public class RideDTO implements Serializable {
         this.status = status;
     }
 
-    public String getComment() {
-        return comment;
+    public Optional<String> getComment() {
+        return Optional.ofNullable(comment);
     }
 
     public void setComment(String comment) {

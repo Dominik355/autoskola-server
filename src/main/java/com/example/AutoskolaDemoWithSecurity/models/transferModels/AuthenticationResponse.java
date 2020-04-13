@@ -2,44 +2,35 @@
 package com.example.AutoskolaDemoWithSecurity.models.transferModels;
 
 import java.io.Serializable;
+import java.util.List;
 
 
 public class AuthenticationResponse implements Serializable {
     
-    private static final long serialVersionUID = -8091879091924046844L;
-    private final String jwtToken;
-    private int relationID;
+    private String jwtToken;
     private String emitterID;
-    private UserProfileInfo info;
     private String NotificationURL;
-   
+    private int schoolCount;
+    private List<UserRelationInfo> relations;
 
-    public AuthenticationResponse(String jwtToken, int relationID, UserProfileInfo info, String emitterID, String NotificationURL) {
+    public AuthenticationResponse() {
+   
+    }
+
+    public AuthenticationResponse(String jwtToken, String emitterID, String NotificationURL, int schoolCount, List<UserRelationInfo> relations) {
         this.jwtToken = jwtToken;
-        this.relationID = relationID;
-        this.info = info;
         this.emitterID = emitterID;
         this.NotificationURL = NotificationURL;
+        this.schoolCount = relations.size();
+        this.relations = relations;
     }
 
     public String getJwtToken() {
-        return this.jwtToken; 
+        return jwtToken;
     }
 
-    public int getRelationIDd() {
-        return relationID;
-    }
-
-    public UserProfileInfo getInfo() {
-        return info;
-    }
-
-    public void setRelationID(int id) {
-        this.relationID= id;
-    }
-
-    public void setInfo(UserProfileInfo info) {
-        this.info = info;
+    public void setJwtToken(String jwtToken) {
+        this.jwtToken = jwtToken;
     }
 
     public String getEmitterID() {
@@ -50,12 +41,28 @@ public class AuthenticationResponse implements Serializable {
         this.emitterID = emitterID;
     }
 
+    public String getNotificationURL() {
+        return NotificationURL;
+    }
+
     public void setNotificationURL(String NotificationURL) {
         this.NotificationURL = NotificationURL;
     }
 
-    public String getNotificationURL() {
-        return NotificationURL;
+    public int getSchoolCount() {
+        return schoolCount;
     }
-  
+
+    public void setSchoolCount(int schoolCount) {
+        this.schoolCount = schoolCount;
+    }
+
+    public List<UserRelationInfo> getRelations() {
+        return relations;
+    }
+
+    public void setRelations(List<UserRelationInfo> relations) {
+        this.relations = relations;
+    }
+     
 }

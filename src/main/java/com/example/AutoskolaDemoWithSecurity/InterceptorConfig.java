@@ -27,14 +27,13 @@ public class InterceptorConfig implements WebMvcConfigurer {
                 .excludePathPatterns("/authenticate/**"
                 ,"/admin/**"
                 ,"/user/**"        
-                ,"/school/**"
                 ,"/relationship/enterSchool/**"
+                ,"/relationship/completedRelationship"
                 ,"/info/**"
                 ,"/tests/**"
                 ,"/v2/api-docs", "/configuration/ui"
                 , "/swagger-resources/**", "/configuration/**"
-                , "/swagger-ui.html", "/webjars/**")
-                .addPathPatterns("/relationship/getNotifications");
+                , "/swagger-ui.html", "/webjars/**");
     }
     
 }

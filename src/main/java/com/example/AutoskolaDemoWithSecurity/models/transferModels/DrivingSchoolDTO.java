@@ -27,6 +27,10 @@ public class DrivingSchoolDTO implements Serializable {
     
     @NotEmpty
     private String address;
+    
+    @NotEmpty
+    @EmailValidConstraint
+    private String ownerEmail;
 
     public DrivingSchoolDTO() {
 
@@ -40,11 +44,12 @@ public class DrivingSchoolDTO implements Serializable {
         this.phoneNumber = school.getPhoneNumber();
     }
 
-    public DrivingSchoolDTO(String name, String phoneNumber, String email, String address) {
+    public DrivingSchoolDTO(String name, String phoneNumber, String email, String address, String ownerEmail) {
         this.name = name;
         this.phoneNumber = phoneNumber;
         this.email = email;
         this.address = address;
+        this.ownerEmail = ownerEmail;
     }
 
     public int getId() {
@@ -82,6 +87,9 @@ public class DrivingSchoolDTO implements Serializable {
     public void setAddress(String address) {
         this.address = address;
     }
-    
+
+    public String getOwnerEmail() {
+        return ownerEmail;
+    }
 
 }

@@ -32,7 +32,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping(value = {"/school"})
 @PreAuthorize("hasRole('ROLE_OWNER')")
-@Api(value = "/instructor", description = "Sluzby, ku ktorym musi mat user opravnenie OWNER")
+@Api(value = "/school", description = "Sluzby, ku ktorym musi mat user opravnenie OWNER")
 public class SchoolController {
     
     @Autowired
@@ -46,25 +46,28 @@ public class SchoolController {
     
     @Autowired
     private RelationshipRepository relationRepository;
+      
     
-    
-    @PostMapping(value = {"/addNewSchool"})
-    @ApiOperation(value = "${schoolController.createSchool.value}",
-            notes = "${schoolController.createSchool.notes}",
-            response = ResponseEntity.class)
-    public ResponseEntity createSchool(@RequestBody @Valid DrivingSchoolDTO school) {
-        return ResponseEntity.ok(schoolService.createDrivingSchool(school));
+    @GetMapping({"/getRequests"})
+    public ResponseEntity getRequests(HttpServletRequest request) {
+        return new ResponseEntity(schoolService.viewRequests(request.getIntHeader("Relation")), HttpStatus.OK);
     }
     
-    @GetMapping({"/viewRequests"})
-    public ResponseEntity viewRequests(HttpServletRequest request) {
-        return new ResponseEntity(schoolService.viewRequests(request.getIntHeader("Relation")), HttpStatus.OK);
+    @GetMapping({"/getCompletedStudents"})
+    public ResponseEntity getCompletedStudents(HttpServletRequest request) {
+        return new ResponseEntity(schoolService.getCompletedUsers(request.getIntHeader("Relation")), HttpStatus.OK);
     }
     
     @PostMapping(value = {"/confirmUser/{userRelationID}"})
     public ResponseEntity confirmUser(@PathVariable int userRelationID
             , @RequestParam(required = true) boolean confirm) {
-        return new ResponseEntity(schoolService.confirmUser(userRelationID, confirm), HttpStatus.OK);
+        return ResponseEntity.ok(schoolService.confirmUser(userRelationID, confirm));
+    }
+    
+    @PostMapping(value = {"/completeStudent/{userRelationID}"})
+    public ResponseEntity completeStudent(@PathVariable int userRelationID
+            , @RequestParam(required = true) boolean complete) {
+        return new ResponseEntity(schoolService.completeStudent(userRelationID, complete), HttpStatus.OK);
     }
     
     @GetMapping(value = "/getSchoolInfo/{id}")

@@ -60,9 +60,9 @@ public class UserController
     }
     
     
-    @GetMapping({"/viewRequests"})
-    public ResponseEntity viewRequests() {
-        return ResponseEntity.ok(relationService.viewUserRequests());
+    @GetMapping({"/viewRelations"})
+    public ResponseEntity viewRelations() {
+        return ResponseEntity.ok(relationService.getAllRelations(""));
     }
 
     @PostMapping("/logOut")

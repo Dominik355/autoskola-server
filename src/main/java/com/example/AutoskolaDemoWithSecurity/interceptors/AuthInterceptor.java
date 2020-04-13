@@ -37,7 +37,6 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 
-        System.out.println("AuthInterceptor - preHandle()");
         String relationId = request.getHeader("Relation");
         if(relationId == null) {
             
@@ -49,8 +48,12 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
                     email);
             int relationID = Integer.parseInt(relationId);
             Optional<Relationship> relation = relationRepository.findByUserAndId(user, relationID);
-            if(relation.isPresent() && relation.get().isActivate()) {
-                return true;
+            if(relation.isPresent()) {
+                if(relation.get().isActivate()) {
+                    return true;
+                } else {
+                throw new CustomLoginException("This relationship is not active");
+                }
             } else {
                 throw new CustomLoginException("Incorrect RelationID in header. ID does not exist or is not yours");
             }

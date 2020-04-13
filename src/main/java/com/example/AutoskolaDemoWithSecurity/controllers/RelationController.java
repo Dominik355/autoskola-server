@@ -54,4 +54,14 @@ public class RelationController {
         return ResponseEntity.ok(messageService.getNotifications(request.getIntHeader("Relation")));
     }
     
+    @GetMapping(value = {"/getRelationInfo"})
+    public ResponseEntity getRelationInfo(HttpServletRequest request) {
+        return ResponseEntity.ok(relationshipService.getRelationInfo(request.getIntHeader("Relation")));
+    }
+    
+    @GetMapping(value = {"/completedRelationship"})
+    public ResponseEntity completedRelationship(HttpServletRequest request) {
+        return ResponseEntity.ok(relationshipService.getCompletedRelationship(request.getIntHeader("Relation")));
+    }
+    
 }

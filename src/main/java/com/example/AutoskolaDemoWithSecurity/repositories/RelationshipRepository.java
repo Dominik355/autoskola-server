@@ -23,4 +23,6 @@ public interface RelationshipRepository extends JpaRepository<Relationship, Inte
     
     List<Relationship> findAllByUser(User user);
     
+    List<Relationship> findAllByDrivingSchoolAndStatus(DrivingSchool drivingSchool, String status);
+    
 }

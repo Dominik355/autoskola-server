@@ -98,5 +98,5 @@ public class StudentController {
         }
         return new ResponseEntity("Wrong date", HttpStatus.BAD_REQUEST);
     }
-    
+        
 }

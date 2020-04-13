@@ -62,7 +62,7 @@ public class Ride implements Serializable{
     public Ride(RideDTO rideDTO) {
         this.date = rideDTO.getDate();
         this.time = rideDTO.getTime();
-        this.comment = rideDTO.getComment();
+        this.comment = rideDTO.getComment().orElse("");
         this.status = rideDTO.getStatus();
         this.vehicleID = rideDTO.getVehicleID().orElse(null);
     }

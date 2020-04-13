@@ -17,7 +17,7 @@ public class UserProfileInfo implements Serializable{
     private String phoneNumber;
     
     private Timestamp startDate;
-    
+        
     private int ridesCompleted;
     
     private String role;
