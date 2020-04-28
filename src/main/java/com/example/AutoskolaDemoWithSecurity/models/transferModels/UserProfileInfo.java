@@ -35,7 +35,7 @@ public class UserProfileInfo implements Serializable{
         this.phoneNumber = phoneNumber;
         this.startDate = startDate;
         this.ridesCompleted = ridesCompleted;
-        this.role = role;
+        this.role = role.replace(",", "").substring(5);
     }
 
     public UserProfileInfo(String fullName, String email, String phoneNumber, Timestamp startDate, int ridesCompleted) {
@@ -53,7 +53,7 @@ public class UserProfileInfo implements Serializable{
         this.phoneNumber = user.getPhoneNumber();
         this.startDate = user.getCreatedOn();
         this.ridesCompleted = completedRides;
-        this.role = user.getRoles().replaceAll(",", "");
+        this.role = user.getRoles().replaceAll(",", "").substring(5);
     }
 
     public String getFullName() {

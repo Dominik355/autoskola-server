@@ -13,9 +13,11 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import java.text.ParseException;
+import java.util.Locale;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -53,6 +55,9 @@ public class InstructorController {
     @Autowired
     private CancelledRideService clrs;
     
+    @Autowired
+    private MessageSource messageSource;
+    
     
     @GetMapping(value = {"/"})
     public String helloInstructor() {
@@ -72,7 +77,8 @@ public class InstructorController {
         if(rideUtil.isRideDTOFine(ride, instructor)) {
             return ResponseEntity.ok(rideService.addRide(ride, request.getIntHeader("Relation"), instructor));
         } else {
-            return new ResponseEntity("Ride could not be created", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity(messageSource.getMessage(
+                        "ride.notCreated", null, Locale.ROOT), HttpStatus.BAD_REQUEST);
         }
     }
     
@@ -89,6 +95,8 @@ public class InstructorController {
     
     
     @GetMapping(value = {"/myRides"})
+    @ApiOperation(value = "${instructorController.myRides.value}",
+                notes = "${instructorController.myRides.notes}")
     public ResponseEntity getMyRides(@RequestParam(defaultValue = "") String date, HttpServletRequest request) {
         if(date.equals("") || rideUtil.isDateValid(date)) {
             return rideService.getMyRides(request.getIntHeader("Relation"), date);
@@ -108,6 +116,8 @@ public class InstructorController {
     
     
     @DeleteMapping(value = {"/cancelRide/{rideID}"})
+    @ApiOperation(value = "${instructorController.cancelRide.value}",
+                notes = "${instructorController.cancelRide.notes}")
     public ResponseEntity cancelRide(@PathVariable("rideID") int rideID
                 , HttpServletRequest request) throws ParseException {
         return ResponseEntity.ok(clrs.cancelRide(rideID, request.getIntHeader("Relation")));

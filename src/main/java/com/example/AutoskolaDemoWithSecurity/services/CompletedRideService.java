@@ -7,6 +7,7 @@ import com.example.AutoskolaDemoWithSecurity.models.databaseModels.DrivingSchool
 import com.example.AutoskolaDemoWithSecurity.models.databaseModels.Relationship;
 import com.example.AutoskolaDemoWithSecurity.models.databaseModels.Ride;
 import com.example.AutoskolaDemoWithSecurity.models.databaseModels.User;
+import com.example.AutoskolaDemoWithSecurity.models.databaseModels.constants.RelationshipConstants;
 import com.example.AutoskolaDemoWithSecurity.models.transferModels.RideDTO;
 import com.example.AutoskolaDemoWithSecurity.repositories.CompletedRideRepository;
 import com.example.AutoskolaDemoWithSecurity.repositories.RelationshipRepository;
@@ -21,9 +22,11 @@ import java.util.Calendar;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -49,6 +52,9 @@ public class CompletedRideService {
     
     @Autowired
     private NotificationMessageService notificationService;
+    
+    @Autowired
+    private MessageSource messageSource;
     
     
     public List<RideDTO> getCompletedRides(int relationID, String date) {
@@ -93,32 +99,28 @@ public class CompletedRideService {
         if(ride != null) {
             if(ride.getStatus().equals("PENDING") || !rideUtil.isItBeforeRide(ride, 0)) {
                 if(ride.getStudent().isPresent()) {
-                        Relationship studentRelationship = relationRepository.findByUserAndDrivingSchool(
-                                ride.getStudent().get(), ride.getDrivingSchool());
                         CompletedRide cRide = new CompletedRide(ride);
                         cRide.setComment(rideDTO.getComment().orElse(ride.getComment().orElse("")));
 
-                        if(studentRelationship.getStatus().equalsIgnoreCase("waiting for exam")) {
-                            cRide.setStatus("NOTFINISHED");
-                            cRide.setComment("You already finished 15 rides");
-                        } else cRide.setStatus("FINISHED");
+                        cRide.setStatus("FINISHED");
                         rideRepository.delete(ride);
                         CompletedRide compR = crr.save(cRide);
                         checkStatus(ride);
                         if(compR != null) {
                             notificationService.addPushNotification(ride.getStudent().get()
                                             , relationRepository.findById(relationID).get().getDrivingSchool()
-                                            , "Instructor completed your ride "+ride.getDate()+" "+ride.getTime());
-                            return new ResponseEntity("Ride set as completed", HttpStatus.OK);
+                                            ,messageSource.getMessage(
+                                                    "instructor.completedRide", new Object[] {ride.getDate(), ride.getTime()}, Locale.ROOT));
+                            return new ResponseEntity("Jazda dokončená", HttpStatus.OK);
                         }
                         
                 } else {
-                    return new ResponseEntity("This ride has no student assigned", HttpStatus.BAD_REQUEST);
+                    return new ResponseEntity(messageSource.getMessage("ride.noStudent", null, Locale.ROOT), HttpStatus.BAD_REQUEST);
                 }
             }
-            throw new WrongDateException("This ride has not started yet");
+            throw new WrongDateException(messageSource.getMessage("ride.notStarted", null, Locale.ROOT));
         }
-        throw new NoSuchElementException("This ride does not exists!");
+        throw new NoSuchElementException(messageSource.getMessage("ride.notExists", null, Locale.ROOT));
     }
     
     
@@ -168,12 +170,13 @@ public class CompletedRideService {
     private void checkStatus(Ride ride) {
         int size = crr.findAllByStudentAndDrivingSchoolAndStatus(
                 ride.getStudent().get(), ride.getDrivingSchool(), "FINISHED").size();
-        System.out.println("SIZE: "+size);
         if(size >= 15) {
-            System.out.println("HIS LAST RIDE");
             Relationship re = relationRepository.findByUserAndDrivingSchool(ride.getStudent().get(), ride.getDrivingSchool());
-            re.setStatus("waiting for exam");
+            re.setStatus(RelationshipConstants.COMPLETED);
+            re.setActivate(false);
             relationRepository.save(re);
+            notificationService.addPushNotification(re.getUser(), re.getDrivingSchool()
+                    , messageSource.getMessage("student.completedRides", null, Locale.ROOT));
         }
     }
     

@@ -3,8 +3,6 @@ package com.example.AutoskolaDemoWithSecurity.services;
 
 import com.example.AutoskolaDemoWithSecurity.errorApi.customExceptions.CustomLoginException;
 import com.example.AutoskolaDemoWithSecurity.errorApi.customExceptions.WrongDateException;
-import com.example.AutoskolaDemoWithSecurity.models.databaseModels.CancelledRide;
-import com.example.AutoskolaDemoWithSecurity.models.databaseModels.CompletedRide;
 import com.example.AutoskolaDemoWithSecurity.models.databaseModels.DrivingSchool;
 import com.example.AutoskolaDemoWithSecurity.models.databaseModels.Relationship;
 import com.example.AutoskolaDemoWithSecurity.models.databaseModels.Ride;
@@ -13,7 +11,6 @@ import com.example.AutoskolaDemoWithSecurity.models.transferModels.InstructorRid
 import com.example.AutoskolaDemoWithSecurity.models.transferModels.RideDTO;
 import com.example.AutoskolaDemoWithSecurity.models.transferModels.RideIdTime;
 import com.example.AutoskolaDemoWithSecurity.models.transferModels.RideReservation;
-import com.example.AutoskolaDemoWithSecurity.repositories.CancelledRideRepository;
 import com.example.AutoskolaDemoWithSecurity.repositories.CompletedRideRepository;
 import com.example.AutoskolaDemoWithSecurity.repositories.RelationshipRepository;
 import com.example.AutoskolaDemoWithSecurity.repositories.RideRepository;
@@ -24,9 +21,11 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Locale;
 import java.util.stream.Collectors;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -56,7 +55,12 @@ public class RideService {
     @Autowired
     private CompletedRideRepository crr;
     
+    @Autowired
+    private MessageSource messageSource;
+    
     private String[] rideTimes = new String[]{"08:00","09:00","10:00","11:00","12:00","13:00","14:00","15:00","16:00"};
+    
+    private static int HOURS_TO_CANCEL_RIDE=1;
     
     
     public ResponseEntity addRide(RideDTO rideDTO, int relationID, User instructor) {
@@ -67,7 +71,7 @@ public class RideService {
                 .findById(relationID).get().getDrivingSchool());
         ride.setInstructor(instructor);
         rideRepository.save(ride);
-        return new ResponseEntity("Ride succesfully created", HttpStatus.OK);
+        return new ResponseEntity(messageSource.getMessage("ride.created", null, Locale.ROOT), HttpStatus.OK);
         
     }
     
@@ -81,7 +85,7 @@ public class RideService {
         for(int i=0; i <rides.length; i++) {
             if(!rideUtil.isRideDTOFine(rides[i], instructor) 
                     && rideUtil.isItBeforeRide(new Ride(rides[i]), 0)) {
-                throw new WrongDateException("Wrong object parameters, or it already exists, Ride: "+rides[i].toString());
+                throw new WrongDateException(messageSource.getMessage("ride.wrongDTO", new Object[] {rides[i].toString()}, Locale.ROOT));
             }
             //hlada sa duplikat
             for(int j=i+1; j <rides.length; j++) {
@@ -93,7 +97,7 @@ public class RideService {
         Arrays.asList(rides).forEach(t -> addRide(t, relationID, instructor));
         //notificationService.addPushNotification(instructor, relationshipRepository.findById(relationID).get().getDrivingSchool(),
         //                                                            "Instruktor vytvoril jazdy na den: "+rides[0].getDate());
-        return new ResponseEntity("Rides succesfully created", HttpStatus.OK);
+        return new ResponseEntity(messageSource.getMessage("rides.created", null, Locale.ROOT), HttpStatus.OK);
         
     }
     
@@ -153,14 +157,14 @@ public class RideService {
                     ride.setStatus("RESERVED");
                     rideRepository.save(ride);
                 } else {
-                    throw new WrongDateException("This ride should have already started");
+                    throw new WrongDateException(messageSource.getMessage("ride.shouldStarted", null, Locale.ROOT));
                 }
             } else {
-                throw new CustomLoginException("This ride is not FREE");
+                throw new CustomLoginException(messageSource.getMessage("ride.notFree", null, Locale.ROOT));
             }
-            return new ResponseEntity("You succesfully reserved ride", HttpStatus.OK);
+            return new ResponseEntity(messageSource.getMessage("ride.reserved", null, Locale.ROOT), HttpStatus.OK);
         }
-        throw new CustomLoginException("You already have 15 rides completed or reserved");
+        throw new CustomLoginException(messageSource.getMessage("ride.assigned.all", null, Locale.ROOT));
     }
     
     //pre studenta - odhlasenie z jazdy.... iba sa odstrani jeho meno a da sa vediet instruktorovi .. moze to urobit maximalne hodinu pred jazdou napr
@@ -170,7 +174,7 @@ public class RideService {
                 relationshipRepository.getOne(relationID).getDrivingSchool())) {
             throw new SecurityException("This ride does not belong to your school!");
         }
-        if(rideUtil.isItBeforeRide(ride, 1)) {
+        if(rideUtil.isItBeforeRide(ride, HOURS_TO_CANCEL_RIDE)) {
             User student = userRepository.findByEmail(
                 SecurityContextHolder.getContext().getAuthentication().getName()).get();
             //musi to byt v try-cathc, lebo ak ta jazda nema prideleneho ziadneho studenta, hodi nullpointer
@@ -188,9 +192,9 @@ public class RideService {
             notificationService.addPushNotification(ride.getInstructor() //da sa instruktorovi vediet ze sa odhlasil ziak z jazdy    
                                         , ride.getDrivingSchool()
                                         , "Student "+student.getFullName()+" cancelled ride"+ride.getDate()+" "+ride.getTime());
-            return new ResponseEntity("You succesfully signed off the ride", HttpStatus.OK);
+            return new ResponseEntity(messageSource.getMessage("ride.sign.off", null, Locale.ROOT), HttpStatus.OK);
         }
-        return new ResponseEntity("You can not sign off ride, 1 hour limit is over", HttpStatus.BAD_REQUEST);
+        return new ResponseEntity(messageSource.getMessage("ride.limit.over", new Object[] {HOURS_TO_CANCEL_RIDE}, Locale.ROOT), HttpStatus.BAD_REQUEST);
     }
     
     
@@ -255,7 +259,6 @@ public class RideService {
         int count = 0;
         count +=rideRepository.findAllByStudentAndDrivingSchool(relationship.getUser(), relationship.getDrivingSchool()).size();
         count +=crr.findAllByStudentAndDrivingSchoolAndStatus(relationship.getUser(), relationship.getDrivingSchool(), "FINISHED").size();
-        System.out.println("COUNT IS : "+count);
         return count;
     }
     

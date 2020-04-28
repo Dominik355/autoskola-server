@@ -6,6 +6,7 @@ import com.example.AutoskolaDemoWithSecurity.models.databaseModels.ConfirmUserVe
 import com.example.AutoskolaDemoWithSecurity.models.databaseModels.DrivingSchool;
 import com.example.AutoskolaDemoWithSecurity.models.databaseModels.Relationship;
 import com.example.AutoskolaDemoWithSecurity.models.databaseModels.User;
+import com.example.AutoskolaDemoWithSecurity.models.databaseModels.constants.RelationshipConstants;
 import com.example.AutoskolaDemoWithSecurity.models.transferModels.CompletedRelationship;
 import com.example.AutoskolaDemoWithSecurity.models.transferModels.RideDTO;
 import com.example.AutoskolaDemoWithSecurity.models.transferModels.UserProfileInfo;
@@ -18,11 +19,14 @@ import com.example.AutoskolaDemoWithSecurity.repositories.UserRepository;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.Optional;
 import java.util.stream.Collectors;
 import javax.persistence.EntityNotFoundException;
 import javax.persistence.PersistenceException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
@@ -54,6 +58,9 @@ public class RelationshipService {
     @Autowired
     private MyUserDetailsService userService;
     
+    @Autowired
+    private MessageSource messageSource;
+    
     
     public ResponseEntity newRelationship(int schoolID, int userID) {
         //vytvori sa novy objekt, neaktivny + sa vytvori novy confirmation - a ksa ten potom potvrdi, v inej metode, toto sa len aktivuje
@@ -66,39 +73,32 @@ public class RelationshipService {
         String info = "undefined";
 
         if(user.getRoles().contains("STUDENT")) {
-            relationship.setStatus("waiting for rides completion");
             info = "New student "+user.getFullName();
         } else if(user.getRoles().contains("INSTRUCTOR")) {
             info = "New instructor "+user.getFullName();
         }
         Relationship rs = relationshipRepository.save(relationship);
-        ConfirmUserVerification verification = new ConfirmUserVerification(ds, user, info
-                , relationshipRepository.findByUserAndDrivingSchool(user, ds).getId());
+        confirmationRepository.save(new ConfirmUserVerification(ds, user, info
+                , relationshipRepository.findByUserAndDrivingSchool(user, ds).getId()));
         
-        ConfirmUserVerification cuv = confirmationRepository.save(verification);
-        if(rs == null || cuv == null) {
-            try {
-                relationshipRepository.delete(rs);
-                confirmationRepository.delete(cuv);
-            } catch (Exception e) {}
-            throw new PersistenceException("Something went wrong, relationship was not created");
-        }
-        return ResponseEntity.ok("Relationship created, wait for confirmation");
+        return ResponseEntity.ok(messageSource.getMessage("relationship.created", null, Locale.ROOT));
     }
+    
     
     public void activateRelationship(Relationship relationship, boolean active) {
         Relationship changedRelationship = relationshipRepository.getOne(relationship.getId());
         changedRelationship.setActivate(active);
         this.relationshipRepository.save(changedRelationship);
         if(active) {
-            messageService.addNotification(relationship, "Welcome to our school, now you can manage your rides");
+            messageService.addNotification(relationship, messageSource.getMessage("school.welcome", null, Locale.ROOT));
         }
     }
+    
     
     public void changeRelationshipStatus(Relationship relationship, String status) {
         Relationship changedRelationship = relationshipRepository.getOne(relationship.getId());
         changedRelationship.setStatus(status);
-        if(status.contains("completed")) {
+        if(status.equals(RelationshipConstants.COMPLETED)) {
             changedRelationship.setEndingdate(new Timestamp(System.currentTimeMillis()));
             activateRelationship(relationship, false);
         }
@@ -119,16 +119,16 @@ public class RelationshipService {
          if(!relations.isEmpty()) {
              for(Relationship relation : relations) {
                  if(relation.isActivate()) {
-                     response.add(new UserRelationInfo(relation, "active"));
+                     response.add(new UserRelationInfo(relation, RelationshipConstants.ACTIVE));
                  } else {
                      Optional<ConfirmUserVerification> verification = confirmationRepository.findByRelation(relation.getId());
                      if(verification.isPresent()) {
-                         response.add(new UserRelationInfo(relation, "waiting"));
+                         response.add(new UserRelationInfo(relation, RelationshipConstants.WAITING));
                      } else {
-                         if(relation.getStatus().equalsIgnoreCase("completed")) {
-                             response.add(new UserRelationInfo(relation, "completed"));
+                         if(relation.getStatus().equals(RelationshipConstants.COMPLETED)) {
+                             response.add(new UserRelationInfo(relation, RelationshipConstants.COMPLETED));
                          } else {
-                             response.add(new UserRelationInfo(relation, "rejected"));
+                             response.add(new UserRelationInfo(relation, RelationshipConstants.REJECTED));
                          }
                      }
                  }
@@ -154,20 +154,24 @@ public class RelationshipService {
         return new UserProfileInfo(relationship.getUser(), ridesCompleted);
     }
     
-    public CompletedRelationship getCompletedRelationship(int relationID) {
+    
+    public ResponseEntity getCompletedRelationship(int relationID) {
         User user = userService.loadUserWithUsername(
                 SecurityContextHolder.getContext().getAuthentication().getName());
         Relationship relationship = relationshipRepository.findById(relationID).get();
         if(relationship.getUser().equals(user)) {
-            List<RideDTO> rides = crr.findAllByStudentAndDrivingSchoolAndStatus(
-                    relationship.getUser(), relationship.getDrivingSchool(), "FINISHED")
-                    .stream().map(RideDTO::new).collect(Collectors.toList());
-            return new CompletedRelationship(
+            if(relationship.getStatus().equals(RelationshipConstants.COMPLETED)) {
+                return new ResponseEntity(new CompletedRelationship(
                         relationship.getCreationDate()
                         , relationship.getEndingdate()
                         , crr.findAllByStudentAndDrivingSchoolAndStatus(
                         relationship.getUser(), relationship.getDrivingSchool(), "FINISHED")
-                        .stream().map(RideDTO::new).collect(Collectors.toList()));
+                        .stream().map(RideDTO::new).collect(Collectors.toList()))
+                        , HttpStatus.OK);
+            }
+            else {
+                return new ResponseEntity(messageSource.getMessage("relationship.notEnded", null, Locale.ROOT), HttpStatus.BAD_REQUEST);
+            }
         }
         throw new CustomLoginException("This relationID is not yours");
     }

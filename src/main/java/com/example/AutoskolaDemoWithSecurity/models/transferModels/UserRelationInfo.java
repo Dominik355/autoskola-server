@@ -22,7 +22,7 @@ public class UserRelationInfo {
     }
     
     public UserRelationInfo(Relationship relationship, String information) {
-        this.name = relationship.getUser().getFullName();
+        this.name = relationship.getUser().getSurname() + " " + relationship.getUser().getName();
         this.relationID = relationship.getId();    
         this.school = relationship.getDrivingSchool().getName();
         this.information = information;
@@ -30,7 +30,7 @@ public class UserRelationInfo {
     }
     
     public UserRelationInfo(Relationship relationship) {
-        this.name = relationship.getUser().getFullName();
+        this.name = relationship.getUser().getSurname() + " " + relationship.getUser().getName();
         this.relationID = relationship.getId();    
         this.school = relationship.getDrivingSchool().getName();
         this.information = relationship.getStatus();
@@ -38,18 +38,14 @@ public class UserRelationInfo {
     }
 
     public UserRelationInfo(ConfirmUserVerification verification) {
-        this.name = verification.getUser().getFullName();
+        String[] arr = verification.getInformation().split("%");
+        this.name = verification.getUser().getSurname() + " " + verification.getUser().getName();
         this.information = verification.getInformation();
         this.relationID = verification.getRelationID();    
         this.school = verification.getDrivingSchool().getName();
+        this.role = verification.getInformation().substring(4, verification.getInformation().indexOf(" ", 6));
     }
-    
-    public UserRelationInfo(ConfirmUserVerification verification, String information) {
-        this.name = verification.getUser().getFullName();
-        this.information = information;
-        this.relationID = verification.getRelationID();   
-        this.school = verification.getDrivingSchool().getName();
-    }
+
 
 
     public String getName() {

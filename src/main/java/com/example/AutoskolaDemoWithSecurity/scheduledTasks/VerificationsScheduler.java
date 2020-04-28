@@ -52,6 +52,7 @@ public class VerificationsScheduler {
     }
     
     @Scheduled(cron = "0 0 19 ? * *")
+    @PostConstruct
     private void userConfirmationsCheck() {
         HashSet<Integer> schools = new HashSet<>();
         List<ConfirmUserVerification> requests = confirmationRepository.findAll();

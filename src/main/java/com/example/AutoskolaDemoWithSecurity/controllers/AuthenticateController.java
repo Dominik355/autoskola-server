@@ -20,9 +20,12 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import java.util.Calendar;
 import java.util.List;
+import java.util.Locale;
+import javax.mail.MessagingException;
 import javax.security.auth.login.LoginException;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -62,6 +65,9 @@ public class AuthenticateController {
     
     @Autowired
     private NotificationMessageService notificationService;
+    
+    @Autowired
+    private MessageSource messageSource;
 
    
     
@@ -78,11 +84,14 @@ public class AuthenticateController {
         if (verificationToken.getExpiryDate().getTime() - cal.getTime().getTime() <= 0L) {
           this.verificationTokenService.deleteVerificationToken(user);
           //vymaze uzivatela
-          return new ResponseEntity("7 days from registration passed. Register again", HttpStatus.FORBIDDEN);
+          return new ResponseEntity(messageSource.getMessage(
+                        "registrationConfirm.expiration", null, Locale.ROOT)
+                        , HttpStatus.FORBIDDEN);
         }
         this.myUserDetailsService.activateUser(user);
         this.verificationTokenService.deleteVerificationToken(user);
-        return new ResponseEntity("Your account has been verified", HttpStatus.OK);
+        return new ResponseEntity(messageSource.getMessage(
+                        "registrationConfirm.verified", null, Locale.ROOT), HttpStatus.OK);
         
     }
 
@@ -93,7 +102,6 @@ public class AuthenticateController {
             response = ResponseEntity.class)
     public ResponseEntity resetPassword(@RequestBody ResetPasswordRequest request) throws InterruptedException {
         String mail = request.getUserEmail();
-        System.out.println("Reset password called with email: " + mail);
         return this.myUserDetailsService.resetPassword(mail);
     }
     
@@ -111,9 +119,11 @@ public class AuthenticateController {
         }
         catch (AuthenticationException e) {
             if(userRepository.existsByEmail(authenticationRequest.getEmail())) {
-                throw new LoginException("Wrong password");
+                throw new LoginException(messageSource.getMessage(
+                        "wrong.password", null, Locale.ROOT));
             } else {
-                throw new LoginException("Wrong email");
+                throw new LoginException(messageSource.getMessage(
+                        "wrong.email", null, Locale.ROOT));
             }
         }
         
@@ -136,7 +146,7 @@ public class AuthenticateController {
     @RequestMapping(value = {"/register"}, method = {RequestMethod.POST})
     @ApiOperation(value = "${authenticateController.register.value}",
             response = AuthenticationResponse.class)
-    public ResponseEntity addNewUser(@RequestBody @Valid UserDTO userDTO) {
+    public ResponseEntity addNewUser(@RequestBody @Valid UserDTO userDTO) throws MessagingException {
         return ResponseEntity.ok(this.myUserDetailsService.addNewUser(userDTO)); 
     }
     

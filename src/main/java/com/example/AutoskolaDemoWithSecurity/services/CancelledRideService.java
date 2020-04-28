@@ -15,9 +15,10 @@ import com.example.AutoskolaDemoWithSecurity.repositories.RideRepository;
 import com.example.AutoskolaDemoWithSecurity.repositories.UserRepository;
 import com.example.AutoskolaDemoWithSecurity.utils.RideUtil;
 import java.text.ParseException;
-import java.util.List;
+import java.util.Locale;
 import java.util.NoSuchElementException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -26,6 +27,9 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class CancelledRideService {
+    
+    @Autowired
+    private MessageSource messageSource;
     
     @Autowired
     private RideRepository rideRepository;
@@ -44,9 +48,6 @@ public class CancelledRideService {
     
     @Autowired
     private CompletedRideRepository crr;
-    
-    @Autowired
-    private RelationshipRepository relationRepository;
 
     @Autowired
     private NotificationMessageService notificationService;
@@ -60,18 +61,19 @@ public class CancelledRideService {
         try{
             for(RideDTO ride : rides) {
                 if(!rideRepository.existsByTimeAndDateAndInstructorAndDrivingSchool(ride.getTime(), ride.getDate(), instructor, drivingSchool)) {
-                    throw new NoSuchElementException("This ride does not exist, Time:"+ride.getTime()+", date: "+ride.getDate());
+                    throw new NoSuchElementException(messageSource.getMessage(
+                        "ride.notExists", new Object[] {ride.getDate(), ride.getTime()}, Locale.ROOT));
                 }
             }
         } catch(NullPointerException e) {
             throw new NullPointerException("any Time or Date missing");
         }
         for(int i = 0; i < rides.length; i++) {
-            ResponseEntity res = removeRide(rideRepository.findByTimeAndDateAndInstructorAndDrivingSchool(
+            removeRide(rideRepository.findByTimeAndDateAndInstructorAndDrivingSchool(
                     rides[i].getTime(), rides[i].getDate(), instructor, drivingSchool)
                     , drivingSchool);
         }
-        return new ResponseEntity("Rides succesfully removed", HttpStatus.OK);
+        return new ResponseEntity(messageSource.getMessage("rides.removed.succesfull", null, Locale.ROOT), HttpStatus.OK);
     }
     
     
@@ -82,7 +84,7 @@ public class CancelledRideService {
                 SecurityContextHolder.getContext().getAuthentication().getName())) {
             return removeRide(ride, ride.getDrivingSchool());
         }
-        throw new CustomLoginException("You can cancel only your rides!");
+        throw new CustomLoginException(messageSource.getMessage("ride.cancel.onlyYours", null, Locale.ROOT));
     }
     
     
@@ -93,7 +95,8 @@ public class CancelledRideService {
              status = ride.getStatus();
          } catch (Exception e) {
              e.printStackTrace();
-             throw new NoSuchElementException("This ride does not exists");
+             throw new NoSuchElementException(messageSource.getMessage(
+                     "ride.notExists", new Object[] {passedRide.getDate(), passedRide.getTime()}, Locale.ROOT));
          }  
          if(status.equals("PENDING") || !rideUtil.isItBeforeRide(ride, 0)) {
              if(!ride.getStudent().isPresent()) {
@@ -106,10 +109,7 @@ public class CancelledRideService {
                 cRide.setStatus("NOTFINISHED");
                 crr.save(cRide);
                 notificationService.addPushNotification(ride.getStudent().get(), drivingSchool
-                                    , "Ride has not been finished: "+ride.getDate()+" "+ride.getTime());
-                //da sa taktiez ziakovi vediet, ale s inou informaciou
-                notificationService.addPushNotification(ride.getStudent().get(), drivingSchool
-                                    , "Ride has been cancelled after it started "+ride.getDate()+" "+ride.getTime());
+                                    , messageSource.getMessage("ride.notFinished", new Object[] {ride.getTime(), ride.getDate()}, Locale.ROOT));
              }
          } else  {
              //jazda este nezacala 
@@ -118,12 +118,13 @@ public class CancelledRideService {
              if(status.equals("RESERVED") ) {
                  //nezacala ale niekto bol prihlaseny
                 notificationService.addPushNotification(ride.getStudent().get(), drivingSchool
-                                    , "Instructor cancelled ride: "+ride.getDate()+" "+ride.getTime());
+                                    , messageSource.getMessage("ride.cancelled.byInstructor", new Object[] {ride.getTime(), ride.getDate()}, Locale.ROOT));
              }
          }
-         
          rideRepository.delete(ride);
-         return new ResponseEntity("Ride succesfully removed", HttpStatus.OK);
+         return new ResponseEntity(
+                 messageSource.getMessage("ride.removed.succesfull", null, Locale.ROOT)
+                 , HttpStatus.OK);
      }
     
 }

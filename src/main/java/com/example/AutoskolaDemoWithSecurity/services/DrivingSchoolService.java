@@ -4,6 +4,7 @@ package com.example.AutoskolaDemoWithSecurity.services;
 import com.example.AutoskolaDemoWithSecurity.models.databaseModels.DrivingSchool;
 import com.example.AutoskolaDemoWithSecurity.models.databaseModels.Relationship;
 import com.example.AutoskolaDemoWithSecurity.models.databaseModels.User;
+import com.example.AutoskolaDemoWithSecurity.models.databaseModels.constants.RelationshipConstants;
 import com.example.AutoskolaDemoWithSecurity.models.transferModels.DrivingSchoolDTO;
 import com.example.AutoskolaDemoWithSecurity.models.transferModels.UserRelationInfo;
 import com.example.AutoskolaDemoWithSecurity.repositories.CompletedRideRepository;
@@ -14,10 +15,12 @@ import com.example.AutoskolaDemoWithSecurity.repositories.UserRepository;
 import java.nio.file.AccessDeniedException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.stream.Collectors;
 import javax.persistence.EntityNotFoundException;
 import javax.persistence.PersistenceException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -44,6 +47,12 @@ public class DrivingSchoolService {
     @Autowired
     private RelationshipService relationshipService;
     
+    @Autowired
+    private MessageSource messageSource;
+    
+    @Autowired
+    private NotificationMessageService notificationService;
+    
     
     public ResponseEntity createDrivingSchool(DrivingSchoolDTO drivingSchoolDTO) {
         User owner = userRepository.findByEmail(drivingSchoolDTO.getOwnerEmail())
@@ -59,7 +68,7 @@ public class DrivingSchoolService {
                 relationshipRepository.delete(r);
                 throw new PersistenceException("Something went wrong, School " + drivingSchool.getName() + " could not be saved");
             }
-            return new ResponseEntity("School succesfully created, wait for", HttpStatus.OK);
+            return new ResponseEntity(messageSource.getMessage("school.created", null, Locale.ROOT), HttpStatus.OK);
         }
         return new ResponseEntity("This user has no OWNER role", HttpStatus.BAD_REQUEST);
     }
@@ -85,6 +94,7 @@ public class DrivingSchoolService {
     
     public List<UserRelationInfo> viewRequests(int relationID){
         DrivingSchool school = relationshipRepository.findById(relationID).get().getDrivingSchool();
+        System.out.println("com.example.AutoskolaDemoWithSecurity.services.DrivingSchoolService.viewRequests()");
         return confirmationRepository.findAllByDrivingSchool(school)
                 .stream()
                 .map(UserRelationInfo::new)
@@ -105,49 +115,78 @@ public class DrivingSchoolService {
                     throw new EntityNotFoundException("Wrong relationship ID");
                 }
             } else {
-                relation.setStatus("rejected");
+                relation.setStatus(RelationshipConstants.REJECTED);
                 relationshipRepository.save(relation);
             }
             confirmationRepository.deleteByRelation(userRelationID);
-            return new ResponseEntity(confirm ? "User confirmed" : "User rejected", HttpStatus.OK);
+            return new ResponseEntity(confirm ? messageSource.getMessage("user.confirmed", null, Locale.ROOT) 
+                        : messageSource.getMessage("user.denied", null, Locale.ROOT)
+                    , HttpStatus.OK);
         }
         return new ResponseEntity("ID does not belong to your school", HttpStatus.BAD_REQUEST);
     }
     
     
+    public ResponseEntity kickUser(int relationshipID) {
+        Relationship relation = relationshipRepository.findById(relationshipID).orElseThrow(
+                    () -> new EntityNotFoundException("This relationID does not exist"));
+        if(relation.getDrivingSchool().getOwner().getEmail()
+                .equals(SecurityContextHolder.getContext().getAuthentication().getName())) {
+            
+            relation.setActivate(false);
+            relation.setStatus(RelationshipConstants.NOT_COMPLETED);
+            relationshipRepository.save(relation);
+            notificationService.addPushNotification(relation.getUser(), relation.getDrivingSchool()
+                    , messageSource.getMessage("user.kicked", null, Locale.ROOT));
+        } else {
+             return new ResponseEntity("ID does not belong to your school", HttpStatus.BAD_REQUEST);
+        }
+        return new ResponseEntity(messageSource.getMessage("school.user.kicked", null, Locale.ROOT), HttpStatus.OK);
+    }
+    
+    public List<UserRelationInfo> getAllUsers(int relationID) {
+        List<UserRelationInfo> list = new ArrayList<UserRelationInfo>();
+        list.addAll(relationshipRepository.findAllByDrivingSchoolAndRoleOrRole(
+                relationshipRepository.findById(relationID).get().getDrivingSchool(), "ROLE_STUDENT,", "ROLE_INSTRUCTOR,")
+                .stream()
+                .map(UserRelationInfo::new)
+                .sorted((o1, o2) -> o1.getName().compareTo(o2.getName()))
+                .sorted((o1, o2) -> o1.getRole().compareTo(o2.getRole()))
+                .collect(Collectors.toList()));
+        return list;
+    }
+    
+    /*
     public ResponseEntity completeStudent(int studentRelationID, boolean completed) {
         Relationship relation = relationshipRepository.findById(studentRelationID).orElseThrow(
                     () -> new EntityNotFoundException("This relationID does not exist"));
-        System.out.println("com.example.AutoskolaDemoWithSecurity.services.DrivingSchoolService.completeStudent()");
          if(relation.getDrivingSchool().getOwner().getEmail()
                 .equals(SecurityContextHolder.getContext().getAuthentication().getName())) {
-             System.out.println("com.example.AutoskolaDemoWithSecurity.services.DrivingSchoolService.completeStudent()");
              if(completed) {
-                 System.out.println("com.example.AutoskolaDemoWithSecurity.services.Drivin          TRUE    ");
-                 if(relation.getStatus().equalsIgnoreCase("waiting for exam")) {
-                     relationshipService.changeRelationshipStatus(relation, "completed");
+                 if(relation.getStatus().equals(RelationshipConstants.WAITING_FOR_EXAM)) {
+                     relationshipService.changeRelationshipStatus(relation, RelationshipConstants.COMPLETED);
                  } else {
-                     return new ResponseEntity("This user did not completed rides yet", HttpStatus.BAD_REQUEST);
+                     return new ResponseEntity(messageSource.getMessage("student.rides.notFinished", null, Locale.ROOT), HttpStatus.BAD_REQUEST);
                  }
              } else {
-                 System.out.println("com.example.AutoskolaDemoWithSecurity.services.            FALSE");
-                 relationshipService.changeRelationshipStatus(relation, "not completed");
+                 relationshipService.changeRelationshipStatus(relation, RelationshipConstants.NOT_COMPLETED);
              }
              
          } else {
              return new ResponseEntity("ID does not belong to your school", HttpStatus.BAD_REQUEST);
          }
-        return new ResponseEntity("Student status set as: "+(completed ? "completed" : "not completed"), HttpStatus.OK);
+        return new ResponseEntity(messageSource.getMessage("student.status.set", null, Locale.ROOT), HttpStatus.OK);
     }
+    
     
     public List<UserRelationInfo> getCompletedUsers(int relationID) {
         List<UserRelationInfo> list = new ArrayList<UserRelationInfo>();
         list.addAll(relationshipRepository.findAllByDrivingSchoolAndStatus(
-                relationshipRepository.findById(relationID).get().getDrivingSchool(), "waiting for exam")
+                relationshipRepository.findById(relationID).get().getDrivingSchool(), RelationshipConstants.WAITING_FOR_EXAM)
                 .stream()
                 .map(UserRelationInfo::new)
                 .collect(Collectors.toList()));
         return list;
     }
-    
+    */
 }

@@ -41,42 +41,53 @@ public class SchoolController {
     @Autowired
     private VehicleService vehicleService;
     
-    @Autowired
-    private DrivingSchoolRepository schoolRepository;
-    
-    @Autowired
-    private RelationshipRepository relationRepository;
       
     
     @GetMapping({"/getRequests"})
+    @ApiOperation(value = "${schoolController.getRequests.value}")
     public ResponseEntity getRequests(HttpServletRequest request) {
         return new ResponseEntity(schoolService.viewRequests(request.getIntHeader("Relation")), HttpStatus.OK);
     }
-    
+    /*
     @GetMapping({"/getCompletedStudents"})
+    @ApiOperation(value = "${schoolController.getCompletedStudents.value}",
+                notes = "${schoolController.getCompletedStudents.notes}")
     public ResponseEntity getCompletedStudents(HttpServletRequest request) {
         return new ResponseEntity(schoolService.getCompletedUsers(request.getIntHeader("Relation")), HttpStatus.OK);
     }
+    */
+    @GetMapping({"/getAllUsers"})
+    public ResponseEntity getAllUsers(HttpServletRequest request) {
+        return new ResponseEntity(schoolService.getAllUsers(request.getIntHeader("Relation")), HttpStatus.OK);
+    }
+    
+    @PostMapping({"/kickUser/{userRelationID}"})
+    public ResponseEntity kickUser(@PathVariable int userRelationID) {
+        return schoolService.kickUser(userRelationID);
+    }
     
     @PostMapping(value = {"/confirmUser/{userRelationID}"})
+    @ApiOperation(value = "${schoolController.confirmUser.value}",
+                notes = "${schoolController.confirmUser.notes}")
     public ResponseEntity confirmUser(@PathVariable int userRelationID
             , @RequestParam(required = true) boolean confirm) {
         return ResponseEntity.ok(schoolService.confirmUser(userRelationID, confirm));
     }
-    
+    /*
     @PostMapping(value = {"/completeStudent/{userRelationID}"})
+    @ApiOperation(value = "${schoolController.completeStudent.value}",
+                notes = "${schoolController.completeStudent.notes}")
     public ResponseEntity completeStudent(@PathVariable int userRelationID
             , @RequestParam(required = true) boolean complete) {
         return new ResponseEntity(schoolService.completeStudent(userRelationID, complete), HttpStatus.OK);
     }
-    
+    */
     @GetMapping(value = "/getSchoolInfo/{id}")
     @ApiOperation(value = "${schoolController.getSchoolInfo.value}",
             notes = "${schoolController.getSchoolInfo.notes}",
             response = InstructorRides.class,
             responseContainer = "List")
     public ResponseEntity getSchoolInfo(@PathVariable int id) throws AccessDeniedException {
-        System.out.println("School controller - getSchoolInfo()");
         return ResponseEntity.ok(schoolService.getSchoolInfo(id));
     }
     

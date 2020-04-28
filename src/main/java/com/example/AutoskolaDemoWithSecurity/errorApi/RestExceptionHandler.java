@@ -15,6 +15,7 @@ import java.nio.file.AccessDeniedException;
 import java.text.ParseException;
 import java.util.List;
 import java.util.NoSuchElementException;
+import javax.mail.MessagingException;
 import javax.persistence.EntityExistsException;
 import javax.persistence.EntityNotFoundException;
 import javax.persistence.PersistenceException;
@@ -33,6 +34,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
+import org.springframework.mail.MailAuthenticationException;
 import org.springframework.mail.MailException;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -138,6 +140,14 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
         return buildResponseEntity(new ApiError(HttpStatus.BAD_REQUEST, ex.getMessage()));
     }    
     
+    @ExceptionHandler({MailAuthenticationException.class})
+    @ResponseStatus(code = HttpStatus.INTERNAL_SERVER_ERROR)
+    public ResponseEntity handleMailAuthenticationException(MailAuthenticationException ex) {
+        ApiError error = new ApiError(HttpStatus.INTERNAL_SERVER_ERROR);
+        error.setMessage("Email service is not available, error: "+ex.getLocalizedMessage());
+        return buildResponseEntity(error);
+    }
+    
     @ExceptionHandler({ ParseException.class })
     @ResponseStatus(code = HttpStatus.INTERNAL_SERVER_ERROR)
     public ResponseEntity<Object> handleParseException(ParseException ex) {
@@ -145,9 +155,15 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
                 , ex.getMessage().length() > 255 ? "Error while parsing string parameter " : ex.getMessage()));
     }
     
-    @ExceptionHandler({ MailException.class })
+    @ExceptionHandler({ MailException.class})
     @ResponseStatus(code = HttpStatus.BAD_REQUEST)
     public ResponseEntity<Object> handleMailException(MailException ex) {
+        return buildResponseEntity(new ApiError(HttpStatus.BAD_REQUEST, ex.getMessage()));
+    }   
+    
+    @ExceptionHandler({ MessagingException.class})
+    @ResponseStatus(code = HttpStatus.BAD_REQUEST)
+    public ResponseEntity<Object> handleMessagingException(MessagingException ex) {
         return buildResponseEntity(new ApiError(HttpStatus.BAD_REQUEST, ex.getMessage()));
     }   
     

@@ -40,7 +40,7 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
         String relationId = request.getHeader("Relation");
         if(relationId == null) {
             
-            throw new IOException("Exception hodena v interceptori, RelationID = null");
+            throw new IOException("Exception thrown in interceptor, RelationID is null");
             
         } else if (relationId != null && relationId != "") {
                         String email = SecurityContextHolder.getContext().getAuthentication().getName();

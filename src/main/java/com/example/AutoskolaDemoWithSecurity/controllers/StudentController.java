@@ -45,12 +45,6 @@ public class StudentController {
     private CompletedRideService crs;
     
     
-    @GetMapping(value = {"/hello"})
-    public String helloStudent() {
-        MyUserDetails details = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        return "Hello student, your ID is: "+details.getId();
-    }
-    
     @GetMapping(value = "/freeRides/{date}")
     @ApiOperation(value = "${studentController.getFreeRides.value}",
             notes = "${studentController.getFreeRides.notes}",

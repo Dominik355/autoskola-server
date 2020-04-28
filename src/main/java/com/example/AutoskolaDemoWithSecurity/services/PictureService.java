@@ -4,10 +4,12 @@ package com.example.AutoskolaDemoWithSecurity.services;
 import com.example.AutoskolaDemoWithSecurity.models.databaseModels.ProfilePicture;
 import com.example.AutoskolaDemoWithSecurity.repositories.PictureRepository;
 import java.io.FileNotFoundException;
+import java.util.Locale;
 import org.apache.commons.io.FilenameUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -20,7 +22,11 @@ public class PictureService {
     @Autowired
     private PictureRepository pictureRepository;
     
+    @Autowired
+    private MessageSource messageSource;
+    
     private final Logger log = LoggerFactory.getLogger(PictureService.class);
+    
     
     public String saveImage(MultipartFile file) {
         if(!file.isEmpty()) {
@@ -39,10 +45,10 @@ public class PictureService {
                         picture = new ProfilePicture(email, type, file.getBytes());
                     }
                     pictureRepository.save(picture);
-                    return "Picture saved";
+                    return messageSource.getMessage("picture.saved", null, Locale.ROOT);
                 } catch (Exception ex) {
                     ex.printStackTrace();
-                    return "exception occued while saving picture";
+                    return "exception occured while saving picture";
                 }
             }
             return "File you send is not image";

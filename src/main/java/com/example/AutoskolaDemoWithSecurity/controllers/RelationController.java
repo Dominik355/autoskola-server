@@ -2,7 +2,6 @@
 package com.example.AutoskolaDemoWithSecurity.controllers;
 
 import com.example.AutoskolaDemoWithSecurity.models.otherModels.MyUserDetails;
-import com.example.AutoskolaDemoWithSecurity.repositories.RelationshipRepository;
 import com.example.AutoskolaDemoWithSecurity.services.NotificationMessageService;
 import com.example.AutoskolaDemoWithSecurity.services.RelationshipService;
 import io.swagger.annotations.ApiOperation;
@@ -21,20 +20,17 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping(value = {"/relationship"})
-@PreAuthorize("hasRole('ROLE_INSTRUCTOR') or hasRole('ROLE_STUDENT')")
 public class RelationController {
     
     @Autowired
     private RelationshipService relationshipService;
-    
-    @Autowired
-    private RelationshipRepository rr;
-    
+
     @Autowired
     private NotificationMessageService messageService;
     
     
     @PostMapping(value = "/enterSchool/{schoolID}")
+    @PreAuthorize("hasRole('ROLE_INSTRUCTOR') or hasRole('ROLE_STUDENT')")
     @ApiOperation(value = "${relationController.enterSchool.value}",
             notes = "${relationController.enterSchool.notes}",
             response = ResponseEntity.class)
@@ -55,11 +51,15 @@ public class RelationController {
     }
     
     @GetMapping(value = {"/getRelationInfo"})
+    @ApiOperation(value = "${relationshipController.getRelationInfo.value}")
     public ResponseEntity getRelationInfo(HttpServletRequest request) {
         return ResponseEntity.ok(relationshipService.getRelationInfo(request.getIntHeader("Relation")));
     }
     
     @GetMapping(value = {"/completedRelationship"})
+    @PreAuthorize("hasRole('ROLE_INSTRUCTOR') or hasRole('ROLE_STUDENT')")
+    @ApiOperation(value = "${relationshipController.completedRelationship.value}",
+                  notes = "${relationshipController.completedRelationship.notes}")
     public ResponseEntity completedRelationship(HttpServletRequest request) {
         return ResponseEntity.ok(relationshipService.getCompletedRelationship(request.getIntHeader("Relation")));
     }

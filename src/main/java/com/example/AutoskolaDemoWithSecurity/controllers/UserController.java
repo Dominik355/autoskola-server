@@ -61,6 +61,8 @@ public class UserController
     
     
     @GetMapping({"/viewRelations"})
+    @ApiOperation(value = "${userController.viewRelations.value}",
+                  notes = "${userController.viewRelations.notes}")
     public ResponseEntity viewRelations() {
         return ResponseEntity.ok(relationService.getAllRelations(""));
     }
@@ -72,6 +74,7 @@ public class UserController
     }
     
     @GetMapping({"/getSchools"})
+    @ApiOperation(value = "${userController.getSchools.value}")
     public ResponseEntity getSchools() {
         return ResponseEntity.ok(schoolService.getDrivingSchools());
     }
