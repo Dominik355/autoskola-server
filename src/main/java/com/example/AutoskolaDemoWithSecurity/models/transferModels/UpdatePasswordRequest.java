@@ -5,9 +5,10 @@ import com.example.AutoskolaDemoWithSecurity.validators.constraint.PasswordStren
 
 
 public class UpdatePasswordRequest {
+    
     private String oldPassword;
     
-    @PasswordStrengthConstraint
+    @PasswordStrengthConstraint(message = "{userDTO.passwordStrength}")
     private String newPassword;
 
     public UpdatePasswordRequest(String oldPassword, String newPassword) {

@@ -7,6 +7,7 @@ package com.example.AutoskolaDemoWithSecurity.utils;
 
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import org.springframework.stereotype.Component;
 
@@ -19,6 +20,14 @@ public class TimeUtil {
     public String getTodayDate() {
         Date now = new Timestamp(System.currentTimeMillis());
         return formatter.format(now);
+    }
+    
+    public Timestamp getDateMinusDays(int minusDays) {
+        Date referenceDate = new Date();
+        Calendar c = Calendar.getInstance(); 
+        c.setTime(referenceDate); 
+        c.add(Calendar.DAY_OF_MONTH, -minusDays);
+        return new Timestamp(c.getTime().getTime());
     }
     
 }

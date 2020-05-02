@@ -50,7 +50,7 @@ public class User implements Serializable {
     private String roles;
 
     @Column(updatable = false, name = "created_on")
-    private Timestamp createdOn;
+    private Timestamp createdOn;    
 
 
     public User(String name, String surname, String password, String email, String phoneNumber, String roles) {

@@ -77,7 +77,7 @@ public class RelationshipService {
         } else if(user.getRoles().contains("INSTRUCTOR")) {
             info = "New instructor "+user.getFullName();
         }
-        Relationship rs = relationshipRepository.save(relationship);
+        relationshipRepository.save(relationship);
         confirmationRepository.save(new ConfirmUserVerification(ds, user, info
                 , relationshipRepository.findByUserAndDrivingSchool(user, ds).getId()));
         
@@ -99,7 +99,7 @@ public class RelationshipService {
         Relationship changedRelationship = relationshipRepository.getOne(relationship.getId());
         changedRelationship.setStatus(status);
         if(status.equals(RelationshipConstants.COMPLETED)) {
-            changedRelationship.setEndingdate(new Timestamp(System.currentTimeMillis()));
+            changedRelationship.setEndingDate(new Timestamp(System.currentTimeMillis()));
             activateRelationship(relationship, false);
         }
         this.relationshipRepository.save(changedRelationship);
@@ -163,7 +163,7 @@ public class RelationshipService {
             if(relationship.getStatus().equals(RelationshipConstants.COMPLETED)) {
                 return new ResponseEntity(new CompletedRelationship(
                         relationship.getCreationDate()
-                        , relationship.getEndingdate()
+                        , relationship.getEndingDate()
                         , crr.findAllByStudentAndDrivingSchoolAndStatus(
                         relationship.getUser(), relationship.getDrivingSchool(), "FINISHED")
                         .stream().map(RideDTO::new).collect(Collectors.toList()))

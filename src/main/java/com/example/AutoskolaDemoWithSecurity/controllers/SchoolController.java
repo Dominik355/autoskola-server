@@ -61,6 +61,11 @@ public class SchoolController {
         return new ResponseEntity(schoolService.getAllUsers(request.getIntHeader("Relation")), HttpStatus.OK);
     }
     
+    @GetMapping({"/getInactiveUsers"})
+    public ResponseEntity getInactiveUsers(HttpServletRequest request) {
+        return new ResponseEntity(schoolService.getInactiveUsers(request.getIntHeader("Relation")), HttpStatus.OK);
+    }
+    
     @PostMapping({"/kickUser/{userRelationID}"})
     public ResponseEntity kickUser(@PathVariable int userRelationID) {
         return schoolService.kickUser(userRelationID);

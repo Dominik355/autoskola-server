@@ -7,7 +7,7 @@ import java.io.Serializable;
 
 public class UpdateEmailRequest implements Serializable{
     
-    @EmailValidConstraint
+    @EmailValidConstraint(message = "{userDTO.emailValid}")
     private String newEmail;
 
     public UpdateEmailRequest() {}

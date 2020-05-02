@@ -12,27 +12,27 @@ import io.swagger.annotations.ApiModelProperty;
 import javax.validation.constraints.NotEmpty;
 
 
-@PasswordMatchesConstraint
+@PasswordMatchesConstraint(message = "{userDTO.passwordMatches}")
 public class UserDTO {
     
     @NotEmpty(message = "{userDTO.name.notEmpty}")
-    @CorrectName
+    @CorrectName(message = "{userDTO.correctName}")
     private String fullName;
 
     @NotEmpty
-    @PasswordStrengthConstraint
+    @PasswordStrengthConstraint(message = "{userDTO.passwordStrength}")
     private String password;
 
     @NotEmpty
     private String matchingPassword;
 
     @NotEmpty
-    @EmailValidConstraint
+    @EmailValidConstraint(message = "{userDTO.emailValid}")
     private String email;
 
     @NotEmpty
-    @PhoneNumberConstraint
-    @ApiModelProperty(notes = "format 0999888777")
+    @PhoneNumberConstraint(message = "{userDTO.validPhoneNumber}")
+    @ApiModelProperty(notes = "format 09xx xxx xxx")
     private String phoneNumber;
 
     @NotEmpty

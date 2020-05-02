@@ -7,18 +7,23 @@ import com.example.AutoskolaDemoWithSecurity.models.databaseModels.User;
 import com.example.AutoskolaDemoWithSecurity.models.databaseModels.constants.RelationshipConstants;
 import com.example.AutoskolaDemoWithSecurity.models.transferModels.DrivingSchoolDTO;
 import com.example.AutoskolaDemoWithSecurity.models.transferModels.UserRelationInfo;
-import com.example.AutoskolaDemoWithSecurity.repositories.CompletedRideRepository;
 import com.example.AutoskolaDemoWithSecurity.repositories.ConfirmationRepository;
 import com.example.AutoskolaDemoWithSecurity.repositories.DrivingSchoolRepository;
 import com.example.AutoskolaDemoWithSecurity.repositories.RelationshipRepository;
 import com.example.AutoskolaDemoWithSecurity.repositories.UserRepository;
+import com.example.AutoskolaDemoWithSecurity.utils.TimeUtil;
 import java.nio.file.AccessDeniedException;
+import java.sql.Date;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 import java.util.stream.Collectors;
+import javax.annotation.PostConstruct;
 import javax.persistence.EntityNotFoundException;
 import javax.persistence.PersistenceException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.http.HttpStatus;
@@ -52,6 +57,11 @@ public class DrivingSchoolService {
     
     @Autowired
     private NotificationMessageService notificationService;
+    
+    @Autowired
+    private TimeUtil timeUtil;
+    
+    private Logger logger = LoggerFactory.getLogger(DrivingSchoolService.class);
     
     
     public ResponseEntity createDrivingSchool(DrivingSchoolDTO drivingSchoolDTO) {
@@ -144,6 +154,7 @@ public class DrivingSchoolService {
         return new ResponseEntity(messageSource.getMessage("school.user.kicked", null, Locale.ROOT), HttpStatus.OK);
     }
     
+    
     public List<UserRelationInfo> getAllUsers(int relationID) {
         List<UserRelationInfo> list = new ArrayList<UserRelationInfo>();
         list.addAll(relationshipRepository.findAllByDrivingSchoolAndRoleOrRole(
@@ -156,6 +167,21 @@ public class DrivingSchoolService {
         return list;
     }
     
+    
+    public List<UserRelationInfo> getInactiveUsers(int relationID) {
+        List<UserRelationInfo> list = new ArrayList<UserRelationInfo>();
+        list.addAll(relationshipRepository.findAllByDrivingSchoolAndActivateAndLastOnlineBefore(
+                relationshipRepository.findById(relationID).get().getDrivingSchool(),
+                true,
+                timeUtil.getDateMinusDays(30))
+                .stream()
+                .map(UserRelationInfo::new)
+                .sorted((o1, o2) -> o1.getName().compareTo(o2.getName()))
+                .sorted((o1, o2) -> o1.getRole().compareTo(o2.getRole()))
+                .collect(Collectors.toList())); // all users where were not active for at least 30 days
+        return list;
+    }
+
     /*
     public ResponseEntity completeStudent(int studentRelationID, boolean completed) {
         Relationship relation = relationshipRepository.findById(studentRelationID).orElseThrow(

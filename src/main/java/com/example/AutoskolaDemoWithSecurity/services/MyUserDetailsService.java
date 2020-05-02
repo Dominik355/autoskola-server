@@ -16,6 +16,7 @@ import javax.annotation.PostConstruct;
 import javax.mail.MessagingException;
 import javax.persistence.EntityExistsException;
 import javax.persistence.EntityNotFoundException;
+import javax.security.auth.login.LoginException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.context.MessageSource;
@@ -137,10 +138,11 @@ public class MyUserDetailsService implements UserDetailsService {
     }
     
     
-    public ResponseEntity resetPassword(String email) throws InterruptedException {
+    public ResponseEntity resetPassword(String email) throws InterruptedException, LoginException {
         String temporaryPassword;
         temporaryPassword = this.temporaryPasswordService.createRandomPassword();
-        User user = loadUserWithUsername(email);
+        User user = userRepository.findByEmail(email).orElseThrow(() -> new LoginException(messageSource.getMessage(
+                        "wrong.email", null, Locale.ROOT)));
 
         this.applicationEventPublisher.publishEvent(new OnResetPasswordEvent(user, temporaryPassword, user));
         temporaryPassword = this.bcryptEncoder.encode(temporaryPassword);

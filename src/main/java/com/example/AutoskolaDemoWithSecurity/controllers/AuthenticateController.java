@@ -100,7 +100,7 @@ public class AuthenticateController {
     @ApiOperation(value = "${authenticateController.resetPassword.value}",
             notes = "${authenticateController.resetPassword.notes}",
             response = ResponseEntity.class)
-    public ResponseEntity resetPassword(@RequestBody ResetPasswordRequest request) throws InterruptedException {
+    public ResponseEntity resetPassword(@RequestBody ResetPasswordRequest request) throws InterruptedException, LoginException {
         String mail = request.getUserEmail();
         return this.myUserDetailsService.resetPassword(mail);
     }

@@ -41,7 +41,11 @@ public class Relationship implements Serializable {
     @Column(name = "creation_date", nullable = false, updatable = false)
     private Timestamp creationDate;
     
-    private Timestamp endingdate;
+    @Column(name = "last_online")
+    private Timestamp lastOnline;
+    
+    @Column(name = "endingdate")
+    private Timestamp endingDate;
     
     @NotEmpty
     @Column(name = "position")
@@ -84,12 +88,12 @@ public class Relationship implements Serializable {
         return creationDate;
     }
 
-    public Timestamp getEndingdate() {
-        return endingdate;
+    public Timestamp getLastOnline() {
+        return lastOnline;
     }
 
-    public void setEndingdate(Timestamp endingdate) {
-        this.endingdate = endingdate;
+    public void setLastOnline(Timestamp lastOnline) {
+        this.lastOnline = lastOnline;
     }
 
     public String getRole() {
@@ -116,18 +120,25 @@ public class Relationship implements Serializable {
         if(status == null) return "";
         else return status;
     }
-    
+
+    public Timestamp getEndingDate() {
+        return endingDate;
+    }
+
+    public void setEndingDate(Timestamp endingDate) {
+        this.endingDate = endingDate;
+    }
+ 
 
     @Override
     public String toString() {
         return "role: "+this.role+
                 ", active: "+this.activate+
-                        ", drivingSchoold: "+this.drivingSchool+
-                                ", endingDate: "+this.endingdate+
+                        ", drivingSchoold: "+this.drivingSchool.getName()+
+                                ", lastOnline: "+this.lastOnline+
                                         ", id: "+this.id+
-                                                ", role: "+this.role+
-                                                        ", status: "+this.status+
-                                                                ", user: "+this.user;
+                                                ", status: "+this.status+
+                                                        ", user: "+this.user.getFullName();
     }
     
 }

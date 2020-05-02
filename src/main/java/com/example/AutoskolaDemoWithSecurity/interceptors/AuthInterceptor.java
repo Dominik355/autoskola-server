@@ -8,6 +8,7 @@ import com.example.AutoskolaDemoWithSecurity.repositories.RelationshipRepository
 import com.example.AutoskolaDemoWithSecurity.repositories.UserRepository;
 import com.example.AutoskolaDemoWithSecurity.services.MyUserDetailsService;
 import java.io.IOException;
+import java.sql.Timestamp;
 import java.util.Optional;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -25,9 +26,6 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
 
     @Autowired
     private RelationshipRepository relationRepository;
-    
-    @Autowired
-    private UserRepository userRepository;
     
     @Autowired
     private MyUserDetailsService userService;
@@ -49,7 +47,10 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
             int relationID = Integer.parseInt(relationId);
             Optional<Relationship> relation = relationRepository.findByUserAndId(user, relationID);
             if(relation.isPresent()) {
-                if(relation.get().isActivate()) {
+                Relationship relationship= relation.get();
+                if(relationship.isActivate()) {
+                    relationship.setLastOnline(new Timestamp(System.currentTimeMillis()));
+                    relationRepository.save(relationship);
                     return true;
                 } else {
                 throw new CustomLoginException("This relationship is not active");
