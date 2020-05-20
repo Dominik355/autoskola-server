@@ -49,9 +49,8 @@ public class RideDTO implements Serializable {
         if(ride.getStudent().isPresent()) {
             this.student = ride.getStudent().get().getFullName();
         }
-        if(ride.getComment().isPresent()) {
-            this.comment = ride.getComment().get();
-        }
+        this.vehicleID = ride.getVehicleID().orElseGet(null);
+        this.comment = ride.getComment().orElse("");
     }
     
     public RideDTO(CompletedRide ride) {
@@ -64,6 +63,7 @@ public class RideDTO implements Serializable {
         }
         this.instructor = ride.getInstructor().getName();
         this.status = ride.getStatus();
+        this.vehicleID = ride.getVehicleID().orElseGet(null);
     }
 
     public RideDTO(String date, String time, String status, String comment, int vehicleID) {

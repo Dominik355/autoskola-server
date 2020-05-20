@@ -102,13 +102,13 @@ public class SchoolController {
     }
     
     @DeleteMapping(value = {"/removeVehicle/{vehicleID}"})
-    public ResponseEntity removeVehicle(@PathVariable("vehicleID") int vehicleID) {
-        return ResponseEntity.ok(vehicleService.removeVehicle(vehicleID));
+    public ResponseEntity removeVehicle(@PathVariable("vehicleID") int vehicleID,HttpServletRequest request) {
+        return ResponseEntity.ok(vehicleService.removeVehicle(vehicleID, request.getIntHeader("Relation")));
     }
     
     @PostMapping(value = {"/modifyVehicle"})
-    public ResponseEntity modifyVehicle(@RequestBody @Valid VehicleDTO vehicleDTO) {
-        return ResponseEntity.ok(vehicleService.modifyVehicle(vehicleDTO));
+    public ResponseEntity modifyVehicle(@RequestBody @Valid VehicleDTO vehicleDTO, HttpServletRequest request) {
+        return ResponseEntity.ok(vehicleService.modifyVehicle(vehicleDTO, request.getIntHeader("Relation")));
     }
     
     @GetMapping(value = {"/getVehicles/{vehicleID}"})

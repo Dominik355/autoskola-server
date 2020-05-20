@@ -92,5 +92,10 @@ public class StudentController {
         }
         return new ResponseEntity("Wrong date", HttpStatus.BAD_REQUEST);
     }
+    
+    @GetMapping("/getRideInfo/{rideID}")
+    public ResponseEntity getRideInfo(@PathVariable("rideID") int rideID, HttpServletRequest request) {
+        return ResponseEntity.ok(rideService.getRideInfo(rideID, request.getIntHeader("Relation")));
+    }
         
 }

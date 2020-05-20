@@ -92,8 +92,8 @@ public class CompletedRide implements Serializable{
         this.instructor = instructor;
     }
 
-    public int getVehicleID() {
-        return vehicleID;
+    public Optional<Integer> getVehicleID() {
+        return Optional.ofNullable(vehicleID);
     }
 
     public void setVehicleID(int vehicleID) {

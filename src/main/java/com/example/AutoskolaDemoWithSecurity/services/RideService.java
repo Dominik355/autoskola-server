@@ -67,9 +67,11 @@ public class RideService {
             
         Ride ride = new Ride(rideDTO);
         ride.setStatus("FREE");
+        ride.setComment(rideDTO.getComment().orElse(""));
         ride.setDrivingSchool(relationshipRepository
                 .findById(relationID).get().getDrivingSchool());
         ride.setInstructor(instructor);
+        ride.setVehicleID(rideDTO.getVehicleID().orElseGet(null));
         rideRepository.save(ride);
         return new ResponseEntity(messageSource.getMessage("ride.created", null, Locale.ROOT), HttpStatus.OK);
         
@@ -83,7 +85,7 @@ public class RideService {
                     SecurityContextHolder.getContext().getAuthentication().getName()).get();
 
         for(int i=0; i <rides.length; i++) {
-            if(!rideUtil.isRideDTOFine(rides[i], instructor) 
+            if(!rideUtil.isRideDTOFine(rides[i], instructor, relationID) 
                     && rideUtil.isItBeforeRide(new Ride(rides[i]), 0)) {
                 throw new WrongDateException(messageSource.getMessage("ride.wrongDTO", new Object[] {rides[i].toString()}, Locale.ROOT));
             }
@@ -254,6 +256,17 @@ public class RideService {
                 .map(RideDTO::new)
                 .collect(Collectors.toList());
     }
+    
+    public RideDTO getRideInfo(int rideID, int relationID) {
+        System.out.println("2");
+        if(rideRepository.existsByIdAndDrivingSchoolAndStatus(
+                rideID, relationshipRepository.findById(relationID).get().getDrivingSchool(), "FREE")) {
+            return new RideDTO(rideRepository.findById(rideID).get());
+        } else {
+            throw new SecurityException("You can not see this ride!");
+        }
+    }
+
     
     public int ridesCount(Relationship relationship) {
         int count = 0;

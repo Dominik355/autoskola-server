@@ -5,7 +5,9 @@ import com.example.AutoskolaDemoWithSecurity.errorApi.customExceptions.WrongDate
 import com.example.AutoskolaDemoWithSecurity.models.databaseModels.Ride;
 import com.example.AutoskolaDemoWithSecurity.models.databaseModels.User;
 import com.example.AutoskolaDemoWithSecurity.models.transferModels.RideDTO;
+import com.example.AutoskolaDemoWithSecurity.repositories.RelationshipRepository;
 import com.example.AutoskolaDemoWithSecurity.repositories.RideRepository;
+import com.example.AutoskolaDemoWithSecurity.repositories.VehicleRepository;
 import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -23,6 +25,12 @@ public class RideUtil {
     
     @Autowired
     private RideRepository rideRepository;
+    
+    @Autowired
+    private VehicleRepository vehicleRepository;
+    
+    @Autowired
+    private RelationshipRepository relationshipRepository;
     
     private final SimpleDateFormat FORMATTER = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 
@@ -119,7 +127,13 @@ public class RideUtil {
         return status.replaceAll("\\s+", "").toUpperCase();
     }
     
-    public boolean isRideDTOFine(RideDTO rideDTO, User instructor) throws ParseException {
+    public boolean isRideDTOFine(RideDTO rideDTO, User instructor, int relationID) throws ParseException {
+        if(rideDTO.getVehicleID().isPresent() && rideDTO.getVehicleID().get() > 0) {
+            if(!vehicleRepository.existsByIdAndOwner(rideDTO.getVehicleID().get()
+                    , relationshipRepository.findById(relationID).get().getDrivingSchool())) {
+                throw new NoSuchElementException("Vehicle with ID "+rideDTO.getVehicleID().get()+" does not exists in this school");
+            }
+        }
         if(isDateValid(rideDTO.getDate())
                 && isTimeValid(rideDTO.getTime())) {
             if (!rideRepository.existsByTimeAndDateAndInstructor(

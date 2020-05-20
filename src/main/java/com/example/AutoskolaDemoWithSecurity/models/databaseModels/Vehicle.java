@@ -1,7 +1,6 @@
 
 package com.example.AutoskolaDemoWithSecurity.models.databaseModels;
 
-import com.example.AutoskolaDemoWithSecurity.models.otherModels.VehicleTypes;
 import com.example.AutoskolaDemoWithSecurity.models.transferModels.VehicleDTO;
 import java.io.Serializable;
 import javax.persistence.Column;
@@ -52,7 +51,7 @@ public class Vehicle implements Serializable {
         this.name = name;
         this.owner = drivingSchool;
         this.evidenceNumber = evidenceNumber;
-        this.type = VehicleTypes.getVehicle(type).getName();
+        this.type = type;
     }
 
     public int getId() {

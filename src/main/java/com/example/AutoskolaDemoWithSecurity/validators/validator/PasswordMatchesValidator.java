@@ -10,10 +10,10 @@ import javax.validation.ConstraintValidatorContext;
 
 public class PasswordMatchesValidator implements ConstraintValidator<PasswordMatchesConstraint, Object> {
     
-  @Override
-  public boolean isValid(Object object, ConstraintValidatorContext context) {
-    UserDTO user = (UserDTO)object;
-    return user.getPassword().equals(user.getMatchingPassword());
-  }
+    @Override
+    public boolean isValid(Object object, ConstraintValidatorContext context) {
+        UserDTO user = (UserDTO)object;
+        return user.getPassword().equals(user.getMatchingPassword());
+    }
   
 }

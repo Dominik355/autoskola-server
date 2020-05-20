@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -30,18 +31,24 @@ public class VehicleService {
         return "Vehicle succesfully saved";
     }
     
-    public String removeVehicle(int vehicleID) {
-        vehicleRepository.deleteById(vehicleID);
+    public String removeVehicle(int vehicleID, int relationID) {
+        vehicleRepository.deleteByIdAndOwner(vehicleID, relationshipRepository.findById(relationID).get().getDrivingSchool());
         return "Vehicle succesfully removed";
     }
     
-    public String modifyVehicle(VehicleDTO vehicleDTO) {
+    public String modifyVehicle(VehicleDTO vehicleDTO, int relationID) {
         Vehicle vehicle = vehicleRepository.getOne(vehicleDTO.getId());
-        vehicle.setEvidenceNumber(vehicleDTO.getEvidenceNumber());
-        vehicle.setName(vehicleDTO.getName());
-        vehicle.setType(vehicleDTO.getType());
-        vehicleRepository.save(vehicle);
-        return "Vehicle succesfully modified";
+        if(vehicle.getOwner().equals(
+                relationshipRepository.findById(relationID).get().getDrivingSchool())) {
+        
+            vehicle.setEvidenceNumber(vehicleDTO.getEvidenceNumber());
+            vehicle.setName(vehicleDTO.getName());
+            vehicle.setType(vehicleDTO.getType());
+            vehicleRepository.save(vehicle);
+            return "Vehicle succesfully modified";
+        } else {
+            throw new SecurityException("This vehicle does not belong to your school!");
+        }
     }
     
     public List<VehicleDTO> getVehicles(int relationID) {

@@ -17,6 +17,8 @@ public interface RideRepository extends JpaRepository<Ride, Integer> {
     boolean existsByTimeAndDateAndInstructorAndDrivingSchool(String time, String date, User user, DrivingSchool drivingSchool);
     
     boolean existsByTimeAndDateAndInstructor(String time, String date, User user);
+    
+    boolean existsByIdAndDrivingSchoolAndStatus(int id, DrivingSchool drivingSchool, String status);
  
     List<Ride> findAllByInstructorAndDrivingSchool(User instructor, DrivingSchool drivingSchool);
     

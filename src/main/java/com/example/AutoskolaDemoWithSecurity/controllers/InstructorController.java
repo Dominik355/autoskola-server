@@ -74,7 +74,7 @@ public class InstructorController {
         
         User instructor = userRepository.findByEmail(
                     SecurityContextHolder.getContext().getAuthentication().getName()).get();
-        if(rideUtil.isRideDTOFine(ride, instructor)) {
+        if(rideUtil.isRideDTOFine(ride, instructor, request.getIntHeader("Relation"))) {
             return ResponseEntity.ok(rideService.addRide(ride, request.getIntHeader("Relation"), instructor));
         } else {
             return new ResponseEntity(messageSource.getMessage(
